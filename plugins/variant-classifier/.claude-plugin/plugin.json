@@ -1,0 +1,5 @@
+{
+  "name": "variant-classifier",
+  "description": "Classify genetic variants using ACMG/AMP criteria with ClinGen VCEP specifications",
+  "version": "1.0.0"
+}

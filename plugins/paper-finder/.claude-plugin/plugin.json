@@ -1,0 +1,5 @@
+{
+  "name": "paper-finder",
+  "description": "Fetch PubMed articles by PMID and extract raw verbatim content",
+  "version": "1.0.0"
+}

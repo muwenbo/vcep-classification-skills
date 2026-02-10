@@ -1,6 +1,8 @@
 # VCEP Classification Skills
 
-A set of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills for genetic variant classification using ACMG/AMP criteria and ClinGen VCEP specifications.
+English | [中文](./README.zh.md)
+
+A set of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin skills for genetic variant classification using ACMG/AMP criteria and ClinGen VCEP specifications.
 
 ## Skills Included
 
@@ -64,29 +66,23 @@ Features:
 pip install requests beautifulsoup4
 ```
 
-### Install Skills
+### Install via Plugin Marketplace (Recommended)
 
-1. Clone this repository:
+1. Add the marketplace in Claude Code:
 
-```bash
-git clone https://github.com/<your-username>/vcep-classification-skills.git
+```
+/plugin marketplace add muwenbo/vcep-classification-skills
 ```
 
-2. Copy the skills into your project's `.claude/skills/` directory:
+2. Install the plugins you need:
 
-```bash
-# From your project root
-mkdir -p .claude/skills
-cp -r vcep-classification-skills/.claude/skills/* .claude/skills/
+```
+/plugin install variant-classifier@vcep-classification-skills
+/plugin install vcep-spec@vcep-classification-skills
+/plugin install paper-finder@vcep-classification-skills
 ```
 
-Or, to install into a specific project:
-
-```bash
-cp -r vcep-classification-skills/.claude/skills/* /path/to/your/project/.claude/skills/
-```
-
-3. Verify installation — start Claude Code in your project and the skills should appear as available slash commands:
+3. Verify installation — the skills should appear as available slash commands:
 
 ```
 /variant-classifier
@@ -96,12 +92,23 @@ cp -r vcep-classification-skills/.claude/skills/* /path/to/your/project/.claude/
 
 ### Updating
 
-Pull the latest changes and re-copy:
+Update the marketplace to get the latest versions:
+
+```
+/plugin marketplace update vcep-classification-skills
+```
+
+### Manual Installation (Alternative)
+
+You can also clone and add the marketplace locally:
 
 ```bash
-cd vcep-classification-skills
-git pull
-cp -r .claude/skills/* /path/to/your/project/.claude/skills/
+git clone https://github.com/muwenbo/vcep-classification-skills.git
+```
+
+```
+/plugin marketplace add ./vcep-classification-skills
+/plugin install variant-classifier@vcep-classification-skills
 ```
 
 ## Usage
@@ -114,7 +121,7 @@ Once installed, invoke skills from Claude Code using slash commands:
 > /paper-finder 30128536
 ```
 
-For detailed usage of each skill, see the `SKILL.md` file in each skill's directory.
+For detailed usage of each skill, see the `SKILL.md` file in each plugin's `skills/` directory.
 
 ## License
 

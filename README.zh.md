@@ -1,6 +1,8 @@
 # VCEP 变异分类技能包
 
-一套用于遗传变异分类的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 技能，基于 ACMG/AMP 标准和 ClinGen VCEP 规范。
+[English](./README.md) | 中文
+
+一套用于遗传变异分类的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 插件技能，基于 ACMG/AMP 标准和 ClinGen VCEP 规范。
 
 ## 包含技能
 
@@ -64,29 +66,23 @@
 pip install requests beautifulsoup4
 ```
 
-### 安装技能
+### 通过插件市场安装（推荐）
 
-1. 克隆本仓库：
+1. 在 Claude Code 中添加市场：
 
-```bash
-git clone https://github.com/<your-username>/vcep-classification-skills.git
+```
+/plugin marketplace add muwenbo/vcep-classification-skills
 ```
 
-2. 将技能复制到你项目的 `.claude/skills/` 目录：
+2. 安装所需插件：
 
-```bash
-# 在你的项目根目录下执行
-mkdir -p .claude/skills
-cp -r vcep-classification-skills/.claude/skills/* .claude/skills/
+```
+/plugin install variant-classifier@vcep-classification-skills
+/plugin install vcep-spec@vcep-classification-skills
+/plugin install paper-finder@vcep-classification-skills
 ```
 
-或者安装到指定项目：
-
-```bash
-cp -r vcep-classification-skills/.claude/skills/* /path/to/your/project/.claude/skills/
-```
-
-3. 验证安装 - 在项目中启动 Claude Code，技能将显示为可用的斜杠命令：
+3. 验证安装 - 技能将显示为可用的斜杠命令：
 
 ```
 /variant-classifier
@@ -96,12 +92,23 @@ cp -r vcep-classification-skills/.claude/skills/* /path/to/your/project/.claude/
 
 ### 更新
 
-拉取最新更改并重新复制：
+更新市场以获取最新版本：
+
+```
+/plugin marketplace update vcep-classification-skills
+```
+
+### 手动安装（备选方式）
+
+也可以克隆仓库后本地添加：
 
 ```bash
-cd vcep-classification-skills
-git pull
-cp -r .claude/skills/* /path/to/your/project/.claude/skills/
+git clone https://github.com/muwenbo/vcep-classification-skills.git
+```
+
+```
+/plugin marketplace add ./vcep-classification-skills
+/plugin install variant-classifier@vcep-classification-skills
 ```
 
 ## 使用方法
@@ -114,7 +121,7 @@ cp -r .claude/skills/* /path/to/your/project/.claude/skills/
 > /paper-finder 30128536
 ```
 
-各技能的详细用法请参阅对应目录下的 `SKILL.md` 文件。
+各技能的详细用法请参阅各插件 `skills/` 目录下的 `SKILL.md` 文件。
 
 ## 许可证
 

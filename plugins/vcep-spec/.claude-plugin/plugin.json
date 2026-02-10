@@ -1,0 +1,5 @@
+{
+  "name": "vcep-spec",
+  "description": "Download ClinGen VCEP specifications and generate variant interpretation guidelines",
+  "version": "1.0.0"
+}

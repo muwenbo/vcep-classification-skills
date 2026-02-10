@@ -1,11 +1,11 @@
-# Track only skills and READMEs — ignore everything else
+# Track only marketplace files, plugins, and READMEs
 *
 !.gitignore
 !README.md
-!README_zh.md
-!.claude/
-.claude/*
-!.claude/skills/
-!.claude/skills/**
-# Ignore pycache in skills
+!README.zh.md
+!.claude-plugin/
+!.claude-plugin/**
+!plugins/
+!plugins/**
+# Ignore pycache in plugins
 **/__pycache__/

@@ -1,0 +1,36 @@
+{
+  "name": "vcep-classification-skills",
+  "owner": {
+    "name": "muwenbo"
+  },
+  "metadata": {
+    "description": "Claude Code skills for genetic variant classification using ACMG/AMP criteria and ClinGen VCEP specifications",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "variant-classifier",
+      "source": "./plugins/variant-classifier",
+      "description": "Classify genetic variants using ACMG/AMP criteria with ClinGen VCEP specifications",
+      "version": "1.0.0",
+      "keywords": ["genetics", "variant-classification", "ACMG", "VCEP", "ClinGen"],
+      "category": "life-sciences"
+    },
+    {
+      "name": "vcep-spec",
+      "source": "./plugins/vcep-spec",
+      "description": "Download ClinGen VCEP specifications and generate variant interpretation guidelines",
+      "version": "1.0.0",
+      "keywords": ["genetics", "VCEP", "ClinGen", "guidelines"],
+      "category": "life-sciences"
+    },
+    {
+      "name": "paper-finder",
+      "source": "./plugins/paper-finder",
+      "description": "Fetch PubMed articles by PMID and extract raw verbatim content",
+      "version": "1.0.0",
+      "keywords": ["PubMed", "literature", "papers", "research"],
+      "category": "life-sciences"
+    }
+  ]
+}
