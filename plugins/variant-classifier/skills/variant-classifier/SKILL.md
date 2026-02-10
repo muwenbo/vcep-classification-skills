@@ -85,7 +85,6 @@ Use `$OUTDIR` below as shorthand for this path.
 Run VEP annotation to get basic variant information:
 
 ```bash
-cd $SKILL_DIR/variant-classifier
 python scripts/vep_annotate.py "<VARIANT>" --json -o $OUTDIR/vep_annotation.json
 ```
 
