@@ -1,0 +1,11 @@
+# Track only skills and READMEs — ignore everything else
+*
+!.gitignore
+!README.md
+!README_zh.md
+!.claude/
+.claude/*
+!.claude/skills/
+!.claude/skills/**
+# Ignore pycache in skills
+**/__pycache__/

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variant Classification Report: {{VARIANT_HGVS}}</title>
+    <style>
+        /* ============================================
+           VARIANT CLASSIFICATION REPORT TEMPLATE
+           ============================================
+           
+           PLACEHOLDERS (replace with actual values):
+           - {{VARIANT_HGVS}} - Full HGVS notation
+           - {{GENE}} - Gene symbol
+           - {{CHROMOSOME}} - Chromosome number
+           - {{POSITION}} - Genomic position
+           - {{CONSEQUENCE}} - Variant consequence
+           - {{CLASSIFICATION}} - Final classification (text)
+           - {{CLASSIFICATION_CLASS}} - CSS class: pathogenic, likely-pathogenic, vus, likely-benign, benign
+           - {{TOTAL_POINTS}} - Net point score
+           - {{MARKER_POSITION}} - Percentage for scale marker (calculate: ((points + 10) / 22) * 100)
+           - {{VCEP_NAME}} - VCEP specification name
+           - {{VCEP_VERSION}} - VCEP version
+           - {{TRANSCRIPT}} - Transcript ID
+           - {{DATE}} - Report generation date
+           - {{DISEASE}} - Associated disease
+           - {{INHERITANCE}} - Inheritance pattern (AR, AD, XL)
+           - {{DISCUSSION_TEXT}} - Classification rationale text
+        */
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        /* Header */
+        .report-header {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .report-header h1 { font-size: 24px; color: #2c3e50; margin-bottom: 5px; }
+        .report-header .subtitle { color: #7f8c8d; font-size: 13px; }
+        .report-meta { display: flex; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
+        .report-meta span { font-size: 11px; color: #7f8c8d; }
+        
+        /* Classification section */
+        .classification-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .classification-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .classification-label { font-size: 13px; color: #7f8c8d; min-width: 100px; }
+        .classification-value { font-size: 20px; font-weight: 700; }
+        .classification-value.pathogenic { color: #e74c3c; }
+        .classification-value.likely-pathogenic { color: #e67e22; }
+        .classification-value.vus { color: #f39c12; }
+        .classification-value.likely-benign { color: #27ae60; }
+        .classification-value.benign { color: #2ecc71; }
+        
+        /* Scale bar */
+        .scale-container { margin-top: 10px; }
+        .scale-label { font-size: 11px; color: #7f8c8d; margin-bottom: 8px; }
+        .scale-bar {
+            display: flex;
+            height: 36px;
+            border-radius: 6px;
+            overflow: visible;
+            position: relative;
+        }
+        .scale-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: 500;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .scale-segment.benign { background: #2ecc71; flex: 1; border-radius: 6px 0 0 6px; }
+        .scale-segment.likely-benign { background: #27ae60; flex: 1.2; }
+        .scale-segment.vus { background: #f39c12; flex: 1.2; }
+        .scale-segment.likely-pathogenic { background: #e67e22; flex: 0.8; }
+        .scale-segment.pathogenic { background: #e74c3c; flex: 1; border-radius: 0 6px 6px 0; }
+        
+        /* Marker below the bar */
+        .scale-marker-container {
+            position: relative;
+            height: 30px;
+            margin-top: 4px;
+        }
+        .scale-marker {
+            position: absolute;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .scale-marker .arrow-up {
+            width: 0; height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #2c3e50;
+        }
+        .scale-marker .point-badge {
+            background: #2c3e50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        /* Info grid - 5 items */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        @media (max-width: 900px) {
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .info-box {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .info-box.disease { border-left-color: #e74c3c; }
+        .info-box label { font-size: 10px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-box value { display: block; font-size: 13px; font-weight: 600; color: #2c3e50; margin-top: 2px; }
+        
+        /* Section titles */
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            width: 22px; height: 22px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        /* Plot container */
+        .plot-container {
+            background: #fafbfc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        svg { display: block; margin: 0 auto; }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .data-table th {
+            background: #34495e;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .data-table td { padding: 10px 12px; border-bottom: 1px solid #ecf0f1; }
+        .data-table tr:hover { background: #f8f9fa; }
+        .data-table tr:nth-child(even) { background: #fafbfc; }
+        .criteria-table th { background: #2c3e50; }
+        .criteria-table .pathogenic { border-left: 4px solid #e74c3c; }
+        .criteria-table .benign { border-left: 4px solid #27ae60; }
+        .criteria-table .not-applicable { color: #95a5a6; font-style: italic; }
+        
+        /* Badges */
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+        .badge-pathogenic { background: #e74c3c; color: white; }
+        .badge-likely-pathogenic { background: #e67e22; color: white; }
+        .badge-vus { background: #f39c12; color: white; }
+        .badge-likely-benign { background: #27ae60; color: white; }
+        .badge-benign { background: #2ecc71; color: white; }
+        .badge-current { background: #9b59b6; color: white; }
+        .badge-points { background: #2c3e50; color: white; font-family: monospace; }
+        
+        /* Strength indicators */
+        .strength { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 9px; font-weight: 600; text-transform: uppercase; }
+        .strength-very-strong { background: #c0392b; color: white; }
+        .strength-strong { background: #e74c3c; color: white; }
+        .strength-moderate { background: #e67e22; color: white; }
+        .strength-supporting { background: #f39c12; color: white; }
+        
+        /* Sequence display */
+        .sequence-display {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 12px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        .seq-label { color: #6a9955; margin-right: 10px; }
+        .seq-kozak { color: #dcdcaa; background: rgba(220, 220, 170, 0.2); }
+        .seq-atg { color: #4ec9b0; background: rgba(78, 201, 176, 0.3); font-weight: bold; }
+        .seq-coding { color: #9cdcfe; }
+        .seq-deleted { color: #f44747; background: rgba(244, 71, 71, 0.3); text-decoration: line-through; }
+        .seq-utr { color: #ce9178; }
+        .seq-ref { color: #9cdcfe; }
+        .seq-alt { color: #f44747; font-weight: bold; }
+        
+        /* Legend */
+        .legend { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 11px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .legend-color { width: 14px; height: 14px; border-radius: 3px; }
+        
+        /* Literature card */
+        .literature-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #3498db;
+        }
+        .literature-card h4 { color: #2c3e50; margin-bottom: 8px; font-size: 14px; }
+        .literature-card .meta { font-size: 11px; color: #7f8c8d; margin-bottom: 8px; }
+        .literature-card .findings { font-size: 12px; }
+        
+        /* Discussion box */
+        .discussion-box {
+            background: #fff9e6;
+            border: 1px solid #f39c12;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .discussion-box h4 { color: #d68910; margin-bottom: 8px; font-size: 14px; }
+        .discussion-box p { font-size: 13px; }
+        
+        /* Recommendations */
+        .recommendations { background: #e8f6ff; border-radius: 8px; padding: 15px; }
+        .recommendations h4 { color: #2980b9; margin-bottom: 10px; font-size: 14px; }
+        .recommendations ul { margin-left: 20px; font-size: 13px; }
+        .recommendations li { margin-bottom: 6px; }
+        
+        /* Exon table */
+        .exon-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 12px; }
+        .exon-table th { background: #34495e; color: white; padding: 6px 8px; text-align: left; }
+        .exon-table td { padding: 6px 8px; border-bottom: 1px solid #ecf0f1; }
+        .exon-table tr:nth-child(even) { background: #f8f9fa; }
+        .highlight-row { background: #fff3e0 !important; font-weight: 600; }
+        
+        /* Footer */
+        .report-footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 10px;
+        }
+        
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; }
+            .plot-container { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ==================== REPORT HEADER ==================== -->
+        <div class="report-header">
+            <h1>Variant Classification Report</h1>
+            <p class="subtitle">ACMG/AMP Classification with ClinGen VCEP Specifications</p>
+            <div class="report-meta">
+                <span>📅 {{DATE}}</span>
+                <span>🧬 {{TRANSCRIPT}}</span>
+                <span>📋 {{VCEP_NAME}} {{VCEP_VERSION}}</span>
+                <span>🔬 GRCh38</span>
+            </div>
+        </div>
+        
+        <!-- ==================== CLASSIFICATION WITH SCALE ==================== -->
+        <div class="classification-section">
+            <div class="classification-row">
+                <span class="classification-label">Classification:</span>
+                <span class="classification-value {{CLASSIFICATION_CLASS}}">{{CLASSIFICATION}}</span>
+            </div>
+            <div class="scale-container">
+                <div class="scale-label">Point Scale (Tavtigian et al. 2020)</div>
+                <div class="scale-bar">
+                    <div class="scale-segment benign">Benign<br><span style="font-size:9px">≤-7</span></div>
+                    <div class="scale-segment likely-benign">Likely Benign<br><span style="font-size:9px">-6 to -1</span></div>
+                    <div class="scale-segment vus">VUS<br><span style="font-size:9px">0 to 5</span></div>
+                    <div class="scale-segment likely-pathogenic">LP<br><span style="font-size:9px">6-9</span></div>
+                    <div class="scale-segment pathogenic">Pathogenic<br><span style="font-size:9px">≥10</span></div>
+                </div>
+                <div class="scale-marker-container">
+                    <!-- Calculate position: ((points + 10) / 22) * 100 -->
+                    <div class="scale-marker" style="left: {{MARKER_POSITION}}%;">
+                        <span class="arrow-up"></span>
+                        <span class="point-badge">{{TOTAL_POINTS}} points</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ==================== VARIANT INFORMATION (5 boxes) ==================== -->
+        <div class="info-grid">
+            <div class="info-box">
+                <label>Variant (HGVS)</label>
+                <value>{{VARIANT_HGVS}}</value>
+            </div>
+            <div class="info-box">
+                <label>Genomic Location</label>
+                <value>chr{{CHROMOSOME}}:{{POSITION}}</value>
+            </div>
+            <div class="info-box">
+                <label>Gene</label>
+                <value>{{GENE}}</value>
+            </div>
+            <div class="info-box">
+                <label>Consequence</label>
+                <value>{{CONSEQUENCE}}</value>
+            </div>
+            <div class="info-box disease">
+                <label>Disease</label>
+                <value>{{DISEASE}} ({{INHERITANCE}})</value>
+            </div>
+        </div>
+
+        <!-- ==================== SECTION 1: GENE STRUCTURE ==================== -->
+        <div class="section-title">
+            <span class="icon">1</span>
+            Gene Structure Overview
+        </div>
+        <div class="plot-container">
+            <!-- INSERT GENE STRUCTURE SVG HERE -->
+            <svg width="1000" height="220" viewBox="0 0 1000 220">
+                <text x="500" y="110" text-anchor="middle" fill="#95a5a6">[Generate gene structure SVG based on exon data]</text>
+            </svg>
+        </div>
+        <table class="exon-table">
+            <thead><tr><th>Exon</th><th>Coordinates</th><th>Length</th><th>Content</th></tr></thead>
+            <tbody>
+                <!-- INSERT EXON ROWS -->
+            </tbody>
+        </table>
+
+        <!-- ==================== SECTION 2: VARIANT DETAIL ==================== -->
+        <div class="section-title">
+            <span class="icon">2</span>
+            Variant Region Detail
+        </div>
+        <div class="plot-container">
+            <!-- INSERT VARIANT DETAIL SVG -->
+            <svg width="900" height="170" viewBox="0 0 900 170">
+                <text x="450" y="85" text-anchor="middle" fill="#95a5a6">[Generate variant detail SVG]</text>
+            </svg>
+        </div>
+        
+        <!-- ==================== SECTION 3: SEQUENCE CONTEXT ==================== -->
+        <div class="section-title">
+            <span class="icon">3</span>
+            Sequence Context
+        </div>
+        <div class="sequence-display">
+            <!-- INSERT SEQUENCE DISPLAY -->
+        </div>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background: #ce9178;"></div><span>5' UTR</span></div>
+            <div class="legend-item"><div class="legend-color" style="background: #9cdcfe;"></div><span>CDS</span></div>
+            <div class="legend-item"><div class="legend-color" style="background: #f44747;"></div><span>Variant</span></div>
+        </div>
+
+        <!-- ==================== SECTION 4: CRITERIA ASSESSMENT ==================== -->
+        <div class="section-title">
+            <span class="icon">4</span>
+            ACMG/AMP Criteria Assessment
+        </div>
+        
+        <h4 style="color: #e74c3c; margin: 15px 0 8px 0; font-size: 13px;">Pathogenic Criteria Applied</h4>
+        <table class="data-table criteria-table">
+            <thead><tr><th>Criterion</th><th>Strength</th><th>Points</th><th>Evidence</th></tr></thead>
+            <tbody>
+                <!-- INSERT PATHOGENIC CRITERIA ROWS -->
+                <!-- Example row:
+                <tr class="pathogenic">
+                    <td><strong>PVS1</strong></td>
+                    <td><span class="strength strength-moderate">Moderate</span></td>
+                    <td><span class="badge badge-points">+2</span></td>
+                    <td>Evidence description</td>
+                </tr>
+                -->
+            </tbody>
+        </table>
+        
+        <h4 style="color: #95a5a6; margin: 15px 0 8px 0; font-size: 13px;">Criteria Not Applied</h4>
+        <table class="data-table">
+            <thead><tr><th>Criterion</th><th>Reason</th></tr></thead>
+            <tbody>
+                <!-- INSERT NOT APPLICABLE CRITERIA -->
+            </tbody>
+        </table>
+
+        <!-- ==================== SECTION 5: PVS1 (conditional) ==================== -->
+        <!-- Include only for null variants where PVS1 applies -->
+        <!--
+        <div class="section-title">
+            <span class="icon">5</span>
+            PVS1 Decision Tree
+        </div>
+        <div class="plot-container">
+            <svg>...</svg>
+        </div>
+        -->
+
+        <!-- ==================== SECTION 6: CLINVAR CONTEXT ==================== -->
+        <div class="section-title">
+            <span class="icon">6</span>
+            ClinVar Context
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Position</th><th>Variant</th><th>Protein</th><th>Classification</th><th>Accession</th></tr></thead>
+            <tbody>
+                <!-- INSERT CLINVAR ROWS -->
+                <!-- Current variant row should have: style="background: #f3e5f5;" -->
+            </tbody>
+        </table>
+
+        <!-- ==================== SECTION 7: LITERATURE ==================== -->
+        <div class="section-title">
+            <span class="icon">7</span>
+            Literature Evidence
+        </div>
+        <!-- INSERT LITERATURE CARDS -->
+        <!-- Example:
+        <div class="literature-card">
+            <h4>PMID 12345678 - Author et al., 2020</h4>
+            <div class="meta"><strong>Title:</strong> Paper title | <strong>Journal:</strong> Journal Name</div>
+            <div class="findings">
+                <strong>Key Findings:</strong>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Finding 1</li>
+                    <li>Finding 2</li>
+                </ul>
+            </div>
+        </div>
+        -->
+
+        <!-- ==================== SECTION 8: DISCUSSION ==================== -->
+        <div class="section-title">
+            <span class="icon">8</span>
+            Discussion
+        </div>
+        <div class="discussion-box">
+            <h4>Classification Rationale</h4>
+            <p>{{DISCUSSION_TEXT}}</p>
+        </div>
+
+        <!-- ==================== SECTION 9: RECOMMENDATIONS ==================== -->
+        <div class="section-title">
+            <span class="icon">9</span>
+            Recommendations
+        </div>
+        <div class="recommendations">
+            <h4>Evidence Gaps & Next Steps</h4>
+            <ul>
+                <!-- INSERT RECOMMENDATIONS -->
+            </ul>
+        </div>
+
+        <!-- ==================== FOOTER ==================== -->
+        <div class="report-footer">
+            <p>Generated by Variant Classifier | ACMG/AMP with ClinGen {{VCEP_NAME}} {{VCEP_VERSION}} | {{DATE}} | GRCh38</p>
+        </div>
+    </div>
+</body>
+</html>
