@@ -44,7 +44,6 @@ VEP_POST_PARAMS = {
     "LoF": 1,
     "NMD": 1,
     "Paralogues": "clnsig=pathogenic,clnsig_match=exact,fields=all",
-    "Phenotypes": 1,
     "REVEL": 1,
     "RiboseqORFs": 1,
     "SpliceAI": 2,
@@ -115,8 +114,6 @@ class TranscriptConsequence:
     lof_info: Optional[str] = None
     # NMD
     nmd: Optional[str] = None
-    # Phenotypes (from VEP Phenotypes plugin)
-    phenotypes: Optional[List[Dict[str, Any]]] = None
     # UniProt
     uniprot_isoform: Optional[List[str]] = None
     swissprot: Optional[List[str]] = None
@@ -138,7 +135,6 @@ class ColocatedVariant:
     clinical_significance: List[str] = field(default_factory=list)
     pubmed_ids: List[int] = field(default_factory=list)
     frequencies: Dict[str, float] = field(default_factory=dict)
-    phenotypes: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -309,8 +305,6 @@ class VEPAnnotation:
                 ct["lof"] = {"lof": canonical.lof, "filter": canonical.lof_filter, "flags": canonical.lof_flags, "info": canonical.lof_info}
             if canonical.nmd is not None:
                 ct["nmd"] = canonical.nmd
-            if canonical.phenotypes:
-                ct["phenotypes"] = canonical.phenotypes
             if canonical.distance is not None:
                 ct["distance"] = canonical.distance
             # UniProt
@@ -542,7 +536,6 @@ def parse_vep_response(response: List[Dict]) -> VEPAnnotation:
             lof_flags=tc.get("lof_flags"),
             lof_info=tc.get("lof_info"),
             nmd=tc.get("nmd"),
-            phenotypes=tc.get("phenotypes"),
             uniprot_isoform=tc.get("uniprot_isoform"),
             swissprot=tc.get("swissprot"),
             trembl=tc.get("trembl"),
@@ -565,19 +558,12 @@ def parse_vep_response(response: List[Dict]) -> VEPAnnotation:
                     for pop_key, freq in allele_freqs.items():
                         frequencies[pop_key] = freq
 
-        # Parse phenotypes - can be a list of dicts or an int (count)
-        phenotype_data = cv.get("phenotype_or_disease", [])
-        phenotypes = []
-        if isinstance(phenotype_data, list):
-            phenotypes = [p.get("trait") for p in phenotype_data if isinstance(p, dict) and p.get("trait")]
-
         colocated_variants.append(ColocatedVariant(
             id=cv.get("id", ""),
             allele_string=cv.get("allele_string"),
             clinical_significance=cv.get("clin_sig", []),
             pubmed_ids=cv.get("pubmed", []),
             frequencies=frequencies,
-            phenotypes=phenotypes,
         ))
 
     return VEPAnnotation(
@@ -644,7 +630,6 @@ def extract_clinical_info(annotation: VEPAnnotation) -> Dict[str, Any]:
                 if canonical.phaplo is not None or canonical.ptriplo is not None else None,
             "lof": canonical.lof,
             "nmd": canonical.nmd,
-            "phenotypes": canonical.phenotypes,
         })
 
     return result
@@ -780,18 +765,6 @@ Examples:
                 lines.append(f"\nLoF (LOFTEE): {info['lof']}")
             if info.get("nmd"):
                 lines.append(f"NMD: {info['nmd']}")
-
-            # Phenotypes
-            if info.get("phenotypes"):
-                lines.append("\n--- Phenotypes ---")
-                seen = set()
-                for p in info["phenotypes"]:
-                    pheno = p.get("phenotype", "")
-                    source = p.get("source", "")
-                    key = f"{pheno}|{source}"
-                    if key not in seen and pheno:
-                        seen.add(key)
-                        lines.append(f"  [{source}] {pheno}")
 
             if info.get("pmids"):
                 lines.append(f"\nAssociated PMIDs: {', '.join(str(p) for p in info['pmids'])}")

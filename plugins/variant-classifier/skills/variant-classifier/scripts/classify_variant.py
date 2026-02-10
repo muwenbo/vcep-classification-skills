@@ -146,44 +146,29 @@ def load_acmg_criteria(criteria_file: Path = ACMG_CRITERIA_FILE) -> Dict[str, An
 
 
 def get_default_acmg_criteria() -> Dict[str, Any]:
-    """Return default ACMG criteria thresholds"""
+    """Return default ACMG criteria thresholds (matches acmg_criteria.json structure)"""
     return {
         "population_frequency": {
-            "BA1": 0.05,  # 5% - standalone benign
-            "BS1": 0.01,  # 1% - strong benign (gene-dependent)
-            "PM2_supporting": 0.0001,  # Rare/absent for supporting
-            "PM2_moderate": 0.00001,  # Very rare for moderate
+            "BA1": {"threshold": 0.05},
+            "BS1": {"threshold": 0.01},
+            "PM2_supporting": {"threshold": 0.0001},
+            "PM2_moderate": {"threshold": 0.00001},
         },
         "computational": {
-            "sift_deleterious": 0.05,  # Score <= this is deleterious
-            "polyphen_damaging": 0.85,  # Score >= this is probably damaging
-            "polyphen_possibly": 0.15,  # Score >= this is possibly damaging
-            "cadd_deleterious": 25,  # CADD PHRED >= this is deleterious
-            "revel_pathogenic": 0.7,  # REVEL >= this supports pathogenic
-            "revel_benign": 0.15,  # REVEL <= this supports benign
-            "spliceai_high": 0.5,  # SpliceAI >= this is high impact
-            "spliceai_moderate": 0.2,  # SpliceAI >= this is moderate
+            "sift": {"deleterious_threshold": 0.05},
+            "polyphen2": {"probably_damaging_threshold": 0.85, "possibly_damaging_threshold": 0.15},
+            "cadd": {"deleterious_threshold": 25, "benign_threshold": 15},
+            "revel": {"pathogenic_threshold": 0.7, "benign_threshold": 0.15},
+            "spliceai": {"moderate_threshold": 0.5, "low_threshold": 0.2},
         },
-        "combining_rules": {
-            "pathogenic": {
-                "pvs1_ps1": "Pathogenic",
-                "pvs1_pm1_pm2": "Pathogenic",
-                "ps1_ps2": "Pathogenic",
-                "ps1_3pm": "Pathogenic",
-                "2pm_2pp": "Likely Pathogenic",
-            },
-            "benign": {
-                "ba1": "Benign (standalone)",
-                "2bs": "Benign",
-                "1bs_1bp": "Likely Benign",
+        "point_system": {
+            "classification_thresholds": {
+                "pathogenic": {"min_points": 10},
+                "likely_pathogenic": {"min_points": 6},
+                "likely_benign": {"min_points": -6},
+                "benign": {"max_points": -10},
             }
         },
-        "point_thresholds": {
-            "pathogenic": 10,  # Points needed for Pathogenic
-            "likely_pathogenic": 6,  # Points needed for Likely Pathogenic
-            "likely_benign": -6,  # Points needed for Likely Benign
-            "benign": -10,  # Points needed for Benign
-        }
     }
 
 
@@ -248,7 +233,7 @@ class VariantClassifier:
         af = max_pop_af if max_pop_af is not None else gnomad_af
 
         # BA1 - Standalone benign (AF > 5%)
-        ba1_threshold = thresholds.get("BA1", 0.05)
+        ba1_threshold = thresholds.get("BA1", {}).get("threshold", 0.05)
         if self.vcep:
             ba1_threshold = self.vcep.get("BA1_threshold", ba1_threshold)
 
@@ -264,7 +249,7 @@ class VariantClassifier:
         ))
 
         # BS1 - Strong benign (AF > 1% or gene-specific)
-        bs1_threshold = thresholds.get("BS1", 0.01)
+        bs1_threshold = thresholds.get("BS1", {}).get("threshold", 0.01)
         if self.vcep:
             bs1_threshold = self.vcep.get("BS1_threshold", bs1_threshold)
 
@@ -280,7 +265,7 @@ class VariantClassifier:
         ))
 
         # PM2 - Absent or rare
-        pm2_threshold = thresholds.get("PM2_supporting", 0.0001)
+        pm2_threshold = thresholds.get("PM2_supporting", {}).get("threshold", 0.0001)
         if self.vcep:
             pm2_threshold = self.vcep.get("PM2_threshold", pm2_threshold)
 
@@ -322,7 +307,7 @@ class VariantClassifier:
 
         # SIFT
         if sift_score is not None:
-            if sift_score <= thresholds.get("sift_deleterious", 0.05):
+            if sift_score <= thresholds.get("sift", {}).get("deleterious_threshold", 0.05):
                 path_predictions += 1
                 evidence_parts.append(f"SIFT: {sift_pred} ({sift_score:.3f})")
             else:
@@ -331,37 +316,37 @@ class VariantClassifier:
 
         # PolyPhen
         if polyphen_score is not None:
-            if polyphen_score >= thresholds.get("polyphen_damaging", 0.85):
+            if polyphen_score >= thresholds.get("polyphen2", {}).get("probably_damaging_threshold", 0.85):
                 path_predictions += 1
                 evidence_parts.append(f"PolyPhen: {polyphen_pred} ({polyphen_score:.3f})")
-            elif polyphen_score < thresholds.get("polyphen_possibly", 0.15):
+            elif polyphen_score < thresholds.get("polyphen2", {}).get("possibly_damaging_threshold", 0.15):
                 benign_predictions += 1
                 evidence_parts.append(f"PolyPhen: {polyphen_pred} ({polyphen_score:.3f})")
 
         # CADD
         if cadd_phred is not None:
-            if cadd_phred >= thresholds.get("cadd_deleterious", 25):
+            if cadd_phred >= thresholds.get("cadd", {}).get("deleterious_threshold", 25):
                 path_predictions += 1
                 evidence_parts.append(f"CADD: {cadd_phred:.1f}")
-            elif cadd_phred < 15:
+            elif cadd_phred < thresholds.get("cadd", {}).get("benign_threshold", 15):
                 benign_predictions += 1
                 evidence_parts.append(f"CADD: {cadd_phred:.1f}")
 
         # REVEL
         if revel_score is not None:
-            if revel_score >= thresholds.get("revel_pathogenic", 0.7):
+            if revel_score >= thresholds.get("revel", {}).get("pathogenic_threshold", 0.7):
                 path_predictions += 1
                 evidence_parts.append(f"REVEL: {revel_score:.3f}")
-            elif revel_score <= thresholds.get("revel_benign", 0.15):
+            elif revel_score <= thresholds.get("revel", {}).get("benign_threshold", 0.15):
                 benign_predictions += 1
                 evidence_parts.append(f"REVEL: {revel_score:.3f}")
 
         # SpliceAI
         if spliceai_max is not None:
-            if spliceai_max >= thresholds.get("spliceai_high", 0.5):
+            if spliceai_max >= thresholds.get("spliceai", {}).get("moderate_threshold", 0.5):
                 path_predictions += 1
                 evidence_parts.append(f"SpliceAI: {spliceai_max:.3f}")
-            elif spliceai_max < thresholds.get("spliceai_moderate", 0.2):
+            elif spliceai_max < thresholds.get("spliceai", {}).get("low_threshold", 0.2):
                 benign_predictions += 1
                 evidence_parts.append(f"SpliceAI: {spliceai_max:.3f}")
 
@@ -488,21 +473,21 @@ class VariantClassifier:
         if ba1_met:
             return "Benign", "Standalone (BA1)", 0, benign_points
 
-        thresholds = self.acmg.get("point_thresholds", {})
+        thresholds = self.acmg.get("point_system", {}).get("classification_thresholds", {})
 
         net_points = path_points - benign_points
 
         # Determine classification
-        if net_points >= thresholds.get("pathogenic", 10):
+        if net_points >= thresholds.get("pathogenic", {}).get("min_points", 10):
             classification = "Pathogenic"
             confidence = "High" if net_points >= 12 else "Standard"
-        elif net_points >= thresholds.get("likely_pathogenic", 6):
+        elif net_points >= thresholds.get("likely_pathogenic", {}).get("min_points", 6):
             classification = "Likely Pathogenic"
             confidence = "Standard"
-        elif net_points <= thresholds.get("benign", -10):
+        elif net_points <= thresholds.get("benign", {}).get("max_points", -10):
             classification = "Benign"
             confidence = "High" if net_points <= -12 else "Standard"
-        elif net_points <= thresholds.get("likely_benign", -6):
+        elif net_points <= thresholds.get("likely_benign", {}).get("min_points", -6):
             classification = "Likely Benign"
             confidence = "Standard"
         else:

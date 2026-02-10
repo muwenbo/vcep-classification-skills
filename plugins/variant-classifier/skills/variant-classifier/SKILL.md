@@ -298,6 +298,10 @@ python scripts/vep_annotate.py "NM_000546.6:c.215C>G" --pmids-only
 ```
 
 ### gnomad_query.py - Population Frequencies
+
+**IMPORTANT:** This script does NOT accept `--json` or `-j` flags (unlike other scripts).
+Output is always JSON when using `-o`. Without `-o`, it prints a human-readable summary.
+
 ```bash
 # Single variant query (returns detailed info including in silico predictors)
 # Variant ID format: CHROM-POS-REF-ALT (e.g., 17-7674220-C-T)
