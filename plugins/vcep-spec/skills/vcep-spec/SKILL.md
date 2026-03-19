@@ -1,8 +1,6 @@
 ---
 name: vcep-spec
-description: "Download ClinGen VCEP specifications and generate variant interpretation guidelines. Use when given a GN### identifier, asked to download ClinGen specs, or asked to create a variant classification guideline for a gene."
-argument-hint: GN### [--download-only | --generate-only | --verify] or <folder-path>
-allowed-tools: Bash, Read, Write, Glob
+description: "Download ClinGen VCEP specifications and generate variant interpretation guidelines. Use when given a GN### identifier, a ClinGen specification URL, asked to download ClinGen specs, create a variant classification guideline for a gene, or prepare gene-specific rules before variant classification."
 ---
 
 # ClinGen VCEP Specification Downloader & Guideline Generator
@@ -191,37 +189,8 @@ python $SKILL_DIR/scripts/download.py GN101 -o .
 
 ## Finding VCEP IDs
 
-VCEP IDs can be found at:
-- ClinGen Registry: https://cspec.genome.network/cspec/ui/svi/
-- URL format: https://cspec.genome.network/cspec/ui/svi/doc/GN###
-
-Common VCEP IDs:
-- GN101: ACTC1 (Cardiomyopathy)
-- GN147: ACTA1 Autosomal Dominant (Congenital Myopathies)
-- GN169: ACTA1 Autosomal Recessive (Congenital Myopathies)
-- GN055: RYR1 (Malignant Hyperthermia)
-
----
+Browse all available VCEP IDs at the [ClinGen Registry](https://cspec.genome.network/cspec/ui/svi/) or run `python $SKILL_DIR/scripts/check_vcep_spec.py --list-all`.
 
 ## Requirements
 
-- Python 3
-- `requests` library
-- `beautifulsoup4` library (highly recommended for complete file detection)
-
-If the user encounters a missing dependency error:
-```bash
-pip install requests beautifulsoup4
-```
-
-**Note**: The download script works without BeautifulSoup using a regex fallback, but may miss some supplementary files. BeautifulSoup is recommended.
-
----
-
-## After Completion
-
-Inform the user:
-1. The folder location where files were saved
-2. Number of files downloaded (if download step ran)
-3. Path to the generated guideline markdown (if generate step ran)
-4. Suggest next steps (e.g., running `/variant-classifier` to classify a variant using the guideline)
+Requires Python 3 with `requests` and `beautifulsoup4`.

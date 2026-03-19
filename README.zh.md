@@ -2,7 +2,7 @@
 
 [English](./README.md) | 中文
 
-一套用于遗传变异分类的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 插件技能，基于 ACMG/AMP 标准和 ClinGen VCEP 规范。
+AI 编程代理技能包，用于基于 ACMG/AMP 标准和 ClinGen VCEP 规范的遗传变异分类。兼容任何支持技能/插件格式的代理（Claude Code、Gemini CLI 等）。
 
 ## 包含技能
 
@@ -58,7 +58,7 @@
 
 ### 前置要求
 
-- 已安装 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
+- 支持技能/插件格式的 AI 编程代理（如 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)、[Gemini CLI](https://github.com/google-gemini/gemini-cli)）
 - Python 3.7+
 - Python 依赖包：`requests`、`beautifulsoup4`
 
@@ -66,59 +66,43 @@
 pip install requests beautifulsoup4
 ```
 
-### 通过插件市场安装（推荐）
+### 通过插件市场安装
 
-1. 在 Claude Code 中添加市场：
+**Claude Code：**
 
 ```
 /plugin marketplace add muwenbo/vcep-classification-skills
-```
-
-2. 安装所需插件：
-
-```
 /plugin install variant-classifier@vcep-classification-skills
 /plugin install vcep-spec@vcep-classification-skills
 /plugin install paper-finder@vcep-classification-skills
 ```
 
-3. 验证安装 - 技能将显示为可用的斜杠命令：
-
-```
-/variant-classifier
-/vcep-spec
-/paper-finder
-```
-
-### 更新
-
-更新市场以获取最新版本：
-
-```
-/plugin marketplace update vcep-classification-skills
-```
-
-### 手动安装（备选方式）
-
-也可以克隆仓库后本地添加：
+**其他代理：** 克隆仓库后将代理指向 `plugins/` 目录或各技能文件夹：
 
 ```bash
 git clone https://github.com/muwenbo/vcep-classification-skills.git
 ```
 
+每个技能独立存放于 `plugins/<skill>/skills/<skill>/`，以 `SKILL.md` 为入口。
+
+### 更新
+
+**Claude Code：**
+
 ```
-/plugin marketplace add ./vcep-classification-skills
-/plugin install variant-classifier@vcep-classification-skills
+/plugin marketplace update vcep-classification-skills
 ```
+
+**其他代理：** 运行 `git pull` 获取最新版本。
 
 ## 使用方法
 
-安装完成后，在 Claude Code 中使用斜杠命令调用技能：
+通过斜杠命令或直接向代理提问来调用技能：
 
 ```
-> /variant-classifier "NM_000546.6:c.215C>G"
-> /vcep-spec GN101
-> /paper-finder 30128536
+/variant-classifier "NM_000546.6:c.215C>G"
+/vcep-spec GN101
+/paper-finder 30128536
 ```
 
 各技能的详细用法请参阅各插件 `skills/` 目录下的 `SKILL.md` 文件。

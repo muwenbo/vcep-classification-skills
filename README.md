@@ -2,7 +2,7 @@
 
 English | [中文](./README.zh.md)
 
-A set of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin skills for genetic variant classification using ACMG/AMP criteria and ClinGen VCEP specifications.
+AI coding agent skills for genetic variant classification using ACMG/AMP criteria and ClinGen VCEP specifications. Compatible with any agent that supports the skill/plugin format (Claude Code, Gemini CLI, etc.).
 
 ## Skills Included
 
@@ -58,7 +58,7 @@ Features:
 
 ### Prerequisites
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed
+- An AI coding agent with skill/plugin support (e.g., [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Gemini CLI](https://github.com/google-gemini/gemini-cli))
 - Python 3.7+
 - Python packages: `requests`, `beautifulsoup4`
 
@@ -66,59 +66,43 @@ Features:
 pip install requests beautifulsoup4
 ```
 
-### Install via Plugin Marketplace (Recommended)
+### Install via Plugin Marketplace
 
-1. Add the marketplace in Claude Code:
+**Claude Code:**
 
 ```
 /plugin marketplace add muwenbo/vcep-classification-skills
-```
-
-2. Install the plugins you need:
-
-```
 /plugin install variant-classifier@vcep-classification-skills
 /plugin install vcep-spec@vcep-classification-skills
 /plugin install paper-finder@vcep-classification-skills
 ```
 
-3. Verify installation — the skills should appear as available slash commands:
-
-```
-/variant-classifier
-/vcep-spec
-/paper-finder
-```
-
-### Updating
-
-Update the marketplace to get the latest versions:
-
-```
-/plugin marketplace update vcep-classification-skills
-```
-
-### Manual Installation (Alternative)
-
-You can also clone and add the marketplace locally:
+**Other agents:** Clone the repo and point your agent to the `plugins/` directory or individual skill folders:
 
 ```bash
 git clone https://github.com/muwenbo/vcep-classification-skills.git
 ```
 
+Each skill is self-contained under `plugins/<skill>/skills/<skill>/` with a `SKILL.md` entry point.
+
+### Updating
+
+**Claude Code:**
+
 ```
-/plugin marketplace add ./vcep-classification-skills
-/plugin install variant-classifier@vcep-classification-skills
+/plugin marketplace update vcep-classification-skills
 ```
+
+**Other agents:** `git pull` to get the latest versions.
 
 ## Usage
 
-Once installed, invoke skills from Claude Code using slash commands:
+Invoke skills using slash commands or by asking your agent directly:
 
 ```
-> /variant-classifier "NM_000546.6:c.215C>G"
-> /vcep-spec GN101
-> /paper-finder 30128536
+/variant-classifier "NM_000546.6:c.215C>G"
+/vcep-spec GN101
+/paper-finder 30128536
 ```
 
 For detailed usage of each skill, see the `SKILL.md` file in each plugin's `skills/` directory.
