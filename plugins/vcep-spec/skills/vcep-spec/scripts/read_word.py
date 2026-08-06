@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Read Word documents (.docx) and convert to markdown format.
+Read Word documents (.docx and legacy .doc) and convert to markdown format.
 
 Usage:
     python read_word.py <path_to_word_file> [--json]
@@ -12,13 +12,26 @@ Arguments:
 Output:
     Markdown text with headings preserved (default) or JSON structure
 
+Legacy .doc files (OLE2/CFB format) cannot be read by python-docx. ClinGen
+ships some supplementary files in this format, so they are converted first,
+using whichever of these is available: LibreOffice (preserves tables),
+textutil (macOS), antiword.
+
 Dependencies:
     python-docx (auto-installed if missing)
+    Optional for legacy .doc: soffice/libreoffice, textutil, or antiword
 """
 
+import os
+import shutil
+import subprocess
 import sys
 import json
 import argparse
+import tempfile
+
+# OLE2/Compound File Binary signature - marks a legacy .doc (not a zip-based .docx)
+OLE2_MAGIC = b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1'
 
 def install_dependencies():
     """Install required packages if not present."""
@@ -31,6 +44,63 @@ def install_dependencies():
             [sys.executable, "-m", "pip", "install", "python-docx", "-q"],
             stderr=subprocess.DEVNULL
         )
+
+def is_legacy_doc(file_path):
+    """Detect a legacy OLE2 .doc by magic bytes, not by file extension."""
+    with open(file_path, 'rb') as f:
+        return f.read(8) == OLE2_MAGIC
+
+
+def read_legacy_doc(file_path):
+    """
+    Read a legacy .doc by converting it first.
+
+    LibreOffice is tried first because converting to .docx keeps tables intact;
+    the text-only converters are fallbacks that lose table structure.
+    """
+    soffice = shutil.which('soffice') or shutil.which('libreoffice')
+    if soffice:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            try:
+                subprocess.run(
+                    [soffice, '--headless', '--convert-to', 'docx',
+                     '--outdir', tmpdir, file_path],
+                    check=True, capture_output=True, timeout=120
+                )
+                base = os.path.splitext(os.path.basename(file_path))[0] + '.docx'
+                converted = os.path.join(tmpdir, base)
+                if os.path.exists(converted):
+                    print(f"Converted legacy .doc via {os.path.basename(soffice)}",
+                          file=sys.stderr)
+                    return read_docx_file(converted)
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
+                print(f"LibreOffice conversion failed ({e}), trying text extraction",
+                      file=sys.stderr)
+
+    # Text-only fallbacks: tables collapse to plain lines
+    for cmd, name in ((['textutil', '-convert', 'txt', '-stdout', file_path], 'textutil'),
+                      (['antiword', file_path], 'antiword')):
+        if not shutil.which(cmd[0]):
+            continue
+        try:
+            out = subprocess.run(cmd, check=True, capture_output=True, timeout=120)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            continue
+        text = out.stdout.decode('utf-8', errors='replace')
+        print(f"Converted legacy .doc via {name} (table structure not preserved)",
+              file=sys.stderr)
+        return {
+            'paragraphs': [{'text': line.strip(), 'style': 'Normal'}
+                           for line in text.splitlines() if line.strip()],
+            'tables': [],
+            'metadata': {}
+        }
+
+    raise RuntimeError(
+        f"{file_path} is a legacy .doc and no converter is available. "
+        "Install LibreOffice (best - keeps tables), or antiword."
+    )
+
 
 def read_docx_file(file_path):
     """
@@ -156,7 +226,10 @@ def main():
     args = parser.parse_args()
 
     try:
-        data = read_docx_file(args.file_path)
+        if is_legacy_doc(args.file_path):
+            data = read_legacy_doc(args.file_path)
+        else:
+            data = read_docx_file(args.file_path)
 
         if args.json:
             print(json.dumps(data, indent=2, default=str))

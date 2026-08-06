@@ -136,7 +136,7 @@ The folder should contain:
 
 ### Additional Scripts
 
-For Word documents:
+For Word documents (`.docx` and legacy `.doc`):
 ```bash
 python $SKILL_DIR/scripts/read_word.py <file.docx>
 ```
@@ -189,8 +189,22 @@ python $SKILL_DIR/scripts/download.py GN101 -o .
 
 ## Finding VCEP IDs
 
-Browse all available VCEP IDs at the [ClinGen Registry](https://cspec.genome.network/cspec/ui/svi/) or run `python $SKILL_DIR/scripts/check_vcep_spec.py --list-all`.
+Browse all available VCEP IDs at the [ClinGen Registry](https://cspec.genome.network/cspec/ui/svi/).
+
+## Checking for Upstream Updates
+
+To find specifications that ClinGen has released or revised since the local registry was last refreshed:
+
+```bash
+python $SKILL_DIR/scripts/check_updates.py
+```
+
+Reports specs released upstream but missing locally, and specs whose upstream version is newer. Useful flags: `--new-only`, `--updated-only`, `--json`, `--registry <path>`. Exits 0 when up to date, 1 when updates are available.
+
+Then download and regenerate each reported spec with `/vcep-spec GN###`.
 
 ## Requirements
 
 Requires Python 3 with `requests` and `beautifulsoup4`.
+
+Legacy `.doc` supplementary files need a converter for `read_word.py` — LibreOffice (preferred, preserves tables), `textutil` (macOS, text only), or `antiword` (text only).
