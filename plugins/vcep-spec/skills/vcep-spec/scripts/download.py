@@ -24,6 +24,7 @@ BASE_URL = "https://cspec.genome.network"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
 }
+MAX_DOWNLOAD_ATTEMPTS = 3
 
 
 def fetch_page(url):
@@ -342,34 +343,48 @@ def detect_file_extension(content):
     return ''
 
 
-def download_file(url, output_path, description="file"):
+def download_file(url, output_path, description="file", max_attempts=MAX_DOWNLOAD_ATTEMPTS):
     """Download a file with proper extension detection"""
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=120, allow_redirects=True)
-        response.raise_for_status()
+    last_error = None
 
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=120, allow_redirects=True)
+            response.raise_for_status()
 
-        # Determine file extension from file content if needed
-        base_path, ext = os.path.splitext(output_path)
-        # Only use existing extension if it looks like a valid file extension (2-5 chars)
-        has_valid_ext = ext and len(ext) >= 2 and len(ext) <= 6 and ext[1:].isalnum()
+            if not response.content:
+                raise requests.exceptions.ContentDecodingError("empty response body")
 
-        if not has_valid_ext:
-            # Try to detect from file content (magic bytes)
-            detected_ext = detect_file_extension(response.content)
-            if detected_ext:
-                output_path = base_path + detected_ext
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        # Write file
-        with open(output_path, 'wb') as f:
-            f.write(response.content)
+            # Determine file extension from file content if needed
+            base_path, ext = os.path.splitext(output_path)
+            # Only use existing extension if it looks like a valid file extension (2-5 chars)
+            has_valid_ext = ext and len(ext) >= 2 and len(ext) <= 6 and ext[1:].isalnum()
 
-        file_size = os.path.getsize(output_path)
-        return True, file_size, output_path
+            if not has_valid_ext:
+                # Try to detect from file content (magic bytes)
+                detected_ext = detect_file_extension(response.content)
+                if detected_ext:
+                    output_path = base_path + detected_ext
 
-    except Exception as e:
-        return False, str(e), output_path
+            # Write only after a complete, non-empty response was received.
+            with open(output_path, 'wb') as f:
+                f.write(response.content)
+
+            file_size = os.path.getsize(output_path)
+            return True, file_size, output_path
+
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            if attempt < max_attempts:
+                time.sleep(2 ** (attempt - 1))
+                continue
+            break
+        except Exception as e:
+            return False, str(e), output_path
+
+    return False, f"{last_error} (after {max_attempts} attempts)", output_path
 
 
 def download_pdf(metadata, output_dir):
@@ -407,10 +422,11 @@ def download_supplementary_files(files, output_dir):
     """Download all supplementary files"""
     if not files:
         print(f"  No supplementary files found")
-        return []
+        return [], []
 
     print(f"  Found {len(files)} supplementary file(s)")
     downloaded = []
+    failures = []
 
     for i, file_info in enumerate(files, 1):
         filename = file_info['filename']
@@ -424,9 +440,11 @@ def download_supplementary_files(files, output_dir):
         if existing_files:
             existing_path = os.path.join(output_dir, existing_files[0])
             size = os.path.getsize(existing_path)
-            print(f"  [{i}/{len(files)}] ✓ {existing_files[0]} ({format_size(size)}) - already exists")
-            downloaded.append(existing_files[0])
-            continue
+            if size > 0:
+                print(f"  [{i}/{len(files)}] ✓ {existing_files[0]} ({format_size(size)}) - already exists")
+                downloaded.append(existing_files[0])
+                continue
+            print(f"  [{i}/{len(files)}] ⚠ {existing_files[0]} is empty; re-downloading")
 
         print(f"  [{i}/{len(files)}] Downloading {filename}...", end=' ')
         success, result, actual_path = download_file(file_url, output_path, filename)
@@ -438,19 +456,26 @@ def download_supplementary_files(files, output_dir):
             downloaded.append(actual_filename)
         else:
             print(f"✗ Error: {result}")
+            failures.append({
+                'filename': filename,
+                'url': file_url,
+                'error': str(result),
+            })
 
         time.sleep(0.5)  # Be nice to the server
 
-    return downloaded
+    return downloaded, failures
 
 
-def save_metadata(metadata, output_dir, downloaded_files):
+def save_metadata(metadata, output_dir, downloaded_files, expected_files=None, failed_files=None):
     """Save metadata JSON file"""
     gn_id = metadata.get('gn_id', 'UNKNOWN')
     gene_name = metadata.get('geneName', 'UNKNOWN')
     version = metadata.get('currentVersion', '0.0.0')
     title = metadata.get('title', '')
     panel = metadata.get('panel', 'Unknown')
+    expected_files = expected_files or []
+    failed_files = failed_files or []
 
     metadata_json = {
         "id": gn_id,
@@ -460,7 +485,10 @@ def save_metadata(metadata, output_dir, downloaded_files):
         "panel": panel,
         "files_downloaded": len(downloaded_files),
         "download_date": time.strftime("%Y-%m-%d"),
-        "files": downloaded_files
+        "files": downloaded_files,
+        "expected_files": expected_files,
+        "failed_files": failed_files,
+        "complete": not failed_files,
     }
 
     json_path = os.path.join(output_dir, f"{gn_id}_data.json")
@@ -586,7 +614,7 @@ def verify_specification(vcep_id, output_root):
         expected_files.append({
             'name': base_name,
             'type': supp['type'],
-            'required': False  # Supplementary files are optional but recommended
+            'required': True
         })
 
     # Expected metadata JSON
@@ -660,6 +688,13 @@ def verify_specification(vcep_id, output_root):
         if found:
             file_path = os.path.join(output_dir, matched_file)
             size = os.path.getsize(file_path)
+            if size == 0:
+                print(f"  ✗ INVALID (empty): {matched_file} [{file_type}]")
+                if required:
+                    missing_required.append(expected_name)
+                else:
+                    missing_optional.append(expected_name)
+                continue
             size_str = format_size(size)
             print(f"  ✓ {matched_file} ({size_str}) [{file_type}]")
             found_files.append(matched_file)
@@ -829,33 +864,60 @@ def download_specification(vcep_id, output_root, skip_pdf=False, skip_supplement
     print(f"  Output: {folder_name}/\n")
 
     downloaded_files = []
+    expected_files = []
+    failed_files = []
 
     # Download PDF
     if not skip_pdf:
+        gene_suffix = determine_gene_suffix(metadata)
+        version = metadata.get('currentVersion', '0.0.0')
+        expected_pdf = f"ClinGen_ACMG_Specifications_{gene_suffix}_v{version}.pdf"
+        expected_files.append(expected_pdf)
         pdf_file = download_pdf(metadata, output_dir)
         if pdf_file:
             downloaded_files.append(pdf_file)
+        else:
+            failed_files.append({
+                'filename': expected_pdf,
+                'url': f"{BASE_URL}/cspec/ui/svi/pdf",
+                'error': 'PDF download failed',
+            })
         print()
 
     # Download supplementary files
     if not skip_supplementary:
         files = find_supplementary_files(html_content, metadata.get('gn_id'))
-        supp_files = download_supplementary_files(files, output_dir)
+        expected_files.extend(file_info['filename'] for file_info in files)
+        supp_files, supp_failures = download_supplementary_files(files, output_dir)
         downloaded_files.extend(supp_files)
+        failed_files.extend(supp_failures)
         print()
 
     # Save metadata
     print("Creating metadata...")
-    save_metadata(metadata, output_dir, downloaded_files)
+    save_metadata(
+        metadata,
+        output_dir,
+        downloaded_files,
+        expected_files=expected_files,
+        failed_files=failed_files,
+    )
 
     print(f"\n{'='*80}")
-    print(f"✓ DOWNLOAD COMPLETE")
+    if failed_files:
+        print(f"✗ DOWNLOAD INCOMPLETE")
+    else:
+        print(f"✓ DOWNLOAD COMPLETE")
     print(f"{'='*80}")
     print(f"\nFolder: {folder_name}/")
     print(f"Files downloaded: {len(downloaded_files)}")
+    if failed_files:
+        print(f"Files failed: {len(failed_files)}")
+        for failure in failed_files:
+            print(f"  ✗ {failure['filename']}: {failure['error']}")
     print(f"Location: {output_dir}\n")
 
-    return True
+    return not failed_files
 
 
 def main():

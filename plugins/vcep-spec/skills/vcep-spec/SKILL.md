@@ -82,7 +82,8 @@ The `--verify` flag checks if an existing folder has all expected files:
 
 - Main PDF specification (required)
 - Metadata JSON file (required)
-- All supplementary files (optional but recommended)
+- All supplementary files advertised by the live specification (required unless
+  the download was explicitly run with `--skip-supplementary`)
 - Reports missing files, extra files, and file sizes
 - Automatically falls back to old-format folder names (gene-only) if new format not found
 
@@ -107,6 +108,29 @@ The folder should contain:
 
 **Note:** Files ending in `_data.json` should be ignored.
 
+### Source-Fidelity Requirements
+
+Before generating any guideline:
+
+1. Inventory every distributed file and verify that each one was successfully
+   downloaded and read. Treat a failed supplementary download as a hard failure.
+2. Read every table, worksheet, figure, decision tree, and appendix that can
+   change a criterion code or strength. Embedded images inside Office files are
+   source material, not decoration.
+3. Transcribe source-defined lookup tables into the guideline when they are
+   needed to apply a criterion. A pointer such as “see Table 4” is insufficient
+   when the generated guideline is expected to stand alone.
+4. Never fill a source gap with generic ACMG/AMP or ClinGen SVI content. If the
+   VCEP package delegates guidance without reproducing it, write **“Not specified
+   by this VCEP; consult the referenced external guidance”** and identify the
+   reference when available.
+5. Include point systems and rules for combining criteria only when they appear
+   in the VCEP specification or a distributed supplementary file. Template
+   placeholders are not evidence.
+6. Preserve source wording and values. If the source contains a likely typo or
+   internal contradiction, transcribe the operative text and flag the conflict;
+   do not silently correct or reconcile it.
+
 ### Processing Steps
 
 1. **Read all PDF files** in the folder to extract VCEP specifications
@@ -126,6 +150,9 @@ The folder should contain:
    - Population frequency thresholds (BA1, BS1, PM2)
    - Functional assay specifications (PS3/BS3)
    - Rules for combining criteria
+
+   For each item, distinguish explicitly among **specified**, **not applicable**,
+   and **not specified**. These states are not interchangeable.
 
 5. **Generate a comprehensive markdown file** following the template structure in [template.md](template.md)
 

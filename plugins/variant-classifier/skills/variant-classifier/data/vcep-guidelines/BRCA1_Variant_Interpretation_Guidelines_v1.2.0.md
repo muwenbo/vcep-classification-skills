@@ -80,14 +80,17 @@ For predicted protein termination codon (PTC) variants, apply with exon-specific
 
 **See Specifications Table 4** (provided as a separate searchable Excel file) for a comprehensive summary of codes applicable for all variants considered against the BRCA1 PVS1 decision trees (initiation, nonsense/frameshift, deletion, duplication, splice site (donor/acceptor +/-1,2)) - organized by exon.
 
+**Full-gene deletion is stand-alone pathogenic evidence** and is not assigned
+PVS1; this is distinct from a partial-gene deletion evaluated with Table 4.
+
 #### Strength Levels
 
 | Strength | Criteria |
 |----------|----------|
-| **Very Strong** | Null variant in a gene where LOF is a known mechanism of disease. Apply at appropriate strength according to PVS1 flowchart. Also applies to mRNA assay data showing damaging effect - apply as PVS1 (RNA) at appropriate strength. |
-| **Strong** | Apply per PVS1 flowchart based on variant position and type. For mRNA assays showing loss of function, apply as PVS1_Strong (RNA). |
-| **Moderate** | Apply per PVS1 flowchart based on variant position and type. For mRNA assays showing partial loss of function, apply as PVS1_Moderate (RNA). |
-| **Supporting** | Apply per PVS1 flowchart based on variant position and type. For mRNA assays showing minor impact, apply as PVS1_Supporting (RNA). |
+| **Very Strong** | Apply per the PVS1 flowchart and exon-level lookup in Appendix D. For mRNA evidence, apply PVS1 (RNA) only through the assay/quantitation lookup in Appendix E. |
+| **Strong** | Apply per the PVS1 flowchart and exon-level lookup in Appendix D. For mRNA evidence, use Appendix E. |
+| **Moderate** | Apply per the PVS1 flowchart and exon-level lookup in Appendix D. For mRNA evidence, use Appendix E; “partial loss” is not itself a Moderate rule. |
+| **Supporting** | Apply per the PVS1 flowchart and exon-level lookup in Appendix D. For mRNA evidence, use Appendix E; “minor impact” may instead yield PVS1_N/A (RNA) or BP7_Strong (RNA). |
 
 #### PVS1 (RNA) - mRNA Assay Evidence
 
@@ -95,6 +98,8 @@ For splicing data, see **Specifications Figure 1B** for the process to apply cod
 - Location and predicted bioinformatic impact of the variant
 - Adaptive weighting according to assay methodology
 - Proportion of functional transcript retained
+
+The complete operational weighting matrix is transcribed in Appendix E.
 
 ---
 
@@ -112,6 +117,8 @@ For application of PS1 for splicing predictions, see **Specifications Table 5**:
 - The predicted event of the VUA must precisely match the predicted event of the known (likely) pathogenic variant
 - The strength of the prediction for the VUA must be of similar or higher strength than the known variant
 - For exonic variants, consider predicted or proven functional effect of missense substitutions
+
+For GT–AG introns, the donor motif is the last 3 bases of the exon and 6 intronic nucleotides; the acceptor motif is the first base of the exon and 20 upstream intronic nucleotides. These motif ranges determine whether the “same donor/acceptor motif” rows in Table 5 apply.
 
 #### Strength Levels
 
@@ -281,8 +288,9 @@ Apply for patient with phenotype consistent with BRCA1-related Fanconi Anemia (F
 **PM5_PTC**: Protein termination codon (PTC) variant in an exon where a different proven pathogenic PTC variant has been seen before.
 
 - Only applied to genomic PTC changes (not splicing)
-- Weight determined by exon where the termination codon occurs (may not be the same exon as the variant position)
+- The PDF and Table 4 Readme determine weight from the exon where the termination codon occurs (which may differ from the variant's exon). Appendix D of the source instead says to use the exon containing the nucleotide change. This call-changing source conflict is unresolved; do not silently choose between the two for a frameshift crossing an exon boundary.
 - Use to justify additional weight for PTC variants annotated as PVS1
+- Donor/acceptor ±1,2 variants do not qualify for PM5_PTC
 
 See **Specifications Table 4** for PM5_PTC codes applicable per exon.
 
@@ -662,7 +670,91 @@ Based on Tavtigian et al., 2018 (PMID: 29300386). These odds ranges assume a glo
 | **SpliceAI (for PP3)** | ≥0.2 | - |
 | **SpliceAI (for BP4)** | - | ≤0.1 |
 
-### Appendix D: Fanconi Anemia Clinical Features
+### Appendix D: BRCA1 Exon-Level PVS1 and PM5_PTC Lookup
+
+This table transcribes the BRCA1 PTC, exon-deletion, and exon-duplication calls
+from Specifications Table 4 together with the PM5_PTC weights from
+Supplementary Table 1. `Unknown` means duplication orientation is unknown.
+
+| Exon (legacy) | PTC PVS1 | PM5_PTC | Exon deletion | Tandem duplication | Unknown duplication |
+|---------------|----------|---------|---------------|--------------------|---------------------|
+| E1 | — | — | PVS1_N/A | PVS1_N/A | PVS1_N/A |
+| E2 | PVS1 | Strong | PVS1 | PVS1_N/A | PVS1_N/A |
+| E3 | PVS1 | Strong | PVS1 | PVS1_Strong | PVS1_Moderate |
+| E4(5) | PVS1 | Strong | PVS1 | PVS1_Strong | PVS1_Moderate |
+| E5(6) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E6(7) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| exon 7(8) | PVS1 | Supporting | PVS1 | PVS1 | PVS1_Strong |
+| E8(9) | PVS1_N/A | PM5_N/A | PVS1_N/A | PVS1_N/A | PVS1_N/A |
+| E9(10) | PVS1_N/A | PM5_N/A | PVS1_N/A | PVS1_N/A | PVS1_N/A |
+| E10(11) | PVS1 | Strong | PVS1_Moderate | PVS1_Moderate | PVS1_Supporting |
+| E11(12) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E12(13) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E13(14) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E14(15) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E15(16) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E16(17) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E17(18) | PVS1 | Strong | PVS1 | PVS1_Strong | PVS1_Moderate |
+| E18(19) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E19(20) | PVS1 | Strong | PVS1 | PVS1_Strong | PVS1_Moderate |
+| E20(21) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E21(22) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E22(23) | PVS1 | Strong | PVS1 | PVS1 | PVS1_Strong |
+| E23(24) | PVS1 for PTC before p.Ile1855; PVS1_N/A after p.Leu1854 | Strong before p.Ile1855; PM5_N/A after p.Leu1854 | PVS1 | PVS1_Supporting | PVS1_N/A |
+
+Additional source-defined exceptions:
+
+- The E2 initiation codon is assigned **PVS1**.
+- E8(9) and E9(10) donor/acceptor ±1,2 variants are **PVS1_N/A** because
+  rescue by Δ(E8,9)/Δ(E9,10) is expected. The observed c.594-2A>C event is
+  **PVS1_N/A (RNA)**.
+- E10(11) donor/acceptor ±1,2 variants and the corresponding in-frame exon
+  deletion are generally **PVS1_Moderate**; unknown-orientation duplication is
+  **PVS1_Supporting**.
+- At E18(19), c.5193+2T>C is **PVS1_N/A** because a functional GC splice site
+  is predicted; this is a nucleotide-specific exception.
+- PM5_PTC is never applied to donor/acceptor ±1,2 variants.
+
+Canonical splice-site codes can differ by the substituted nucleotide, including
+RNA-qualified codes. Where a nucleotide-specific call is not reproduced above,
+consult the searchable Specifications Table 4 rather than generalizing from the
+exon-level structural-variant row.
+
+### Appendix E: PVS1/BP7 RNA Weighting (Appendix Table 9)
+
+First determine the baseline PVS1 weight from the transcript profile and the
+PVS1 decision tree/Table 4. Then apply the assay-specific lookup below.
+
+#### Allele-Specific Quantitation
+
+| Baseline | Patient, ≤10% functional | Minigene, ≤10% functional | Patient, >10–<20% functional | Minigene, >10–<20% functional | Either, 20–30% functional | Either, >30% functional |
+|----------|--------------------------|---------------------------|-------------------------------|--------------------------------|---------------------------|-------------------------|
+| PVS1 | PVS1 (RNA) | PVS1_Strong (RNA) | PVS1_Strong (RNA) | PVS1_Moderate (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Strong | PVS1_Strong (RNA) | PVS1_Moderate (RNA) | PVS1_Moderate (RNA) | PVS1_Supporting (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Moderate | PVS1_Moderate (RNA) | PVS1_Supporting (RNA) | PVS1_Supporting (RNA) | PVS1_Supporting (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Supporting | PVS1_Supporting (RNA) | PVS1_Supporting (RNA) | PVS1_Supporting (RNA) | PVS1_Supporting (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+
+Patient quantitation means allele-specific patient data, or non-allele-specific
+patient data combined with a minigene for quantitation. Direct allele-specific
+quantitation overrides an estimated patient allele fraction.
+
+#### Patient mRNA Without Allele-Specific Quantitation
+
+| Baseline | Apparent near-complete splicing impact | Apparent incomplete impact | Apparent no impact relative to controls |
+|----------|-----------------------------------------|----------------------------|-----------------------------------------|
+| PVS1 | PVS1_Strong (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Strong | PVS1_Moderate (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Moderate | PVS1_Supporting (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+| PVS1_Supporting | PVS1_Supporting (RNA) | PVS1_N/A (RNA) | BP7_Strong (RNA) |
+
+Assay interpretation must also consider primer/construct design, naturally
+occurring isoforms, cryptic-site predictions, size-dependent assay sensitivity,
+amplification bias, NMD inhibition, and quantitation of PTC transcripts. An
+assumed functional transcript is in-frame and does not affect a critical domain,
+initiation codon, or termination codon. Unquantified assays require consensus
+curator judgment.
+
+### Appendix F: Fanconi Anemia Clinical Features
 
 **Physical features (~75% of affected persons):**
 - Prenatal and/or postnatal short stature
@@ -683,7 +775,7 @@ Based on Tavtigian et al., 2018 (PMID: 29300386). These odds ranges assume a glo
 
 **Cancer diagnosis:** ≤5 years of age
 
-### Appendix E: Reference PMIDs
+### Appendix G: Reference PMIDs
 
 | Topic | PMID |
 |-------|------|

@@ -455,7 +455,7 @@ According to the published study by Fortuno et al., 2018 (PMID: 29775997), the t
 |----------|----------|--------|
 | **PP3_Moderate** | aGVGD Class **C65** AND BayesDel score **≥ 0.16** (AND no predicted splicing, SpliceAI < 0.2) | 2 |
 | **PP3 (Supporting)** | aGVGD class **C25-C55** AND BayesDel score **≥ 0.16** (AND no predicted splicing, SpliceAI < 0.2) | 1 |
-| *No evidence* | aGVGD class **C0-C15** AND BayesDel **< 0.16** | — |
+| *No evidence* | aGVGD class **C0-C15** AND BayesDel **≥ 0.16** | — |
 | *No evidence* | aGVGD class **C65** AND BayesDel **< 0.16** | — |
 
 #### Single Amino Acid In-Frame Deletions
@@ -702,7 +702,7 @@ Key reference: NM_000546.6 transcript. Splicing predictions for GT-AG sites are 
 **Missense Variants:**
 - BayesDel ≥ 0.16 + aGVGD C65 → **PP3_Moderate**
 - BayesDel ≥ 0.16 + aGVGD C25-C55 → **PP3**
-- BayesDel < 0.16 + aGVGD C0-C15 → *No evidence*
+- BayesDel ≥ 0.16 + aGVGD C0-C15 → *No evidence*
 - BayesDel < 0.16 + aGVGD C65 → *No evidence*
 - BayesDel < 0.16 and > -0.008 (except C65) + SpliceAI < 0.2 → **BP4**
 - BayesDel ≤ -0.008 (except C65) + SpliceAI < 0.2 → **BP4_Moderate**

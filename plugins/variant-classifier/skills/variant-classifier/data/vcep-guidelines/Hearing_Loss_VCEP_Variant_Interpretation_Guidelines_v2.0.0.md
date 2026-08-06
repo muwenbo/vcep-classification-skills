@@ -43,7 +43,7 @@
 | MYO6 | Nonsyndromic SNHL, AD | Yes | N/A | N/A | N/A |
 | MYO7A | Usher syndrome, AR | Yes | N/A | N/A | Yes |
 | SLC26A4 | Pendred syndrome, AR | Yes | N/A | Radio isotope and fluorescence assays | Yes |
-| TECTA | Nonsyndromic SNHL, AD/AR | Yes (AR only) | N/A | N/A | N/A |
+| TECTA | Nonsyndromic SNHL, AD/AR | Yes | N/A | N/A | N/A |
 | USH2A | Usher syndrome, AR | Yes | N/A | N/A | Yes |
 
 ---
@@ -211,25 +211,14 @@ If not listed above, OK to use PS3_Supporting for other genes/functional analyse
 
 **VCEP Specifications:**
 
-- If a published case-control study exists, use the data from the study, per ACMG/AMP guidelines
-- Exclude cases with an alternate cause of disease
+| Strength | Criteria |
+|----------|----------|
+| **Strong** | Fisher Exact or Chi-Squared analysis shows statistical increase in cases over controls; **OR**, for autosomal dominant hearing loss, ≥15 probands with the variant when PM2_Supporting is met |
+| **Moderate** | For autosomal dominant hearing loss, ≥6 probands with the variant when PM2_Supporting is met |
+| **Supporting** | For autosomal dominant hearing loss, ≥2 probands with the variant when PM2_Supporting is met |
 
-**Autosomal Dominant:**
-
-If the variant meets PM2_Supporting, the criterion may be applied with the strength noted based on the following proband count observations:
-
-| Strength | Proband Count (AD Only) |
-|----------|------------------------|
-| **Strong** | >=15 probands with variant, and variant meets PM2_Supporting |
-| **Moderate** | >=6 probands with variant, and variant meets PM2_Supporting |
-| **Supporting** | >=2 probands with variant, and variant meets PM2_Supporting |
-
-**Autosomal Recessive:**
-
-- If a published case-control study does not exist, and the variant is reported at high frequency in both cases and controls, a Chi-squared or Fisher's Exact test can be performed to determine if the variant is statistically higher in cases than the general population
-- The gene must be definitively associated with hearing loss. Fisher's exact test is preferred if sample size allows
-- This should be done with caution, since the general population databases are not a true control cohort, and could have individuals with hearing loss present. This analysis can be used as evidence for pathogenicity, but should not be used as evidence against pathogenicity
-- The rule can be applied if the % of positive case alleles is higher than the % of positive alleles from the general population with a P value that is <=0.05
+GN005 does not state a numerical P-value cutoff and does not restrict the
+case-control route to recessive disease.
 
 ---
 
@@ -341,45 +330,17 @@ Example: Arg156His is pathogenic; now you observe Arg156Cys.
 **Original ACMG Summary:** Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease.
 **Note:** May be used as stronger evidence with increasing segregation data.
 
-**VCEP Specifications:** Follow general recommendations from ClinGen's Sequence Variant Interpretation working group.
-
-- For both autosomal dominant and autosomal recessive segregation counting, **do not count probands as a segregation**
-  - Affected segregations = # affected individuals in the family with the variant (dominant) or variants (recessive) - 1
+**VCEP Specifications:** GN005 assigns PP1 directly from the number of affected
+relatives. It does not define a LOD-score calculation and does not award PP1
+from unaffected segregations alone.
 
 #### PP1 Thresholds
 
-| Strength | Likelihood | LOD Score | AD Threshold | AR Threshold |
-|----------|------------|-----------|--------------|--------------|
-| Supporting | 4:1 | 0.6 | 2 affected segregations | See LOD score table |
-| Moderate | 16:1 | 1.2 | 4 affected segregations | See LOD score table |
-| Strong | 32:1 | 1.5 | 5 affected segregations | See LOD score table |
-
-**Dominant segregations:**
-- LOD scores are calculated with the following equation: Z (LOD score) = log10(1 / 0.5^Segregations)
-- Only count affected individuals (minus proband) that are positive for the variant
-
-**Autosomal recessive segregations:**
-- LOD scores are calculated with the following equation: Z (LOD score) = log10(1 / (0.25^#affected_segregations x 0.75^#unaffected_segregations))
-- The "0.25" and "0.75" numbers represent the risk of being affected vs. unaffected in a classic AR disease model in which both parents are carriers
-- Affected segregations = affected family members (typically siblings) who harbor the variant in question and a second variant on the remaining allele
-- Unaffected segregations = unaffected family members, typically siblings, who are at risk to inherit the two variants identified in the proband. These individuals should be either wild-type for both variants identified in the proband, or a heterozygous carrier for a single variant
-- Unaffected, carrier parents DO NOT count as unaffected segregations
-
-#### AR Segregation LOD Score Table
-
-| Affected Seg. \ Unaffected Seg. | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-|----|------|------|------|------|------|------|------|------|------|------|------|
-| **0** | 0 | 0.12 | 0.25 | 0.37 | 0.5 | 0.62 | 0.75 | 0.87 | 1 | 1.12 | 1.25 |
-| **1** | 0.6 | 0.73 | 0.85 | 0.98 | 1.1 | 1.23 | 1.35 | 1.48 | 1.6 | 1.73 | 1.85 |
-| **2** | 1.2 | 1.33 | 1.45 | 1.58 | 1.7 | 1.83 | 1.95 | 2.08 | 2.2 | 2.33 | 2.45 |
-| **3** | 1.81 | 1.93 | 2.06 | 2.18 | 2.31 | 2.43 | 2.56 | 2.68 | 2.81 | 2.93 | 3.06 |
-| **4** | 2.41 | 2.53 | 2.66 | 2.78 | 2.91 | 3.03 | 3.16 | 3.28 | 3.41 | 3.53 | 3.66 |
-| **5** | 3.01 | 3.14 | 3.26 | 3.39 | 3.51 | 3.63 | 3.76 | 3.88 | 4.01 | 4.13 | 4.26 |
-| **6** | 3.61 | 3.74 | 3.86 | 3.99 | 4.11 | 4.24 | 4.36 | 4.49 | 4.61 | 4.74 | 4.86 |
-| **7** | 4.21 | 4.34 | 4.46 | 4.59 | 4.71 | 4.84 | 4.96 | 5.09 | 5.21 | 5.34 | 5.46 |
-| **8** | 4.82 | 4.94 | 5.07 | 5.19 | 5.32 | 5.44 | 5.57 | 5.69 | 5.82 | 5.94 | 6.07 |
-| **9** | 5.42 | 5.54 | 5.67 | 5.79 | 5.92 | 6.04 | 6.17 | 6.29 | 6.42 | 6.54 | 6.67 |
-| **10** | 6.02 | 6.15 | 6.27 | 6.4 | 6.52 | 6.65 | 6.77 | 6.9 | 7.02 | 7.15 | 7.27 |
+| Strength | Autosomal dominant | Autosomal recessive |
+|----------|--------------------|---------------------|
+| Supporting | 2 affected relatives | 1 affected relative |
+| Moderate | 4 affected relatives | 2 affected relatives |
+| Strong | 5 affected relatives | 3 affected relatives |
 
 ---
 
@@ -583,49 +544,11 @@ If not listed above, OK to use BS3_Supporting for other genes/functional analyse
 
 ## Rules for Combining Criteria
 
-### Pathogenic Classification
-
-| Criteria Combination |
-|---------------------|
-| 1 Very Strong **AND** >=1 Strong |
-| 1 Very Strong **AND** >=2 Moderate |
-| 1 Very Strong **AND** 1 Moderate **AND** 1 Supporting |
-| 1 Very Strong **AND** >=2 Supporting |
-| >=2 Strong |
-| 1 Strong **AND** >=3 Moderate |
-| 1 Strong **AND** 2 Moderate **AND** >=2 Supporting |
-| 1 Strong **AND** 1 Moderate **AND** >=4 Supporting |
-
-### Likely Pathogenic Classification
-
-| Criteria Combination |
-|---------------------|
-| PVS1 **AND** PM2_Supporting* |
-| 1 Very Strong **AND** 1 Moderate |
-| 1 Strong **AND** 1-2 Moderate |
-| 1 Strong **AND** >=2 Supporting |
-| >=3 Moderate |
-| 2 Moderate **AND** >=2 Supporting |
-| 1 Moderate **AND** >=4 Supporting |
-
-*The addition of this rule is the only modification made from the original ACMG/AMP published guidelines for combining criteria.
-
-### Benign Classification
-
-| Criteria Combination |
-|---------------------|
-| 1 Stand-Alone (BA1) |
-| >=2 Strong |
-
-### Likely Benign Classification
-
-| Criteria Combination |
-|---------------------|
-| BS1 with no conflicting evidence* |
-| 1 Strong **AND** 1 Supporting |
-| >=2 Supporting |
-
-*The addition of this rule is the only modification made from the original ACMG/AMP published guidelines for combining criteria. This addition is consistent with recommendations by the Cardiomyopathy Expert Panel and the RASopathy Expert Panel.
+GN005 does not specify general rules for combining criteria. In particular, it
+does not state that PVS1 plus PM2_Supporting is sufficient for Likely Pathogenic.
+Use the applicable laboratory/ACMG framework separately and do not attribute
+its combining rules to the Hearing Loss VCEP. The source does state within BS1
+that BS1 may support Likely Benign when there is no conflicting evidence.
 
 ---
 
@@ -747,24 +670,11 @@ If not listed above, OK to use BS3_Supporting for other genes/functional analyse
 
 ---
 
-### Appendix D: Variant Exclusion List (BA1/BS1 Not Applicable)
+### Appendix D: BA1/BS1 Scope
 
-The following high-frequency pathogenic variants should NOT be classified as benign or likely benign based on their allele frequency:
-
-| Gene | Transcript | cDNA | Protein | ClinVar ID | Pathogenicity | MAF* |
-|------|-----------|------|---------|------------|---------------|------|
-| GJB2 | NM_004004.6 | c.35delG | p.Gly12Valfs*2 | 17004 | Pathogenic | 0.97% (European) |
-| GJB2 | NM_004004.6 | c.235delC | p.Leu79Cysfs*3 | 17014 | Pathogenic | 0.64% (EA) |
-| GJB2 | NM_004004.6 | c.167delT | p.Leu56Argfs*26 | 17010 | Pathogenic | 1.63% (AJ) |
-| GJB2 | NM_004004.6 | c.-22-2A>C | p.? | 375406 | Uncertain Significance | 0.45% (AJ) |
-| GJB2 | NM_004004.6 | c.71G>A | p.Trp24* | 17002 | Pathogenic | 0.45% (SA) |
-| GJB2 | NM_004004.6 | c.34G>T | p.Gly12Cys | 44740 | Likely Pathogenic | 0.38% (Latino) |
-| GJB2 | NM_004004.6 | c.109G>A | p.Val37Ile | 17023 | Pathogenic | 8.19% (EA) |
-| GJB2 | NM_004004.6 | c.101T>C | p.Met34Thr | 17000 | Pathogenic | 2.00% (EF) |
-| SLC26A4 | NM_000441.2 | c.919-2A>G | p.? | 4840 | Pathogenic | 0.48% (EA) |
-| SLC26A4 | NM_000441.2 | c.349C>T | p.Leu117Phe | 43555 | Pathogenic | 0.51% (AJ) |
-
-*The highest subpopulation frequency in gnomAD is shown. EA: East Asian; AJ: Ashkenazi Jewish; SA: South Asian; EF: European (Finnish)
+GN005 supplies no variant exclusion list and no exemption from its BA1 or BS1
+frequency thresholds. Do not treat any locally assembled high-frequency variant
+list as a Hearing Loss VCEP rule.
 
 ---
 
