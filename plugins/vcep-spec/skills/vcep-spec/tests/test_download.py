@@ -101,6 +101,86 @@ XLSX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml xl/workbook.xml"
 DOCX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml word/document.xml"
 
 
+class SupplementCollisionTests(unittest.TestCase):
+    """GN123 advertised both "PM3 Criterion" and "PM3". The prefix-based
+    already-exists check treated the shorter name as satisfied by the longer
+    file, skipped the download, listed the same filename twice, and still
+    reported complete: true."""
+
+    def _supp(self, name, url):
+        return {"url": url, "filename": name, "type": "supplementary"}
+
+    def test_shorter_name_is_not_satisfied_by_a_longer_existing_file(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            Path(tmpdir, "PM3 Criterion.pdf").write_bytes(b"%PDF-existing")
+
+            response = Mock()
+            response.content = b"%PDF-new"
+            response.raise_for_status.return_value = None
+
+            with patch.object(
+                download.requests, "get", return_value=response
+            ), patch.object(download.time, "sleep"):
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    downloaded, failures = download.download_supplementary_files(
+                        [self._supp("PM3", "https://example.test/pm3")], tmpdir
+                    )
+
+            self.assertEqual(failures, [])
+            self.assertEqual(downloaded, ["PM3.pdf"])
+            self.assertTrue(Path(tmpdir, "PM3.pdf").exists())
+            self.assertTrue(Path(tmpdir, "PM3 Criterion.pdf").exists())
+
+    def test_exact_name_match_still_short_circuits(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            Path(tmpdir, "PP1.pdf").write_bytes(b"%PDF-existing")
+
+            with patch.object(download.requests, "get") as request:
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    downloaded, failures = download.download_supplementary_files(
+                        [self._supp("PP1", "https://example.test/pp1")], tmpdir
+                    )
+
+            request.assert_not_called()
+            self.assertEqual(downloaded, ["PP1.pdf"])
+            self.assertEqual(failures, [])
+
+    def test_two_supplements_resolving_to_one_name_are_both_kept(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            response = Mock()
+            response.content = b"%PDF-x"
+            response.raise_for_status.return_value = None
+
+            with patch.object(
+                download.requests, "get", return_value=response
+            ), patch.object(download.time, "sleep"):
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    downloaded, _ = download.download_supplementary_files(
+                        [
+                            self._supp("Table", "https://example.test/a"),
+                            self._supp("Table", "https://example.test/b"),
+                        ],
+                        tmpdir,
+                    )
+
+        self.assertEqual(len(set(downloaded)), 2, downloaded)
+
+    def test_duplicate_listing_makes_the_download_incomplete(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = download.save_metadata(
+                {"gn_id": "GN123", "geneName": "RAG1", "currentVersion": "2.2"},
+                tmpdir,
+                ["PM3 Criterion.pdf", "PM3 Criterion.pdf", "PP1.pdf"],
+            )
+            saved = json.loads(Path(path).read_text(encoding="utf-8"))
+
+        self.assertFalse(saved["complete"])
+        self.assertEqual(saved["duplicate_files"], ["PM3 Criterion.pdf"])
+
+
 class FetchPageRetryTests(unittest.TestCase):
     """A single transient TLS drop on the specification page aborted the whole
     spec before any file was considered; GN141 failed a full-corpus run this way."""

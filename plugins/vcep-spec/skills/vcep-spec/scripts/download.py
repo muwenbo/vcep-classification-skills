@@ -473,14 +473,32 @@ def download_supplementary_files(files, output_dir):
     downloaded = []
     failures = []
 
+    claimed = {}  # output filename -> source url, for collisions within this run
+
     for i, file_info in enumerate(files, 1):
         filename = file_info['filename']
         file_url = file_info['url']
         output_path = os.path.join(output_dir, filename)
 
-        # Check if file already exists (with or without extension)
-        base_name = os.path.splitext(filename)[0]
-        existing_files = [f for f in os.listdir(output_dir) if f.startswith(base_name)]
+        # Match an existing file by exact name, ignoring only a real extension.
+        # A prefix match would treat the supplement advertised as "PM3" as
+        # already satisfied by "PM3 Criterion.pdf" and silently skip it, which
+        # is how GN123 lost a file while still reporting complete.
+        wanted = strip_real_extension(filename)
+
+        # Two advertised supplements can carry the same name but different
+        # URLs. Claim the name for the first, and give later ones a distinct
+        # path so the second does not overwrite or short-circuit against the
+        # first. GN123 lost a file exactly this way.
+        if wanted in claimed and claimed[wanted] != file_url:
+            filename = f"{wanted} ({i})"
+            output_path = os.path.join(output_dir, filename)
+            wanted = filename
+        claimed.setdefault(wanted, file_url)
+
+        existing_files = [
+            f for f in os.listdir(output_dir) if strip_real_extension(f) == wanted
+        ]
 
         if existing_files:
             existing_path = os.path.join(output_dir, existing_files[0])
@@ -533,7 +551,13 @@ def save_metadata(metadata, output_dir, downloaded_files, expected_files=None, f
         "files": downloaded_files,
         "expected_files": expected_files,
         "failed_files": failed_files,
-        "complete": not failed_files,
+        # A repeated entry means two advertised supplements resolved to one
+        # file, so one of them is not on disk. Counting alone misses this:
+        # GN123 reported 9 files, listed "PM3 Criterion.pdf" twice, and had 8.
+        "duplicate_files": sorted(
+            {f for f in downloaded_files if downloaded_files.count(f) > 1}
+        ),
+        "complete": not failed_files and len(set(downloaded_files)) == len(downloaded_files),
     }
 
     json_path = os.path.join(output_dir, f"{gn_id}_data.json")
