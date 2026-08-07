@@ -58,46 +58,77 @@ AI 编程代理技能包，用于基于 ACMG/AMP 标准和 ClinGen VCEP 规范�
 
 ### 前置要求
 
-- 支持技能/插件格式的 AI 编程代理（如 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)、[Gemini CLI](https://github.com/google-gemini/gemini-cli)）
-- Python 3.7+
+- 支持技能（Skill）格式的 AI 编程代理（[Claude Code](https://docs.anthropic.com/en/docs/claude-code)、Codex、Cursor、Gemini CLI 等）
+- Python 3.7+ 与 Node.js 18+（Node 仅用于 `npx skills` 安装器）
 - Python 依赖包：`requests`、`beautifulsoup4`
 
 ```bash
 pip install requests beautifulsoup4
 ```
 
-### 通过插件市场安装
+### 推荐方式：`npx skills`（适用于所有代理）
 
-**Claude Code：**
+使用 [open agent skills](https://github.com/vercel-labs/skills) 安装器，将三个技能安装到你选择的代理中：
 
-```
-/plugin marketplace add muwenbo/vcep-classification-skills
-/plugin install variant-classifier@vcep-classification-skills
-/plugin install vcep-spec@vcep-classification-skills
-/plugin install paper-finder@vcep-classification-skills
+```bash
+npx skills add muwenbo/vcep-classification-skills
 ```
 
-**其他代理：** 克隆仓库后将代理指向 `plugins/` 目录或各技能文件夹：
+交互式提示可选择技能、目标代理与安装范围。若需跳过交互：
+
+```bash
+# 预览仓库中包含的技能
+npx skills add muwenbo/vcep-classification-skills --list
+
+# 全部技能，安装到 Claude Code 用户级目录（~/.claude/skills），非交互
+npx skills add muwenbo/vcep-classification-skills --skill '*' -a claude-code -g -y
+
+# 仅安装变异分类技能到当前项目（./.claude/skills）
+npx skills add muwenbo/vcep-classification-skills --skill variant-classifier -a claude-code -y
+```
+
+随 `SKILL.md` 一并安装的还有 `scripts/`、`references/` 以及 `data/` 下的 VCEP 指南库。
+
+### 备选方式：Claude Code 插件市场
+
+如果希望以 Claude Code 插件（而非普通技能目录）的形式管理：
+
+```bash
+claude plugin marketplace add muwenbo/vcep-classification-skills
+claude plugin install variant-classifier@vcep-classification-skills
+claude plugin install vcep-spec@vcep-classification-skills
+claude plugin install paper-finder@vcep-classification-skills
+```
+
+在 Claude Code 会话中也可使用等价的斜杠命令（`/plugin marketplace add …`、`/plugin install …`），或直接运行 `/plugin` 进行交互式安装。
+
+### 手动安装
 
 ```bash
 git clone https://github.com/muwenbo/vcep-classification-skills.git
 ```
 
-每个技能独立存放于 `plugins/<skill>/skills/<skill>/`，以 `SKILL.md` 为入口。
+每个技能独立存放于 `plugins/<skill>/skills/<skill>/`，以 `SKILL.md` 为入口——将这些目录复制或软链接到代理的技能目录即可（Claude Code 为 `~/.claude/skills/`，Codex 等为 `~/.agents/skills/`）。
 
 ### 更新
 
-**Claude Code：**
-
+```bash
+npx skills update                                        # npx 安装
+claude plugin marketplace update vcep-classification-skills   # 插件安装
+git pull                                                 # 手动安装
 ```
-/plugin marketplace update vcep-classification-skills
-```
-
-**其他代理：** 运行 `git pull` 获取最新版本。
 
 ## 使用方法
 
-通过斜杠命令或直接向代理提问来调用技能：
+直接提问即可——每个技能的描述会告诉代理何时加载它：
+
+```
+分类 NM_000546.6:c.215C>G
+下载 ClinGen 规范 GN101 并生成解读指南
+获取 PMID 30128536 的文献
+```
+
+若代理支持以斜杠命令暴露技能，也可直接调用：
 
 ```
 /variant-classifier "NM_000546.6:c.215C>G"
