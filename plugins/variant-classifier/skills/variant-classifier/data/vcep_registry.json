@@ -44,15 +44,15 @@
     {
       "spec_id": "GN021",
       "vcep_name": "ACADVL VCEP",
-      "title": "ClinGen ACADVL Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for ACADVL Version 2.1.0",
+      "title": "ClinGen ACADVL Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for ACADVL Version 2.2.0",
       "genes": [{"symbol": "ACADVL", "hgnc_id": "HGNC:92"}],
       "disease_condition": "very long chain acyl-CoA dehydrogenase deficiency",
       "mondo_ids": ["MONDO:0008723"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN021",
-      "guideline_file": "ACADVL_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "ACADVL_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN169",
@@ -109,15 +109,15 @@
     {
       "spec_id": "GN114",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for ADA Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for ADA Version 2.2.0",
       "genes": [{"symbol": "ADA", "hgnc_id": "HGNC:186"}],
       "disease_condition": "severe combined immunodeficiency, autosomal recessive, T cell-negative, B cell-negative, NK cell-negative, due to adenosine deaminase deficiency",
       "mondo_ids": ["MONDO:0007064"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN114",
-      "guideline_file": "ADA_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "ADA_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN208",
@@ -345,15 +345,15 @@
     {
       "spec_id": "GN116",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for DCLRE1C Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for DCLRE1C Version 2.2.0",
       "genes": [{"symbol": "DCLRE1C", "hgnc_id": "HGNC:17642"}],
       "disease_condition": "severe combined immunodeficiency due to DCLRE1C deficiency",
       "mondo_ids": ["MONDO:0011225"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN116",
-      "guideline_file": "DCLRE1C_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "DCLRE1C_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN024",
@@ -553,15 +553,15 @@
     {
       "spec_id": "GN080",
       "vcep_name": "Coagulation Factor Deficiency VCEP",
-      "title": "ClinGen Coagulation Factor Deficiency Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for F9 Version 2.0.0",
+      "title": "ClinGen Coagulation Factor Deficiency Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for F9 Version 2.1.0",
       "genes": [{"symbol": "F9", "hgnc_id": "HGNC:3551"}],
       "disease_condition": "hemophilia B",
       "mondo_ids": ["MONDO:0010604"],
       "inheritance": "X-linked inheritance",
       "status": "Released",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN080",
-      "guideline_file": "F9_Variant_Interpretation_Guidelines_v2.0.0.md"
+      "guideline_file": "F9_Variant_Interpretation_Guidelines_v2.1.0.md"
     },
     {
       "spec_id": "GN022",
@@ -592,15 +592,15 @@
     {
       "spec_id": "GN113",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for FOXN1 Version 2.2.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for FOXN1 Version 2.3.0",
       "genes": [{"symbol": "FOXN1", "hgnc_id": "HGNC:12765"}],
       "disease_condition": "T-cell immunodeficiency, congenital alopecia, and nail dystrophy",
       "mondo_ids": ["MONDO:0011132"],
       "inheritance": "Semidominant inheritance",
       "status": "Released",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN113",
-      "guideline_file": "FOXN1_Variant_Interpretation_Guidelines_v2.2.0.md"
+      "guideline_file": "FOXN1_Variant_Interpretation_Guidelines_v2.3.0.md"
     },
     {
       "spec_id": "GN010",
@@ -761,28 +761,28 @@
     {
       "spec_id": "GN129",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for IL2RG Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for IL2RG Version 2.2.0",
       "genes": [{"symbol": "IL2RG", "hgnc_id": "HGNC:6010"}],
       "disease_condition": "T-B+ severe combined immunodeficiency due to gamma chain deficiency",
       "mondo_ids": ["MONDO:0010315"],
       "inheritance": "X-linked inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN129",
-      "guideline_file": "IL2RG_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "IL2RG_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN119",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for IL7R Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for IL7R Version 2.2.0",
       "genes": [{"symbol": "IL7R", "hgnc_id": "HGNC:6024"}],
       "disease_condition": "immunodeficiency 104",
       "mondo_ids": ["MONDO:0012163"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN119",
-      "guideline_file": "IL7R_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "IL7R_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN011",
@@ -803,15 +803,15 @@
     {
       "spec_id": "GN121",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for JAK3 Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for JAK3 Version 2.3.0",
       "genes": [{"symbol": "JAK3", "hgnc_id": "HGNC:6193"}],
       "disease_condition": "T-B+ severe combined immunodeficiency due to JAK3 deficiency",
       "mondo_ids": ["MONDO:0010938"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.3.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN121",
-      "guideline_file": "JAK3_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "JAK3_Variant_Interpretation_Guidelines_v2.3.0.md"
     },
     {
       "spec_id": "GN112",
@@ -1144,15 +1144,15 @@
     {
       "spec_id": "GN003",
       "vcep_name": "PTEN VCEP",
-      "title": "ClinGen PTEN Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for PTEN Version 3.1.0",
+      "title": "ClinGen PTEN Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for PTEN Version 3.2.0",
       "genes": [{"symbol": "PTEN", "hgnc_id": "HGNC:9588"}],
       "disease_condition": "",
       "mondo_ids": [],
       "inheritance": "",
       "status": "Released",
-      "version": "3.1.0",
+      "version": "3.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN003",
-      "guideline_file": "PTEN_Variant_Interpretation_Guidelines_v3.1.0.md"
+      "guideline_file": "PTEN_Variant_Interpretation_Guidelines_v3.2.0.md"
     },
     {
       "spec_id": "GN043",
@@ -1183,28 +1183,28 @@
     {
       "spec_id": "GN123",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RAG1 Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RAG1 Version 2.2.0",
       "genes": [{"symbol": "RAG1", "hgnc_id": "HGNC:9831"}],
       "disease_condition": "recombinase activating gene 1 deficiency",
       "mondo_ids": ["MONDO:0000572"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN123",
-      "guideline_file": "RAG1_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "RAG1_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN124",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RAG2 Version 2.1.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RAG2 Version 2.2.0",
       "genes": [{"symbol": "RAG2", "hgnc_id": "HGNC:9832"}],
       "disease_condition": "recombinase activating gene 2 deficiency",
       "mondo_ids": ["MONDO:0000573"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN124",
-      "guideline_file": "RAG2_Variant_Interpretation_Guidelines_v2.1.0.md"
+      "guideline_file": "RAG2_Variant_Interpretation_Guidelines_v2.2.0.md"
     },
     {
       "spec_id": "GN047",
@@ -1222,15 +1222,15 @@
     {
       "spec_id": "GN088",
       "vcep_name": "Severe Combined Immunodeficiency Disease VCEP",
-      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RMRP Version 1.2.0",
+      "title": "ClinGen Severe Combined Immunodeficiency Disease Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RMRP Version 1.3.0",
       "genes": [{"symbol": "RMRP", "hgnc_id": "HGNC:10031"}],
       "disease_condition": "cartilage-hair hypoplasia",
       "mondo_ids": ["MONDO:0009595"],
       "inheritance": "Autosomal recessive inheritance",
       "status": "Released",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN088",
-      "guideline_file": "RMRP_Variant_Interpretation_Guidelines_v1.2.0.md"
+      "guideline_file": "RMRP_Variant_Interpretation_Guidelines_v1.3.0.md"
     },
     {
       "spec_id": "GN120",
@@ -1287,15 +1287,15 @@
     {
       "spec_id": "GN008",
       "vcep_name": "Myeloid Malignancy VCEP",
-      "title": "ClinGen Myeloid Malignancy Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RUNX1 Version 3.0.0",
+      "title": "ClinGen Myeloid Malignancy Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RUNX1 Version 3.1.0",
       "genes": [{"symbol": "RUNX1", "hgnc_id": "HGNC:10471"}],
       "disease_condition": "hereditary thrombocytopenia and hematologic cancer predisposition syndrome",
       "mondo_ids": ["MONDO:0011071"],
       "inheritance": "Autosomal dominant inheritance",
       "status": "Released",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN008",
-      "guideline_file": "RUNX1_Variant_Interpretation_Guidelines_v3.0.0.md"
+      "guideline_file": "RUNX1_Variant_Interpretation_Guidelines_v3.1.0.md"
     },
     {
       "spec_id": "GN179",
