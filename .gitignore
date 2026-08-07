@@ -7,6 +7,8 @@
 !.claude-plugin/**
 !plugins/
 !plugins/**
+!docs/
+!docs/**
 # Re-ignore junk inside plugins/, which the allowlist above re-included.
 **/__pycache__/
 **/*.pyc
