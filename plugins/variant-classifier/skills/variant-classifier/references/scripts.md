@@ -18,6 +18,41 @@ python scripts/vep_annotate.py "17-7674220-C-T" -j -o $OUTDIR/vep.json
 python scripts/vep_annotate.py "NM_000546.6:c.215C>G" --pmids-only
 ```
 
+### Annotation sources and fallback
+
+Queries Ensembl VEP REST first and falls back to the GeneBe public API
+(`https://api.genebe.net/cloud/api-public/v1/`, no auth) when Ensembl errors,
+times out, or returns nothing. Both sources are mapped to the same output schema;
+`annotation_source` in the output records which one was used.
+
+```bash
+--source auto      # Ensembl VEP, GeneBe on failure (default)
+--source ensembl   # Ensembl only, fail loudly instead of falling back
+--source genebe    # force GeneBe
+
+--assembly hg38    # default
+--assembly hg19    # GRCh37 input; routed to GeneBe, results lifted over to GRCh38
+```
+
+GeneBe fallback notes:
+- Output coordinates are **always GRCh38**. With `--assembly hg19` the output
+  carries `input_assembly: GRCh37` and `lifted_over: true`.
+- HGVS input is resolved to coordinates via GeneBe `/hgvs`; rsID input is
+  resolved via NCBI dbSNP esummary (GeneBe has no rsID endpoint). Multi-allelic
+  rsIDs use the first alternate allele and print a warning — prefer explicit
+  coordinates or HGVS.
+- **Not available:** SIFT, PolyPhen, CADD, EVE, ClinPred, BLOSUM62, LOFTEE/LoF,
+  NMD, LOEUF, dosage sensitivity, UniProt, PMIDs.
+- **Reduced:** SpliceAI is a max delta score only (`spliceai.max_score`, tagged
+  `source: genebe`) — no DS_AG/DS_AL/DS_DG/DS_DL. Use `splice_predictor.py` when
+  the components matter.
+- **Extra:** `bayesdel_noaf`, `phylop100way`, `dbscsnv_ada`,
+  `clinvar_review_status`, `clinvar_conditions`.
+- **`external_acmg`:** GeneBe's own automated ACMG verdict (classification,
+  score, criteria, per-gene breakdown). Advisory cross-check only — it is a
+  generic auto-call, not a VCEP classification, and must not replace the skill's
+  own criteria evaluation.
+
 ## gnomad_query.py - Population Frequencies
 
 **IMPORTANT:** This script does NOT accept `--json` or `-j` flags (unlike other scripts).

@@ -2,7 +2,8 @@
 """
 VEP Annotation Script
 
-Query Ensembl VEP REST API for comprehensive variant annotation.
+Query Ensembl VEP REST API for comprehensive variant annotation, with the
+GeneBe public API as an automatic fallback when Ensembl is unavailable.
 Supports HGVS notation, rsID, and genomic coordinates.
 
 Usage:
@@ -10,6 +11,8 @@ Usage:
     python vep_annotate.py rs1042522
     python vep_annotate.py "chr17:7674220:C:T"
     python vep_annotate.py "17-7674220-C-T"
+    python vep_annotate.py "chr4-1808989-A-T" --assembly hg19
+    python vep_annotate.py "17-7674220-C-T" --source genebe
 """
 
 import argparse
@@ -28,6 +31,58 @@ from urllib3.util.retry import Retry
 # Ensembl REST API configuration
 ENSEMBL_REST_URL = "https://rest.ensembl.org"
 RATE_LIMIT_DELAY = 0.1  # 100ms between requests
+
+# GeneBe public API (fallback annotation source, no auth required at this volume)
+GENEBE_API_URL = "https://api.genebe.net/cloud/api-public/v1"
+# NCBI E-utilities, used only to resolve rsIDs for the GeneBe path
+NCBI_EUTILS_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+
+# Consequence terms ordered most->least severe (Ensembl calculated variant
+# consequence ranking). Used to derive most_severe_consequence and impact for
+# sources that do not report them.
+CONSEQUENCE_SEVERITY = [
+    "transcript_ablation", "splice_acceptor_variant", "splice_donor_variant",
+    "stop_gained", "frameshift_variant", "stop_lost", "start_lost",
+    "transcript_amplification", "feature_elongation", "feature_truncation",
+    "inframe_insertion", "inframe_deletion", "missense_variant",
+    "protein_altering_variant", "splice_donor_5th_base_variant",
+    "splice_region_variant", "splice_donor_region_variant",
+    "splice_polypyrimidine_tract_variant", "incomplete_terminal_codon_variant",
+    "start_retained_variant", "stop_retained_variant", "synonymous_variant",
+    "coding_sequence_variant", "mature_miRNA_variant", "5_prime_UTR_variant",
+    "3_prime_UTR_variant", "non_coding_transcript_exon_variant",
+    "intron_variant", "NMD_transcript_variant", "non_coding_transcript_variant",
+    "coding_transcript_variant", "upstream_gene_variant",
+    "downstream_gene_variant", "TFBS_ablation", "TFBS_amplification",
+    "TF_binding_site_variant", "regulatory_region_ablation",
+    "regulatory_region_amplification", "regulatory_region_variant",
+    "intergenic_variant", "sequence_variant",
+]
+
+CONSEQUENCE_IMPACT = {
+    **{t: "HIGH" for t in CONSEQUENCE_SEVERITY[:10]},
+    **{t: "MODERATE" for t in ("inframe_insertion", "inframe_deletion",
+                               "missense_variant", "protein_altering_variant")},
+    **{t: "LOW" for t in ("splice_donor_5th_base_variant", "splice_region_variant",
+                          "splice_donor_region_variant",
+                          "splice_polypyrimidine_tract_variant",
+                          "incomplete_terminal_codon_variant",
+                          "start_retained_variant", "stop_retained_variant",
+                          "synonymous_variant")},
+}
+
+
+def most_severe(terms: List[str]) -> str:
+    """Pick the most severe consequence term from a list."""
+    if not terms:
+        return ""
+    return min(terms, key=lambda t: CONSEQUENCE_SEVERITY.index(t)
+               if t in CONSEQUENCE_SEVERITY else len(CONSEQUENCE_SEVERITY))
+
+
+def impact_for(terms: List[str]) -> str:
+    """Derive the VEP impact rating from consequence terms."""
+    return CONSEQUENCE_IMPACT.get(most_severe(terms), "MODIFIER")
 
 # Shared VEP plugin/option parameters for POST requests
 VEP_POST_PARAMS = {
@@ -125,6 +180,11 @@ class TranscriptConsequence:
     strand: Optional[int] = None
     # Source (Ensembl or RefSeq, from merged mode)
     source: Optional[str] = None
+    # --- Predictors only reported by the GeneBe fallback ---
+    bayesdel_noaf_score: Optional[float] = None
+    bayesdel_noaf_prediction: Optional[str] = None
+    phylop100way_score: Optional[float] = None
+    dbscsnv_ada_score: Optional[float] = None
 
 
 @dataclass
@@ -151,6 +211,16 @@ class VEPAnnotation:
     variant_class: Optional[str] = None
     transcript_consequences: List[TranscriptConsequence] = field(default_factory=list)
     colocated_variants: List[ColocatedVariant] = field(default_factory=list)
+    # Which API produced this annotation: "ensembl_vep" or "genebe"
+    annotation_source: str = "ensembl_vep"
+    # Assembly of the *input* coordinates (may differ from `assembly` if lifted over)
+    input_assembly: Optional[str] = None
+    # Third-party automated ACMG call (GeneBe only). Advisory context, NOT a
+    # VCEP classification - never substitute this for the skill's own workflow.
+    external_acmg: Optional[Dict[str, Any]] = None
+    # ClinVar review status / submission summary (GeneBe only)
+    clinvar_review_status: Optional[str] = None
+    clinvar_conditions: List[str] = field(default_factory=list)
 
     @property
     def gene_symbol(self) -> Optional[str]:
@@ -246,6 +316,7 @@ class VEPAnnotation:
         canonical = self.get_canonical_consequence()
         result = {
             "input": self.input,
+            "annotation_source": self.annotation_source,
             "assembly": self.assembly,
             "chromosome": self.chromosome,
             "start": self.start,
@@ -262,6 +333,16 @@ class VEPAnnotation:
             "all_transcript_count": len(self.transcript_consequences),
             "colocated_variant_count": len(self.colocated_variants),
         }
+
+        if self.input_assembly and self.input_assembly != self.assembly:
+            result["input_assembly"] = self.input_assembly
+            result["lifted_over"] = True
+        if self.clinvar_review_status:
+            result["clinvar_review_status"] = self.clinvar_review_status
+        if self.clinvar_conditions:
+            result["clinvar_conditions"] = self.clinvar_conditions
+        if self.external_acmg:
+            result["external_acmg"] = self.external_acmg
 
         if canonical:
             ct = {
@@ -305,6 +386,13 @@ class VEPAnnotation:
                 ct["lof"] = {"lof": canonical.lof, "filter": canonical.lof_filter, "flags": canonical.lof_flags, "info": canonical.lof_info}
             if canonical.nmd is not None:
                 ct["nmd"] = canonical.nmd
+            if canonical.bayesdel_noaf_score is not None:
+                ct["bayesdel_noaf"] = {"score": canonical.bayesdel_noaf_score,
+                                       "prediction": canonical.bayesdel_noaf_prediction}
+            if canonical.phylop100way_score is not None:
+                ct["phylop100way"] = canonical.phylop100way_score
+            if canonical.dbscsnv_ada_score is not None:
+                ct["dbscsnv_ada"] = canonical.dbscsnv_ada_score
             if canonical.distance is not None:
                 ct["distance"] = canonical.distance
             # UniProt
@@ -581,6 +669,256 @@ def parse_vep_response(response: List[Dict]) -> VEPAnnotation:
     )
 
 
+class GeneBeClient:
+    """Client for the GeneBe public annotation API (Ensembl VEP fallback).
+
+    GeneBe only accepts genomic coordinates, so HGVS is resolved through its
+    /hgvs endpoint and rsIDs through NCBI E-utilities first. Results are always
+    reported on GRCh38 - hg19 input is lifted over by GeneBe.
+    """
+
+    def __init__(self, base_url: str = GENEBE_API_URL, assembly: str = "hg38"):
+        self.base_url = base_url
+        self.assembly = assembly
+        self.session = create_session()
+        self._last_request_time = 0
+
+    def _rate_limit(self):
+        elapsed = time.time() - self._last_request_time
+        if elapsed < RATE_LIMIT_DELAY:
+            time.sleep(RATE_LIMIT_DELAY - elapsed)
+        self._last_request_time = time.time()
+
+    def _get(self, url: str, params: Dict) -> Any:
+        self._rate_limit()
+        try:
+            response = self.session.get(url, params=params, timeout=60)
+            response.raise_for_status()
+            return response.json()
+        except requests.RequestException as e:
+            raise RuntimeError(f"GeneBe API request failed: {e}")
+        except ValueError as e:
+            raise RuntimeError(f"GeneBe API returned non-JSON response: {e}")
+
+    def resolve_hgvs(self, hgvs: str) -> Tuple[str, int, str, str]:
+        """Resolve HGVS notation to genomic coordinates via GeneBe /hgvs."""
+        data = self._get(f"{self.base_url}/hgvs",
+                         {"hgvs": hgvs, "genome": self.assembly})
+        if not data or not isinstance(data, list):
+            raise RuntimeError(f"GeneBe could not resolve HGVS: {hgvs}")
+        entry = data[0]
+        if entry.get("errorMsg"):
+            raise RuntimeError(f"GeneBe could not resolve HGVS {hgvs}: {entry['errorMsg']}")
+        return str(entry["chr"]), int(entry["pos"]), entry["ref"], entry["alt"]
+
+    def resolve_rsid(self, rsid: str) -> Tuple[str, int, str, str]:
+        """Resolve an rsID to GRCh38 coordinates via NCBI dbSNP esummary.
+
+        GeneBe has no rsID endpoint, so this hop is required. dbSNP reports
+        SPDI (0-based); multi-allelic rsIDs use the first alternate allele.
+        """
+        self._rate_limit()
+        data = self._get(f"{NCBI_EUTILS_URL}/esummary.fcgi", {
+            "db": "snp", "id": rsid.lower().lstrip("rs"), "retmode": "json",
+        })
+        doc = (data.get("result") or {}).get(rsid.lower().lstrip("rs"))
+        if not doc or not doc.get("spdi"):
+            raise RuntimeError(f"dbSNP has no coordinates for {rsid}")
+        spdis = doc["spdi"].split(",")
+        if len(spdis) > 1:
+            print(f"Warning: {rsid} is multi-allelic; using first alternate allele",
+                  file=sys.stderr)
+        _, pos0, ref, alt = spdis[0].split(":")
+        chrom = str(doc.get("chr") or "")
+        return chrom, int(pos0) + 1, ref, alt
+
+    def annotate_genomic(self, chrom: str, pos: int, ref: str, alt: str) -> Dict:
+        """Annotate a variant by genomic coordinates."""
+        chrom = str(chrom)
+        if not chrom.startswith("chr"):
+            chrom = f"chr{chrom}"
+        return self._get(f"{self.base_url}/variant", {
+            "chr": chrom, "pos": pos, "ref": ref, "alt": alt,
+            "genome": self.assembly, "useRefseq": "true",
+        })
+
+    def annotate(self, notation: str) -> Dict:
+        """Annotate a variant using auto-detected notation format."""
+        format_type = VariantNotation.detect_format(notation)
+
+        if format_type == "genomic":
+            chrom, pos, ref, alt = VariantNotation.parse_genomic(notation)
+        elif format_type == "hgvs":
+            chrom, pos, ref, alt = self.resolve_hgvs(notation)
+        elif format_type == "rsid":
+            if self.assembly != "hg38":
+                raise RuntimeError(
+                    "rsID lookup via the GeneBe fallback resolves GRCh38 "
+                    "coordinates only; use --assembly hg38 or supply coordinates"
+                )
+            chrom, pos, ref, alt = self.resolve_rsid(notation)
+        else:
+            raise ValueError(f"Unrecognized variant notation format: {notation}")
+
+        return self.annotate_genomic(chrom, pos, ref, alt)
+
+
+def _variant_class(ref: str, alt: str) -> str:
+    """Derive a VEP-style variant_class from ref/alt alleles."""
+    if len(ref) == len(alt):
+        return "SNV" if len(ref) == 1 else "substitution"
+    if len(ref) < len(alt):
+        return "insertion"
+    return "deletion"
+
+
+def parse_genebe_response(response: Dict, input_notation: str,
+                          input_assembly: str = "hg38") -> VEPAnnotation:
+    """Parse a GeneBe /variant response into the shared VEPAnnotation schema.
+
+    GeneBe reports predictors at variant level rather than per transcript, so
+    those scores are attached to every transcript consequence.
+    """
+    variants = (response or {}).get("variants") or []
+    if not variants:
+        msg = (response or {}).get("message") or "no variants returned"
+        raise ValueError(f"Empty GeneBe response: {msg}")
+
+    v = variants[0]
+
+    # Variant-level predictors, replicated onto each transcript consequence
+    predictors = {
+        "revel_score": v.get("revel_score"),
+        "alphamissense_pathogenicity": v.get("alphamissense_score"),
+        "alphamissense_class": v.get("alphamissense_prediction"),
+        "bayesdel_noaf_score": v.get("bayesdelnoaf_score"),
+        "bayesdel_noaf_prediction": v.get("bayesdelnoaf_prediction"),
+        "phylop100way_score": v.get("phylop100way_score"),
+        "dbscsnv_ada_score": v.get("dbscsnv_ada_score"),
+    }
+    if v.get("spliceai_max_score") is not None:
+        # GeneBe reports only the max delta score, not the four DS_* components
+        predictors["spliceai"] = {
+            "max_score": v["spliceai_max_score"],
+            "prediction": v.get("spliceai_max_prediction"),
+            "source": "genebe",
+        }
+
+    transcript_consequences = []
+    for c in v.get("consequences", []):
+        terms = c.get("consequences", []) or []
+        transcript = c.get("transcript", "") or ""
+        aa_ref, aa_alt = c.get("aa_ref"), c.get("aa_alt")
+        hgvs_c, hgvs_p = c.get("hgvs_c"), c.get("hgvs_p")
+        protein_id = c.get("protein_id")
+
+        transcript_consequences.append(TranscriptConsequence(
+            transcript_id=transcript,
+            gene_symbol=c.get("gene_symbol", "") or "",
+            gene_id=f"HGNC:{c['gene_hgnc_id']}" if c.get("gene_hgnc_id") else "",
+            consequence_terms=terms,
+            impact=impact_for(terms),
+            biotype=c.get("biotype", "") or "",
+            canonical=bool(c.get("canonical")),
+            # GeneBe marks a MANE pair by naming the partner transcript
+            mane_select=c.get("mane_select") is not None,
+            mane_plus_clinical=c.get("mane_plus") is not None,
+            amino_acids=f"{aa_ref}/{aa_alt}" if aa_ref and aa_alt else None,
+            protein_start=c.get("aa_start"),
+            protein_end=c.get("aa_end") or c.get("aa_start"),
+            protein_id=protein_id,
+            hgvsc=f"{transcript}:{hgvs_c}" if hgvs_c else None,
+            hgvsp=f"{protein_id or transcript}:{hgvs_p}" if hgvs_p else None,
+            strand=1 if c.get("strand") else -1,
+            source="RefSeq" if transcript.startswith(("NM_", "NR_", "XM_")) else "Ensembl",
+            **predictors,
+        ))
+
+    # Collapse GeneBe's flat ClinVar/gnomAD fields into a single colocated variant
+    frequencies = {}
+    if v.get("gnomad_genomes_af") is not None:
+        frequencies["gnomadg"] = v["gnomad_genomes_af"]
+    if v.get("gnomad_exomes_af") is not None:
+        frequencies["gnomade"] = v["gnomad_exomes_af"]
+
+    colocated_variants = []
+    if v.get("dbsnp") or frequencies or v.get("clinvar_classification"):
+        colocated_variants.append(ColocatedVariant(
+            id=v.get("dbsnp") or "",
+            allele_string=f"{v.get('ref')}/{v.get('alt')}",
+            clinical_significance=(
+                [v["clinvar_classification"]] if v.get("clinvar_classification") else []
+            ),
+            frequencies=frequencies,
+        ))
+
+    external_acmg = None
+    if v.get("acmg_classification"):
+        external_acmg = {
+            "source": "GeneBe automated ACMG (advisory only - not a VCEP call)",
+            "classification": v["acmg_classification"],
+            "score": v.get("acmg_score"),
+            "criteria": [c for c in (v.get("acmg_criteria") or "").split(",") if c],
+            "by_gene": v.get("acmg_by_gene") or [],
+        }
+
+    ref, alt = v.get("ref", ""), v.get("alt", "")
+    pos = int(v.get("pos", 0))
+    # VEP reports the most severe consequence across all transcripts; GeneBe's
+    # `effect` covers only its own selected transcript, so take the union.
+    terms = sorted({t for tc in transcript_consequences for t in tc.consequence_terms}
+                   or {t for t in (v.get("effect") or "").split(",") if t})
+
+    return VEPAnnotation(
+        input=input_notation,
+        assembly="GRCh38",
+        input_assembly="GRCh37" if input_assembly == "hg19" else "GRCh38",
+        chromosome=str(v.get("chr", "")),
+        start=pos,
+        end=pos + max(len(ref) - 1, 0),
+        strand=1,
+        allele_string=f"{ref}/{alt}",
+        most_severe_consequence=most_severe(terms),
+        variant_class=_variant_class(ref, alt),
+        transcript_consequences=transcript_consequences,
+        colocated_variants=colocated_variants,
+        annotation_source="genebe",
+        external_acmg=external_acmg,
+        clinvar_review_status=v.get("clinvar_review_status"),
+        clinvar_conditions=[
+            d for d in (v.get("clinvar_disease") or "").split(",") if d
+        ],
+    )
+
+
+def annotate_variant(notation: str, source: str = "auto",
+                     assembly: str = "hg38") -> VEPAnnotation:
+    """Annotate a variant, falling back from Ensembl VEP to GeneBe.
+
+    source: "auto" (Ensembl, then GeneBe on failure), "ensembl", or "genebe".
+    """
+    if source in ("auto", "ensembl"):
+        if assembly != "hg38" and source == "ensembl":
+            raise ValueError(
+                "Ensembl VEP REST is GRCh38-only here; use --source genebe "
+                "or auto for hg19 input"
+            )
+        if assembly == "hg38":
+            try:
+                return parse_vep_response(VEPClient().annotate(notation))
+            except (RuntimeError, ValueError) as e:
+                if source == "ensembl":
+                    raise
+                print(f"Ensembl VEP failed ({e}); falling back to GeneBe",
+                      file=sys.stderr)
+        else:
+            print(f"Assembly {assembly} not supported by Ensembl VEP path; "
+                  "using GeneBe", file=sys.stderr)
+
+    client = GeneBeClient(assembly=assembly)
+    return parse_genebe_response(client.annotate(notation), notation, assembly)
+
+
 def extract_pmids(annotation: VEPAnnotation) -> List[int]:
     """Extract all PMIDs from VEP annotation"""
     return annotation.pmids
@@ -591,6 +929,7 @@ def extract_clinical_info(annotation: VEPAnnotation) -> Dict[str, Any]:
     canonical = annotation.get_canonical_consequence()
 
     result = {
+        "annotation_source": annotation.annotation_source,
         "gene_symbol": annotation.gene_symbol,
         "chromosome": annotation.chromosome,
         "position": annotation.start,
@@ -600,6 +939,8 @@ def extract_clinical_info(annotation: VEPAnnotation) -> Dict[str, Any]:
         "clinical_significance": annotation.clinical_significance,
         "gnomad_af": annotation.gnomad_af,
         "pmids": annotation.pmids,
+        "clinvar_review_status": annotation.clinvar_review_status,
+        "external_acmg": annotation.external_acmg,
     }
 
     if canonical:
@@ -630,6 +971,10 @@ def extract_clinical_info(annotation: VEPAnnotation) -> Dict[str, Any]:
                 if canonical.phaplo is not None or canonical.ptriplo is not None else None,
             "lof": canonical.lof,
             "nmd": canonical.nmd,
+            "bayesdel_noaf": {"score": canonical.bayesdel_noaf_score, "prediction": canonical.bayesdel_noaf_prediction}
+                if canonical.bayesdel_noaf_score is not None else None,
+            "phylop100way": canonical.phylop100way_score,
+            "dbscsnv_ada": canonical.dbscsnv_ada_score,
         })
 
     return result
@@ -637,7 +982,8 @@ def extract_clinical_info(annotation: VEPAnnotation) -> Dict[str, Any]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Annotate genetic variants using Ensembl VEP REST API",
+        description="Annotate genetic variants using Ensembl VEP REST API "
+                    "(GeneBe public API as automatic fallback)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -646,6 +992,8 @@ Examples:
   %(prog)s "chr17:7674220:C:T"
   %(prog)s "17-7674220-C-T"
   %(prog)s "NM_000546.6:c.215C>G" --json -o annotation.json
+  %(prog)s "chr4-1808989-A-T" --assembly hg19     # GeneBe lifts over to GRCh38
+  %(prog)s "17-7674220-C-T" --source genebe       # force the fallback source
         """,
     )
     parser.add_argument(
@@ -666,6 +1014,20 @@ Examples:
         action="store_true",
         help="Only output PMIDs"
     )
+    parser.add_argument(
+        "--source",
+        choices=["auto", "ensembl", "genebe"],
+        default="auto",
+        help="Annotation source: auto (Ensembl VEP, GeneBe on failure), "
+             "ensembl (no fallback), or genebe (default: auto)"
+    )
+    parser.add_argument(
+        "--assembly",
+        choices=["hg38", "hg19"],
+        default="hg38",
+        help="Assembly of the input coordinates. hg19 routes to GeneBe, which "
+             "lifts results over to GRCh38 (default: hg38)"
+    )
 
     args = parser.parse_args()
 
@@ -674,12 +1036,9 @@ Examples:
         format_type = VariantNotation.detect_format(args.variant)
         print(f"Detected format: {format_type}", file=sys.stderr)
 
-        # Query VEP
-        client = VEPClient()
-        response = client.annotate(args.variant)
-
-        # Parse response
-        annotation = parse_vep_response(response)
+        # Query the annotation source (with fallback when source=auto)
+        annotation = annotate_variant(args.variant, args.source, args.assembly)
+        print(f"Annotation source: {annotation.annotation_source}", file=sys.stderr)
 
         # Handle output
         if args.pmids_only:
@@ -692,12 +1051,15 @@ Examples:
             info = extract_clinical_info(annotation)
             lines = [
                 f"Variant: {annotation.input}",
+                f"Source: {annotation.annotation_source}",
                 f"Gene: {info['gene_symbol']}",
                 f"Consequence: {info['consequence']}",
-                f"Location: chr{info['chromosome']}:{info['position']}",
+                f"Location: chr{info['chromosome']}:{info['position']} ({annotation.assembly})",
                 f"Variant Class: {info.get('variant_class', 'N/A')}",
                 "",
             ]
+            if annotation.input_assembly and annotation.input_assembly != annotation.assembly:
+                lines.insert(5, f"(input given on {annotation.input_assembly}, lifted over)")
 
             if info.get("transcript_id"):
                 lines.append(f"Transcript: {info['transcript_id']}")
@@ -720,6 +1082,10 @@ Examples:
                 lines.append(f"gnomAD AF: {info['gnomad_af']:.2e}")
             if info.get("clinical_significance"):
                 lines.append(f"Clinical Significance: {', '.join(info['clinical_significance'])}")
+            if info.get("clinvar_review_status"):
+                lines.append(f"ClinVar Review Status: {info['clinvar_review_status']}")
+            if annotation.clinvar_conditions:
+                lines.append(f"ClinVar Conditions: {', '.join(annotation.clinvar_conditions)}")
 
             # In-silico predictors
             lines.append("\n--- In-Silico Predictors ---")
@@ -732,21 +1098,34 @@ Examples:
             if info.get("revel") is not None:
                 lines.append(f"REVEL: {info['revel']}")
             if info.get("alphamissense"):
-                lines.append(f"AlphaMissense: {info['alphamissense']['class']} ({info['alphamissense']['pathogenicity']})")
+                am = info["alphamissense"]
+                lines.append(f"AlphaMissense: {am['class']} ({am['pathogenicity']})"
+                             if am.get("class") else f"AlphaMissense: {am['pathogenicity']}")
             if info.get("clinpred") is not None:
                 lines.append(f"ClinPred: {info['clinpred']:.6f}")
             if info.get("eve"):
                 lines.append(f"EVE: {info['eve']['class']} ({info['eve']['score']:.4f})")
             if info.get("blosum62") is not None:
                 lines.append(f"BLOSUM62: {info['blosum62']}")
+            if info.get("bayesdel_noaf"):
+                bd = info["bayesdel_noaf"]
+                lines.append(f"BayesDel (noAF): {bd['prediction']} ({bd['score']})")
+            if info.get("phylop100way") is not None:
+                lines.append(f"phyloP100way: {info['phylop100way']}")
 
             # Splicing
             if info.get("spliceai"):
                 sa = info["spliceai"]
                 lines.append("\n--- SpliceAI ---")
-                lines.append(f"  Gene: {sa.get('SYMBOL', 'N/A')}")
-                lines.append(f"  DS_AG={sa.get('DS_AG', 0):.2f}  DS_AL={sa.get('DS_AL', 0):.2f}  DS_DG={sa.get('DS_DG', 0):.2f}  DS_DL={sa.get('DS_DL', 0):.2f}")
-                lines.append(f"  DP_AG={sa.get('DP_AG', 0)}  DP_AL={sa.get('DP_AL', 0)}  DP_DG={sa.get('DP_DG', 0)}  DP_DL={sa.get('DP_DL', 0)}")
+                if sa.get("source") == "genebe":
+                    # GeneBe reports only the max delta score
+                    lines.append(f"  max delta score = {sa.get('max_score')} ({sa.get('prediction')})")
+                else:
+                    lines.append(f"  Gene: {sa.get('SYMBOL', 'N/A')}")
+                    lines.append(f"  DS_AG={sa.get('DS_AG', 0):.2f}  DS_AL={sa.get('DS_AL', 0):.2f}  DS_DG={sa.get('DS_DG', 0):.2f}  DS_DL={sa.get('DS_DL', 0):.2f}")
+                    lines.append(f"  DP_AG={sa.get('DP_AG', 0)}  DP_AL={sa.get('DP_AL', 0)}  DP_DG={sa.get('DP_DG', 0)}  DP_DL={sa.get('DP_DL', 0)}")
+            if info.get("dbscsnv_ada") is not None:
+                lines.append(f"dbscSNV ada: {info['dbscsnv_ada']:.4f}")
 
             # Gene constraint
             if info.get("loeuf") is not None or info.get("dosage_sensitivity"):
@@ -768,6 +1147,16 @@ Examples:
 
             if info.get("pmids"):
                 lines.append(f"\nAssociated PMIDs: {', '.join(str(p) for p in info['pmids'])}")
+
+            # Third-party automated ACMG call - context only, never a VCEP verdict
+            if info.get("external_acmg"):
+                ea = info["external_acmg"]
+                lines.append("\n--- External automated ACMG (GeneBe) ---")
+                lines.append("  ADVISORY ONLY - not a VCEP classification. Do not")
+                lines.append("  substitute for this skill's own criteria evaluation.")
+                lines.append(f"  Classification: {ea['classification']} (score {ea.get('score')})")
+                if ea.get("criteria"):
+                    lines.append(f"  Criteria: {', '.join(ea['criteria'])}")
 
             output = "\n".join(lines)
 
