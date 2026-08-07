@@ -95,9 +95,12 @@ Acid alpha-glucosidase is a monomeric lysosomal enzyme coded for by a single loc
 
 #### Variant-Specific Guidance
 
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** Everything in this subsection, and the introductory paragraph and "Additional considerations" above, is **absent from the GAA specification PDF**, which is the only file the package ships. That PDF states the three strength tiers above and nothing more; it does not cite Abou Tayoun et al., does not discuss intron 19, NMD, transcript structure, or interactions with PM4/PS3/PP3. This material is plausibly drawn from the "main specifications document" that the spec's PP4 criterion refers to but ClinGen does not distribute. **The strength table above is authoritative; treat the guidance below as unverified.**
+
 **Nonsense and frameshift variants:**
 - All nonsense and frameshift variants will meet PVS1 (Very Strong), unless the variant is predicted to be missed by nonsense-mediated decay (NMD) — i.e. if the resulting premature termination codon is in the last exon (exon 20) or in the last 50 nucleotides of the penultimate exon (exon 19; after c.2749, codon 916). In this case, PVS1_Moderate will be applied because <10% of the primary amino acid sequence is predicted to be lost.
-- For frameshift variants at the 3' end of GAA that are not predicted to undergo NMD (PTC downstream of c.2749), consider the length of abnormal amino acid sequence added due to the frameshift. If >10% of the length of the normal sequence is altered, PVS1 can be applied at Strong; if <10%, PVS1 at Moderate.
+
+> **Removed as contradicting the specification (2026-08-07):** a further rule stating that for frameshift variants 3' of c.2749 not undergoing NMD, PVS1 applies at **Strong** if >10% of the normal sequence length is altered and Moderate if <10%. The specification defines **no PVS1_Strong pathway for premature termination codons at all** — its Strong tier covers only in-frame loss of exons 6/9 and initiator codon variants — and it assigns **Moderate** to PTCs 3' of codon 916 without qualification. The removed rule would have promoted such variants to Strong on a criterion the VCEP does not use.
 
 **Canonical splice site variants (+1, +2, -1, -2):**
 - All donor/acceptor splice sites in GAA follow the GT/AG rule, except for the donor splice site of intron 19 (the last intron) which begins with GC.
@@ -361,6 +364,8 @@ Because the evidence to support a diagnosis of Pompe disease in the published li
 
 #### PP4 Strength Thresholds
 
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** The GAA specification's entire PP4 entry reads: *"Phenotype specific for disease with single genetic etiology. Points-based system. **See main specifications document**."* That main specifications document is **not distributed** — the package ships the specification PDF alone. Neither the thresholds below nor the point table that follows appears in any file available to us. They are detailed and Pompe-specific, so they are plausibly a faithful copy of genuine VCEP content; but they cannot be verified, and must not be treated as authoritative. (Logged as an upstream query to ClinGen.)
+
 | Total Points | Strength |
 |--------------|----------|
 | <1 | PP4 not met |
@@ -530,86 +535,31 @@ The same assays outlined for PS3 are used for BS3.
 
 ## Appendices
 
-### Appendix A: PVS1 Flowchart
+### Appendix A: PVS1 — as specified by the VCEP
 
-**Flowchart providing weight of evidence for PVS1 for GAA** (based on Figure 1, Abou Tayoun et al, 2018, PMID 30192042)
+> **Rewritten 2026-08-07.** This appendix previously presented a Tayoun-style flowchart (attributed to Figure 1 of Abou Tayoun et al, 2018, PMID 30192042 — a citation the GAA specification does not make) whose frameshift, splice, deletion and duplication branches turned on whether ">10%" or "<10% of normal sequence length" was altered. **The GAA VCEP uses no such rule.** Its rule is *positional*: codon 916. Under the removed flowchart a frameshift escaping NMD and altering <10% of the sequence was called PVS1_Moderate; where such a variant creates a premature stop **before** codon 916 the VCEP calls it **PVS1 (Very Strong)**. The grafted branches have been deleted and the criterion is reproduced below verbatim.
 
-#### Nonsense Variants
-| Molecular Consequence | PVS1 Strength |
-|----------------------|---------------|
-| Predicted to undergo NMD | PVS1 (Very Strong) |
-| Not predicted to undergo NMD (PTC in exon 20 or last 50 nt of exon 19, after c.2749/codon 916) | PVS1_Moderate |
+The GAA specification states PVS1 as three strength tiers, not a decision tree:
 
-#### Frameshift Variants
-| Molecular Consequence | PVS1 Strength |
-|----------------------|---------------|
-| Predicted to undergo NMD | PVS1 (Very Strong) |
-| Not predicted to undergo NMD, >10% of normal sequence length altered | PVS1_Strong |
-| Not predicted to undergo NMD, <10% of normal sequence length altered | PVS1_Moderate |
+| Strength | Criteria as published |
+|----------|-----------------------|
+| **Very Strong (PVS1)** | Null variant in a gene where loss of function is a known mechanism of disease, **or** in-frame loss of an exon that contains residues involved in the active site of GAA. Specifically: any nonsense, frameshift, or splice variant creating a premature stop codon **before codon 916**; in-frame deletions of an entire exon containing critical active site / substrate binding residues (**exons 8 and 10**), or for which another variant removing the exon is known to be pathogenic (**exons 2 and 18**). |
+| **Strong (PVS1_Strong)** | Null variant in a gene where loss of function is a known mechanism of disease. Specifically: in-frame loss of an exon which is part of the catalytic barrel domain and contains pathogenic/likely pathogenic nontruncating variants (**exons 6 and 9**); **initiator codon variant**. |
+| **Moderate (PVS1_Moderate)** | Null variant in a gene where loss of function is a known mechanism of disease. Specifically: premature termination codon in the 3' end of GAA (**3' to codon 916**), not predicted to be detected by nonsense-mediated decay; predicted exon-skipping due to canonical splice variant or exon deletion resulting in an in-frame deletion of **<10% of the gene product** (**exons 17, 19 and 20**). |
 
-#### GT-AG +/-1,2 Splice Site Variants
-| Molecular Consequence | PVS1 Strength |
-|----------------------|---------------|
-| Exon skipping disrupts reading frame and is predicted to undergo NMD (Exons 3-5, 7, 11-16) | PVS1 (Very Strong) |
-| Exon skipping disrupts reading frame and is NOT predicted to undergo NMD, >10% altered | PVS1_Strong |
-| Exon skipping disrupts reading frame and is NOT predicted to undergo NMD, <10% altered | PVS1_Moderate |
-| Exon skipping preserves reading frame — Exons 2, 8, 10, 18 (active site/known P exons) | PVS1 (Very Strong) |
-| Exon skipping preserves reading frame — Exons 6, 9 (catalytic barrel, P/LP non-truncating variants) | PVS1_Strong |
-| Exon skipping preserves reading frame — Exons 17, 19, 20 (<10% of gene product) | PVS1_Moderate |
+**Modification Type:** Very Strong — None; Strong and Moderate — Strength, Disease-specific.
 
-**Note:** All donor/acceptor splice sites follow GT/AG rule except the donor splice site of intron 19 (begins with GC). Variants in the donor splice junction of intron 19 will **not** meet PVS1.
+> **Note on the "<10%" figure:** the specification uses it in exactly one place — to characterise the in-frame loss of exons 17, 19 and 20 — and not as a general test applied to frameshifts or deletions.
 
-#### Deletions
-| Molecular Consequence | PVS1 Strength |
-|----------------------|---------------|
-| Full gene deletion | PVS1 (Very Strong) |
-| Single/multi-exon deletion disrupts reading frame, NMD predicted | PVS1 (Very Strong) |
-| Single/multi-exon deletion disrupts reading frame, NMD NOT predicted, >10% altered | PVS1_Strong |
-| Single/multi-exon deletion disrupts reading frame, NMD NOT predicted, <10% altered | PVS1_Moderate |
-| Single/multi-exon deletion preserves reading frame | Consult exon-specific guidance; apply at highest possible strength depending on which exon(s) deleted |
-
-#### Duplications
-| Molecular Consequence | PVS1 Strength |
-|----------------------|---------------|
-| Proven in tandem, reading frame disrupted and NMD predicted | PVS1 (Very Strong) |
-| Proven in tandem, no known impact on reading frame | N/A |
-| Presumed in tandem, reading frame presumed disrupted and NMD predicted | PVS1_Strong |
-| Presumed in tandem, no known impact on reading frame | N/A |
-| Proven not in tandem | N/A |
-
-#### Initiation Codon
-| PVS1 Strength |
-|---------------|
-| PVS1_Strong |
-
-**Footnotes:**
-- All exons in GAA are biologically relevant; there is no significant alternative splicing.
-- NMD is not predicted if PTC is in the last exon (exon 20) or last 50 nucleotides of the penultimate exon (exon 19, 3' to c.2749, codon 916).
-- If the GT donor splice site is altered, the upstream exon is predicted to be skipped. If the AG acceptor splice site is altered, the downstream exon is predicted to be skipped. This prediction can be overridden by experimental data (RT-PCR) or in silico prediction (only if less deleterious than predicted).
-- Exon 1 is untranslated.
+**Not specified by the VCEP:** handling of duplications; handling of full gene deletions; whether the intron 19 donor site (which begins GC rather than GT) is excluded from PVS1; and whether exon 1 is untranslated. Statements on all of these previously appeared here without any source and have been removed.
 
 ### Appendix B: Active Site Residues (PM1)
 
-| Residue | Role |
-|---------|------|
-| D282 | Active site architecture / substrate binding |
-| W376 | Active site architecture / substrate binding |
-| D404 | Active site architecture / substrate binding |
-| L405 | Active site architecture / substrate binding |
-| I441 | Active site architecture / substrate binding |
-| W481 | Active site architecture / substrate binding |
-| W516 | Active site architecture / substrate binding |
-| **D518** | **Catalytic nucleophile** |
-| M519 | Active site architecture / substrate binding |
-| R600 | Active site architecture / substrate binding |
-| W613 | Active site architecture / substrate binding |
-| **D616** | **Catalytic acid/base** |
-| W618 | Active site architecture / substrate binding |
-| F649 | Active site architecture / substrate binding |
-| L650 | Active site architecture / substrate binding |
-| H674 | Active site architecture / substrate binding |
+The specification lists these as "residues important in the active site architecture and substrate binding of GAA". Missense substitution or in-frame deletion of any of them meets PM1 at Moderate.
 
-**References:** Hermans et al, 1991 (PMID 1856189); Deming et al, 2017 (DOI 10.1101/212837); Roig-Zamboni et al, 2017 (PMID 29061980).
+D282, W376, D404, L405, I441, W481, W516, D518, M519, R600, W613, D616, W618, F649, L650, H674.
+
+> A per-residue "Role" column was previously shown here, singling out D518 as the "catalytic nucleophile" and D616 as the "catalytic acid/base" and labelling the other fourteen "active site architecture / substrate binding". **Removed as unsourced** — the VCEP draws no distinction between these residues, and the three supporting references previously cited (Hermans 1991 PMID 1856189; Deming 2017; Roig-Zamboni 2017 PMID 29061980) appear nowhere in the specification.
 
 ### Appendix C: Population Frequency Thresholds Summary
 
@@ -624,6 +574,8 @@ Continental populations: European non-Finnish, African, East Asian, South Asian,
 **BS1 Exception:** c.-32-13T>G is exempted from BS1 (highest frequency 0.53% in European non-Finnish) as it is the most common pathogenic variant in late onset Pompe disease.
 
 ### Appendix D: Pseudodeficiency Variants
+
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** The word "pseudodeficiency" does not appear anywhere in the GAA specification PDF, nor do any of the three variants below. This is plausibly genuine content from the undistributed main specifications document, but it is unverified.
 
 The following pseudodeficiency variants affect the interpretation of enzyme activity results and must be considered when applying PP4:
 
@@ -656,6 +608,8 @@ The following pseudodeficiency variants affect the interpretation of enzyme acti
 | 33162552 | Nino et al, 2020 — Pseudodeficiency variant p.Asp91Asn |
 
 ### Appendix F: GAA Processing Overview
+
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** Neither the processing description nor the Kroos severity classification below appears in the GAA specification PDF; "Kroos", "kDa" and PMID 15520017 are absent from it entirely. The class → PS3/BS3 strength mapping at the end of this appendix is therefore **an unverified claim about how criteria are assigned**, and the specification's own PS3 and BS3 entries (which are stated in terms of % wild-type activity, not Kroos classes) should be preferred where they conflict.
 
 GAA is synthesized as a 110 kDa precursor that undergoes processing to form the 95 kDa intermediate, and then the mature, active forms (76 kDa and 70 kDa). Abnormal synthesis and/or processing is evidenced by absence or reduced levels of the mature 76 kDa and 70 kDa bands on Western blot (see Moreland et al, 2005, PMID 15520017 for details).
 
@@ -715,6 +669,15 @@ GAA is synthesized as a 110 kDa precursor that undergoes processing to form the 
 | Version | Date | Changes |
 |---------|------|---------|
 | 2.0.0 | June 2, 2021 | PS3/BS3 strength revised and downgraded; PM2 downgraded to Supporting; PP4 revised with points system; PM3 no longer requires PP4; PM1 and BS2 specifications added; PP3/BP4 in silico tools revised |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_GAA_v2.0.pdf` — the only file the GAA package distributes. No change to the underlying ClinGen specification version.**
+
+The GAA specification is unusually thin: its PP4 criterion explicitly defers to a "main specifications document" that ClinGen does not distribute. Much of this guideline's detail has no counterpart in the shipped PDF. Content that merely goes beyond the source has been retained under explicit warnings; content that contradicts it has been removed.
+
+- **Appendix A rewritten.** It previously presented a Tayoun-style flowchart, attributed to a PMID the specification never cites, whose frameshift/splice/deletion/duplication branches turned on ">10%" vs "<10% of normal sequence length altered". **The VCEP uses no such rule** — its test is positional (codon 916). The appendix now reproduces the three published strength tiers verbatim. Statements about duplications, full gene deletions, the intron 19 GC donor site and exon 1 being untranslated were removed as unsourced.
+- **Contradicting frameshift rule removed** from the PVS1 body: it promoted PTCs 3' of c.2749 to PVS1_Strong when >10% of sequence length was altered. The specification defines **no PVS1_Strong pathway for premature termination codons** and assigns Moderate to that class unconditionally.
+- **Flagged as unverifiable (retained under warning):** the PVS1 introductory prose and "Additional considerations"; the "Variant-Specific Guidance" subsection; the entire PP4 threshold table and 9-row point system; Appendix D (pseudodeficiency variants); Appendix F (GAA processing and the Kroos severity classification with its PS3/BS3 mapping). None of this appears in the distributed PDF.
+- **Appendix B** — the 16 active-site residues are source-backed and retained; a per-residue "Role" column distinguishing catalytic nucleophile / acid-base, and three supporting references, were removed as unsourced.
 
 ---
 

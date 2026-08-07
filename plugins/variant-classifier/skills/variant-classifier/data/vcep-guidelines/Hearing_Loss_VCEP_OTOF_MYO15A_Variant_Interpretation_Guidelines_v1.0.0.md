@@ -600,14 +600,11 @@ Non-segregation with disease.
 
 ### Appendix B: Variant Exclusion List for BA1/BS1
 
-The following high-frequency pathogenic variants should **not** be classified as benign or likely benign based on allele frequency alone:
+> **Removed as fabricated (2026-08-07).** This appendix previously listed two OTOF variants — c.2485C>T (p.Gln829Ter, "ClinVar 6137, Pathogenic, MAF 0.0006 Latino") and c.5098G>C (p.Glu1700Gln, "ClinVar 48253, VUS, MAF 0.0068 EA") — as an exclusion list for BA1/BS1, complete with a footnote glossing subpopulation abbreviations.
+>
+> **The OTOF/MYO15A specification contains no exclusion list of any kind.** Neither variant, neither ClinVar ID, and none of the quoted frequencies appear anywhere in it; the package ships no supplementary files. The entry was invented in full, including its provenance.
 
-| Gene | Transcript | cDNA | Protein | ClinVar ID | Pathogenicity | MAF* |
-|------|-----------|------|---------|-----------|---------------|------|
-| OTOF | NM_194248.3 | c.2485C>T | p.Gln829Ter | 6137 | Pathogenic | 0.0006 (Latino) |
-| OTOF | NM_194248.3 | c.5098G>C | p.Glu1700Gln | 48253 | VUS | 0.0068 (EA) |
-
-> *The highest subpopulation frequency in the Genome Aggregation Database (gnomAD) is shown. EA: East Asian; AJ: Ashkenazi Jewish; SA: South Asian; EF: European (Finnish)
+**Not specified by the VCEP.** BA1 and BS1 are stated purely as frequency thresholds — BA1 at MAF ≥0.005 (0.5%) and BS1 at MAF ≥0.003 (0.3%), with BS1_Supporting at ≥0.0007 (0.07%), all for autosomal recessive inheritance. The specification names no variants exempted from them.
 
 ### Appendix C: PVS1 Exon Exceptions
 
@@ -663,6 +660,11 @@ The following exons are exceptions to standard PVS1 application:
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.0.0 | March 30, 2022 | Initial approved version |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_OTOF_v1.0.pdf` — the only file the package distributes. No change to the underlying ClinGen specification version.**
+
+- **Appendix B (BA1/BS1 variant exclusion list) removed as fabricated.** It listed two OTOF variants with ClinVar IDs, pathogenicity calls and subpopulation allele frequencies, plus a footnote glossing population abbreviations. The specification contains **no exclusion list of any kind**, and none of those variants, IDs or frequencies appear in it. BA1/BS1 are stated purely as frequency thresholds.
+- Appendix C (PVS1 exon exceptions) was checked and is **source-backed** — the OTOF exon 46 and MYO15A exon 8 / exon 26 exceptions and their PMIDs all appear in the specification.
 
 ---
 

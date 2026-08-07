@@ -72,10 +72,11 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Very Strong (PVS1)** | See PVS1 flow diagram (Figure 1). Null variants (nonsense, frameshift, canonical +/-1 or 2 splice sites, initiation codon, single or multi-exon deletion) where LOF is the known mechanism. |
-| **Strong (PVS1_Strong)** | See PVS1 flow diagram (Figure 1). Downgraded from Very Strong per flowchart when specific conditions apply (e.g., exon skipping with in-frame result, variants in last exon). |
-| **Moderate (PVS1_Moderate)** | See PVS1 flow diagram (Figure 1). Further downgraded per flowchart based on transcript and NMD considerations. |
-| **Supporting** | See PVS1 flow diagram (Figure 1). Lowest applicable PVS1 strength. |
+| **Very Strong (PVS1)** | "See PVS1 flow diagram (Figure 1)." |
+| **Strong (PVS1_Strong)** | "See PVS1 flow diagram (Figure 1)." |
+| **Moderate (PVS1_Moderate)** | "See PVS1 flow diagram (Figure 1)." |
+
+> **The specification defines exactly these three strengths for PVS1, and gives no criteria for any of them beyond the pointer to Figure 1.** A fourth row, "Supporting — lowest applicable PVS1 strength", was previously listed here and has been **removed: the LDLR VCEP does not define PVS1_Supporting.** Explanatory rationales previously attached to the Strong and Moderate rows ("downgraded when exon skipping is in-frame", "based on transcript and NMD considerations") were likewise invented and have been removed. Figure 1 itself is not distributed — see Appendix A.
 
 ---
 
@@ -250,13 +251,12 @@
 
 **Modification Type:** Disease-specific, Strength
 
-#### Co-segregation Notes (from Supplementary Figure 2)
+#### Co-segregation Notes
 
-- Index cases should **not** be counted as positive cases for co-segregation results.
-- Only consider relatives from the relevant side of the family (i.e., the side from which the variant was inherited).
-- Informative meioses include affected relatives carrying the variant and unaffected relatives who do not carry the variant.
-- Affected status is defined as LDL-C >75th centile.
-- Unaffected status (for BS4) is defined as LDL-C <50th centile.
+- Affected status is defined as **LDL-C >75th centile** (stated in the PP1 criteria above).
+- Unaffected status, for BS4, is defined as **LDL-C <50th centile** (stated in the BS4 criterion).
+
+> **Removed as unsourced (2026-08-07).** Three further bullets — that index cases should not be counted as positive, that only relatives from the relevant side of the family count, and a definition of "informative meioses" — were previously listed here and attributed to a "Supplementary Figure 2". The LDLR specification **makes no reference to any supplementary material**, ships no supplementary files, and states none of those three rules. The term "informative meioses" is used by the VCEP but never defined.
 
 ---
 
@@ -463,84 +463,82 @@ Criteria shown above are not met **OR** the criteria for pathogenic and benign a
 
 ### Appendix A: PVS1 Flowchart
 
-The LDLR-specific PVS1 flowchart is an adaptation of Tayoun et al., 2018. It provides guidance for determining the appropriate strength level (Very Strong, Strong, Moderate, or Supporting) for null variants based on:
+> **⚠️ NOT IN DISTRIBUTED PACKAGE.** Every PVS1 strength in the LDLR specification says only "See PVS1 flow diagram (Figure 1)". **Figure 1 is not distributed** — the LDLR package ships the specification PDF alone, and that PDF does not contain the diagram. No flowchart can be reproduced here, and none is.
 
-- **Variant type:** Nonsense, frameshift, canonical splice site (+/-1,2), initiation codon, single/multi-exon deletion
-- **NMD prediction:** Whether the variant is predicted to undergo nonsense-mediated decay
-- **Exon skipping impact:** Whether exon skipping results in an in-frame or out-of-frame transcript
-- **Functional domain impact:** Whether the affected region is critical for LDLR function
-- **Last exon considerations:** Variants in the last exon or near the 3' end of the gene
+The specification assigns PVS1 at **Very Strong, Strong or Moderate** only. Determining which applies to a given null variant requires Figure 1, which is unavailable; consult the FH VCEP publication (https://doi.org/10.1101/2021.03.17.21252755) or ClinGen directly.
 
-Refer to Figure 1 in the original specification document for the complete flowchart.
+> A description of the flowchart's decision inputs (NMD prediction, exon-skipping frame impact, functional-domain impact, last-exon considerations) previously appeared here. It has been **removed as unsourced** — the specification states none of it, and the list gave the false impression that the flowchart's logic was known.
 
 ### Appendix B: LDLR Conserved Cysteine Residues (PM1)
 
-60 highly conserved cysteine residues involved in disulfide bond formation. Missense changes at these residues qualify for PM1.
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** The LDLR specification states that PM1 applies to "a missense change in one of 60 highly conserved cysteine residues (**listed in Supp. Table 4**)". Supp. Table 4 is **not distributed** — the LDLR package ships the specification PDF only. The count of 60 is source-backed; the individual residue positions and their domain assignments below are **not**, and are reproduced here only as a working aid. Confirm against Supp. Table 4 before relying on them to apply PM1.
 
-| Residue | Domain | Predicted Impact |
-|---------|--------|------------------|
-| p.Cys27 | LDL-receptor class A 1 | folding defect |
-| p.Cys34 | LDL-receptor class A 1 | folding defect |
-| p.Cys39 | LDL-receptor class A 1 | folding defect |
-| p.Cys46 | LDL-receptor class A 1 | folding defect |
-| p.Cys52 | LDL-receptor class A 1 | folding defect |
-| p.Cys63 | LDL-receptor class A 1 | folding defect |
-| p.Cys68 | LDL-receptor class A 2 | folding defect |
-| p.Cys75 | LDL-receptor class A 2 | folding defect |
-| p.Cys82 | LDL-receptor class A 2 | folding defect |
-| p.Cys89 | LDL-receptor class A 2 | folding defect |
-| p.Cys95 | LDL-receptor class A 2 | folding defect |
-| p.Cys104 | LDL-receptor class A 2 | folding defect |
-| p.Cys109 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys116 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys121 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys128 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys134 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys143 | LDL-receptor class A 3 | folding defect; LDL binding defect |
-| p.Cys148 | LDL-receptor class A 4 | folding defect; receptor-recycling defect; LDL binding defect |
-| p.Cys155 | LDL-receptor class A 4 | folding defect; LDL binding defect |
-| p.Cys160 | LDL-receptor class A 4 | folding defect; receptor-recycling defect; LDL binding defect |
-| p.Cys167 | LDL-receptor class A 4 | folding defect; LDL binding defect |
-| p.Cys173 | LDL-receptor class A 4 | folding defect; receptor-recycling defect; LDL binding defect |
-| p.Cys184 | LDL-receptor class A 4 | folding defect; LDL binding defect |
-| p.Cys197 | LDL-receptor class A 5 | folding defect; LDL binding defect |
-| p.Cys204 | LDL-receptor class A 5 | folding defect; LDL binding defect |
-| p.Cys209 | LDL-receptor class A 5 | folding defect; LDL binding defect |
-| p.Cys216 | LDL-receptor class A 5 | folding defect; LDL binding defect |
-| p.Cys222 | LDL-receptor class A 5 | folding defect; receptor-recycling defect; LDL binding defect |
-| p.Cys231 | LDL-receptor class A 5 | folding defect; LDL binding defect |
-| p.Cys236 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys243 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys248 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys255 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys261 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys270 | LDL-receptor class A 6 | folding defect; LDL binding defect |
-| p.Cys276 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys284 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys289 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys296 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys302 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys313 | LDL-receptor class A 7 | folding defect; LDL binding defect |
-| p.Cys318 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys325 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys329 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys338 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys340 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys352 | EGF-like 1 | folding defect; LDL binding defect |
-| p.Cys358 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys364 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys368 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys377 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys379 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys392 | EGF-like 2; calcium-binding | folding defect; receptor-recycling defect |
-| p.Cys667 | EGF-like 3 | folding defect; receptor-recycling defect |
-| p.Cys677 | EGF-like 3 | folding defect; receptor-recycling defect |
-| p.Cys681 | EGF-like 3 | folding defect; receptor-recycling defect |
-| p.Cys696 | EGF-like 3 | folding defect; receptor-recycling defect |
-| p.Cys698 | EGF-like 3 | folding defect; receptor-recycling defect |
-| p.Cys711 | EGF-like 3 | folding defect; receptor-recycling defect |
+> A "Predicted Impact" column (folding defect / LDL binding defect / receptor-recycling defect) was previously shown here and has been **removed as invented** — the specification makes no such per-residue claims, and the annotation is not needed to apply the criterion.
 
-*Adapted from Guo et al., 2019. Residues correspond to LDLR transcript NM_000527.5.*
+| Residue | Domain |
+|---------|--------|
+| p.Cys27 | LDL-receptor class A 1 |
+| p.Cys34 | LDL-receptor class A 1 |
+| p.Cys39 | LDL-receptor class A 1 |
+| p.Cys46 | LDL-receptor class A 1 |
+| p.Cys52 | LDL-receptor class A 1 |
+| p.Cys63 | LDL-receptor class A 1 |
+| p.Cys68 | LDL-receptor class A 2 |
+| p.Cys75 | LDL-receptor class A 2 |
+| p.Cys82 | LDL-receptor class A 2 |
+| p.Cys89 | LDL-receptor class A 2 |
+| p.Cys95 | LDL-receptor class A 2 |
+| p.Cys104 | LDL-receptor class A 2 |
+| p.Cys109 | LDL-receptor class A 3 |
+| p.Cys116 | LDL-receptor class A 3 |
+| p.Cys121 | LDL-receptor class A 3 |
+| p.Cys128 | LDL-receptor class A 3 |
+| p.Cys134 | LDL-receptor class A 3 |
+| p.Cys143 | LDL-receptor class A 3 |
+| p.Cys148 | LDL-receptor class A 4 |
+| p.Cys155 | LDL-receptor class A 4 |
+| p.Cys160 | LDL-receptor class A 4 |
+| p.Cys167 | LDL-receptor class A 4 |
+| p.Cys173 | LDL-receptor class A 4 |
+| p.Cys184 | LDL-receptor class A 4 |
+| p.Cys197 | LDL-receptor class A 5 |
+| p.Cys204 | LDL-receptor class A 5 |
+| p.Cys209 | LDL-receptor class A 5 |
+| p.Cys216 | LDL-receptor class A 5 |
+| p.Cys222 | LDL-receptor class A 5 |
+| p.Cys231 | LDL-receptor class A 5 |
+| p.Cys236 | LDL-receptor class A 6 |
+| p.Cys243 | LDL-receptor class A 6 |
+| p.Cys248 | LDL-receptor class A 6 |
+| p.Cys255 | LDL-receptor class A 6 |
+| p.Cys261 | LDL-receptor class A 6 |
+| p.Cys270 | LDL-receptor class A 6 |
+| p.Cys276 | LDL-receptor class A 7 |
+| p.Cys284 | LDL-receptor class A 7 |
+| p.Cys289 | LDL-receptor class A 7 |
+| p.Cys296 | LDL-receptor class A 7 |
+| p.Cys302 | LDL-receptor class A 7 |
+| p.Cys313 | LDL-receptor class A 7 |
+| p.Cys318 | EGF-like 1 |
+| p.Cys325 | EGF-like 1 |
+| p.Cys329 | EGF-like 1 |
+| p.Cys338 | EGF-like 1 |
+| p.Cys340 | EGF-like 1 |
+| p.Cys352 | EGF-like 1 |
+| p.Cys358 | EGF-like 2; calcium-binding |
+| p.Cys364 | EGF-like 2; calcium-binding |
+| p.Cys368 | EGF-like 2; calcium-binding |
+| p.Cys377 | EGF-like 2; calcium-binding |
+| p.Cys379 | EGF-like 2; calcium-binding |
+| p.Cys392 | EGF-like 2; calcium-binding |
+| p.Cys667 | EGF-like 3 |
+| p.Cys677 | EGF-like 3 |
+| p.Cys681 | EGF-like 3 |
+| p.Cys696 | EGF-like 3 |
+| p.Cys698 | EGF-like 3 |
+| p.Cys711 | EGF-like 3 |
+
+*Residues correspond to LDLR transcript NM_000527.5. The previous attribution of this table to "Guo et al., 2019" is unsourced — the specification cites no such reference.*
 
 ### Appendix C: LDLR Exon Information
 
@@ -612,6 +610,13 @@ Refer to Figure 1 in the original specification document for the complete flowch
 | 1.2.0 | 11/9/2021 | Updated for clarification on PM3 and BP2, and typo correction |
 | 1.1.0 | — | Prior version |
 | 1.0.0 | 9/27/2020 | Initial approved specification |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_LDLR_v1.2.pdf` — the only file the LDLR package distributes. No change to the underlying ClinGen specification version.**
+
+- **PVS1 "Supporting" removed.** The specification defines PVS1 at Very Strong, Strong and Moderate only. A fourth Supporting row, and invented rationales attached to the Strong and Moderate rows, have been deleted.
+- **Appendix A (PVS1 flowchart) — description removed as unsourced.** Every PVS1 strength says only "See PVS1 flow diagram (Figure 1)"; Figure 1 is not distributed. A list of the flowchart's supposed decision inputs was previously given, implying its logic was known.
+- **Appendix B (60 cysteine residues) — flagged unverifiable, invented column removed.** The specification cites "Supp. Table 4", which is not distributed. The count of 60 is source-backed; the residue positions and domains are retained as a working aid under an explicit warning. A per-residue "Predicted Impact" column and an attribution to "Guo et al., 2019" were deleted — the specification makes no such claims and cites no such reference.
+- **Co-segregation notes** — three of five bullets removed. They were attributed to a "Supplementary Figure 2"; the specification references no supplementary material at all. The two retained bullets restate definitions given in the PP1 and BS4 criteria.
 
 ---
 
