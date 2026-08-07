@@ -103,21 +103,25 @@
 
 #### PS2/PM6 Point System
 
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed Parental Relationships |
-|------------------------|----------------------------------|------------------------------------|
+| Phenotypic Consistency | Confirmed de novo | Assumed de novo |
+|------------------------|-------------------|-----------------|
 | **Phenotype highly specific for gene** *(use this row for antithrombin deficiency)* | 2 points | 1 point |
 | Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
+| Phenotype consistent with gene but not highly specific and high genetic heterogeneity\* | 0.5 points | 0.25 points |
+| Phenotype not consistent with gene | 0 points | 0 points |
+
+\* **Maximum allowable value of 1 may contribute to overall score.** (Footnote on Table 1 of the attached SVI de novo guidance; load-bearing cap, applies to the heterogeneity row.)
 
 #### Evidence Strength Thresholds
 
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≥0.5 | PS2_Supporting |
-| ≥1.0 | PS2_Moderate |
-| ≥2.0 | PS2 (Strong) |
-| ≥4.0 | PS2_VeryStrong |
+| 0.5 | PS2_Supporting |
+| 1 | PS2_Moderate |
+| 2 | PS2 (Strong) |
+| 4 | PS2_VeryStrong |
+
+> **Comparator not specified.** The VCEP states these as bare requirements ("Required 4 points", "Required 2 points", "Required 1 point", "Required 0.5 point") and the attached SVI Table 2 likewise prints bare values. Whether the bound is inclusive or strict is **not stated by the VCEP** and must not be assumed.
 
 ---
 
@@ -612,6 +616,12 @@ For SERPINC1 variants where criteria codes for both benign and pathogenic eviden
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.1.0 | 2/7/2025 | Current version. All requested edits applied; p.Cys29= retained as VUS (single benign code). Point counting system applied only for conflicting rule codes. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_SERPINC1_v1.1.pdf` and `De novo rule guidance.docx` (Table 1/Table 2 image). No change to the underlying ClinGen specification version.**
+
+- **PS2 threshold comparators corrected.** The document previously printed `≥0.5 / ≥1.0 / ≥2.0 / ≥4.0`. The specification states bare values ("Required 4 points", "…2 points", "…1 point", "…0.5 point") and the attached SVI Table 2 likewise prints bare values. The `≥` operators were invented; comparators are now recorded as unstated.
+- **SVI Table 1 heterogeneity-row cap restored:** "Maximum allowable value of 1 may contribute to overall score" — previously dropped.
+- Point-matrix column headers corrected to the source's "Confirmed de novo" / "Assumed de novo", and the two lower phenotype rows restored to their full source wording.
 
 ---
 
