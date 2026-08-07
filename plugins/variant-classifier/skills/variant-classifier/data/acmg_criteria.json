@@ -6,13 +6,16 @@
 
   "population_frequency": {
     "description": "Allele frequency thresholds for benign/pathogenic evidence",
+    "op_note": "Each threshold carries an explicit 'op'. VCEPs differ on whether a threshold is inclusive (GALT states BA1/BS1/PM2 as >= / <=; SLC6A8 v2.1 flipped strict to inclusive), so a variant sitting exactly on a boundary depends on it. VCEP overrides may restate 'op'.",
     "BA1": {
       "threshold": 0.05,
+      "op": ">",
       "description": "Standalone benign - AF > 5%",
       "note": "Allele frequency too high for penetrant disorder"
     },
     "BS1": {
       "threshold": 0.01,
+      "op": ">",
       "description": "Strong benign - AF > 1% (gene/disease dependent)",
       "note": "May need adjustment based on disease prevalence"
     },
@@ -26,11 +29,13 @@
     },
     "PM2_supporting": {
       "threshold": 0.0001,
+      "op": "<",
       "description": "Rare for supporting evidence - AF < 0.01%",
       "note": "Per 2018 SVI recommendation, PM2 at supporting level"
     },
     "PM2_moderate": {
       "threshold": 0.00001,
+      "op": "<",
       "description": "Very rare for moderate evidence - AF < 0.001%",
       "note": "Can be elevated to moderate if extremely rare"
     }

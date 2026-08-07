@@ -179,6 +179,25 @@ python scripts/classify_variant.py \
   -o $OUTDIR/classification_report.md
 ```
 
+**Frequency thresholds must state their comparator.** VCEPs differ on whether a
+threshold is inclusive — GALT states BA1/BS1/PM2 as `>=` / `<=`, and SLC6A8
+v2.1 explicitly flipped strict to inclusive — so a variant sitting exactly on
+the boundary depends on it. In `vcep_spec.json`, write the operator alongside
+the value whenever the source spec is inclusive:
+
+```json
+{
+  "BA1_threshold": {"threshold": 0.05, "op": ">="},
+  "BS1_threshold": {"threshold": 0.01, "op": ">="},
+  "PM2_threshold": {"threshold": 0.0001, "op": "<="}
+}
+```
+
+A bare number (`"BA1_threshold": 0.05`) is still accepted and keeps the ACMG
+default comparator — `>` for BA1/BS1, `<` for PM2. Only omit `op` when the
+source spec really is strict; the applied rule is echoed in the report's
+evidence column, so check it there.
+
 ### Step 8: Present Results
 
 Present the classification report to the user:

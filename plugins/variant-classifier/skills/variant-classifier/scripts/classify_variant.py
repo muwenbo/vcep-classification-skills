@@ -13,6 +13,7 @@ Usage:
 
 import argparse
 import json
+import operator
 import sys
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -53,6 +54,19 @@ PATHOGENIC_CRITERIA = {
     "PP4": {"strength": "supporting", "category": "phenotype"},
     "PP5": {"strength": "supporting", "category": "reputable_source"},
 }
+
+# Comparison operators a threshold specification may name.
+# VCEPs differ on whether a frequency threshold is inclusive: GALT states
+# BA1/BS1/PM2 as >= / <=, and SLC6A8 v2.1 explicitly flipped strict to
+# inclusive. The operator therefore has to travel with the value, or variants
+# sitting exactly on a boundary silently take the wrong branch.
+COMPARATORS = {
+    ">": operator.gt,
+    ">=": operator.ge,
+    "<": operator.lt,
+    "<=": operator.le,
+}
+
 
 BENIGN_CRITERIA = {
     "BA1": {"strength": "standalone", "category": "high_frequency"},
@@ -149,10 +163,10 @@ def get_default_acmg_criteria() -> Dict[str, Any]:
     """Return default ACMG criteria thresholds (matches acmg_criteria.json structure)"""
     return {
         "population_frequency": {
-            "BA1": {"threshold": 0.05},
-            "BS1": {"threshold": 0.01},
-            "PM2_supporting": {"threshold": 0.0001},
-            "PM2_moderate": {"threshold": 0.00001},
+            "BA1": {"threshold": 0.05, "op": ">"},
+            "BS1": {"threshold": 0.01, "op": ">"},
+            "PM2_supporting": {"threshold": 0.0001, "op": "<"},
+            "PM2_moderate": {"threshold": 0.00001, "op": "<"},
         },
         "computational": {
             "sift": {"deleterious_threshold": 0.05},
@@ -170,6 +184,44 @@ def get_default_acmg_criteria() -> Dict[str, Any]:
             }
         },
     }
+
+
+def resolve_threshold(
+    spec: Any,
+    default_value: float,
+    default_op: str,
+) -> Tuple[float, str]:
+    """
+    Resolve a threshold specification into an (value, operator) pair.
+
+    Accepts either a bare number, which takes the criterion's default
+    comparator, or a dict of the form {"threshold": x, "op": ">="}. Returns the
+    defaults when spec is None.
+
+    Raises ValueError on an unrecognised operator rather than falling back to a
+    default, since a silent fallback is exactly the misclassification this is
+    meant to prevent.
+    """
+    if spec is None:
+        return default_value, default_op
+
+    if isinstance(spec, dict):
+        value = spec.get("threshold", default_value)
+        op = spec.get("op", default_op)
+    else:
+        value = spec
+        op = default_op
+
+    if op not in COMPARATORS:
+        raise ValueError(
+            f"Unknown threshold operator {op!r}; expected one of {sorted(COMPARATORS)}"
+        )
+    return value, op
+
+
+def compare(value: float, op: str, threshold: float) -> bool:
+    """Apply a named comparison operator."""
+    return COMPARATORS[op](value, threshold)
 
 
 class VariantClassifier:
@@ -232,44 +284,58 @@ class VariantClassifier:
         # Use max population AF if available, otherwise overall AF
         af = max_pop_af if max_pop_af is not None else gnomad_af
 
-        # BA1 - Standalone benign (AF > 5%)
-        ba1_threshold = thresholds.get("BA1", {}).get("threshold", 0.05)
-        if self.vcep:
-            ba1_threshold = self.vcep.get("BA1_threshold", ba1_threshold)
+        # BA1 - Standalone benign (AF above the threshold)
+        ba1_threshold, ba1_op = resolve_threshold(thresholds.get("BA1"), 0.05, ">")
+        if self.vcep and "BA1_threshold" in self.vcep:
+            ba1_threshold, ba1_op = resolve_threshold(
+                self.vcep["BA1_threshold"], ba1_threshold, ba1_op
+            )
 
-        ba1_met = af is not None and af > ba1_threshold
+        ba1_met = af is not None and compare(af, ba1_op, ba1_threshold)
         evaluations.append(CriterionEvaluation(
             criterion="BA1",
             met=ba1_met,
             strength="standalone",
             points=-8 if ba1_met else 0,  # Standalone benign
-            evidence=f"AF: {af:.2e}" if af else "AF: N/A",
+            evidence=(
+                f"AF: {af:.2e}, rule: AF {ba1_op} {ba1_threshold}"
+                if af is not None else "AF: N/A"
+            ),
             source="computational",
             vcep_modified=self.vcep is not None and "BA1_threshold" in self.vcep,
         ))
 
-        # BS1 - Strong benign (AF > 1% or gene-specific)
-        bs1_threshold = thresholds.get("BS1", {}).get("threshold", 0.01)
-        if self.vcep:
-            bs1_threshold = self.vcep.get("BS1_threshold", bs1_threshold)
+        # BS1 - Strong benign (AF above the threshold, gene-specific)
+        bs1_threshold, bs1_op = resolve_threshold(thresholds.get("BS1"), 0.01, ">")
+        if self.vcep and "BS1_threshold" in self.vcep:
+            bs1_threshold, bs1_op = resolve_threshold(
+                self.vcep["BS1_threshold"], bs1_threshold, bs1_op
+            )
 
-        bs1_met = af is not None and af > bs1_threshold and not ba1_met
+        bs1_met = af is not None and compare(af, bs1_op, bs1_threshold) and not ba1_met
         evaluations.append(CriterionEvaluation(
             criterion="BS1",
             met=bs1_met,
             strength="strong",
             points=-4 if bs1_met else 0,
-            evidence=f"AF: {af:.2e}, threshold: {bs1_threshold}" if af else "AF: N/A",
+            evidence=(
+                f"AF: {af:.2e}, rule: AF {bs1_op} {bs1_threshold}"
+                if af is not None else "AF: N/A"
+            ),
             source="computational",
             vcep_modified=self.vcep is not None and "BS1_threshold" in self.vcep,
         ))
 
         # PM2 - Absent or rare
-        pm2_threshold = thresholds.get("PM2_supporting", {}).get("threshold", 0.0001)
-        if self.vcep:
-            pm2_threshold = self.vcep.get("PM2_threshold", pm2_threshold)
+        pm2_threshold, pm2_op = resolve_threshold(
+            thresholds.get("PM2_supporting"), 0.0001, "<"
+        )
+        if self.vcep and "PM2_threshold" in self.vcep:
+            pm2_threshold, pm2_op = resolve_threshold(
+                self.vcep["PM2_threshold"], pm2_threshold, pm2_op
+            )
 
-        pm2_met = af is None or af < pm2_threshold
+        pm2_met = af is None or compare(af, pm2_op, pm2_threshold)
         pm2_strength = "supporting"  # Default to supporting (ACMG update 2018)
 
         evaluations.append(CriterionEvaluation(
@@ -277,7 +343,10 @@ class VariantClassifier:
             met=pm2_met,
             strength=pm2_strength,
             points=1 if pm2_met else 0,
-            evidence=f"AF: {af:.2e}" if af else "Absent from gnomAD",
+            evidence=(
+                f"AF: {af:.2e}, rule: AF {pm2_op} {pm2_threshold}"
+                if af is not None else "Absent from gnomAD"
+            ),
             source="computational",
             vcep_modified=self.vcep is not None and "PM2_threshold" in self.vcep,
         ))
