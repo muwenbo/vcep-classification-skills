@@ -1,6 +1,6 @@
-# ClinGen ENIGMA VCEP Variant Interpretation Guidelines for BRCA1 & BRCA2
+# ClinGen ENIGMA BRCA1 and BRCA2 VCEP Variant Interpretation Guidelines for BRCA2
 
-**Version:** 1.2
+**Version:** 1.2.0
 **Released:** 2024-11-18
 **Affiliation:** ENIGMA (Evidence-based Network for the Interpretation of Germline Mutant Alleles) Variant Curation Expert Panel
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines (PMID: 25741868)
@@ -8,18 +8,6 @@
 ---
 
 ## Gene Information
-
-### BRCA1
-
-| Attribute | Value |
-|-----------|-------|
-| **Gene** | BRCA1 (HGNC:1100) |
-| **HGNC Name** | BRCA1 DNA repair associated |
-| **Transcript** | NM_007294.4 (ENST00000357654.9) |
-| **Genomic Reference** | NG_005905.2 (LRG 292) |
-| **Disease** | Hereditary breast and ovarian cancer syndrome |
-| **Associated Conditions** | Breast cancer, Ovarian cancer, Fanconi anemia complementation group S (FANCS) |
-| **Inheritance** | Autosomal dominant (cancer susceptibility); Autosomal recessive (Fanconi anemia) |
 
 ### BRCA2
 
@@ -37,9 +25,6 @@
 
 | Gene | Domain | Amino Acid Range | Notes |
 |------|--------|------------------|-------|
-| BRCA1 | RING domain | aa 2-101 | Clinically important functional domain |
-| BRCA1 | Coiled-coil domain | aa 1391-1424 | *Potentially* clinically important functional domain |
-| BRCA1 | BRCT repeats | aa 1650-1857 | Clinically important functional domain |
 | BRCA2 | PALB2 binding domain | aa 10-40 | Clinically important functional domain |
 | BRCA2 | DNA binding domain | aa 2481-3186 | Clinically important functional domain |
 
@@ -109,14 +94,237 @@ For predicted protein termination codon (PTC) variants, apply with exon-specific
 
 #### Strength Levels
 
-PVS1 strength is determined by exon location, NMD prediction, and functional domain considerations. Refer to **Table 4** (separate Excel file) for exon-specific code assignments.
+PVS1 strength is assigned **per exon**, from the BRCA2 PVS1 decision trees
+(Appendices, Section D). The table below transcribes Specifications Table 4
+for BRCA2; it is the authoritative source for these weights.
 
-| Strength | General Application |
-|----------|---------------------|
-| **Very Strong (PVS1)** | Null variants predicted to undergo NMD or located in critical functional domains |
-| **Strong (PVS1_Strong)** | Variants with some evidence of potential escape from NMD |
-| **Moderate (PVS1_Moderate)** | Variants with higher likelihood of producing truncated protein with residual function |
-| **Supporting (PVS1_Supporting)** | Variants where loss of function is less certain |
+**Frame notation** (from the Table 4 read-me): a forward slash marks a
+two-nucleotide overhang at the end of an exon and a one-nucleotide overhang
+at the start; a backslash marks the reverse; a vertical bar marks an
+in-frame exon end. Full gene deletion is Stand-Alone evidence and is not
+listed here.
+
+#### Table 4 — BRCA2 codes by exon
+
+| Exon | cDNA range | Protein range | % coding | PTC (PVS1) | PM5_PTC | Whole-exon DEL | DUP (tandem) | DUP (unknown) |
+|---|---|---|---|---|---|---|---|---|
+| **E1** | c.-227–c.-40 | — | — | — | — | PVS1_N/A | PVS1_N/A | PVS1_N/A |
+| **E2** | c.-39–c.67 | p.23 | 0.7% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1_N/A | PVS1_N/A |
+| **E3** | c.68–c.316 | p.23–p.106 | 2.4% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1_N/A | PVS1_N/A |
+| **E4** | c.317–c.425 | p.106–p.142 | 1.1% | PVS1 | PM5 (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E5** | c.426–c.475 | p.142–p.159 | 0.5% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E6** | c.476–c.516 | p.159–p.172 | 0.4% | PVS1 | PM5_N/A | PVS1 | PVS1 | PVS1_Strong |
+| **E7** | c.517–c.631 | p.173–p.211 | 1.1% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E8** | c.632–c.681 | p.211–p.227 | 0.5% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E9** | c.682–c.793 | p.228–p.265 | 1.1% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E10** | — | — | 10.9% | PVS1 | PM5_Strong (PTC) | PVS1_N/A | PVS1_Supporting | PVS1_N/A |
+| **E11** | — | — | 48.1% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1_Supporting | PVS1_N/A |
+| **E12** | c.6842–c.6937 | p.2281–p.2313 | 0.9% | PVS1 | PM5_N/A | PVS1_N/A | PVS1_N/A | PVS1_N/A |
+| **E13** | c.6938–c.7007 | p.2313–p.2336 | 0.7% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E14** | c.7008–c.7435 | p.2336–p.2479 | 4.2% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E15** | c.7436–c.7617 | p.2479–p.2539 | 1.8% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E16** | c.7618–c.7805 | p.2540–p.2602 | 1.8% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E17** | c.7806–c.7976 | p.2602–p.2659 | 1.7% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1_Strong | PVS1_Moderate |
+| **E18** | c.7977–c.8331 | p.2659–p.2777 | 3.5% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E19** | c.8332–c.8487 | p.2778–p.2829 | 1.5% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1_Strong | PVS1_Moderate |
+| **E20** | c.8488–c.8632 | p.2830–p.2878 | 1.4% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E21** | c.8633–c.8754 | p.2878–p.2918 | 1.2% | PVS1 | PM5_Supporting (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E22** | c.8755–c.8953 | p.2919–p.2985 | 1.9% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E23** | c.8954–c.9117 | p.2985–p.3039 | 1.6% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E24** | c.9118–c.9256 | p.3040–p.3086 | 1.4% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E25** | c.9257–c.9501 | p.3086–p.3167 | 2.4% | PVS1 | PM5_Strong (PTC) | PVS1 | PVS1 | PVS1_Strong |
+| **E26** | c.9502–c.9648 | p.3168–p.3216 | 1.4% | PVS1 | PM5_Supporting (PTC) | PVS1 | PVS1_Supporting | PVS1_N/A |
+| **E27** | c.9649–c.10254 | p.3217–p.3418 | 5.9% | `<p.T3310` → PVS1<br>`>p.E3309` → PVS1_N/A | `<p.T3310` → PM5_Strong (PTC)<br>`>p.E3309` → PM5_N/A | PVS1_Strong | PVS1_Supporting | PVS1_N/A |
+
+#### Table 4 — canonical splice site (±1,2) codes
+
+`PVS1 (RNA)` denotes a splice-site variant with available mRNA data, where
+the code reflects the observed molecular impact at transcript level.
+
+| Exon | Side | Variant | Allele(s) | Code | Notes & warnings |
+|---|---|---|---|---|---|
+| E1 | donor (+1,+2) | `c.-40+1G>` | A | PVS1_N/A | Predicted alteration does not affect the coding sequence |
+| E1 | donor (+1,+2) | `c.-40+1G>` | C, T | PVS1_N/A | Predicted alteration does not affect the coding sequence |
+| E1 | donor (+1,+2) | `c.-40+2T>` | A, C, G | PVS1_N/A | Predicted alteration does not affect the coding sequence |
+| E2 | acceptor (−1,−2) | `c.-39-2A>` | C, T, G | PVS1 |  |
+| E2 | acceptor (−1,−2) | `c.-39-1G>` | C, T | PVS1 |  |
+| E2 | acceptor (−1,−2) | `c.-39-1G>` | A | PVS1 (RNA) |  |
+| E2 | donor (+1,+2) | `c.67+1G>` | A, T | PVS1 (RNA) |  |
+| E2 | donor (+1,+2) | `c.67+1G>` | C | PVS1 |  |
+| E2 | donor (+1,+2) | `c.67+2T>` | A, G | PVS1 |  |
+| E2 | donor (+1,+2) | `c.67+2T>` | C | PVS1 (RNA) |  |
+| E3 | acceptor (−1,−2) | `c.68-2A>` | C, G, T | PVS1_Supporting (RNA) | Small in-frame observed |
+| E3 | acceptor (−1,−2) | `c.68-1G>` | A, C, T | PVS1_Supporting (RNA) | Small in-frame observed |
+| E3 | donor (+1,+2) | `c.316+1G>` | T | PVS1 (RNA) |  |
+| E3 | donor (+1,+2) | `c.316+1G>` | A, C | PVS1 |  |
+| E3 | donor (+1,+2) | `c.316+2T>` | A, G | PVS1 |  |
+| E3 | donor (+1,+2) | `c.316+2T>` | C | PVS1 (RNA) |  |
+| E4 | acceptor (−1,−2) | `c.317-2A` | G | PVS1_N/A | PTC_NMD Δ(E4) predicted. Δ(E4) and in-frame Δ(E4,5) (suspected functional) observed |
+| E4 | acceptor (−1,−2) | `c.317-2A` | C, T | PVS1_N/A | PTC_NMD Δ(E4) predicted. Δ(E4) and in-frame Δ(E4,5) (suspected functional) expected |
+| E4 | acceptor (−1,−2) | `c.317-1G` | A, C, T | PVS1_N/A | PTC_NMD Δ(E4) predicted. Δ(E4) and in-frame Δ(E4,5) (suspected functional) expected |
+| E4 | donor (+1,+2) | `c.425+1G>` | A, C, T | PVS1_N/A | PTC_NMD Δ(E4) predicted. In-frame Δ(E4,5) expected (c.425G>T data) and suspected functional |
+| E4 | donor (+1,+2) | `c.425+2T>` | A, C, G | PVS1_N/A | PTC_NMD Δ(E4) predicted. In-frame Δ(E4,5) expected (c.425G>T data) and suspected functional |
+| E5 | acceptor (−1,−2) | `c.426-2A>` | T | PVS1 (RNA) |  |
+| E5 | acceptor (−1,−2) | `c.426-2A>` | C, G | PVS1 |  |
+| E5 | acceptor (−1,−2) | `c.426-1G>` | A, C, T | PVS1 |  |
+| E5 | donor (+1,+2) | `c.475+1G>` | A, T | PVS1 (RNA) |  |
+| E5 | donor (+1,+2) | `c.475+1G>` | C | PVS1 |  |
+| E5 | donor (+1,+2) | `c.475+2T>` | A, C, G | PVS1 |  |
+| E6 | acceptor (−1,−2) | `c.476-2A>` | G | PVS1 (RNA) |  |
+| E6 | acceptor (−1,−2) | `c.476-2A>` | C, T | PVS1 |  |
+| E6 | acceptor (−1,−2) | `c.476-1G>` | A, C, T | PVS1 |  |
+| E6 | donor (+1,+2) | `c.516+1G>` | A, T | PVS1 (RNA) |  |
+| E6 | donor (+1,+2) | `c.516+1G>` | C | PVS1 |  |
+| E6 | donor (+1,+2) | `c.516+2T>` | G | PVS1 |  |
+| E6 | donor (+1,+2) | `c.516+2T>` | A, C | PVS1 (RNA) |  |
+| E7 | acceptor (−1,−2) | `c.517-1G>` | A | PVS1 (RNA) | PTC_NMD Δ(E7p1) predicted. PTC_NMD observed |
+| E7 | acceptor (−1,−2) | `c.517-1G>` | C, T | PVS1_N/A | PTC_NMD Δ(E7) predicted. Δ(E7) and in-frame Δ(E4_E7) (suspected functional) expected |
+| E7 | acceptor (−1,−2) | `c.517-2A>` | C, T | PVS1_N/A | PTC_NMD Δ(E7) predicted. Δ(E7) and in-frame Δ(E4_E7) (suspected functional) expected |
+| E7 | acceptor (−1,−2) | `c.517-2A>` | G | PVS1_N/A | PTC_NMD Δ(E7) predicted. Δ(E7) and in-frame Δ(E4_E7) (suspected functional) observed |
+| E7 | donor (+1,+2) | `c.631+1G>` | A | PVS1 (RNA) | PTC_NMD Δ(E7) predicted. PTC_NMD Δ(E7) observed |
+| E7 | donor (+1,+2) | `c.631+1G>` | C, T | PVS1 | PTC_NMD Δ(E7) predicted |
+| E7 | donor (+1,+2) | `c.631+2T>` | A, C | PVS1 | PTC_NMD Δ(E7) predicted |
+| E7 | donor (+1,+2) | `c.631+2T>` | G | PVS1 (RNA) | PTC_NMD Δ(E7) predicted. Main transcript Δ(E7), in-frame Δ(E4_E7) also observed at low levels. Clinical data supports pathogenicity. |
+| E8 | acceptor (−1,−2) | `c.632-2A>` | G | PVS1_N/A | PTC_NMD Δ(E8p4) predicted. PTC_NMD Δ(E4_8) , Δ(6q39_E7) and in-frame Δ(6q39_E8) (suspected functional) observed |
+| E8 | acceptor (−1,−2) | `c.632-2A>` | C, T | PVS1_N/A | PTC_NMD Δ(E8p4) predicted. PTC_NMD Δ(E4_8) , Δ(6q39_E7) and in-frame Δ(6q39_E8) (suspected functional) expected |
+| E8 | acceptor (−1,−2) | `c.632-1G>` | T | PVS1_N/A | PTC_NMD Δ(E8p4) predicted. PTC_NMD Δ(E4_8) , Δ(6q39_E7) and in-frame Δ(6q39_E8) (suspected functional) expected |
+| E8 | acceptor (−1,−2) | `c.632-1G>` | A, C | PVS1 (RNA) | PTC_NMD Δ(E8p4) predicted. PTC_NMD  Δ(E8p4), Δ(E8), Δ(6q39_E8p4) observed |
+| E8 | donor (+1,+2) | `c.681+1G>` | A | PVS1_N/A | PTC_NMD Δ(E8)/▼(E8q4) predicted. In-frame Δ(E8_E10) (suspected functional) observed |
+| E8 | donor (+1,+2) | `c.681+1G>` | C, T | PVS1_N/A | PTC_NMD Δ(E8)/▼(E8q4) predicted. In-frame Δ(E8_E10) (suspected functional) expected |
+| E8 | donor (+1,+2) | `c.681+2T>` | A, C, G | PVS1_N/A | PTC_NMD Δ(E8)/▼(E8q4) predicted. In-frame Δ(E8_E10) (suspected functional) expected |
+| E9 | acceptor (−1,−2) | `c.682-2A>` | C, G | PVS1 (RNA) |  |
+| E9 | acceptor (−1,−2) | `c.682-2A>` | T | PVS1 |  |
+| E9 | acceptor (−1,−2) | `c.682-1G>` | A, T | PVS1 |  |
+| E9 | acceptor (−1,−2) | `c.682-1G>` | C | PVS1 (RNA) |  |
+| E9 | donor (+1,+2) | `c.793+1G>` | C, T | PVS1 (RNA) |  |
+| E9 | donor (+1,+2) | `c.793+1G>` | A | PVS1 |  |
+| E9 | donor (+1,+2) | `c.793+2T>` | A, G, | PVS1 |  |
+| E9 | donor (+1,+2) | `c.793+2T>` | C | PVS1 | Creates a GC splice site (but not AG\|GCAAGT), SpliceAI score <0.8. Recommend investigate for leaky splicing. |
+| E10 | acceptor (−1,−2) | `c.794-2A>` | G | PVS1_N/A (RNA) | in-frame Δ(E10) (suspected functional) observed |
+| E10 | acceptor (−1,−2) | `c.794-2A>` | C, T | PVS1_N/A | in-frame Δ(E10) and small in-frame suspected functional predicted |
+| E10 | acceptor (−1,−2) | `c.794-1G>` | C, T | PVS1_N/A | in-frame Δ(E10) and small in-frame suspected functional predicted |
+| E10 | acceptor (−1,−2) | `c.794-1G>` | A | PVS1 | PTC_NMD predicted |
+| E10 | donor (+1,+2) | `c.1909+1G>` | A, C | PVS1 (RNA) | PTC_NMD Δ(E9_E10) observed |
+| E10 | donor (+1,+2) | `c.1909+1G>` | T | PVS1 | PTC_NMD Δ(E9_E10) predicted |
+| E10 | donor (+1,+2) | `c.1909+2T>` | A, C, G | PVS1 | PTC_NMD Δ(E9_E10) predicted |
+| E11 | acceptor (−1,−2) | `c.1910-2A>` | C, G, T | PVS1 |  |
+| E11 | acceptor (−1,−2) | `c.1910-1G>` | A, C, T | PVS1 |  |
+| E11 | donor (+1,+2) | `c.6841+1G>` | A, C | PVS1 (RNA) |  |
+| E11 | donor (+1,+2) | `c.6841+1G>` | T | PVS1 |  |
+| E11 | donor (+1,+2) | `c.6841+2T>` | A, G | PVS1 |  |
+| E11 | donor (+1,+2) | `c.6841+2T>` | C | PVS1 | Creates a GC splice site (but not AG\|GCAAGT), SpliceAI score <0.8. Recommend investigate for leaky splicing. |
+| E12 | acceptor (−1,−2) | `c.6842-2A>` | G | PVS1_N/A | Observed in-frame Δ(12) suspected functional |
+| E12 | acceptor (−1,−2) | `c.6842-2A>` | C, T | PVS1_N/A | Predicted in-frame Δ(12) suspected functional |
+| E12 | acceptor (−1,−2) | `c.6842-1G>` | A, C, T | PVS1_N/A | Predicted in-frame Δ(12) suspected functional |
+| E12 | donor (+1,+2) | `c.6937+1G>` | A | PVS1_N/A | Observed in-frame Δ(12) suspected functional |
+| E12 | donor (+1,+2) | `c.6937+1G>` | C, T | PVS1_N/A | Predicted in-frame Δ(12) suspected functional |
+| E12 | donor (+1,+2) | `c.6937+1T>` | A, C, G | PVS1_N/A | Predicted in-frame Δ(12) suspected functional |
+| E13 | acceptor (−1,−2) | `c.6938-2A>` | C, G, T | PVS1 |  |
+| E13 | acceptor (−1,−2) | `c.6938-1G>` | A, C, T | PVS1 |  |
+| E13 | donor (+1,+2) | `c.7007+1G>` | C | PVS1 (RNA) |  |
+| E13 | donor (+1,+2) | `c.7007+1G>` | A, T | PVS1 |  |
+| E13 | donor (+1,+2) | `c.7007+2T>` | A, C, G | PVS1 |  |
+| E14 | acceptor (−1,−2) | `c.7008-2A>` | G, T | PVS1 (RNA) |  |
+| E14 | acceptor (−1,−2) | `c.7008-2A>` | C | PVS1 |  |
+| E14 | acceptor (−1,−2) | `c.7008-1G>` | C, T | PVS1 |  |
+| E14 | acceptor (−1,−2) | `c.7008-1G>` | A | PVS1 (RNA) |  |
+| E14 | donor (+1,+2) | `c.7435+1G>` | C | PVS1 (RNA) |  |
+| E14 | donor (+1,+2) | `c.7435+1G>` | A, T | PVS1 |  |
+| E14 | donor (+1,+2) | `c.7435+2T>` | A, C, G | PVS1 |  |
+| E15 | acceptor (−1,−2) | `c.7436-2A>` | G, T | PVS1 (RNA) |  |
+| E15 | acceptor (−1,−2) | `c.7436-2A>` | C | PVS1 |  |
+| E15 | acceptor (−1,−2) | `c.7436-1G>` | C, T | PVS1 |  |
+| E15 | acceptor (−1,−2) | `c.7436-1G>` | A | PVS1 (RNA) |  |
+| E15 | donor (+1,+2) | `c.7617+1G>` | A, T | PVS1 (RNA) |  |
+| E15 | donor (+1,+2) | `c.7617+1G>` | C | PVS1 |  |
+| E15 | donor (+1,+2) | `c.7617+2T>` | A | PVS1 |  |
+| E15 | donor (+1,+2) | `c.7617+2T>` | G | PVS1 (RNA) |  |
+| E15 | donor (+1,+2) | `c.7617+2T>` | C | PVS1 | Creates a GC splice site (but not AG\|GCAAGT), SpliceAI score <0.8. Recommend investigate for leaky splicing. |
+| E16 | acceptor (−1,−2) | `c.7618-2A>` | G, T | PVS1 (RNA) |  |
+| E16 | acceptor (−1,−2) | `c.7618-2A>` | C | PVS1 |  |
+| E16 | acceptor (−1,−2) | `c.7618-1G>` | T | PVS1 |  |
+| E16 | acceptor (−1,−2) | `c.7618-1G>` | A, C | PVS1 (RNA) |  |
+| E16 | donor (+1,+2) | `c.7805+1G>` | A | PVS1 (RNA) |  |
+| E16 | donor (+1,+2) | `c.7805+1G>` | C, T | PVS1 |  |
+| E16 | donor (+1,+2) | `c.7805+2T>` | A, C, G | PVS1 |  |
+| E17 | acceptor (−1,−2) | `c.7806-2A>` | G | PVS1 (RNA) |  |
+| E17 | acceptor (−1,−2) | `c.7806-2A>` | C, T | PVS1 |  |
+| E17 | acceptor (−1,−2) | `c.7806-1G>` | C | PVS1 |  |
+| E17 | acceptor (−1,−2) | `c.7806-1G>` | A, T | PVS1 (RNA) |  |
+| E17 | donor (+1,+2) | `c.7976+1G>` | A | PVS1 (RNA) |  |
+| E17 | donor (+1,+2) | `c.7976+1G>` | C, T | PVS1 |  |
+| E17 | donor (+1,+2) | `c.7976+2C>` | A, G | PVS1 |  |
+| E17 | donor (+1,+2) | `c.7976+2C>` | T | PVS1_N/A | GC site improved to GT site |
+| E17 | donor (+1,+2) | `I2627F` |  |  |  |
+| E18 | acceptor (−1,−2) | `c.7977-2A>` | T | PVS1 (RNA) |  |
+| E18 | acceptor (−1,−2) | `c.7977-2A>` | C, G | PVS1 |  |
+| E18 | acceptor (−1,−2) | `c.7977-1G>` | A | PVS1 |  |
+| E18 | acceptor (−1,−2) | `c.7977-1G>` | C, T | PVS1 (RNA) |  |
+| E18 | donor (+1,+2) | `c.8331+1G>` | A, T | PVS1_Strong (RNA) | Variants at this splice site are reported to result in leaky splicing, evidence strength reduced to strong. |
+| E18 | donor (+1,+2) | `c.8331+1G>` | C | PVS1_Strong | Variants at this splice site are reported to result in leaky splicing, evidence strength reduced to strong. |
+| E18 | donor (+1,+2) | `c.8331+2T>` | A, G | PVS1_Strong | Variants at this splice site are reported to result in leaky splicing, evidence strength reduced to strong. |
+| E18 | donor (+1,+2) | `c.8331+2T>` | C | PVS1_Strong (RNA) | Variants at this splice site are reported to result in leaky splicing, evidence strength reduced to strong. |
+| E18 | donor (+1,+2) | `D2723G` |  |  |  |
+| E19 | acceptor (−1,−2) | `c.8332-2A>` | G | PVS1 (RNA) |  |
+| E19 | acceptor (−1,−2) | `c.8332-2A>` | C, T | PVS1 |  |
+| E19 | acceptor (−1,−2) | `c.8332-1G>` | C, T | PVS1 |  |
+| E19 | acceptor (−1,−2) | `c.8332-1G>` | A | PVS1 (RNA) |  |
+| E19 | donor (+1,+2) | `c.8487+1G>` | A | PVS1 (RNA) |  |
+| E19 | donor (+1,+2) | `c.8487+1G>` | C, T | PVS1 |  |
+| E19 | donor (+1,+2) | `c.8487+2T>` | C, G | PVS1 |  |
+| E19 | donor (+1,+2) | `c.8487+2T>` | C | PVS1 (RNA) |  |
+| E20 | acceptor (−1,−2) | `c.8488-2A>` | G | PVS1_Supporting (RNA) | Small in-frame observed |
+| E20 | acceptor (−1,−2) | `c.8488-2A>` | C, T | PVS1_Supporting | Small in-frame predicted |
+| E20 | acceptor (−1,−2) | `c.8488-1G>` | C, T | PVS1_Supporting | Small in-frame predicted |
+| E20 | acceptor (−1,−2) | `c.8488-1G>` | A | PVS1_Supporting (RNA) | Small in-frame observed |
+| E20 | donor (+1,+2) | `c.8632+1G>` | A | PVS1 (RNA) |  |
+| E20 | donor (+1,+2) | `c.8632+1G>` | C, T | PVS1 |  |
+| E20 | donor (+1,+2) | `c.8632+2T>` | A, C | PVS1 |  |
+| E20 | donor (+1,+2) | `c.8632+2T>` | G | PVS1 (RNA) |  |
+| E21 | acceptor (−1,−2) | `c.8633-2A>` | G | PVS1 (RNA) |  |
+| E21 | acceptor (−1,−2) | `c.8633-2A>` | C, T | PVS1 |  |
+| E21 | acceptor (−1,−2) | `c.8633-1G>` | A, C, T | PVS1 |  |
+| E21 | donor (+1,+2) | `c.8754+1G>` | A | PVS1 (RNA) |  |
+| E21 | donor (+1,+2) | `c.8754+1G>` | C, T | PVS1 |  |
+| E21 | donor (+1,+2) | `c.8754+2T>` | A, C, G | PVS1 |  |
+| E22 | acceptor (−1,−2) | `c.8755-2A>` | C, G, T | PVS1 |  |
+| E22 | acceptor (−1,−2) | `c.8755-1G>` | C, T | PVS1 |  |
+| E22 | acceptor (−1,−2) | `c.8755-1G>` | A | PVS1 (RNA) |  |
+| E22 | donor (+1,+2) | `c.8953+1G>` | T | PVS1 (RNA) |  |
+| E22 | donor (+1,+2) | `c.8953+1G>` | A, C | PVS1 |  |
+| E22 | donor (+1,+2) | `c.8953+2T>` | A | PVS1 |  |
+| E22 | donor (+1,+2) | `c.8953+2T>` | G | PVS1 (RNA) |  |
+| E22 | donor (+1,+2) | `c.8953+2T>` | C | PVS1_N/A | Functional GC splice site predicted based on functional data, perfect match with the consensus (AG\|GCAAGT), and SpliceAI score <0.8 |
+| E23 | acceptor (−1,−2) | `c.8954-2A>` | T | PVS1 (RNA) |  |
+| E23 | acceptor (−1,−2) | `c.8954-2A>` | C, G | PVS1 |  |
+| E23 | acceptor (−1,−2) | `c.8954-1G>` | A, C, T | PVS1 |  |
+| E23 | donor (+1,+2) | `c.9117+1G>` | A, T | PVS1 (RNA) |  |
+| E23 | donor (+1,+2) | `c.9117+1G>` | C | PVS1 |  |
+| E23 | donor (+1,+2) | `c.9117+2T>` | G | PVS1 |  |
+| E23 | donor (+1,+2) | `c.9117+2T>` | A, C | PVS1 (RNA) |  |
+| E24 | acceptor (−1,−2) | `c.9118-2A>` | G | PVS1 (RNA) | PTC_NMD observed |
+| E24 | acceptor (−1,−2) | `c.9118-2A>` | C, T | PVS1 | PTC_NMD predicted |
+| E24 | acceptor (−1,−2) | `c.9118-1G>` | C, T | PVS1 | PTC_NMD predicted |
+| E24 | acceptor (−1,−2) | `c.9118-1G>` | A | PVS1_Supporting | Small in-frame predicted |
+| E24 | donor (+1,+2) | `c.9256+1G>` | A | PVS1 (RNA) |  |
+| E24 | donor (+1,+2) | `c.9256+1G>` | C, T | PVS1 |  |
+| E24 | donor (+1,+2) | `c.9256+2T>` | A, C, G | PVS1 |  |
+| E25 | acceptor (−1,−2) | `c.9257-2A>` | C, G, T | PVS1_Supporting | Small in-frame predicted |
+| E25 | acceptor (−1,−2) | `c.9257-1G>` | T | PVS1_Supporting | Small in-frame predicted |
+| E25 | acceptor (−1,−2) | `c.9257-1G>` | C | PVS1_Supporting (RNA) | Small in-frame observed |
+| E25 | acceptor (−1,−2) | `c.9257-1G>` | A | PVS1 | PTC_NMD predicted |
+| E25 | donor (+1,+2) | `c.9501+1G>` | A, C, T | PVS1 |  |
+| E25 | donor (+1,+2) | `c.9501+2T>` | A, G | PVS1 |  |
+| E25 | donor (+1,+2) | `c.9501+2T>` | C | PVS1 | Creates a GC splice site (but not AG\|GCAAGT), SpliceAI score <0.8. Recommend investigate for leaky splicing. |
+| E26 | acceptor (−1,−2) | `c.9502-2A>` | C | PVS1 (RNA) |  |
+| E26 | acceptor (−1,−2) | `c.9502-2A>` | G, T | PVS1 |  |
+| E26 | acceptor (−1,−2) | `c.9502-1G>` | A, C, T | PVS1 |  |
+| E26 | donor (+1,+2) | `c.9648+1G>` | A | PVS1 (RNA) |  |
+| E26 | donor (+1,+2) | `c.9648+1G>` | C, T | PVS1 |  |
+| E26 | donor (+1,+2) | `c.9648+2T>` | A, C, G | PVS1 |  |
+| E27 | acceptor (−1,−2) | `c.9649-2A>` | G | PVS1 (RNA) |  |
+| E27 | acceptor (−1,−2) | `c.9649-2A>` | C, T | PVS1 |  |
+| E27 | acceptor (−1,−2) | `c.9649-1G>` | A, C, T | PVS1 |  |
 
 ---
 
@@ -200,7 +408,33 @@ See **Figure 1C** for simplified flowchart to advise application of codes for fu
 - Variant type
 - Location within a (potentially) clinically important functional domain
 
-See **Table 9** (separate Excel spreadsheet) for a comprehensive table of applicable codes using published calibrated functional assay results.
+#### Table 9 — calibrated functional assay codes (BRCA2)
+
+Table 9 lists **531 BRCA2 variants** with codes derived from calibrated published functional assays. It is a variant-level lookup, not a rule set — consult the source file for a specific variant. The distribution of assigned codes is:
+
+| Assigned code (weight) | BRCA2 variants |
+|---|---|
+| BS3 (Strong) | 289 |
+| PS3 (Strong) | 139 |
+| None (N/A) | 103 |
+
+**Calibrated publications per variant**
+
+| # publications | BRCA2 variants |
+|---|---|
+| one | 397 |
+| two | 101 |
+| three | 27 |
+| four | 6 |
+
+**Predicted or observed splicing**
+
+| Splicing status | BRCA2 variants |
+|---|---|
+| N | 427 |
+| N, no aberration | 63 |
+| Y, splicing papers | 28 |
+| Y, predicted splicing | 13 |
 
 #### Key Principles for PS3/BS3 Application
 
@@ -355,11 +589,46 @@ Considered as component of bioinformatic analysis (PP3/BP4).
 
 **VCEP Specifications:**
 
-Use to justify additional weight for PTC variants annotated as PVS1. Only applied to **genomic PTC changes** (not splicing). Weight determined by exon where the nucleotide change occurs.
+Use to justify additional weight for PTC variants annotated as PVS1. Only applied to
+**genomic PTC changes** (not splicing). Per the Table 4 read-me, the weight is
+determined by **the exon in which the termination codon occurs, which may not be
+the exon containing the variant**.
 
-See **Table 4** (separate Excel file) for PM5_PTC codes applicable for predicted termination codon variants organized by exon.
+Per-exon PM5_PTC codes are transcribed in the Table 4 section under PVS1 above.
+Supplementary Table 1 justifies those weights with an evidence point total per
+exon (≥4 points sufficient to apply PM5_PTC at Strong):
 
-See **Supplementary Table 1** for justification of BRCA1 and BRCA2 exon-specific weights.
+#### Supplementary Table 1 — BRCA2 PM5_PTC weights
+
+| Exon | cDNA start | cDNA end | PM5_PTC strength | Total points |
+|---|---|---|---|---|
+| 1 | c.-232 | c.-40 | N/A | 0 |
+| 2 | c.-39 | c.67 | Strong | 4 |
+| 3 | c.68 | c.316 | Strong | 11 |
+| 4 | c.317 | c.425 | Moderate | 2 |
+| 5 | c.426 | c.475 | Strong | 6 |
+| 6 | c.476 | c.516 | N/A | 0 |
+| 7 | c.517 | c.631 | Strong | 9 |
+| 8 | c.632 | c.681 | Strong | 10 |
+| 9 | c.682 | c.793 | Strong | 4 |
+| 10 | c.794 | c.1909 | Strong | 13 |
+| 11 | c.1910 | c.6841 | Strong | 13 |
+| 12 | c.6842 | c.6937 | N/A | 0 |
+| 13 | c.6938 | c.7007 | Strong | 13 |
+| 14 | c.7008 | c.7435 | Strong | 6 |
+| 15 | c.7436 | c.7617 | Strong | 12 |
+| 16 | c.7618 | c.7805 | Strong | 8 |
+| 17 | c.7806 | c.7976 | Strong | 12 |
+| 18 | c.7977 | c.8331 | Strong | 11 |
+| 19 | c.8332 | c.8487 | Strong | 9 |
+| 20 | c.8488 | c.8632 | Strong | 15 |
+| 21 | c.8633 | c.8754 | Supporting | 1 |
+| 22 | c.8755 | c.8953 | Strong | 12 |
+| 23 | c.8954 | c.9117 | Strong | 15 |
+| 24 | c.9118 | c.9256 | Strong | 7 |
+| 25 | c.9257 | c.9501 | Strong | 12 |
+| 26 | c.9502 | c.9648 | Supporting | 1 |
+| 27 | c.9649 | c.10257 | Strong | 5 |
 
 ---
 
@@ -425,7 +694,6 @@ Apply PP3 for missense or in-frame insertion, deletion, or delins variants:
 
 | Gene | PP3 (Impact) |
 |------|--------------|
-| BRCA1 | ≥0.28 |
 | BRCA2 | ≥0.30 |
 
 #### For Predicted Splicing
@@ -579,7 +847,7 @@ When assay measures effect via protein only OR mRNA and protein combined:
 
 See **Figure 1C** for process to apply codes for functional data, in context of variant type and location.
 
-See **Table 9** (separate Excel spreadsheet) for comprehensive table of applicable codes using published calibrated functional assay results.
+BS3 codes come from the same calibrated-assay source as PS3; see *Table 9 — calibrated functional assay codes (BRCA2)* under PS3 above. BS3_Strong is by far the most common BRCA2 assignment in that table.
 
 ---
 
@@ -663,7 +931,6 @@ Apply BP4 for:
 
 | Gene | BP4 (No Impact) |
 |------|-----------------|
-| BRCA1 | ≤0.15 |
 | BRCA2 | ≤0.18 |
 
 See **Figure 1A** for process to apply codes according to variant type, location, and predicted bioinformatic impact.
@@ -862,21 +1129,19 @@ The current multifactorial likelihood model for BRCA1/2 variant interpretation a
 
 ### Appendix C: Gene Structure and Functional Domains
 
-**BRCA1 Exon Structure:**
-- Exons are sequentially numbered to match the exon descriptions of the MANE transcript (NM_007294.4)
-- Legacy exon numbering (GenBank U14680.1) has exon 4 missing due to a correction after initial description
-
 **BRCA2 Exon Structure:**
-- 27 exons
-- Large exon 11 contains multiple functional regions
+- 27 exons, sequentially numbered to match the MANE transcript (NM_000059.4)
+- Exon 11 is the largest, spanning c.1910–6841 (~48% of the coding sequence) and containing multiple functional regions
+- Per-exon cDNA and protein boundaries are transcribed in *Table 4 — BRCA2 codes by exon* under PVS1
 
 ### Appendix D: PVS1 Decision Tree
 
-See separate **Table 4** Excel file for comprehensive PVS1 and PM5_PTC codes by exon.
+Transcribed above: see *Table 4 — BRCA2 codes by exon* and *Table 4 — canonical
+splice site (±1,2) codes* under PVS1, and *Supplementary Table 1* under PM5_PTC.
 
 ### Appendix E: mRNA and Functional Assay Specifications
 
-See **Figures 1B and 1C** in the main specification document and **Table 9** (separate Excel file) for functional assay data.
+Figures 1B (splicing data) and 1C (functional data) are in the main specification PDF and are **not transcribed here**. Table 9's BRCA2 content is summarised under PS3; it is a variant-level lookup, so consult `Specifications_Table9_V1.2` for an individual variant.
 
 ### Appendix F: Case-Control Studies (PS4)
 
@@ -921,7 +1186,6 @@ LR thresholds are derived from the Bayesian framework (Tavtigian et al 2018).
 **Missense Predictions (BayesDel no AF):**
 | Gene | PP3 (Impact) | BP4 (No Impact) |
 |------|--------------|-----------------|
-| BRCA1 | ≥0.28 | ≤0.15 |
 | BRCA2 | ≥0.30 | ≤0.18 |
 
 **Donor/Acceptor Motif Positions (GT-AG introns):**

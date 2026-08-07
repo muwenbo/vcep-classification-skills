@@ -84,6 +84,73 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
         self.assertNotIn("partial loss of function, apply as PVS1_Moderate (RNA)", text)
         self.assertNotIn("minor impact, apply as PVS1_Supporting (RNA)", text)
 
+    def test_brca2_transcribes_table4_instead_of_deferring_to_the_excel_file(self):
+        """GN097 punted to "separate Excel file" in six places; Table 4 and
+        Supplementary Table 1 are the actual source of PVS1/PM5_PTC weights."""
+        text = guideline("BRCA2_Variant_Interpretation_Guidelines_v1.2.0.md")
+
+        self.assertIn("#### Table 4 — BRCA2 codes by exon", text)
+        self.assertIn("#### Table 4 — canonical splice site (±1,2) codes", text)
+        self.assertIn("#### Supplementary Table 1 — BRCA2 PM5_PTC weights", text)
+        self.assertNotIn("(separate Excel file)", text)
+        self.assertNotIn("(separate Excel spreadsheet)", text)
+
+        # All 27 exons carry a rule row.
+        self.assertEqual(text.count("\n| **E"), 27)
+
+        # Exon-specific weights that differ from the majority; a generic ladder
+        # would flatten these.
+        self.assertIn("| **E4** |", text)
+        self.assertIn("PM5 (PTC)", text)          # E4 is Moderate, not Strong
+        self.assertIn("PM5_N/A", text)            # E6 and E12 grant nothing
+        self.assertIn("PM5_Supporting (PTC)", text)  # E21, E26
+
+        # E27's rule is conditional on where the termination codon falls.
+        self.assertIn("`<p.T3310` → PVS1", text)
+        self.assertIn("`>p.E3309` → PVS1_N/A", text)
+
+    def test_brca2_pm5_ptc_attributes_weight_to_the_termination_codon_exon(self):
+        """The source read-me is explicit that this is not the variant's exon."""
+        text = guideline("BRCA2_Variant_Interpretation_Guidelines_v1.2.0.md")
+        self.assertIn("the exon in which the termination codon occurs", text)
+        self.assertNotIn("Weight determined by exon where the nucleotide change occurs", text)
+
+    def test_brca1_and_brca2_are_separate_guidelines(self):
+        """The combined BRCA1_BRCA2 file duplicated BRCA1 content that had
+        already been repaired separately, so the two diverged."""
+        import json
+
+        registry = json.loads(
+            (
+                ROOT / "plugins" / "variant-classifier" / "skills"
+                / "variant-classifier" / "data" / "vcep_registry.json"
+            ).read_text(encoding="utf-8")
+        )["specifications"]
+        by_id = {e["spec_id"]: e for e in registry}
+
+        self.assertEqual(
+            by_id["GN092"]["guideline_file"],
+            "BRCA1_Variant_Interpretation_Guidelines_v1.2.0.md",
+        )
+        self.assertEqual(
+            by_id["GN097"]["guideline_file"],
+            "BRCA2_Variant_Interpretation_Guidelines_v1.2.0.md",
+        )
+        self.assertFalse(
+            (GUIDELINES / "BRCA1_BRCA2_Variant_Interpretation_Guidelines_v1.2.md").exists()
+        )
+
+    def test_every_guideline_filename_uses_three_part_versions(self):
+        """GN097's old filename was the corpus's only x.y violation, and it
+        slipped through because verification checked the version field only."""
+        import re
+
+        offenders = [
+            p.name for p in GUIDELINES.glob("*.md")
+            if not re.search(r"v\d+\.\d+\.\d+\.md$", p.name)
+        ]
+        self.assertEqual(offenders, [])
+
     def test_generation_workflow_does_not_supply_generic_fallback_rules(self):
         template = (
             ROOT / "plugins" / "vcep-spec" / "skills" / "vcep-spec" / "template.md"

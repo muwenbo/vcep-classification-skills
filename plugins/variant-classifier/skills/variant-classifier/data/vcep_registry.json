@@ -239,7 +239,7 @@
       "status": "Released",
       "version": "1.2.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN097",
-      "guideline_file": "BRCA1_BRCA2_Variant_Interpretation_Guidelines_v1.2.md"
+      "guideline_file": "BRCA2_Variant_Interpretation_Guidelines_v1.2.0.md"
     },
     {
       "spec_id": "GN187",
