@@ -7,5 +7,12 @@
 !.claude-plugin/**
 !plugins/
 !plugins/**
-# Ignore pycache in plugins
+# Re-ignore junk inside plugins/, which the allowlist above re-included.
 **/__pycache__/
+**/*.pyc
+**/.DS_Store
+**/.pytest_cache/
+
+# Downloaded ClinGen source artifacts (PDFs and supplements) are inputs to
+# guideline generation, not tracked content.
+**/ClinGen/
