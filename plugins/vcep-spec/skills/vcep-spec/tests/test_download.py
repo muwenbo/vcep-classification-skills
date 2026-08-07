@@ -97,5 +97,91 @@ class DownloadFailureTests(unittest.TestCase):
         self.assertTrue(path.endswith("flowchart.pdf"))
 
 
+XLSX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml xl/workbook.xml"
+DOCX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml word/document.xml"
+
+
+class ExtensionDetectionTests(unittest.TestCase):
+    """ClinGen names supplements "Specifications_Table4_V1.2". splitext reports
+    ".2", which the old guard accepted as an extension, so the file was saved
+    without one and openpyxl/python-docx refused to open it."""
+
+    def test_version_suffix_is_not_mistaken_for_an_extension(self):
+        self.assertFalse(download.has_real_extension("Specifications_Table4_V1.2"))
+        self.assertFalse(download.has_real_extension("Appendix_V1.2"))
+        self.assertFalse(download.has_real_extension("PVS1 Flowchart"))
+        self.assertTrue(download.has_real_extension("Table 1&2.xlsx"))
+        self.assertTrue(download.has_real_extension("report.PDF"))
+
+    def test_detected_extension_is_appended_so_the_version_survives(self):
+        response = Mock()
+        response.content = XLSX
+        response.raise_for_status.return_value = None
+
+        with tempfile.TemporaryDirectory() as tmpdir, patch.object(
+            download.requests, "get", return_value=response
+        ):
+            ok, _size, path = download.download_file(
+                "https://example.test/t4",
+                str(Path(tmpdir) / "Specifications_Table4_V1.2"),
+            )
+
+        self.assertTrue(ok)
+        self.assertTrue(path.endswith("Specifications_Table4_V1.2.xlsx"), path)
+
+    def test_existing_real_extension_is_left_alone(self):
+        response = Mock()
+        response.content = DOCX
+        response.raise_for_status.return_value = None
+
+        with tempfile.TemporaryDirectory() as tmpdir, patch.object(
+            download.requests, "get", return_value=response
+        ):
+            ok, _size, path = download.download_file(
+                "https://example.test/a", str(Path(tmpdir) / "Appendix.docx")
+            )
+
+        self.assertTrue(ok)
+        self.assertTrue(path.endswith("Appendix.docx"), path)
+
+    def test_office_open_xml_types_are_distinguished(self):
+        self.assertEqual(download.detect_file_extension(XLSX), ".xlsx")
+        self.assertEqual(download.detect_file_extension(DOCX), ".docx")
+
+    def test_gif_signature_is_six_bytes(self):
+        self.assertEqual(download.detect_file_extension(b"GIF89a" + b"\x00" * 8), ".gif")
+
+    def test_legacy_ole_container_distinguishes_xls_from_doc(self):
+        ole = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
+        wide = lambda s: b"".join(bytes([c, 0]) for c in s.encode())  # noqa: E731
+        self.assertEqual(download.detect_file_extension(ole + wide("Workbook")), ".xls")
+        self.assertEqual(download.detect_file_extension(ole + b"\x00" * 64), ".doc")
+
+    def test_verify_matches_a_file_that_gained_an_extension(self):
+        supplement = {
+            "url": "https://example.test/t4",
+            "filename": "Specifications_Table4_V1.2",
+            "type": "supplementary",
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            folder = Path(tmpdir) / "GN009-TP53"
+            folder.mkdir()
+            (folder / "ClinGen_ACMG_Specifications_TP53_v2.4.pdf").write_bytes(b"%PDF-test")
+            (folder / "GN009_data.json").write_text("{}", encoding="utf-8")
+            (folder / "Specifications_Table4_V1.2.xlsx").write_bytes(XLSX)
+
+            with patch.object(download, "fetch_page", return_value="html"), patch.object(
+                download, "extract_metadata", return_value=METADATA.copy()
+            ), patch.object(
+                download, "find_supplementary_files", return_value=[supplement]
+            ):
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    result = download.verify_specification("GN009", tmpdir)
+
+            self.assertTrue(result, output.getvalue())
+            self.assertNotIn("MISSING", output.getvalue())
+
+
 if __name__ == "__main__":
     unittest.main()

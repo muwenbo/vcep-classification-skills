@@ -315,8 +315,8 @@ def detect_file_extension(content):
     if magic_bytes[:2] in (b'\xff\xd8', ):
         return '.jpg'
 
-    # GIF
-    if magic_bytes[:4] in (b'GIF87a', b'GIF89a'):
+    # GIF (the signature is 6 bytes, so it cannot be matched against 4)
+    if content[:6] in (b'GIF87a', b'GIF89a'):
         return '.gif'
 
     # Office Open XML formats (docx, xlsx, pptx) - all start with PK (ZIP)
@@ -335,12 +335,43 @@ def detect_file_extension(content):
             # Still a ZIP, but unknown Office format or plain ZIP
             return '.zip'
 
-    # Old Office formats (OLE2/CFB)
+    # Old Office formats (OLE2/CFB). The container is shared by .doc/.xls/.ppt,
+    # so look for the stream name the application writes into the directory.
     if magic_bytes[:8] == b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1':
-        # Could be .doc, .xls, or .ppt - default to .doc
+        head = content[:8192]
+        if b'W\x00o\x00r\x00k\x00b\x00o\x00o\x00k' in head or b'B\x00o\x00o\x00k' in head:
+            return '.xls'
+        if b'P\x00o\x00w\x00e\x00r\x00P\x00o\x00i\x00n\x00t' in head:
+            return '.ppt'
         return '.doc'
 
     return ''
+
+
+# Suffixes that are genuinely file extensions, as opposed to the trailing part
+# of a version string. ClinGen names supplements like "Specifications_Table4_V1.2",
+# where os.path.splitext reports ".2" — treating that as an extension leaves the
+# file unreadable by openpyxl, python-docx and read_word.py.
+KNOWN_EXTENSIONS = {
+    '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.zip', '.csv', '.txt',
+    '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.json', '.xml', '.html',
+}
+
+
+def has_real_extension(filename):
+    """True when the filename already ends in a recognised file extension."""
+    ext = os.path.splitext(filename)[1].lower()
+    return ext in KNOWN_EXTENSIONS
+
+
+def strip_real_extension(filename):
+    """Drop a recognised file extension, leaving version suffixes intact.
+
+    os.path.splitext would turn "Table4_V1.2" into "Table4_V1"; comparing that
+    against the saved "Table4_V1.2.xlsx" makes an existing file look missing.
+    """
+    base, ext = os.path.splitext(filename)
+    return base if ext.lower() in KNOWN_EXTENSIONS else filename
 
 
 def download_file(url, output_path, description="file", max_attempts=MAX_DOWNLOAD_ATTEMPTS):
@@ -357,16 +388,13 @@ def download_file(url, output_path, description="file", max_attempts=MAX_DOWNLOA
 
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-            # Determine file extension from file content if needed
-            base_path, ext = os.path.splitext(output_path)
-            # Only use existing extension if it looks like a valid file extension (2-5 chars)
-            has_valid_ext = ext and len(ext) >= 2 and len(ext) <= 6 and ext[1:].isalnum()
-
-            if not has_valid_ext:
-                # Try to detect from file content (magic bytes)
+            # Determine file extension from content when the name lacks one.
+            # Append rather than replace: "Specifications_Table4_V1.2" must
+            # become "...V1.2.xlsx", not "...V1.xlsx", or the version is lost.
+            if not has_real_extension(output_path):
                 detected_ext = detect_file_extension(response.content)
                 if detected_ext:
-                    output_path = base_path + detected_ext
+                    output_path = output_path + detected_ext
 
             # Write only after a complete, non-empty response was received.
             with open(output_path, 'wb') as f:
@@ -678,8 +706,8 @@ def verify_specification(vcep_id, output_root):
                 matched_file = actual
                 break
             # Match base name (file might have extension added)
-            base_expected = os.path.splitext(expected_name)[0]
-            base_actual = os.path.splitext(actual)[0]
+            base_expected = strip_real_extension(expected_name)
+            base_actual = strip_real_extension(actual)
             if base_expected == base_actual:
                 found = True
                 matched_file = actual
