@@ -101,6 +101,38 @@ XLSX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml xl/workbook.xml"
 DOCX = b"PK\x03\x04" + b"\x00" * 26 + b"[Content_Types].xml word/document.xml"
 
 
+class FetchPageRetryTests(unittest.TestCase):
+    """A single transient TLS drop on the specification page aborted the whole
+    spec before any file was considered; GN141 failed a full-corpus run this way."""
+
+    def test_transient_ssl_failure_is_retried(self):
+        response = Mock()
+        response.text = "<html>spec</html>"
+        response.raise_for_status.return_value = None
+
+        with patch.object(
+            download.requests, "get",
+            side_effect=[requests.exceptions.SSLError("SSL EOF"), response],
+        ) as request, patch.object(download.time, "sleep"):
+            result = download.fetch_page("https://example.test/GN141")
+
+        self.assertEqual(result, "<html>spec</html>")
+        self.assertEqual(request.call_count, 2)
+
+    def test_gives_up_after_max_attempts_and_reports(self):
+        with patch.object(
+            download.requests, "get",
+            side_effect=requests.exceptions.SSLError("SSL EOF"),
+        ) as request, patch.object(download.time, "sleep"):
+            output = io.StringIO()
+            with redirect_stdout(output):
+                result = download.fetch_page("https://example.test/GN141")
+
+        self.assertIsNone(result)
+        self.assertEqual(request.call_count, download.MAX_DOWNLOAD_ATTEMPTS)
+        self.assertIn("after 3 attempts", output.getvalue())
+
+
 class ExtensionDetectionTests(unittest.TestCase):
     """ClinGen names supplements "Specifications_Table4_V1.2". splitext reports
     ".2", which the old guard accepted as an extension, so the file was saved

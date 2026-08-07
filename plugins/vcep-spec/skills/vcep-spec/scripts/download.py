@@ -27,15 +27,32 @@ HEADERS = {
 MAX_DOWNLOAD_ATTEMPTS = 3
 
 
-def fetch_page(url):
-    """Fetch a page and return the content"""
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=30)
-        response.raise_for_status()
-        return response.text
-    except Exception as e:
-        print(f"✗ Error fetching page: {e}")
-        return None
+def fetch_page(url, max_attempts=MAX_DOWNLOAD_ATTEMPTS):
+    """Fetch a page and return the content.
+
+    Retries transient network failures the same way download_file does. The
+    ClinGen host intermittently drops TLS connections (SSL UNEXPECTED_EOF); a
+    single attempt here aborts the whole specification before any file is
+    considered, which is how GN141 failed a full-corpus run.
+    """
+    last_error = None
+
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=30)
+            response.raise_for_status()
+            return response.text
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            if attempt < max_attempts:
+                time.sleep(2 ** (attempt - 1))
+                continue
+        except Exception as e:
+            print(f"✗ Error fetching page: {e}")
+            return None
+
+    print(f"✗ Error fetching page: {last_error} (after {max_attempts} attempts)")
+    return None
 
 
 def extract_metadata(html_content):
