@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434332
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -82,30 +83,30 @@ Currently only applicable to *MYBPC3* where LOF is an established disease mechan
 
 | Scenario | Strength |
 |----------|----------|
-| Predicted to undergo NMD (prior to p.1254), exon present in biologically-relevant transcript(s) | **PVS1** |
-| Not predicted to undergo NMD (after p.1254), truncated/altered region is critical to protein function | **PVS1_Strong** |
+| Predicted to undergo NMD^b (prior to p.1254), exon present in biologically-relevant transcript(s) | **PVS1** |
+| Not predicted to undergo NMD^b (after p.1254), truncated/altered region is critical to protein function^c | **PVS1_Strong** (gray route; see limitation below) |
 | Not predicted to undergo NMD (after p.1254), role of region unknown, LoF variants not frequent in general population, exon present in biologically-relevant transcript(s), variant removes <10% of protein | **PVS1_Moderate** |
 
-##### Canonical Splice Site Variants (GT--AG ±1,2)
+##### Canonical Splice Site Variants (GT--AG 1,2 splice sites^a)
 
 | Scenario | Strength |
 |----------|----------|
-| Exon skipping or use of cryptic splice site disrupts reading frame and is predicted to undergo NMD, exon present in biologically-relevant transcript(s) | **PVS1** |
-| Exon skipping or use of cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD, truncated/altered region is critical to protein function | **PVS1_Strong** |
+| Exon skipping or use of cryptic splice site disrupts reading frame and is predicted to undergo NMD^b, exon present in biologically-relevant transcript(s) | **PVS1** |
+| Exon skipping or use of cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD^b, truncated/altered region is critical to protein function^c | **PVS1_Strong** (gray route; see limitation below) |
 | Exon skipping or use of cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD, role of region unknown, LoF variants not frequent, exon present in biologically-relevant transcript(s), variant removes >10% of protein | **PVS1_Strong** |
 | Exon skipping or use of cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD, role of region unknown, LoF variants not frequent, exon present in biologically-relevant transcript(s), variant removes <10% of protein | **PVS1_Moderate** |
-| Exon skipping or use of cryptic splice site preserves reading frame (exons 2-4, 8-11, 14, 20, 22, 24-27), truncated/altered region is critical to protein function | **PVS1_Strong** |
+| Exon skipping or use of cryptic splice site preserves reading frame (exons 2-4, 8-11, 14, 20, 22, 24-27), truncated/altered region is critical to protein function^c | **PVS1_Strong** (gray route; see limitation below) |
 
 ##### Deletion Variants (Single Exon to Full Gene)
 
 | Scenario | Strength |
 |----------|----------|
-| Full gene deletion | **PVS1** |
+| Full gene deletion | **PVS1^d** |
 | Single to multi exon deletion – disrupts reading frame and predicted to undergo NMD, exon present in biologically-relevant transcript(s) | **PVS1** |
-| Single to multi exon deletion – disrupts reading frame and NOT predicted to undergo NMD, truncated/altered region is critical to protein function | **PVS1_Strong** |
+| Single to multi exon deletion – disrupts reading frame and NOT predicted to undergo NMD^b, truncated/altered region is critical to protein function^c | **PVS1_Strong** (gray route; see limitation below) |
 | Single to multi exon deletion – disrupts reading frame and NOT predicted to undergo NMD, role of region unknown, LoF variants not frequent, exon present in biologically-relevant transcript(s), variant removes >10% of protein | **PVS1_Strong** |
 | Single to multi exon deletion – disrupts reading frame and NOT predicted to undergo NMD, role of region unknown, LoF variants not frequent, exon present in biologically-relevant transcript(s), variant removes <10% of protein | **PVS1_Moderate** |
-| Single to multi exon deletion – preserves reading frame, truncated/altered region is critical to protein function | **PVS1_Strong** |
+| Single to multi exon deletion – preserves reading frame, truncated/altered region is critical to protein function^c | **PVS1_Strong** (gray route; see limitation below) |
 
 ##### Duplication Variants (≥1 exon, completely contained within gene)
 
@@ -114,6 +115,7 @@ Currently only applicable to *MYBPC3* where LOF is an established disease mechan
 | Proven in tandem, reading frame disrupted and NMD predicted to occur | **PVS1** |
 | Proven in tandem, no or unknown impact on reading frame and NMD | **N/A** |
 | Presumed in tandem, reading frame presumed disrupted and NMD predicted to occur | **PVS1_Strong** |
+| Presumed in tandem, no or unknown impact on reading frame and NMD | **N/A** |
 | Proven not in tandem | **N/A** |
 
 ##### Initiation Codon Variants
@@ -121,9 +123,9 @@ Currently only applicable to *MYBPC3* where LOF is an established disease mechan
 | Scenario | Strength |
 |----------|----------|
 | No known alternative start codon in other transcripts, ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon (p.103) | **PVS1_Moderate** |
-| No known alternative start codon in other transcripts, no pathogenic variant(s) upstream of closest potential in-frame start codon | **PVS1_Supporting** |
+| No known alternative start codon in other transcripts, no pathogenic variant(s) upstream of closest potential in-frame start codon | **PVS1_Supp** |
 
-**Note:** Investigations are ongoing to definitively establish the regions/domains of MYBPC3 that are critical to protein function and therefore have not been pre-defined. Functional and genetic evidence should be evaluated periodically for most accurate application of this rule.
+**Attachment limitations:** The decision tree displays markers a, b, c, and d but does not define them. It uses strict `>10%` and `<10%` removal branches, leaving exactly 10% unassigned. Its critical-region branches and endpoints are gray, and its note states that investigations are ongoing to definitively establish MYBPC3 critical regions/domains; none have been pre-defined. Those gray routes therefore require independently established critical-region evidence and are not pre-authorized regions. `PVS1_Supp` above is the attachment's literal label.
 
 ---
 
@@ -360,12 +362,13 @@ Currently few well-designed case-control studies have been performed for inherit
 
 | Strength | Criteria |
 |----------|----------|
-| **Moderate** | Default strength; carefully consider predicted impact |
-| **Supporting** | May require downgrading based on size, location, and conservation of region |
+| **Moderate** | Strength should be carefully considered and may require downgrading to Supporting based on predicted impact. |
 
 **Notes:**
 - Strength of rule should be carefully considered and may require downgrading to SUPPORTING based on the predicted impact of the variant, including the size of the deletion/insertion, its location, and conservation of the region
 - For genes where PVS1 is not applicable (i.e., where there is no evidence that pLOF variants cause disease), consider using this rule at MODERATE or SUPPORTING strength for truncating variants that do NOT undergo nonsense mediated decay (NMD)
+
+The source does not provide a separate positive Supporting condition or numeric thresholds for size, location, or conservation.
 
 **Modification Type:** General recommendation
 
@@ -683,16 +686,21 @@ The decision tree provides guidance for determining PVS1 strength based on:
 
 A PS4 calculator is available at **www.cardiodb.org**.
 
-#### Example Calculations
+The attachment uses the lower 95% CI of the OR: Supporting ≥5, Moderate ≥10, Strong ≥20. It converts gnomAD AC to detected individuals and divides AN by two for the control denominator, assuming no homozygotes.
 
-**OR Thresholds (Lower Bound of 95% CI):**
-- Supporting: ≥5
-- Moderate: ≥10
-- Strong: ≥20
+| Scenario and comparison | OR [95% CI] | Attachment result |
+|---|---:|---|
+| Variant A: clinical lab 22/7,437 vs gnomAD Total 1/120,591 | 358 [**48**-2,655] | Strong |
+| Variant A: literature 13/9,162 vs gnomAD Total 1/120,591 | 171 [**22**-1,310] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD Total 1/119,295 | 248 [**32**-1,905] | Strong |
+| Variant B: literature 15/7,873 vs gnomAD Total 1/119,295 | 227 [**30**-1,724] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD European 1/61,865 | 128 [**17**-988] | Moderate |
+| Variant B: literature 15/7,873 vs gnomAD European 1/61,865 | 118 [**16**-894] | Moderate |
+| Variant C: clinical lab A 4/2,481 vs gnomAD Total 0/116,190 | 422 [**23**-7,841] | Strong |
+| Variant C: clinical lab B 8/5,953 vs gnomAD Total 0/116,190 | 332 [**19**-5,757] | Moderate |
+| Variant C: literature 6/5,154 vs gnomAD Total 0/116,190 | 293 [**16**-5,208] | Moderate |
 
-**General Example (Variant A):**
-- Clinical lab: 22 in 7,437 cases → OR 358 [95% CI: 48-2,655] = **STRONG**
-- Literature: 13 in 9,162 cases → OR 171 [95% CI: 22-1,310] = **STRONG**
+Variant B is assigned Moderate because ancestry-matched European controls are the more appropriate conservative comparison. For Variant C, the attachment accepts Strong from the consistent phenotype, absence from gnomAD, and enrichment in three apparently non-overlapping cohorts, while explicitly allowing Moderate if a more conservative clinical judgment is preferred. The Variant C narrative contains the literal source typo `gnomAF`.
 
 ### Appendix C: Population Frequency Thresholds Summary
 
@@ -776,6 +784,14 @@ A PS4 calculator is available at **www.cardiodb.org**.
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.0.0 | 4/22/2024 | Initial release. PVS1 flow chart added as a document. Link to PS4 calculator added. |
+
+---
+
+## Document corrections
+
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_MYBPC3_v1.0.pdf`, `CM-VCEP MYBPC3 PVS1 Decision Tree.pdf`, and `CM-VCEP PS4 Example Scenarios.pdf`, including visual verification of the decision-tree topology and all PS4 tables.
+- Restored the core DOI, the PVS1 attachment's literal markers/routes/labels and source limitations, and all three PS4 scenarios. Removed normalized or over-operative readings where the attachment leaves markers undefined, exactly 10% unmapped, or critical regions not pre-defined.
+- The source-supplied reference DOIs are: `10.1002/humu.23626`, `10.1016/j.cell.2018.12.015`, `10.1016/s0968-0004(98)01208-0`, `10.1038/ejhg.2008.52`, `10.1016/j.gene.2015.09.008`, `10.1038/gim.2015.30`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`.
 
 ---
 

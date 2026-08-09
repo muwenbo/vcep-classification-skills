@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434359
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -530,6 +531,8 @@ In the context of cardiomyopathy, very few functional assays currently meet crit
 | **BP6** | *Not Applicable* | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PubMed: 29543229) |
 | **BP7** | Supporting | Also applicable to intronic variants outside the splice consensus sequence (-4 and +7 outward) for which splicing prediction algorithms predict no impact to the splice consensus sequence NOR the creation of a new splice site AND the nucleotide is not highly conserved. Rule can be combined with BP4 to make a variant likely benign per Richards et al. 2015. |
 
+> **Source contradiction:** PVS1 says loss of function is not currently an established MYL2 disease mechanism, while the source's BP1 comment says "the current genes" have null variants as a known mechanism. Both statements are retained without harmonization; BP1 remains N/A as printed.
+
 ---
 
 ## Rules for Combining Criteria
@@ -623,31 +626,19 @@ In the context of cardiomyopathy, very few functional assays currently meet crit
 
 ### Appendix D: PS4 Example Scenarios
 
-The following examples illustrate application of the PS4 criterion based on odds ratio calculations.
+| Scenario and comparison | OR [95% CI] | Attachment result |
+|---|---:|---|
+| Variant A: clinical lab 22/7,437 vs gnomAD Total 1/120,591 | 358 [**48**-2,655] | Strong |
+| Variant A: literature 13/9,162 vs gnomAD Total 1/120,591 | 171 [**22**-1,310] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD Total 1/119,295 | 248 [**32**-1,905] | Strong |
+| Variant B: literature 15/7,873 vs gnomAD Total 1/119,295 | 227 [**30**-1,724] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD European 1/61,865 | 128 [**17**-988] | Moderate |
+| Variant B: literature 15/7,873 vs gnomAD European 1/61,865 | 118 [**16**-894] | Moderate |
+| Variant C: clinical lab A 4/2,481 vs gnomAD Total 0/116,190 | 422 [**23**-7,841] | Strong |
+| Variant C: clinical lab B 8/5,953 vs gnomAD Total 0/116,190 | 332 [**19**-5,757] | Moderate |
+| Variant C: literature 6/5,154 vs gnomAD Total 0/116,190 | 293 [**16**-5,208] | Moderate |
 
-#### Example 1: Variant A (Strong Evidence)
-
-| Comparison | Cases | gnomAD | OR [95% CI] | Strength |
-|------------|-------|--------|-------------|----------|
-| Clinical lab | 22 in 7,437 | 1 in 120,591 | 358 [**48**-2,655] | STRONG |
-| Literature | 13 in 9,162 | 1 in 120,591 | 171 [**22**-1,310] | STRONG |
-
-Since the lower bound of the 95% CI is ≥20 in both analyses, PS4 is applied at STRONG.
-
-#### Example 2: Variant B (Selecting Control Cohort - Moderate Evidence)
-
-For variants with population-specific distribution, consider using the appropriate gnomAD subpopulation:
-
-| Comparison | Cases | gnomAD | OR [95% CI] | Strength |
-|------------|-------|--------|-------------|----------|
-| Clinical lab vs Total | 12 in 5,792 | 1 in 119,295 | 248 [**32**-1,905] | STRONG |
-| Clinical lab vs European | 12 in 5,792 | 1 in 61,865 | 128 [**17**-988] | MODERATE |
-
-Since this appears to be a predominantly European variant, case-control analyses using gnomAD European data is the more appropriate and conservative approach. Therefore, PS4 is applied at MODERATE.
-
-#### Example 3: Variant C (Comparing Multiple Cohorts)
-
-When a variant has not been detected in gnomAD and appears across multiple non-overlapping cohorts with consistent phenotype, clinical judgment may allow application at the higher threshold.
+Variant B is assigned Moderate because ancestry-matched European controls are the more appropriate conservative comparison. For Variant C, the attachment accepts Strong while explicitly allowing Moderate if a more conservative clinical judgment is preferred. Its narrative contains the literal source typo `gnomAF`.
 
 ---
 
@@ -692,6 +683,14 @@ When a variant has not been detected in gnomAD and appears across multiple non-o
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.0.0 | 4/22/2024 | Initial release. PS4 calculator link added. |
+
+---
+
+## Document corrections
+
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_MYL2_v1.0.pdf` and `CM-VCEP PS4 Example Scenarios.pdf`, including every worked table.
+- Restored the core DOI and all nine PS4 comparisons. Preserved PM1/PP2 as N/A, the MYL2/MYL3 recessive-HCM BA1 caution, and the fact that PM4 permits Supporting but provides no separate positive Supporting condition. The PS4 attachment's Variant C narrative contains the literal source typo `gnomAF`.
+- Source-supplied reference DOIs: `10.1038/gim.2015.30`, `10.1002/humu.23626`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1016/j.cell.2018.12.015`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`.
 
 ---
 

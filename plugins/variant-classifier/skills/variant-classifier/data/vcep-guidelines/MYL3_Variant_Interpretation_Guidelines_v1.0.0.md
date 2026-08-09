@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434364
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -678,6 +679,8 @@ Because of these possibilities, **multiple (≥2) non-segregations** that are hi
 | **BP6** | **Not Applicable** | Reputable source recently reports variant as benign, but the evidence is not available to the laboratory to perform an independent evaluation. This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee (PubMed: 29543229). |
 | **BP7** | **Supporting** | A synonymous variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. Also applicable to intronic variants outside the splice consensus sequence (-4 and +7 outward) for which splicing prediction algorithms predict no impact to the splice consensus sequence NOR the creation of a new splice site AND the nucleotide is not highly conserved. Rule can be combined with BP4 to make a variant likely benign per Richards et al. 2015. **Modification Type:** General recommendation |
 
+> **Source contradiction:** PVS1 says loss of function is not currently an established MYL3 disease mechanism, while the source's BP1 comment says "the current genes" have null variants as a known mechanism. Both statements are retained without harmonization; BP1 remains N/A as printed.
+
 ---
 
 ## Rules for Combining Criteria
@@ -722,38 +725,21 @@ Because of these possibilities, **multiple (≥2) non-segregations** that are hi
 
 ### Appendix A: PS4 Example Scenarios
 
-The PS4 example scenarios document provides three detailed examples for application of the PS4 specification using case-control analyses. Key points include:
+The attachment uses the lower 95% CI of the OR: Supporting ≥5, Moderate ≥10, Strong ≥20.
 
-**General Principles:**
-- Case data should be compared to population-level controls (e.g., gnomAD)
-- Odds ratio (OR) and 95% confidence intervals (CI) are calculated
-- The **lower bound of the 95% CI** determines the strength level:
-  - Supporting: lower 95% CI ≥5
-  - Moderate: lower 95% CI ≥10
-  - Strong: lower 95% CI ≥20
+| Scenario and comparison | OR [95% CI] | Attachment result |
+|---|---:|---|
+| Variant A: clinical lab 22/7,437 vs gnomAD Total 1/120,591 | 358 [**48**-2,655] | Strong |
+| Variant A: literature 13/9,162 vs gnomAD Total 1/120,591 | 171 [**22**-1,310] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD Total 1/119,295 | 248 [**32**-1,905] | Strong |
+| Variant B: literature 15/7,873 vs gnomAD Total 1/119,295 | 227 [**30**-1,724] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD European 1/61,865 | 128 [**17**-988] | Moderate |
+| Variant B: literature 15/7,873 vs gnomAD European 1/61,865 | 118 [**16**-894] | Moderate |
+| Variant C: clinical lab A 4/2,481 vs gnomAD Total 0/116,190 | 422 [**23**-7,841] | Strong |
+| Variant C: clinical lab B 8/5,953 vs gnomAD Total 0/116,190 | 332 [**19**-5,757] | Moderate |
+| Variant C: literature 6/5,154 vs gnomAD Total 0/116,190 | 293 [**16**-5,208] | Moderate |
 
-**Scenario 1: Variant A (General Example)**
-- Detected in clinical lab: 22 in 7,437 cases
-- Detected in literature: 13 in 9,162 cases
-- gnomAD: 1 in 120,591
-- Both analyses meet STRONG threshold (lower CI ≥20)
-
-**Scenario 2: Variant B (Selecting Control Cohort)**
-- Detected in clinical lab: 12 in 5,792 cases
-- Detected in literature: 15 in 7,873 cases
-- gnomAD Total: 1 in 119,295
-- gnomAD European: 1 in 61,865
-- Against Total: STRONG (lower CI ≥20)
-- Against European: MODERATE (lower CI 10-20)
-- European data may be more appropriate for this variant
-
-**Scenario 3: Variant C (Comparing Cohort Data)**
-- Multiple labs and literature cohorts available
-- Variant not detected in gnomAD
-- Multiple non-overlapping cohorts show enrichment
-- Clinical judgment required for final strength determination
-
-**PS4 Calculator:** Available at www.cardiodb.org
+Variant B is assigned Moderate because ancestry-matched European controls are the more appropriate conservative comparison. For Variant C, the attachment accepts Strong while explicitly allowing Moderate if a more conservative clinical judgment is preferred. Its narrative contains the literal source typo `gnomAF`.
 
 ### Appendix B: Population Frequency Thresholds Summary
 
@@ -768,7 +754,7 @@ The PS4 example scenarios document provides three detailed examples for applicat
 - Popmax = Subpopulation with highest frequency
 - Use Confit-de-MAF or CardioDB AlleleFrequencyApp for CI calculations
 - Thresholds derived from Northern European populations
-- Apply to populations with comparable disease prevalence (1/300-1/500 or lower)
+- BA1 uses the source's comparable-prevalence condition of 1/300 or lower; PM2 separately uses 1/500 or lower.
 
 ### Appendix C: Segregation Thresholds Summary
 
@@ -798,18 +784,12 @@ The PS4 example scenarios document provides three detailed examples for applicat
 - Clinical judgment needed for contradictory data
 - Positive predictive value higher for benign predictions
 
-### Appendix E: Relevant Phenotypes for MYL3
+### Appendix E: Relevant Phenotype Considerations for MYL3
 
-**Acceptable Phenotypes for Case Cohorts:**
-
-1. **Hypertrophic cardiomyopathy (HCM)** - primary phenotype
-2. **Restrictive cardiomyopathy (RCM)** - can be combined with HCM as part of same disease spectrum
-
-**Excluded Phenotypes:**
-
-3. **Isolated LVNC** - should NOT be added to proband or segregation counts due to current debate about whether it represents true disease entity
-
-4. **Dilated cardiomyopathy (DCM)** - HCM and DCM have distinct mechanisms; however, end-stage HCM can present similarly to DCM. Careful consideration needed before including DCM cases.
+1. HCM and RCM may be combined because the source considers them part of the same disease spectrum.
+2. Combining probands with other phenotypes requires clinical-expert review.
+3. Individuals with isolated LVNC must not be added to proband or segregation counts.
+4. HCM and DCM have distinct primary disease mechanisms, but end-stage HCM can resemble DCM; the source calls for careful consideration before including DCM or related phenotypes rather than declaring every DCM case excluded.
 
 ### Appendix F: Key References
 
@@ -848,24 +828,16 @@ The PS4 example scenarios document provides three detailed examples for applicat
 ## Version History
 
 **Version 1.0.0 (Released: 4/22/2024)**
-- Initial release of MYL3 specifications
 - PS4 calculator link added
-- Disease-specific modifications for cardiomyopathy genes
-- Gene-specific population frequency thresholds defined
-- Segregation thresholds established for heterogeneous phenotypes
 
 ---
 
-## Additional Resources
+## Document corrections
 
-- **ClinGen Website:** https://clinicalgenome.org
-- **SVI Working Group:** https://clinicalgenome.org/working-groups/sequence-variant-interpretation/
-- **CardioDB PS4 Calculator:** www.cardiodb.org
-- **gnomAD Database:** https://gnomad.broadinstitute.org
-- **Confit-de-MAF Tool:** For calculating allele frequency confidence intervals
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_MYL3_v1.0.pdf` and `CM-VCEP PS4 Example Scenarios.pdf`, including every worked table.
+- Restored the core DOI and all nine PS4 comparisons; removed invented release-history bullets and the stale generated-date footer. Recast the phenotype appendix so it preserves the source's clinical-review caveat rather than categorically excluding DCM. Preserved PM1/PP2 as N/A, the MYL2/MYL3 recessive-HCM BA1 caution, and the PM4 Supporting-condition gap. The PS4 attachment's Variant C narrative contains the literal source typo `gnomAF`.
+- Source-supplied reference DOIs: `10.1038/gim.2015.30`, `10.1002/humu.23626`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1016/j.cell.2018.12.015`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`.
 
 ---
 
 *This document was compiled from ClinGen VCEP specifications version 1.0.0 for MYL3. For the most current version and additional supporting materials, please refer to the ClinGen website at https://clinicalgenome.org.*
-
-*Document generated: February 2026*

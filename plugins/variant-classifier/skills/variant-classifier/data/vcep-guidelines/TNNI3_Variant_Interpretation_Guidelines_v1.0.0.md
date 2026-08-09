@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434345
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 **Release Notes:** PS4 calculator link added.
@@ -110,25 +111,7 @@ Examples of non-suspicious family history may include non-specific clinical feat
 
 Generally, this criterion is only applicable in the **ABSENCE** of any other possible disease-causing variants. If other pathogenic or likely pathogenic variants are present, consider decreasing points assigned or overall weight.
 
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-> **Default for cardiomyopathies:** "Phenotype consistent with gene but not highly specific" = **1 point per confirmed de novo** or **0.5 points per assumed de novo**.
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
+> **Distributed-source limitation:** The specification refers readers to SVI guidance for the number/combination of cases and mentions decreasing assigned points, but the distributed TNNI3 package does not include the SVI de novo point matrix or its point-to-strength mapping. No numeric mapping is supplied here.
 
 **Modification Type:** Disease-specific
 
@@ -263,7 +246,8 @@ Applying a threshold of <=0.00004 (upper bound of 95% CI) is equivalent to the v
 | Strength | Criteria |
 |----------|----------|
 | **Moderate** | Strength of rule should be carefully considered and may require downgrading to SUPPORTING based on the predicted impact of the variant, including the size of the deletion/insertion, its location, and conservation of the region. For genes where PVS1 is not applicable (i.e., where there is no evidence that pLOF variants cause disease), consider using this rule at MODERATE or SUPPORTING strength for **truncating variants that do NOT undergo nonsense mediated decay (NMD)**. |
-| **Supporting** | When the predicted impact suggests a less severe consequence (smaller in-frame change, less conserved region). |
+
+> **Source limitation:** The specification permits downgrading to Supporting based on predicted impact but does not give a separate positive Supporting rule or a threshold for size, location, or conservation.
 
 **Modification Type:** General recommendation
 
@@ -296,7 +280,7 @@ Applying a threshold of <=0.00004 (upper bound of 95% CI) is equivalent to the v
 
 Refer to SVI guidance on number/combination of cases required based on phenotype specificity. For most cardiomyopathies, it is recommended to default to "phenotype consistent with gene but not highly specific". Clinical judgment is required for shifting to a higher or lower phenotypic consistency.
 
-See [PS2](#ps2---de-novo-confirmed) for the point-based system and additional considerations.
+See [PS2](#ps2---de-novo-confirmed) for the source-supplied phenotype and family-history considerations. The external SVI numeric mapping is not distributed with this package.
 
 **Modification Type:** Disease-specific
 
@@ -450,9 +434,11 @@ Evaluation of studies/assays is required prior to application of functional evid
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | See PS3 specifications (in vitro splicing assays showing no effect on splicing). |
-| **Moderate** | See PS3 specifications (in vivo models showing no phenotype). |
-| **Supporting** | See PS3 specifications (in vitro assays showing no effect on protein/myofilament function). |
+| **Strong** | See PS3 specifications. |
+| **Moderate** | See PS3 specifications. |
+| **Supporting** | See PS3 specifications. |
+
+> The source does not supply separate BS3 assay outcomes at these strengths; the parenthetical negative-assay interpretations formerly shown here were not in the distributed specification.
 
 **Modification Type:** Disease-specific
 
@@ -489,6 +475,8 @@ Careful consideration of the above points is required when using this data as co
 | **BP5** | *Not Applicable* | Co-occurrence with an established P/LP variant for a non-cardiomyopathy related disease does not reduce the likelihood that a variant is independently disease-causing for cardiomyopathy. |
 | **BP6** | *Not Applicable* | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Supporting | Also applicable to **intronic variants outside the splice consensus sequence (-4 and +7 outward)** for which splicing prediction algorithms predict no impact to the splice consensus sequence NOR the creation of a new splice site AND the nucleotide is not highly conserved. Rule can be combined with BP4 to make a variant likely benign per Richards *et al.* 2015. |
+
+> **Source contradiction:** PVS1 says loss of function is not currently an established TNNI3 disease mechanism, while the source's BP1 comment says "the current genes" have null variants as a known mechanism. Both statements are retained without harmonization; BP1 remains N/A as printed.
 
 ---
 
@@ -538,7 +526,7 @@ Careful consideration of the above points is required when using this data as co
 |-----------|--------|-------------|-------------------|
 | PVS1 | Not Applicable | -- | N/A |
 | PS1 | Applicable | Strong | No change |
-| PS2 | Applicable | Supporting / Moderate / Strong / Very Strong (point-based) | Disease-specific |
+| PS2 | Applicable | Source section: Strong; SVI case-combination guidance referenced but not distributed | Disease-specific |
 | PS3 | Applicable | Strong / Moderate / Supporting | Disease-specific |
 | PS4 | Applicable | Strong / Moderate / Supporting (OR-based) | Disease-specific |
 | PM1 | Applicable | Moderate | Disease-specific, Gene-specific |
@@ -546,7 +534,7 @@ Careful consideration of the above points is required when using this data as co
 | PM3 | Not Applicable | -- | N/A |
 | PM4 | Applicable | Moderate / Supporting | General recommendation |
 | PM5 | Applicable | Moderate / Supporting | General recommendation |
-| PM6 | Applicable | Supporting / Moderate / Strong / Very Strong (point-based) | Disease-specific |
+| PM6 | Applicable | Source section: Moderate; SVI case-combination guidance referenced but not distributed | Disease-specific |
 | PP1 | Applicable | Supporting / Moderate / Strong | Disease-specific |
 | PP2 | Not Applicable | -- | N/A |
 | PP3 | Applicable | Supporting | Disease-specific |
@@ -654,6 +642,14 @@ Key considerations: variant absent from gnomAD, consistent phenotype (DCM) acros
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.0.0 | 4/22/2024 | Initial release. PS4 calculator link added. |
+
+---
+
+## Document corrections
+
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_TNNI3_v1.0.pdf` and `CM-VCEP PS4 Example Scenarios.pdf`, including every worked table.
+- Restored the core DOI and source caveats. Removed an undistributed PS2/PM6 numeric matrix and its derived point-based applicability claims; the core only refers to external SVI guidance. Removed inferred BS3 assay outcomes and the inferred PM4 Supporting condition. The complete PS4 attachment remains transcribed; its Variant C narrative's `gnomAF` typo is a source typo.
+- Source-supplied reference DOIs: `10.1038/gim.2015.30`, `10.1002/humu.23626`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1016/j.cell.2018.12.015`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`.
 
 ---
 

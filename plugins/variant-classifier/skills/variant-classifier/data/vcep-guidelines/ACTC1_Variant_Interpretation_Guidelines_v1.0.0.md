@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434355
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -298,9 +299,10 @@ Applying a threshold of ≤0.00004 (upper bound of 95% CI of the allele frequenc
 | Strength | Criteria |
 |----------|----------|
 | **Moderate** | Strength of rule should be carefully considered and may require downgrading to SUPPORTING based on the predicted impact of the variant, including the size of the deletion/insertion, its location, and conservation of the region. |
-| **Supporting** | For variants where downgrading from Moderate is appropriate |
 
 **Special Note for ACTC1:** For genes where PVS1 is not applicable (i.e., where there is no evidence that pLOF variants cause disease), consider using this rule at MODERATE or SUPPORTING strength for truncating variants that do NOT undergo nonsense mediated decay (NMD).
+
+> **Source limitation:** The specification permits downgrading to Supporting but does not provide a separate positive Supporting condition or numeric thresholds for size, location, or conservation.
 
 **Modification Type:** General recommendation
 
@@ -562,6 +564,8 @@ Careful consideration of the above points is required when using this data as co
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PubMed: 29543229) |
 | **BP7** | Supporting | Also applicable to intronic variants outside the splice consensus sequence (-4 and +7 outward) for which splicing prediction algorithms predict no impact to the splice consensus sequence NOR the creation of a new splice site AND the nucleotide is not highly conserved. Rule can be combined with BP4 to make a variant likely benign per Richards et al. 2015. |
 
+> **Source contradiction:** PVS1 says loss of function is not currently an established ACTC1 disease mechanism, while the source's BP1 comment says "the current genes" have null variants as a known mechanism. Both statements are retained without harmonization; BP1 remains N/A as printed.
+
 ---
 
 ## Rules for Combining Criteria
@@ -663,6 +667,24 @@ Careful consideration of the above points is required when using this data as co
 | BP6 | Not Applicable |
 | BP7 | Applicable (General recommendation) |
 
+### Appendix E: PS4 Example Scenarios
+
+The distributed `CM-VCEP PS4 Example Scenarios.pdf` supplies these exact comparisons:
+
+| Scenario and comparison | OR [95% CI] | Attachment result |
+|---|---:|---|
+| Variant A: clinical lab 22/7,437 vs gnomAD Total 1/120,591 | 358 [**48**-2,655] | Strong |
+| Variant A: literature 13/9,162 vs gnomAD Total 1/120,591 | 171 [**22**-1,310] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD Total 1/119,295 | 248 [**32**-1,905] | Strong |
+| Variant B: literature 15/7,873 vs gnomAD Total 1/119,295 | 227 [**30**-1,724] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD European 1/61,865 | 128 [**17**-988] | Moderate |
+| Variant B: literature 15/7,873 vs gnomAD European 1/61,865 | 118 [**16**-894] | Moderate |
+| Variant C: clinical lab A 4/2,481 vs gnomAD Total 0/116,190 | 422 [**23**-7,841] | Strong |
+| Variant C: clinical lab B 8/5,953 vs gnomAD Total 0/116,190 | 332 [**19**-5,757] | Moderate |
+| Variant C: literature 6/5,154 vs gnomAD Total 0/116,190 | 293 [**16**-5,208] | Moderate |
+
+Variant B is assigned Moderate because ancestry-matched European controls are the more appropriate conservative comparison. For Variant C, the attachment accepts Strong while explicitly allowing Moderate if a more conservative clinical judgment is preferred. Its narrative contains the literal source typo `gnomAF`.
+
 ---
 
 ## References
@@ -698,6 +720,20 @@ Careful consideration of the above points is required when using this data as co
 15. Tavtigian SV, Harrison SM, et al. *Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines.* **Hum Mutat** (2020) 41(10):1734-1737. PMID: 32720330
 
 16. Alfares AA, Kelly MA, et al. *Results of clinical genetic testing of 2,912 probands with hypertrophic cardiomyopathy: expanded panels offer limited additional sensitivity.* **Genet Med** (2015) 17(11):880-8. PMID: 25611685
+
+---
+
+## Version History
+
+| Version | Date | Notes |
+|---|---|---|
+| 1.0.0 | 4/22/2024 | Initial release. PS4 calculator link added. |
+
+## Document corrections
+
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_ACTC1_v1.0.pdf` and `CM-VCEP PS4 Example Scenarios.pdf`, including every worked table.
+- Restored the core DOI and the complete PS4 attachment. Preserved PM1 and PP2 as N/A and recorded that PM4 allows a downgrade but supplies no separate positive Supporting condition.
+- Source-supplied reference DOIs: `10.1038/gim.2015.30`, `10.1002/humu.23626`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1016/j.cell.2018.12.015`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`. The PS4 attachment's Variant C narrative contains the literal source typo `gnomAF`.
 
 ---
 
