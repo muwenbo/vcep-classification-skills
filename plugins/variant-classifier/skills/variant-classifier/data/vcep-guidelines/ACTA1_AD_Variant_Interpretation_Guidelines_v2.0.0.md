@@ -3,6 +3,7 @@
 **Version:** 2.0.0
 **Released:** 8/27/2024
 **Affiliation:** Congenital Myopathies VCEP
+**DOI:** 10.5281/zenodo.21434744
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -125,6 +126,8 @@
 | **Moderate** | The two assays from PS3_Supporting may be stacked to reach a Moderate Strength | Gene-specific |
 | **Supporting** | Three specific assays are currently suggested to be applied at Supporting (see below) | Gene-specific |
 
+> **Source limitation:** PS3_Moderate says “the two assays from PS3_Supporting” while PS3_Supporting lists three assay categories. The distributed specification does not identify which two are intended. Do not choose a pair by inference.
+
 #### Approved Functional Assays (PS3_Supporting)
 
 **1. Actin Localization**
@@ -142,6 +145,8 @@ If not listed above, it is acceptable to use PS3_Supporting for other functional
 - The assay has been validated by a known pathogenic and benign variant AND
 - There is plausible reason that the function the assay is testing relates to the phenotype AND
 - The assay conditions are likely to mimic the physiological environment
+
+The assay-specific evidence in the distributed workbook is transcribed in [Appendix E](#appendix-e-distributed-approved-ad-acta1-functional-assays).
 
 ---
 
@@ -271,13 +276,24 @@ If not listed above, it is acceptable to use PS3_Supporting for other functional
 | **Moderate** | See segregation chart | General recommendation |
 | **Supporting** | Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease. See segregation chart | General recommendation |
 
-#### PP1 Segregation Thresholds (from Biesecker et al 2023)
+#### Distributed PP1 Segregation Chart
 
-| Strength | Likelihood Ratio | Approximate LOD Score |
-|----------|------------------|----------------------|
-| Supporting | 4:1 | 0.6 |
-| Moderate | 16:1 | 1.2 |
-| Strong | 32:1 | 1.5 |
+The attachment reproduces Table 3, “Points derived for co-segregations for traits,” from Biesecker et al. 2023:
+
+| Segregation type | 1 individual | 2 individuals | 3 individuals | 4 individuals | 5 individuals |
+|------------------|-------------:|--------------:|--------------:|--------------:|--------------:|
+| Autosomal-recessive affected (footnotes b,c) | 2.0 | 4.0 | 6.0 | 8.0 | 10.0 |
+| Autosomal-recessive unaffected (footnote a) | 0.4 | 0.8 | 1.2 | 1.6 | 2.0 (footnote d) |
+| **Autosomal-dominant affected and unaffected (footnote a)** | **1.0** | **2.0** | **3.0** | **4.0** | **5.0** |
+| X-linked-recessive male affected and unaffected (footnote e) | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 |
+
+- **a:** Only count unaffected individuals if disease is fully penetrant. Do not count unaffected parents used to establish phase.
+- **b:** These points apply to the allele; if more than one variant is on that allele, divide the evidence for the allele by the number of variants.
+- **c:** Cap all locus evidence (PP1 and PP4) above +5.0 points per allele.
+- **d:** Continue adding +0.4 points for each meiosis above five.
+- **e:** Additional segregations can be counted for obligate heterozygous females.
+
+> **Source limitation:** The attachment supplies points but does not map point totals to PP1 Supporting, Moderate, or Strong, even though the core specification directs all three strengths to the chart. The core separately says that PP1 plus PP4 is capped at Strong, while attachment footnote c literally caps locus evidence above +5.0 points per allele. Both statements are preserved; the absent point-to-strength conversion must not be inferred.
 
 ---
 
@@ -488,9 +504,9 @@ If not listed above, it is acceptable to use PS3_Supporting for other functional
 | PM2 | Absent (1 allele allowed) | Supporting |
 
 **Notes:**
-- All thresholds use gnomAD filtering allele frequency (exomes or genomes)
-- All continental populations should have at least 2000 alleles and >1 observation
-- If mode of inheritance is unclear, use the more conservative AR cutoffs
+- BA1 and BS1 use gnomAD filtering allele frequency from either exomes or genomes; the PM2 source text instead says minor allele frequency in population databases and does not specify filtering allele frequency
+- For BA1 and BS1, all continental populations used should have at least 2000 alleles and >1 observation; PM2 separately requires a population database with at least 2000 alleles
+- If mode of inheritance is unclear, BA1 and BS1 use the more conservative AR cutoffs, while PM2_Supporting uses the more conservative AD cutoff
 
 ### Appendix B: Computational Predictor Thresholds
 
@@ -522,37 +538,173 @@ Cases should **not** be counted for PS4 if they have complex phenotypic features
 - Increased serum CK levels
 - Extraocular muscle weakness
 
+### Appendix E: Distributed Approved AD ACTA1 Functional Assays
+
+The distributed workbook contains three visible sheets and identifies every populated literature column below as an approved assay at **Supporting** strength. Its “Proposed strength (modified)” row is blank throughout. Blank variant and note fields below are also blank in the source. The workbook frequently records zero or unmet validation controls and absent quantitative thresholds; those source limitations are reported rather than reconciled with the generic requirements for other, unlisted assays.
+
+#### Actin Motility
+
+**PMID 17387733 — Clarke…North (2007), DOI 10.1002/ana.21112**
+
+- **Assay/material:** In-vitro motility, velocity, and force generation of tetrarhodamine-isothiocyanate-phalloidin-labelled actin filaments reconstituted from monomeric actin extracted from patient muscle (patients 1 and 3) and control muscle, tested with tropomyosin, with tropomyosin and troponin at pCa 5.4 and pCa 9, and alone.
+- **Readout:** Quantitative percent motility versus wild type; sliding velocity and force generation are also reported in some cases.
+- **Replication/controls:** Biological replicates “Not met (0)”; 6–8 technical measurements; control-muscle actin as positive control; negative control not met; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Standard-error bars for repeated motility measurements; paired t-test versus wild type. Normal and abnormal thresholds not reported.
+- **Variants/notes:** p.Leu223Pro, p.Asp294Val, p.Pro334Ser. Patient-derived actin used.
+
+**PMID 16945537 — D'Amico…Marston (2006), DOI 10.1016/j.nmd.2006.07.005**
+
+- **Assay/material:** In-vitro motility of TRITC-phalloidin-stabilized actin filaments made from patient- and control-muscle monomeric actin over immobilized heavy meromyosin, including velocity and force generation.
+- **Readout:** Quantitative sliding speed versus wild type.
+- **Replication/controls:** Biological replicates “Not met (0)”; four independent actin isolations from the same tissue biopsy; control-muscle actin as positive control; negative control not met; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** A p-value is reported, but the statistical test is not. Normal and abnormal thresholds not reported.
+- **Variants/notes:** p.Lys338Glu. Patient-derived actin used.
+
+**PMID 14733965 — Marston…Sewry (2004), DOI 10.1016/j.nmd.2003.11.003**
+
+- **Assay/material:** In-vitro motility of patient/control actin over immobilized heavy meromyosin with tropomyosin, troponin, both, or alone at pCa 5 and pCa 9 and 25–30 °C; patient/control monomeric actin was co-polymerized with or without TRITC-phalloidin.
+- **Readout:** Quantitative fraction of filaments moving and velocity of motile filaments.
+- **Replication/controls:** Biological replicates “Not met (0)”; 4–6 measurements in different areas of the motility cell; control-muscle actin as positive control; negative control not met; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Unpaired t-test. Normal and abnormal thresholds not reported.
+- **Variants/notes:** Variant field blank. Patient-derived actin used.
+
+**PMID 27112274 — Chan…Ochala (2016), DOI cell `10.1016/j.bbadis.2016.04.013`**
+
+- **Assay/material:** “In vitro motility ” of the H40Y variant made in a mouse actin homolog and expressed in/isolated from a mouse model.
+- **Readout:** Quantitative Vf of individual actin filaments over immobilized rabbit fast-skeletal-muscle heavy “mermyosin” [source typo].
+- **Replication/controls:** Biological replicates met using protein from multiple mice; the technical-replicate cell says only `Met: `; WT-mouse protein positive control; negative-control cell says `(unloaded motility assay = WT?)`; P/LP and B/LB validation controls not met.
+- **Statistics/thresholds:** Student's t-test and non-parametric Mann–Whitney rank-sum test. Normal: `Guassian` distribution [source typo], Vf **< 3.50 um/s**. Abnormal: `Biphesic` distribution [source typo], Vf **> 3.5 um/s**; one mutant subpopulation acted normal and one `abormal` and its `filments` moved faster [source typos].
+- **Variants/notes:** Both fields blank.
+
+#### Actin Localization
+
+**PMID 17227580 — Bathe…Machesky (2007), DOI 10.1186/1471-2121-8-2**
+
+- **Assay/material:** Transient expression of EGFP-tagged wild-type or variant ACTA1 from pEGFP-N1 in C2C12 myoblasts, differentiated for 4–6 days and examined by immunofluorescence and microscopy.
+- **Readout:** Qualitative with quantitation. Myoblast categories are good versus poor integration; myotube categories are differentiated with good versus poor integration and undifferentiated with good versus poor integration. Poor-integration subcategories include cytoplasmic aggregates, nuclear aggregates, delocalization, and aberrant stress fibers.
+- **Replication/controls:** Biological replicates “Not met (0)”; at least 141 cells per variant; WT ACTA1 cDNA positive control; negative control not met; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Not reported.
+- **Variants/notes:** p.Gly17Arg, p.His42Tyr, p.Ile66Asn, p.Asn117Ser, p.Val165Leu, p.Gly270Arg, p.Asp288Gly. Note asks, “How well does phenotype of undifferentiated cells reflect disease mechanism?”
+
+**PMID 15226407 — Costa…Machesky (2004), DOI 10.1242/jcs.01172**
+
+- **Assay/material:** Transient Myc-tagged wild-type or variant ACTA1 from pcDNA3.1 in NIH3T3 mouse-embryo fibroblasts, examined by immunofluorescence and microscopy.
+- **Readout:** Qualitative localization to stress fibers, lamellipodia, and endogenous filamentous actin, or formation of aggregates.
+- **Replication/controls:** Biological replicates “Not met (0)”; technical replicates not reported; WT ACTA1 cDNA positive control; negative control not met (0); 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Not reported.
+- **Variants/notes:** p.Gly17Arg, p.His42Tyr, p.Asn117Ser, p.Met134Val, p.Ile138Met, p.Val165Leu, p.Ile66Asn, p.Gly184Asp, p.Arg185Cys, p.Arg185Gly, p.Gln265Leu, p.Gly270Cys, p.Gly270Arg, p.Asp288Gly, p.Asn282Lys, p.Ile359Leu, p.Val372Phe. Note blank.
+
+**PMID 17705262 — Domazetovska…North (2007), DOI 10.1002/ana.21200**
+
+- **Assay/material:** C2C12 myoblasts transiently coexpressing EGFP-tagged wild-type ACTA1 with untagged wild-type ACTA1, variant ACTA1, or empty vector; the material row also names NIH3T3 cells and pcDNA3.
+- **Readout:** Qualitative localization of tagged wild-type actin to cytoplasmic stress fibers and phalloidin-stained intranuclear aggregates in the presence or absence of variant actin.
+- **Replication/controls:** Two different cell lines (C2C12 and NIH3T3) recorded under biological replicates; technical replicates not reported; WT ACTA1 cDNA positive control; empty-vector negative control; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Not reported.
+- **Variants/notes:** p.Val165Met. Note blank.
+
+**PMID 15198992 — Ilkovski…Cooper (2004), DOI 10.1093/hmg/ddh185**
+
+- **Assay/material:** Transient EGFP-tagged wild-type or variant ACTA1 from pEGFP-N1 in C2C12 myoblasts, examined by immunofluorescence and microscopy.
+- **Readout:** Qualitative localization to cytoplasmic stress fibers and accumulation in cytoplasmic or intranuclear aggregates.
+- **Replication/controls:** Biological replicates “Not met (0)”; technical replicates not reported; WT ACTA1 cDNA positive control; negative control not met (0); both validation-control cells blank.
+- **Statistics/thresholds:** Not reported.
+- **Variants/notes:** Source cell reads `p.Thr68Ile, p.Glu74Lys, p.Asn117Ser,p.Val165Leu, p.Val165Met, p.Arg185Gly, p.Gly270Cys, p.Ile359Leu,` (spacing and trailing comma preserved). Note blank.
+
+#### Actin Polymerization
+
+**PMID 17387733 — Clarke…North (2007), DOI 10.1002/ana.21112**
+
+- **Assay/material:** EGFP-tagged wild-type or variant ACTA1 from pEGFP-N1 in differentiating C2C12 cells, evaluated by microscopy for aggregation/polymerization and by Western blot for filament incorporation.
+- **Readout:** Quantitative percentage of aggregate-containing cells and percentage of total actin in the insoluble pool.
+- **Replication/controls:** Biological replicates “Not met (0)”; abnormal imaging findings repeated twice and Western blot performed in three independent experiments; WT ACTA1 cDNA positive control; workbook says `2 abnormal controls: p.Ile138Me and p.Val165Leu` [p.Ile138Me is source text] previously described in PMID 15198992; 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** A p-value is reported but the test is not; thresholds not reported.
+- **Variants/notes:** p.Leu223Pro, p.Asp294Val, p.Pro334Ser. Note asks which polymerization/aggregation method is preferred.
+
+**PMID 15226407 — Costa…Machesky (2004), DOI 10.1242/jcs.01172**
+
+- **Assay/material:** In-vitro-transcribed/translated sulfur-35-labelled wild-type or variant actin combined with rabbit-skeletal-muscle wild-type actin, centrifuged, then measured in pellet, supernatant, and aggregates.
+- **Readout:** Quantitative percentage of 35S-labelled actin in each fraction.
+- **Replication/controls:** Biological replicates “Not met (0)”; `3+` technical replicates; WT actin positive control; negative control not met (0); 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Statistics not reported. Normal: **≥50% 35S-actin in filaments**. Abnormal: **<50% 35S-actin in filaments**.
+- **Variants/notes:** p.Gly17Arg, p.His42Tyr, p.Asn117Ser, p.Met134Val, p.Ile138Met, p.Val165Leu, p.Ile66Asn, p.Gly184Asp, p.Arg185Cys, p.Arg185Gly, p.Gln265Leu, p.Gly270Cys, p.Gly270Arg, p.Asp288Gly, p.Asn282Lys, p.Ile359Leu, p.Val372Phe. Note blank.
+
+**PMID 16945537 — D'Amico…Marston (2006), DOI 10.1016/j.nmd.2006.07.005**
+
+- **Assay/material:** Patient- and control-muscle monomeric actin allowed to polymerize and measured by sedimentation.
+- **Readout:** Quantitative quantity and length of polymerized actin filaments.
+- **Replication/controls:** Biological replicates “Not met (0)”; four independent actin isolations from the same biopsy; control-muscle actin positive control; negative control not met (0); 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** A p-value is reported but the test is not; thresholds not reported.
+- **Variants/notes:** p.Lys338Glu. Patient-derived actin used.
+
+**PMID 15198992 — Ilkovski…Cooper (2004), DOI 10.1093/hmg/ddh185**
+
+- **Assay/material:** EGFP-tagged wild-type or variant ACTA1 from pEGFP-N1 in differentiating C2C12 cells with fibroblast co-culture, evaluated by Western blot for filament incorporation.
+- **Readout:** Quantitative percentage of total actin in insoluble or soluble protein pool.
+- **Replication/controls:** Biological replicates “Not met (0)”; 4–10 experiments per variant; WT ACTA1 cDNA positive control; negative control not met (0); 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Mann–Whitney non-parametric test; thresholds not reported.
+- **Variants/notes:** p.Ile138Met, p.Val165Leu, p.Arg185Gly, p.Gly270Cys, p.Ile359Leu. Note asks whether reported isoelectric-focusing evidence for soluble/insoluble patient-muscle fractions should count for PS3/BS3.
+
+**PMID 14733965 — Marston…Sewry (2004), DOI 10.1016/j.nmd.2003.11.003**
+
+- **Assay/material:** Patient- and control-muscle monomeric actin separated by sedimentation into supernatant and F-actin pellet for TRITC-phalloidin microscopy.
+- **Readout:** Qualitative presence/absence of filaments attached to a heavy-meromyosin-coated surface and quantitative filament length.
+- **Replication/controls:** Biological replicates “Not met (0)”; all filaments in two imaging fields measured; control-muscle actin positive control; negative control not met (0); 0 P/LP and 0 B/LB validation controls.
+- **Statistics/thresholds:** Unpaired t-test; thresholds not reported.
+- **Variants/notes:** p.Met134Val. Patient-derived actin used.
+
+**PMID 10601317 — Yao...Rubenstein (1999), DOI 10.1074/jbc.274.52.37443**
+
+- **Assay/material:** His73Arg/Lys/Ala/Gln/Glu made in an *S. cerevisiae* actin homolog and expressed in/isolated from yeast expressing only mutant protein.
+- **Readout:** Quantitative light scattering as a function of seconds; all mutant proteins `exhbited` [source typo] reduced polymerization versus WT.
+- **Replication/controls:** Biological replicates not met; three repeats using three different actin batches; WT protein positive control; negative control and both validation-control classes not met.
+- **Statistics/thresholds:** Statistical analysis not specified. Normal plateau at approximately 750 seconds; abnormal plateau **>5000 seconds**.
+- **Variants/notes:** Both fields blank.
+
+**PMID 19418233 — Feng…Marston (2009), DOI 10.1007/s10974-009-9178-9**
+
+- **Assay/material:** D286G made in a mouse actin homolog and expressed in/isolated from a mouse model; mutant protein from transgenic-mouse leg skeletal muscle examined by epifluorescence and total internal reflection microscopy.
+- **Readout:** Source says `Qualitative observation of filaments and quantiative of length of filaments in a frame and indvidually over time` [source typos].
+- **Replication/controls:** Protein from multiple transgenic mice; multiple aliquots per sample; WT protein positive control; negative-control cell reads `[Protein (F-actin and derived G-actin) from WT rabbit]`; P/LP and B/LB validation controls not met.
+- **Statistics/thresholds:** Cell reads `Dynamic Image Analysis Software, Kon  constant, standard deviation`. Normal elongation rate matches WT. Abnormal is lower elongation/polymerization than WT: `D286G/wild-type = 0.57 ± 0.06, n = 4`.
+- **Variants/notes:** Both fields blank.
+
+### Appendix F: Distributed-Source Limitations
+
+- The PP1 attachment gives points but no point-to-strength mapping; see the PP1 section.
+- PS3_Moderate refers to “the two assays” while PS3_Supporting lists three assay categories and does not identify a pair.
+- The approved-assay workbook contains unresolved questions, unfinished control descriptions, zero or unmet validation controls, and many missing thresholds. These are limitations of the distributed source, not gaps to fill with generic assay guidance.
+
 ---
 
 ## References
 
-1. Oza AM, DiStefano MT, et al. Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss. *Hum Mutat* (2018) 39(11):1593-1613. PMID: 30311386
+1. Oza AM, DiStefano MT, et al. Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss. *Hum Mutat* (2018) 39(11):1593-1613. DOI: 10.1002/humu.23630. PMID: 30311386
 
-2. Chan C, Fan J, et al. Myopathy-inducing mutation H40Y in ACTA1 hampers actin filament structure and function. *Biochim Biophys Acta* (2016) 1862(8):1453-8. PMID: 27112274
+2. Chan C, Fan J, et al. Myopathy-inducing mutation H40Y in ACTA1 hampers actin filament structure and function. *Biochim Biophys Acta* (2016) 1862(8):1453-8. DOI: 10.1016/j.bbadis.2016.04.013. PMID: 27112274
 
-3. Yao X, Grade S, et al. His(73), often methylated, is an important structural determinant for actin. A mutagenic analysis of HIS(73) of yeast actin. *J Biol Chem* (1999) 274(52):37443-9. PMID: 10601317
+3. Yao X, Grade S, et al. His(73), often methylated, is an important structural determinant for actin. A mutagenic analysis of HIS(73) of yeast actin. *J Biol Chem* (1999) 274(52):37443-9. DOI: 10.1074/jbc.274.52.37443. PMID: 10601317
 
-4. Clarke NF, Ilkovski B, et al. The pathogenesis of ACTA1-related congenital fiber type disproportion. *Ann Neurol* (2007) 61(6):552-61. PMID: 17387733
+4. Clarke NF, Ilkovski B, et al. The pathogenesis of ACTA1-related congenital fiber type disproportion. *Ann Neurol* (2007) 61(6):552-61. DOI: 10.1002/ana.21112. PMID: 17387733
 
-5. D'Amico A, Graziano C, et al. Fatal hypertrophic cardiomyopathy and nemaline myopathy associated with ACTA1 K336E mutation. *Neuromuscul Disord* (2006) 16(9-10):548-52. PMID: 16945537
+5. D'Amico A, Graziano C, et al. Fatal hypertrophic cardiomyopathy and nemaline myopathy associated with ACTA1 K336E mutation. *Neuromuscul Disord* (2006) 16(9-10):548-52. DOI: 10.1016/j.nmd.2006.07.005. PMID: 16945537
 
-6. Marston S, Mirza M, et al. Functional characterisation of a mutant actin (Met132Val) from a patient with nemaline myopathy. *Neuromuscul Disord* (2004) 14(2):167-74. PMID: 14733965
+6. Marston S, Mirza M, et al. Functional characterisation of a mutant actin (Met132Val) from a patient with nemaline myopathy. *Neuromuscul Disord* (2004) 14(2):167-74. DOI: 10.1016/j.nmd.2003.11.003. PMID: 14733965
 
-7. Bathe FS, Rommelaere H, et al. Phenotypes of myopathy-related actin mutants in differentiated C2C12 myotubes. *BMC Cell Biol* (2007) 8:2. PMID: 17227580
+7. Bathe FS, Rommelaere H, et al. Phenotypes of myopathy-related actin mutants in differentiated C2C12 myotubes. *BMC Cell Biol* (2007) 8:2. DOI: 10.1186/1471-2121-8-2. PMID: 17227580
 
-8. Costa CF, Rommelaere H, et al. Myopathy mutations in alpha-skeletal-muscle actin cause a range of molecular defects. *J Cell Sci* (2004) 117(Pt 15):3367-77. PMID: 15226407
+8. Costa CF, Rommelaere H, et al. Myopathy mutations in alpha-skeletal-muscle actin cause a range of molecular defects. *J Cell Sci* (2004) 117(Pt 15):3367-77. DOI: 10.1242/jcs.01172. PMID: 15226407
 
-9. Domazetovska A, Ilkovski B, et al. Intranuclear rod myopathy: molecular pathogenesis and mechanisms of weakness. *Ann Neurol* (2007) 62(6):597-608. PMID: 17705262
+9. Domazetovska A, Ilkovski B, et al. Intranuclear rod myopathy: molecular pathogenesis and mechanisms of weakness. *Ann Neurol* (2007) 62(6):597-608. DOI: 10.1002/ana.21200. PMID: 17705262
 
-10. Ilkovski B, Nowak KJ, et al. Evidence for a dominant-negative effect in ACTA1 nemaline myopathy caused by abnormal folding, aggregation and altered polymerization of mutant actin isoforms. *Hum Mol Genet* (2004) 13(16):1727-43. PMID: 15198992
+10. Ilkovski B, Nowak KJ, et al. Evidence for a dominant-negative effect in ACTA1 nemaline myopathy caused by abnormal folding, aggregation and altered polymerization of mutant actin isoforms. *Hum Mol Genet* (2004) 13(16):1727-43. DOI: 10.1093/hmg/ddh185. PMID: 15198992
 
-11. Fan J, Chan C, et al. Molecular Consequences of the Myopathy-Related D286G Mutation on Actin Function. *Front Physiol* (2018) 9:1756. PMID: 30564146
+11. Fan J, Chan C, et al. Molecular Consequences of the Myopathy-Related D286G Mutation on Actin Function. *Front Physiol* (2018) 9:1756. DOI: 10.3389/fphys.2018.01756. PMID: 30564146
 
-12. Feng JJ, Ushakov DS, et al. Direct visualisation and kinetic analysis of normal and nemaline myopathy actin polymerisation using total internal reflection microscopy. *J Muscle Res Cell Motil* (2009) 30(1-2):85-92. PMID: 19418233
+12. Feng JJ, Ushakov DS, et al. Direct visualisation and kinetic analysis of normal and nemaline myopathy actin polymerisation using total internal reflection microscopy. *J Muscle Res Cell Motil* (2009) 30(1-2):85-92. DOI: 10.1007/s10974-009-9178-9. PMID: 19418233
 
-13. Ross JA, Levy Y, et al. Impairments in contractility and cytoskeletal organisation cause nuclear defects in nemaline myopathy. *Acta Neuropathol* (2019) 138(3):477-495. PMID: 31218456
+13. Ross JA, Levy Y, et al. Impairments in contractility and cytoskeletal organisation cause nuclear defects in nemaline myopathy. *Acta Neuropathol* (2019) 138(3):477-495. DOI: 10.1007/s00401-019-02034-8. PMID: 31218456
 
-14. Biesecker LG, Byrne AB, et al. ClinGen guidance for use of the PP1/BS4 co-segregation and PP4 phenotype specificity criteria for sequence variant pathogenicity classification. *Am J Hum Genet* (2024) 111(1):24-38. PMID: 38103548
+14. Biesecker LG, Byrne AB, et al. ClinGen guidance for use of the PP1/BS4 co-segregation and PP4 phenotype specificity criteria for sequence variant pathogenicity classification. *Am J Hum Genet* (2024) 111(1):24-38. DOI: 10.1016/j.ajhg.2023.11.009. PMID: 38103548
 
 ---
 
@@ -560,6 +712,7 @@ Cases should **not** be counted for PS4 if they have complex phenotypic features
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 2.0.0 | 2026-08-09 | **Document corrections (ClinGen version unchanged):** Verified against `ClinGen_ACMG_Specifications_ACTA1_v2.0.pdf`, `Approved AD ACTA1 functional assays.xlsx`, and `PP1 segregation chart.docx`. Replaced an undistributed likelihood-ratio/LOD PP1 table with the actual attached co-segregation point chart and all footnotes, including the literal “each meiosis above five” wording; documented the missing point-to-strength conversion and preserved both cap wordings. Transcribed all 15 approved Supporting assay columns and their controls, thresholds, variants, notes, blanks, and source typos from the functional workbook; documented the unresolved PS3 “two assays” wording. Corrected Appendix A so PM2 is not represented as a gnomAD filtering-allele-frequency or continental-population rule. Restored the specification DOI and all 14 source-supplied reference DOIs. |
 | 2.0.0 | 8/27/2024 | BS1 and BA1 thresholds were accidentally switched. Those have been corrected in this 2.0 version. |
 
 ---

@@ -3,6 +3,7 @@
 **Version:** 1.0.0
 **Released:** 8/7/2024
 **Affiliation:** Congenital Myopathies VCEP
+**DOI:** 10.5281/zenodo.21434783
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -81,31 +82,33 @@
 
 #### PVS1 Decision Tree for ACTA1
 
+> **Source limitations:** The distributed slide uses footnote markers **a**, **b**, **c**, and **d**, but defines none of them in the slide or speaker notes. It uses strict **>10%** and **<10%** branches, leaving exactly 10% unassigned. Its NMD boundary is written “up to c.940, p.314” without a formal inclusive/strict comparator. Preserve these gaps rather than inferring definitions or missing branches.
+
 **Nonsense or Frameshift:**
-- Predicted to undergo NMD (up to c.940, p.314):
+- Predicted to undergo NMD **b** (up to c.940, p.314):
   - Exon is present in biologically-relevant transcript(s) (NM_001100.4) → **PVS1**
   - Exon is absent from biologically-relevant transcript(s) → **N/A**
-- Not predicted to undergo NMD:
-  - Truncated/altered region is critical to protein function (no specified regions) → **PVS1_Strong**
+- Not predicted to undergo NMD **b**:
+  - Truncated/altered region is critical to protein function **c** (no specified regions) → **PVS1_Strong**
   - Role of region in protein function is unknown:
     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically-relevant transcript(s) → **N/A**
     - LoF variants in this exon are not frequent in the general population and exon is present in biologically-relevant transcript(s):
       - Variant removes >10% of protein → **PVS1_Strong**
       - Variant removes <10% of protein → **PVS1_Moderate**
 
-**Canonical GT-AG +/-1,2 Splice Sites:**
-- Exon skipping or use of a cryptic splice site disrupts reading frame and is predicted to undergo NMD:
+**GT--AG 1,2 Splice Sites (marker a; wording preserved):**
+- Exon skipping or use of a cryptic splice site disrupts reading frame and is predicted to undergo NMD **b**:
   - Exon is present in biologically-relevant transcript(s) → **PVS1**
   - Exon is absent from biologically-relevant transcript(s) → **N/A**
-- Exon skipping or use of a cryptic splice site preserves reading frame (In-frame exons: 2, 4, 5):
-  - Truncated/altered region is critical to protein function (no specified regions) → **PVS1_Strong**
+- Exon skipping or use of a cryptic splice site preserves reading frame (slide reads **“In-frame exons: 2, 4, 5, ”**, including the trailing comma):
+  - Truncated/altered region is critical to protein function **c** (no specified regions) → **PVS1_Strong**
   - Role of region in protein function is unknown:
     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically-relevant transcript(s) → **N/A**
     - LoF variants in this exon are not frequent in the general population and exon is present in biologically-relevant transcript(s):
       - Variant removes >10% of protein → **PVS1_Strong**
       - Variant removes <10% of protein → **PVS1_Moderate**
-- Exon skipping or use of a cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD:
-  - Truncated/altered region is critical to protein function (no specified regions) → **PVS1_Strong**
+- Exon skipping or use of a cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD **b**:
+  - Truncated/altered region is critical to protein function **c** (no specified regions) → **PVS1_Strong**
   - Role of region in protein function is unknown:
     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically-relevant transcript(s) → **N/A**
     - LoF variants in this exon are not frequent in the general population and exon is present in biologically-relevant transcript(s):
@@ -113,24 +116,24 @@
       - Variant removes <10% of protein → **PVS1_Moderate**
 
 **Deletion (Single exon to full gene):**
-- Single to multi exon deletion – Disrupts reading frame and is predicted to undergo NMD:
+- Single to multi exon deletion – Disrupts reading frame and is predicted to undergo NMD **b**:
   - Exon is present in biologically-relevant transcript(s) → **PVS1**
   - Exon is absent from biologically-relevant transcript(s) → **N/A**
 - Single to multi exon deletion – Preserves reading frame:
-  - Truncated/altered region is critical to protein function (no specified regions) → **PVS1_Strong**
+  - Truncated/altered region is critical to protein function **c** (no specified regions) → **PVS1_Strong**
   - Role of region in protein function is unknown:
     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically-relevant transcript(s) → **N/A**
     - LoF variants in this exon are not frequent in the general population and exon is present in biologically-relevant transcript(s):
       - Variant removes >10% of protein → **PVS1_Strong**
       - Variant removes <10% of protein → **PVS1_Moderate**
-- Single to multi exon deletion – Disrupts reading frame and is NOT predicted to undergo NMD:
-  - Truncated/altered region is critical to protein function (no specified regions) → **PVS1_Strong**
+- Single to multi exon deletion – Disrupts reading frame and is NOT predicted to undergo NMD **b**:
+  - Truncated/altered region is critical to protein function **c** (no specified regions) → **PVS1_Strong**
   - Role of region in protein function is unknown:
     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically-relevant transcript(s) → **N/A**
     - LoF variants in this exon are not frequent in the general population and exon is present in biologically-relevant transcript(s):
       - Variant removes >10% of protein → **PVS1_Strong**
       - Variant removes <10% of protein → **PVS1_Moderate**
-- Full gene deletion → **PVS1**
+- Full gene deletion → **PVS1 d** (marker undefined)
 
 **Duplication (≥1 exon in size and must be completely contained within gene):**
 - Proven in tandem:
@@ -138,13 +141,14 @@
   - No or unknown impact on reading frame and NMD → **N/A**
 - Presumed in tandem:
   - Reading frame presumed disrupted and NMD predicted to occur → **PVS1_Strong**
+  - No or unknown impact on reading frame and NMD → **N/A**
 - Proven not in tandem → **N/A**
 
 **Initiation Codon:**
 - Different functional transcript uses alternative start codon → **N/A**
 - No known alternative start codon in other transcripts:
   - ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Moderate**
-  - No pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Supporting**
+  - No pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Supp** (literal source abbreviation)
 
 ---
 
@@ -251,14 +255,16 @@ Example: Val->Leu caused by either G>C or G>T in the same codon.
 | Likely Pathogenic/Pathogenic | 1.0 | 0.5 |
 | Homozygous occurrence (max point 1.0) or Rare VUS on other allele | 0.5 | N/A |
 
-#### PM3 Evidence Strength Thresholds
+#### PM3 Evidence Strength Values
 
-| Total Points | Strength Level |
-|--------------|----------------|
+| Source Point Value | Strength Level |
+|--------------------|----------------|
 | 0.5 | PM3_Supporting |
 | 1.0 | PM3 (Moderate) |
 | 2.0 | PM3_Strong |
 | 4.0 | PM3_VeryStrong |
+
+> **Source limitation:** The core PDF and the embedded strength image print the four bare values above. They do not provide `>=` operators, ranges, or instructions for intermediate summed values, so none are inferred. The core also contains the typo “In order to count to count case counts”; its operative qualification is that the variant of interest must be rare enough not to meet BS1.
 
 ---
 
@@ -324,7 +330,24 @@ Example: Arg156His is pathogenic; now you observe Arg156Cys.
 | **Moderate** | See segregation chart |
 | **Supporting** | See segregation chart |
 
-For full segregation guidance, please refer to Biesecker et al 2023 (PMID: 38103548).
+#### Distributed PP1 Segregation Chart
+
+The attachment reproduces Table 3, “Points derived for co-segregations for traits,” from Biesecker et al. 2023:
+
+| Segregation type | 1 individual | 2 individuals | 3 individuals | 4 individuals | 5 individuals |
+|------------------|-------------:|--------------:|--------------:|--------------:|--------------:|
+| **Autosomal-recessive affected (footnotes b,c)** | **2.0** | **4.0** | **6.0** | **8.0** | **10.0** |
+| **Autosomal-recessive unaffected (footnote a)** | **0.4** | **0.8** | **1.2** | **1.6** | **2.0 (footnote d)** |
+| Autosomal-dominant affected and unaffected (footnote a) | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 |
+| X-linked-recessive male affected and unaffected (footnote e) | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 |
+
+- **a:** Only count unaffected individuals if disease is fully penetrant. Do not count unaffected parents used to establish phase.
+- **b:** These points apply to the allele; if more than one variant is on that allele, divide the evidence for the allele by the number of variants. See text.
+- **c:** Cap all locus evidence (PP1 and PP4) above +5.0 points per allele.
+- **d:** Continue adding +0.4 points for each meiosis above five.
+- **e:** Additional segregations can be counted for obligate heterozygous females.
+
+> **Source limitation:** The attachment supplies points but does not map totals to PP1 Supporting, Moderate, or Strong. The GN169 core adds the same-risk requirement for unaffected relatives and says PP1 plus PP4 cannot exceed Strong, while attachment footnote c literally caps locus evidence above +5.0 points per allele. Both statements are preserved; the absent conversion must not be inferred.
 
 ---
 
@@ -393,8 +416,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 #### BA1 Exclusion Variants
 
 The following well-known pathogenic variants are above the specified BA1 threshold and should NOT be classified as benign based on allele frequency alone:
-- NM_001100.4(ACTA1):c.541del (p.Asp181fs)
-- NM_001100.4(ACTA1):c.121C>T (p.Arg41*)
+- `NM_001100.4(ACTA1):c.541del (p.Asp181fs)`
+- `NM_001100.4(ACTA1):c.121C>T(p.Arg41*)` (lack of space before the protein consequence is source text)
 
 ---
 
@@ -505,6 +528,8 @@ The following well-known pathogenic variants are above the specified BA1 thresho
 | 1 Strong (BS1, BS2, BS4) **AND** 1 Supporting (BS2_Supporting, BS4_Supporting, BP2, BP4, BP5, BP7) |
 | ≥2 Supporting (BS2_Supporting, BS4_Supporting, BP2, BP4, BP5, BP7) |
 
+> **Source contradiction:** These membership lists name PS3_Moderate even though the criterion section defines only PS3 Strong and Supporting. They also define PP4 Strong and Moderate in the criterion section but omit PP4_Strong and PP4_Moderate from the Strong and Moderate membership lists, listing only bare PP4 among Supporting criteria. The distributed document does not reconcile this; the published membership lists above are preserved verbatim.
+
 ---
 
 ## Appendices
@@ -517,7 +542,11 @@ The following well-known pathogenic variants are above the specified BA1 thresho
 | BS1 | ≥0.00025 (0.025%) | Strong |
 | PM2 | ≤0.000005 (0.0005%) | Supporting |
 
-**Note:** All thresholds use gnomAD filtering allele frequency (exomes or genomes). All continental populations should have at least 2000 alleles and >1 observation.
+**Notes:**
+
+- BA1 and BS1 use gnomAD filtering allele frequency from either exomes or genomes; PM2 instead says minor allele frequency in population databases and does not specify filtering allele frequency.
+- The continental-population requirement (at least 2,000 alleles and >1 observation) applies to BA1 and BS1. PM2 separately requires a population database with at least 2,000 alleles.
+- If mode of inheritance is unclear, BA1 and BS1 use the more conservative AR cutoffs, while PM2_Supporting uses the more conservative AD cutoff.
 
 ### Appendix B: Computational Prediction Thresholds
 
@@ -530,43 +559,50 @@ The following well-known pathogenic variants are above the specified BA1 thresho
 
 ### Appendix C: NMD Prediction
 
-For ACTA1 (NM_001100.4), nonsense-mediated decay (NMD) is predicted for variants up to **c.940** (p.314).
+For ACTA1 (NM_001100.4), the flowchart says NMD is predicted “up to **c.940, p.314**.” It does not formally state whether the boundary is inclusive or strict.
 
 ### Appendix D: In-Frame Exons
 
-The following exons result in in-frame transcripts when skipped: **Exons 2, 4, 5**
+The flowchart literally reads **“In-frame exons: 2, 4, 5, ”** with a trailing comma. No additional exon is inferred from that punctuation.
+
+### Appendix E: Distributed-Source Limitations
+
+- PVS1 footnote markers a–d are undefined; strict `>10%` and `<10%` leaves exactly 10% unassigned; the NMD boundary comparator is unstated; and the in-frame exon list ends with a trailing comma.
+- PM3 gives exact point values without operators, ranges, or handling for intermediate sums.
+- PP1 gives segregation points without a point-to-strength conversion, and its +5.0-point cap wording coexists with the core's Strong cap.
+- The combining-rule membership conflicts for PS3_Moderate and PP4_Strong/Moderate are documented immediately below the published tables.
 
 ---
 
 ## References
 
-1. Chan C, Fan J, et al. *Myopathy-inducing mutation H40Y in ACTA1 hampers actin filament structure and function.* **Biochim Biophys Acta** (2016) 1862(8):1453-8. PMID: 27112274
+1. Chan C, Fan J, et al. *Myopathy-inducing mutation H40Y in ACTA1 hampers actin filament structure and function.* **Biochim Biophys Acta** (2016) 1862(8):1453-8. DOI: 10.1016/j.bbadis.2016.04.013. PMID: 27112274
 
-2. Oza AM, DiStefano MT, et al. *Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss.* **Hum Mutat** (2018) 39(11):1593-1613. PMID: 30311386
+2. Oza AM, DiStefano MT, et al. *Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss.* **Hum Mutat** (2018) 39(11):1593-1613. DOI: 10.1002/humu.23630. PMID: 30311386
 
-3. Yao X, Grade S, et al. *His(73), often methylated, is an important structural determinant for actin. A mutagenic analysis of HIS(73) of yeast actin.* **J Biol Chem** (1999) 274(52):37443-9. PMID: 10601317
+3. Yao X, Grade S, et al. *His(73), often methylated, is an important structural determinant for actin. A mutagenic analysis of HIS(73) of yeast actin.* **J Biol Chem** (1999) 274(52):37443-9. DOI: 10.1074/jbc.274.52.37443. PMID: 10601317
 
-4. Clarke NF, Ilkovski B, et al. *The pathogenesis of ACTA1-related congenital fiber type disproportion.* **Ann Neurol** (2007) 61(6):552-61. PMID: 17387733
+4. Clarke NF, Ilkovski B, et al. *The pathogenesis of ACTA1-related congenital fiber type disproportion.* **Ann Neurol** (2007) 61(6):552-61. DOI: 10.1002/ana.21112. PMID: 17387733
 
-5. D'Amico A, Graziano C, et al. *Fatal hypertrophic cardiomyopathy and nemaline myopathy associated with ACTA1 K336E mutation.* **Neuromuscul Disord** (2006) 16(9-10):548-52. PMID: 16945537
+5. D'Amico A, Graziano C, et al. *Fatal hypertrophic cardiomyopathy and nemaline myopathy associated with ACTA1 K336E mutation.* **Neuromuscul Disord** (2006) 16(9-10):548-52. DOI: 10.1016/j.nmd.2006.07.005. PMID: 16945537
 
-6. Marston S, Mirza M, et al. *Functional characterisation of a mutant actin (Met132Val) from a patient with nemaline myopathy.* **Neuromuscul Disord** (2004) 14(2):167-74. PMID: 14733965
+6. Marston S, Mirza M, et al. *Functional characterisation of a mutant actin (Met132Val) from a patient with nemaline myopathy.* **Neuromuscul Disord** (2004) 14(2):167-74. DOI: 10.1016/j.nmd.2003.11.003. PMID: 14733965
 
-7. Domazetovska A, Ilkovski B, et al. *Intranuclear rod myopathy: molecular pathogenesis and mechanisms of weakness.* **Ann Neurol** (2007) 62(6):597-608. PMID: 17705262
+7. Domazetovska A, Ilkovski B, et al. *Intranuclear rod myopathy: molecular pathogenesis and mechanisms of weakness.* **Ann Neurol** (2007) 62(6):597-608. DOI: 10.1002/ana.21200. PMID: 17705262
 
-8. Ilkovski B, Nowak KJ, et al. *Evidence for a dominant-negative effect in ACTA1 nemaline myopathy caused by abnormal folding, aggregation and altered polymerization of mutant actin isoforms.* **Hum Mol Genet** (2004) 13(16):1727-43. PMID: 15198992
+8. Ilkovski B, Nowak KJ, et al. *Evidence for a dominant-negative effect in ACTA1 nemaline myopathy caused by abnormal folding, aggregation and altered polymerization of mutant actin isoforms.* **Hum Mol Genet** (2004) 13(16):1727-43. DOI: 10.1093/hmg/ddh185. PMID: 15198992
 
-9. Fan J, Chan C, et al. *Molecular Consequences of the Myopathy-Related D286G Mutation on Actin Function.* **Front Physiol** (2018) 9:1756. PMID: 30564146
+9. Fan J, Chan C, et al. *Molecular Consequences of the Myopathy-Related D286G Mutation on Actin Function.* **Front Physiol** (2018) 9:1756. DOI: 10.3389/fphys.2018.01756. PMID: 30564146
 
-10. Feng JJ, Ushakov DS, et al. *Direct visualisation and kinetic analysis of normal and nemaline myopathy actin polymerisation using total internal reflection microscopy.* **J Muscle Res Cell Motil** (2009) 30(1-2):85-92. PMID: 19418233
+10. Feng JJ, Ushakov DS, et al. *Direct visualisation and kinetic analysis of normal and nemaline myopathy actin polymerisation using total internal reflection microscopy.* **J Muscle Res Cell Motil** (2009) 30(1-2):85-92. DOI: 10.1007/s10974-009-9178-9. PMID: 19418233
 
-11. Ross JA, Levy Y, et al. *Impairments in contractility and cytoskeletal organisation cause nuclear defects in nemaline myopathy.* **Acta Neuropathol** (2019) 138(3):477-495. PMID: 31218456
+11. Ross JA, Levy Y, et al. *Impairments in contractility and cytoskeletal organisation cause nuclear defects in nemaline myopathy.* **Acta Neuropathol** (2019) 138(3):477-495. DOI: 10.1007/s00401-019-02034-8. PMID: 31218456
 
-12. Costa CF, Rommelaere H, et al. *Myopathy mutations in alpha-skeletal-muscle actin cause a range of molecular defects.* **J Cell Sci** (2004) 117(Pt 15):3367-77. PMID: 15226407
+12. Costa CF, Rommelaere H, et al. *Myopathy mutations in alpha-skeletal-muscle actin cause a range of molecular defects.* **J Cell Sci** (2004) 117(Pt 15):3367-77. DOI: 10.1242/jcs.01172. PMID: 15226407
 
-13. Bathe FS, Rommelaere H, et al. *Phenotypes of myopathy-related actin mutants in differentiated C2C12 myotubes.* **BMC Cell Biol** (2007) 8:2. PMID: 17227580
+13. Bathe FS, Rommelaere H, et al. *Phenotypes of myopathy-related actin mutants in differentiated C2C12 myotubes.* **BMC Cell Biol** (2007) 8:2. DOI: 10.1186/1471-2121-8-2. PMID: 17227580
 
-14. Biesecker LG, Byrne AB, et al. *ClinGen guidance for use of the PP1/BS4 co-segregation and PP4 phenotype specificity criteria for sequence variant pathogenicity classification.* **Am J Hum Genet** (2024) 111(1):24-38. PMID: 38103548
+14. Biesecker LG, Byrne AB, et al. *ClinGen guidance for use of the PP1/BS4 co-segregation and PP4 phenotype specificity criteria for sequence variant pathogenicity classification.* **Am J Hum Genet** (2024) 111(1):24-38. DOI: 10.1016/j.ajhg.2023.11.009. PMID: 38103548
 
 ---
 
@@ -574,6 +610,7 @@ The following exons result in in-frame transcripts when skipped: **Exons 2, 4, 5
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.0.0 | 2026-08-09 | **Document corrections (ClinGen version unchanged):** Verified against `ClinGen_ACMG_Specifications_ACTA1_v1.0.pdf`, `ACTA1 PM3 guidance.docx`, `PP1 segration table.docx`, and `PVS1 flowchart for ACTA1.pptx`. Restored the PVS1 footnote markers and all rendered flowchart branches, including the Presumed-in-tandem N/A path and the literal full-deletion/initiation labels; documented undefined markers, the exact-10% gap, unstated NMD-boundary comparator, and trailing-comma exon list. Transcribed the complete PP1 chart and footnotes and documented its missing strength conversion and cap wording. Recorded PM3 values without inventing operators or intermediate ranges. Preserved the combining-rule conflicts involving PS3_Moderate and PP4 strengths. Corrected generic Appendix A claims that contradicted PM2. Restored the specification DOI and all 14 source-supplied reference DOIs. |
 | 1.0.0 | 8/7/2024 | Initial release |
 
 ---
