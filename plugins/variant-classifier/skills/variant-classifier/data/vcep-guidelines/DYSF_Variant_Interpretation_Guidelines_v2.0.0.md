@@ -2,6 +2,7 @@
 
 **Version:** 2.0.0
 **Released:** 7/9/2025
+**DOI:** 10.5281/zenodo.21434801
 **Affiliation:** Limb Girdle Muscular Dystrophy VCEP
 **Based on:** Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015
 
@@ -75,11 +76,13 @@ This VCEP uses a Bayesian point-based variant classification system.
 
 | Category | Point Range |
 |----------|-------------|
-| **Pathogenic** | ≥10 |
+| **Pathogenic** | 10 (comparator not specified) |
 | **Likely Pathogenic** | 6 - 9 |
 | **Uncertain Significance** | 0 - 5 |
 | **Likely Benign** | -6 to -1 |
-| **Benign** | ≤-7 or BA1 applies |
+| **Benign** | -7 (comparator not specified), or BA1 applies |
+
+**Source limitation:** The distributed specification prints the Pathogenic and Benign endpoints as bare values (`10` and `-7`), not as `≥10` and `≤-7`. No outer comparator is inferred here.
 
 ---
 
@@ -126,12 +129,12 @@ Please see the DYSF PVS1 flowchart in [Appendix A](#appendix-a-pvs1-decision-tre
 
 | Strength | Default Points | Criteria |
 |----------|----------------|----------|
-| **Strong** | 4 | Apply for 1 pathogenic OR 2 likely pathogenic variants resulting in the same amino acid change. The LP/P variant(s) must have been classified using LGMD VCEP specifications. Potential splice effects must be excluded (SpliceAI score ≤0.10 or experimental evidence of normal splicing). |
-| **Moderate** | 2 | Apply for 1 likely pathogenic variant resulting in the same amino acid change. The LP variant must have been classified using LGMD VCEP specifications. Potential splice effects must be excluded (SpliceAI score ≤0.10 or experimental evidence of normal splicing). |
+| **Strong** | 4 | Apply for 1 pathogenic OR 2 likely pathogenic variants resulting in the same amino acid change. The LP/P variant(s) must have been classified using LGMD VCEP specifications. Potential splice effects must be excluded for the variant under curation and all comparator variants (SpliceAI score ≤0.10 or experimental evidence of normal splicing). |
+| **Moderate** | 2 | Apply for 1 likely pathogenic variant resulting in the same amino acid change. The LP variant must have been classified using LGMD VCEP specifications. Potential splice effects must be excluded for the variant under curation and the comparator variant (SpliceAI score ≤0.10 or experimental evidence of normal splicing). |
 
 **Important Notes:**
 - PS1 can potentially be applied to multiple nucleotide changes at the same residue as long as the variant classification that determines the strength level does not depend on PS1 application
-- For missense variants encoded by the first or last 3 nucleotides of an exon, PS1 should be considered only in the context of altered splicing (see below), unless a splice effect has been experimentally ruled out
+- For missense variants encoded by the first or last 3 nucleotides of an exon, PS1 should be considered only in the context of altered splicing (see below), unless a splice effect has been experimentally ruled out for the variant under curation and the comparator variant(s)
 
 #### For Splice Variants (Nucleotide Change Mechanism)
 
@@ -167,9 +170,9 @@ Please see the DYSF PVS1 flowchart in [Appendix A](#appendix-a-pvs1-decision-tre
 
 | Strength | Default Points | Criteria |
 |----------|----------------|----------|
-| **Strong** | 4 | Variant-specific animal model meeting ALL of the following: (1) signs of myopathy or dystrophy in skeletal muscle, (2) effect on gene/protein function demonstrated, (3) behavioral signs of muscle weakness, (4) progression over time |
-| **Moderate** | 2 | Variant-specific animal model meeting: (1) signs of myopathy or dystrophy in skeletal muscle AND (2) effect on gene/protein function demonstrated. **OR** Dysferlin membrane localization functional score <0.25 AND concordant immunocytochemistry assay result (Tominaga et al. 2022; PMID: 35028538) |
-| **Supporting** | 1 | Variant expressed in heterologous cell lines/model organisms showing absent membrane localization of dysferlin protein, but fewer than 11 control variants were used |
+| **Strong** | 4 | Variant-specific animal model, regardless of species, meeting ALL of the following: (1) signs of myopathy or dystrophy in skeletal muscle, (2) effect on gene/protein function demonstrated (e.g., decreased protein expression, impaired membrane localization, or other functional abnormality), (3) behavioral signs of muscle weakness, (4) progression over time |
+| **Moderate** | 2 | Variant-specific animal model meeting: (1) signs of myopathy or dystrophy in skeletal muscle AND (2) effect on gene/protein function demonstrated (e.g., decreased protein expression, impaired membrane localization, or other functional abnormality). **OR** A clinically validated dysferlin membrane-localization assay using ≥11 control variants meeting Brnich et al. 2020 control requirements, with functional score <0.25 **AND** a concordant non-functional immunocytochemistry result (Tominaga et al. 2022; PMID: 35028538) |
+| **Supporting** | 1 | Variant expressed in heterologous cell lines/model organisms showing absent membrane localization of dysferlin protein, but fewer than 11 control variants were used, in accordance with Brnich et al. 2020 (PMID: 31892348) |
 
 **Important Notes:**
 - For any variant type, experimental evidence for altered splicing should be scored under PVS1 in accordance with the SVI Working Group decision tree (Walker et al. 2023; PMID: 37352859)
@@ -183,6 +186,8 @@ See [Appendix D](#appendix-d-ps3bs3-approved-functional-assays) for approved ass
 ### PS4 - Prevalence in Affected
 
 **Original ACMG Summary:** The prevalence of the variant in affected individuals is significantly increased compared to the prevalence in controls.
+
+**Original ACMG Notes:** Relative risk or odds ratio must be strict `>5.0`, with a confidence interval that does not include 1.0. For very rare variants where case-control studies may not reach statistical significance, observation in multiple unrelated patients with the same phenotype and absence in controls may be used as Moderate evidence.
 
 **VCEP Specifications:**
 
@@ -412,6 +417,8 @@ Use the PP4 table in [Appendix C](#appendix-c-pp4-phenotype-table) to determine 
 - This value can be taken directly from gnomAD
 - Do not use data for which the variant does not pass quality control filters
 - See [Appendix G](#appendix-g-benign-frequency-exceptions) for a list of variants defined as exceptions to the benign frequency rules
+- Ongoing updates to this list will be available at the [LGMD VCEP webpage](https://clinicalgenome.org/affiliation/50061/)
+- Variants whose frequency may not be reliable (e.g., variants that may reflect a sequencing artifact) should be critically evaluated and brought to the attention of the LGMD VCEP
 
 ---
 
@@ -460,7 +467,7 @@ Use the PP4 table in [Appendix C](#appendix-c-pp4-phenotype-table) to determine 
 | **BP1** | Not Applicable | - | Not applicable as missense variants are also known to cause disease. |
 | **BP2** | Supporting | -1 | Use when variant is found *in cis* with a variant classified as pathogenic or likely pathogenic using the LGMD VCEP specifications. |
 | **BP3** | Not Applicable | - | Not applicable. Repetitive regions without a known function are not well described in DYSF. |
-| **BP4** | Supporting | -1 | For missense variants: REVEL ≤0.1 AND SpliceAI ≤0.05. For variants that may affect splicing: SpliceAI ≤0.05. For any variant with RNA/experimental data indicating no impact on splicing, follow SVI Working Group recommendations. |
+| **BP4** | Supporting | -1 | For missense variants: REVEL ≤0.1 AND SpliceAI ≤0.05. For variants that may affect splicing: SpliceAI ≤0.05 (scores can be calculated at https://spliceailookup.broadinstitute.org/). For any variant with RNA/experimental data indicating no impact on splicing, follow SVI Working Group recommendations. |
 | **BP5** | Not Applicable | - | Not applicable. |
 | **BP6** | Not Applicable | - | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Strong | -4 | For any variant experimentally shown to have no splice impact, follow SVI Working Group recommendations (Walker et al. 2023; PMID: 37352859). Apply BP7_Strong if a splicing assay shows no effect on splicing and a protein impact can be ruled out. |
@@ -472,14 +479,16 @@ Use the PP4 table in [Appendix C](#appendix-c-pp4-phenotype-table) to determine 
 
 ### Appendix A: PVS1 Decision Tree
 
+**Distributed-artifact limitations:** The flowchart uses footnote markers `a`, `b`, `c`, and `d`, but neither the slide nor its speaker notes defines them. The flowchart also uses strict `>10%` and `<10%` branches, leaving a variant that removes exactly 10% of the protein unassigned. These gaps are not resolved here. Paths for a critical truncated/altered region are struck through because the VCEP specifies no such region.
+
 #### Nonsense or Frameshift Variants
 
 ```
 Nonsense or Frameshift
     │
     ├── Predicted to undergo NMD (Premature truncation in codons 35-2050)
-    │       │
-    │       └── PVS1
+    │       ├── Exon present in NM_003494.4 → PVS1
+    │       └── Exon absent from NM_003494.4 → N/A
     │
     └── Not predicted to undergo NMD
             │
@@ -487,42 +496,42 @@ Nonsense or Frameshift
             │       │
             │       └── PVS1_Moderate
             │
-            └── Other cases
-                    │
-                    ├── Exon is present in biologically relevant transcript(s)
-                    │       │
-                    │       ├── Truncated/altered region is critical to protein function (none specified)
-                    │       │       └── PVS1_Strong
-                    │       │
-                    │       └── Role of region in protein function is unknown
-                    │               │
-                    │               ├── LoF variants in this exon are frequent in general population
-                    │               │       └── N/A
-                    │               │
-                    │               └── LoF variants not frequent AND exon is present
-                    │                       │
-                    │                       ├── Variant removes >10% of protein → PVS1_Strong
-                    │                       │
-                    │                       └── Variant removes <10% of protein → PVS1_Moderate
-                    │
-                    └── Exon is absent from biologically relevant transcript(s) → N/A
+            └── Role of region in protein function is unknown
+                    ├── LoF variants frequent and/or exon absent from NM_003494.4 → N/A
+                    └── LoF variants not frequent AND exon present in NM_003494.4
+                            ├── Variant removes >10% of protein → PVS1_Strong
+                            └── Variant removes <10% of protein → PVS1_Moderate
 ```
 
 #### Canonical Splice Site Variants (GT-AG ±1,2)
 
 Use SpliceAI prediction of the most likely splice effect, then determine the expected protein consequence.
 
-**If exon skipping or cryptic splice site disrupts reading frame and is predicted to undergo NMD:** → PVS1
+**If exon skipping or cryptic splice site disrupts reading frame and is predicted to undergo NMD:**
+- Exon present in NM_003494.4 → PVS1
+- Exon absent from NM_003494.4 → N/A
 
-**If exon skipping or cryptic splice site preserves reading frame:**
-- Follow the decision tree for in-frame changes
-- In-frame exons (exon skipping not expected to result in NMD): 7, 8, 9, 14, 17, 19, 24, 25, 30, 32, 34, 35, 36, 37, 38, 41, 42, 43, 45, 49, 55
+**If exon skipping or cryptic splice-site use disrupts the reading frame but is not predicted to undergo NMD, or preserves the reading frame:**
+- LoF variants frequent and/or exon absent from NM_003494.4 → N/A
+- LoF variants not frequent AND exon present in NM_003494.4:
+  - Variant removes >10% of protein → PVS1_Strong
+  - Variant removes <10% of protein → PVS1_Moderate
+- The critical-region branch is struck through (`none specified`) and is not applicable
+
+**In-frame exons** (exon skipping is not expected to result in NMD): 7, 8, 9, 14, 17, 19, 24, 25, 30, 32, 34, 35, 36, 37, 38, 41, 42, 43, 45, 49, 55
 
 #### Deletion Variants (Single Exon to Full Gene)
 
-**Single/multi-exon deletion disrupting reading frame and predicted to undergo NMD:** → PVS1
+**Single/multi-exon deletion disrupting reading frame and predicted to undergo NMD:**
+- Exon present in NM_003494.4 → PVS1
+- Exon absent from NM_003494.4 → N/A
 
-**Single/multi-exon deletion preserving reading frame:** → Follow in-frame decision tree
+**Single/multi-exon deletion disrupting reading frame but not predicted to undergo NMD, or preserving reading frame:**
+- LoF variants frequent and/or exon absent from NM_003494.4 → N/A
+- LoF variants not frequent AND exon present in NM_003494.4:
+  - Variant removes >10% of protein → PVS1_Strong
+  - Variant removes <10% of protein → PVS1_Moderate
+- The critical-region branch is struck through (`none specified`) and is not applicable
 
 **Full gene deletion:** → PVS1
 
@@ -531,17 +540,21 @@ Use SpliceAI prediction of the most likely splice effect, then determine the exp
 | Scenario | PVS1 Strength |
 |----------|---------------|
 | Proven in tandem, reading frame disrupted, NMD predicted | PVS1 |
-| Proven in tandem, no/unknown impact on reading frame | N/A |
+| Proven in tandem, no or unknown impact on reading frame and NMD predicted to occur | N/A |
 | Presumed in tandem, reading frame disrupted, NMD predicted | PVS1_Strong |
 | Proven not in tandem | N/A |
+
+**Source wording anomaly:** The second row literally combines "no or unknown impact on reading frame" with "NMD predicted to occur" and assigns N/A. This apparently inconsistent wording is preserved without reconciliation.
 
 #### Initiation Codon Variants
 
 | Scenario | PVS1 Strength |
 |----------|---------------|
-| Different functional transcript uses alternative start codon | N/A |
+| Different functional transcript uses alternative start codon (path is struck through in the source) | N/A |
 | No known alternative start codon, ≥1 pathogenic variant upstream of closest potential in-frame start codon | PVS1_Moderate |
 | No known alternative start codon, no pathogenic variants upstream | PVS1_Supporting |
+
+The source notes that the MANE Select transcript, NM_001130987, is not significantly expressed in skeletal muscle (PMID: 19221801; GTEx).
 
 ---
 
@@ -637,7 +650,7 @@ In the curation of variant A: PM3 cannot be awarded because variant B was classi
 | **PMID** | 35028538 |
 | **DOI** | 10.1016/j.isci.2021.103667 |
 | **Author/Year** | Tominaga, 2022 |
-| **Assay Description** | In vitro cell-based assay of membrane localization based on flow cytometry and immunofluorescence |
+| **Assay Description** | In vitro cell-based asssay [sic] of membrane localization based on flow cytometry and immunofluorescence |
 | **Material** | Patient variants cloned into bicistronic expression vector system and transfected into HEK293T cells |
 | **Readout Type** | Quantitative (flow cytometry-based 2A assay); Qualitative (fluorescence immunocytochemistry assay) |
 | **Readout Description** | Cell surface expression of variant dysferlin protein relative to wild-type (WT) dysferlin protein, determined via flow cytometry (2A assay); plasma membrane localization of variant dysferlin based on immunofluorescence staining |
@@ -647,9 +660,11 @@ In the curation of variant A: PM3 cannot be awarded because variant B was classi
 | **Negative Control** | Met; L1341P |
 | **Validation Controls (P/LP)** | 3 validated by VCEP |
 | **Validation Controls (B/LB)** | 9 validated by VCEP |
+| **Statistical Analysis** | N/A; expression relative to WT |
 | **Threshold for Normal** | Membrane localization functional score ≥0.25 on 2A assay |
 | **Threshold for Abnormal** | Membrane localization functional score <0.25 on 2A assay AND concordant immunocytochemistry assay result |
-| **Approved Strength** | PS3_Moderate; BS3 not applied |
+| **Approved Assay** | Yes |
+| **Proposed Strength** | PS3_Moderate; BS3 not applied |
 
 #### Variant-Specific Animal Models
 
@@ -698,23 +713,19 @@ Animal models may be assessed on a case-by-case basis. Criteria for each strengt
 
 Categorization of splicing data need to consider multiple factors, including assay technique, RNA source, and gene-specific knowledge.
 
+**Distributed-artifact limitation:** The PNG begins with a clipped incoming arrow at its left boundary; the first content box and its text are intact, but the off-canvas predecessor is not available. Markers `(d)` and `(e)` are printed without definitions. No missing predecessor or footnote definition is inferred here.
+
 #### Decision Flow
 
-1. **RNA/Splicing Data Available?**
-   - If NO → No variant-specific observed impact → N/A
-   - If YES → Proceed to categorization
+1. **No variant-specific observed impact:**
+   - **Silent/intronic variants:** Apply BP7_S (RNA), consider splicing-prediction data, and combine as BP7_S (RNA) + prediction (PP3/BP4).
+   - **Other variants:** Assess pathogenicity through the protein pathway, then ask whether protein impact can be ruled out from functional and/or clinical data.
+     - **Yes:** BP7_S (RNA) + prediction (PP3/BP4).
+     - **No:** Document `BP7_S (RNA) Not Met` to show that the data were present and reviewed.
 
-2. **Variant Type:**
-   - **Silent/Intronic variants:**
-     - BP7_S (RNA) applied → Consider splicing predictive data
-     - Can the protein impact be ruled out (based on functional and/or clinical data)?
-       - YES → BP7_S (RNA) + prediction (PP3/BP4)
-       - NO → Document as "BP7_S (RNA) Not Met" to indicate that data was present and reviewed
-
-   - **Other variants:**
-     - Assess pathogenicity using protein pathway
-     - If variant-specific impact observed (compared to controls) → Follow PVS1 flowchart for OBSERVED RNA impact for your gene
-     - PVS1_Strength assigned to at least 1 transcript
+2. **Variant-specific impact observed relative to controls:**
+   - Follow the DYSF PVS1 flowchart for observed RNA impact.
+   - If PVS1 strength is assigned to at least one transcript, assess the proportion of alternative transcripts produced by the variant allele.
 
 3. **Proportion of Alternative Transcripts (inferred to be) Produced by Variant Allele:**
    - If background rate is considered to be at low-moderate levels suggestive of being tolerated, consider reducing PVS1 (RNA) codes by an additional level
@@ -738,8 +749,11 @@ The following variants are defined as exceptions to the benign frequency rules (
 | Variant | Status | Comment |
 |---------|--------|---------|
 | NM_003494.3(DYSF):c.2643+1G>A | BS1 exception | Common pathogenic variant |
+| NM_213599.3(ANO5):c.191dup (p.Asn64LysfsTer15) | BS1 exception | Common pathogenic variant |
+| NM_000070.3(CAPN3):c.1746-20C>G | BS1 exception | Proposed hypomorph |
+| NM_000070.3(CAPN3):c.2120A>G (p.Asp707Gly) | BS1 exception | Likely founder in East Asian population |
 
-**Note:** Ongoing updates to this list will be available at the [LGMD VCEP webpage](https://clinicalgenome.org/affiliation/50061/).
+**Note:** The distributed workbook is panel-wide. Only the first row is DYSF-specific; the other three rows are preserved because they are present in the DYSF package. Ongoing updates to this list will be available at the [LGMD VCEP webpage](https://clinicalgenome.org/affiliation/50061/).
 
 ---
 
@@ -765,16 +779,28 @@ The following variants are defined as exceptions to the benign frequency rules (
 |---------|------|---------|
 | 2.0.0 | 7/9/2025 | Bayesian adaptation; Corrections to PVS1 flowchart in-frame exons; Clarifications on experimental RNA/splice data usage; Clarifications on gnomAD population frequency data; Reduced weighting of de novo observation; Updated PM5 guidance |
 
+**Document corrections (2026-08-09), source-verified against `ClinGen_ACMG_Specifications_DYSF_v2.0.pdf`, `PVS1 flowchart DYSF.pptx`, `PP4 table DYSF.pptx`, `PS3 assays DYSF.xlsx`, `PM3 table.pptx`, `PM3 co-application examples.docx`, `PS1 splicing.png`, `experimental splice data.png`, and `benign frequency exceptions.xlsx`. No change to the underlying ClinGen specification version.**
+
+- **PVS1 flowchart transcription corrected:** the exon-presence checks on NMD-producing nonsense/frameshift, splice, and deletion paths were restored; struck-through critical-region and alternative-start paths are no longer presented as operative; deletion and in-frame paths now retain the source's population/transcript checks. The strict `>10%`/`<10%` gap and undefined `a`/`b`/`c`/`d` markers are explicit rather than inferred.
+- **PVS1 source anomaly exposed:** the duplication branch's literal combination of "no or unknown impact on reading frame" with "NMD predicted to occur" is preserved and flagged rather than harmonized.
+- **Stripped core-PDF qualifications restored:** PS1 now requires splice-effect exclusion for both the variant under curation and comparator(s); PS3 restores the regardless-of-species wording and Brnich control conditions; PS4 restores the strict `>5.0` RR/OR note and rare-variant Moderate provision; BS1 restores the update/unreliable-frequency cautions; BP4 restores the supplied SpliceAI lookup.
+- **PS3 workbook fully represented:** the Tominaga Moderate pathway now includes the source requirement for a clinically validated assay with at least 11 qualifying control variants. Statistical-analysis, approval, and proposed-strength fields were restored, and the source's `asssay` typo is preserved and flagged.
+- **Experimental-splice flow corrected:** the silent/intronic and other-variant branches now follow the arrows in the distributed PNG. The clipped incoming arrow and undefined `(d)`/`(e)` markers are documented without reconstruction.
+- **Classification endpoints corrected:** invented `≥10` and `≤-7` operators were removed because the core PDF prints bare `10` and `-7` values.
+- **Benign-frequency supplement fully transcribed:** the three non-DYSF panel rows shipped in the workbook were restored and identified as such.
+- **Metadata restored:** the core PDF's DOI is now recorded.
+- **Reference provenance tightened:** an incorrect Tavtigian 2018 expansion of the source's Tavtigian 2020 attribution and an unsupported NMD bibliography entry were removed; source-supplied names, years, PMIDs, and DOI are retained below.
+
 ---
 
-## References
+## Source-Supplied Citations and Identifiers
 
-- Richards S, et al. Standards and guidelines for the interpretation of sequence variants. Genet Med. 2015;17(5):405-424. (PMID: 25741868)
-- Tavtigian SV, et al. Modeling the ACMG/AMP variant classification guidelines as a Bayesian classification framework. Genet Med. 2018;20(9):1054-1060.
-- Brnich SE, et al. Recommendations for application of the functional evidence PS3/BS3 criterion using the ACMG/AMP sequence variant interpretation framework. Genome Med. 2020;12(1):3. (PMID: 31892348)
-- Walker LC, et al. Using the ACMG/AMP framework to capture evidence related to predicted and observed impact on splicing: Recommendations from the ClinGen SVI Splicing Subgroup. Am J Hum Genet. 2023;110(7):1046-1067. (PMID: 37352859)
-- Tominaga K, et al. A flow cytometric-based functional dysferlin assay for clinical classification of dysferlinopathy. iScience. 2022;25(1):103667. (PMID: 35028538)
-- Brogna S, Wen J. Nonsense-mediated mRNA decay (NMD) mechanisms. Nat Struct Mol Biol. 2009;16(2):107-113.
+- The core specification describes its framework as "Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015"; it does not supply full bibliographic details for those citations.
+- Brnich et al. 2020, PMID: 31892348.
+- Walker et al. 2023, PMID: 37352859.
+- Tominaga, 2022, PMID: 35028538, DOI: 10.1016/j.isci.2021.103667 (from `PS3 assays DYSF.xlsx`).
+- PMID: 19221801 and GTEx are cited for the note about NM_001130987 expression; the package does not expand that PMID into a bibliography entry.
+- PMID: 27618451 is cited for the codons 1-34 PVS1 branch; the package does not expand it into a bibliography entry.
 
 ---
 

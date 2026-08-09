@@ -3,14 +3,15 @@
 **Version:** 2.0.0
 **Released:** 7/9/2025
 **Affiliation:** Limb Girdle Muscular Dystrophy VCEP
-**Based on:** Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015 ACMG/AMP Guidelines
+**Type:** Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015
+**DOI:** 10.5281/zenodo.21434844
 
 ---
 
 ## Release Notes (v2.0.0)
 
 - Specification type defined as Bayesian adaptation
-- Correction to in-frame exons in PVS1 flowchart
+- Correction to in-frame exons in PVS1 flowchart: PVS1
 - Clarification on use of experimental RNA/splice data: PVS1, PP3, BP4, BP7
 - Clarification on use of gnomAD population frequency data (no change to thresholds): PM2, BA1, BS1
 - Reduced weighting of de novo observation: PS2, PM6
@@ -26,7 +27,7 @@
 | **HGNC Name** | calpain 3 |
 | **Transcript** | NM_000070.3 |
 | **Disease** | Autosomal recessive limb-girdle muscular dystrophy (MONDO:0015152) |
-| **Inheritance** | Autosomal recessive |
+| **Inheritance** | Autosomal recessive inheritance |
 
 ---
 
@@ -81,38 +82,46 @@ Please see the CAPN3 PVS1 flowchart in Appendix A. For any variant with RNA/spli
 
 | Strength | Point Value | Criteria |
 |----------|-------------|----------|
-| **Very Strong** | 8 | See PVS1 flowchart. Applies to nonsense/frameshift variants predicted to undergo NMD (premature truncation in codons 35-795), canonical splice site variants leading to frameshift + NMD, single/multi-exon deletions disrupting reading frame + NMD, full gene deletions, and duplications proven in tandem with frameshift + NMD. |
-| **Strong** | 4 | See PVS1 flowchart. Applies to variants where truncated/altered region is critical to protein function, in-frame exon skipping removing >10% of protein, presumed in-tandem duplications with frameshift + NMD. |
-| **Moderate** | 2 | See PVS1 flowchart. Applies to variants where role of region in protein function is unknown, in-frame exon skipping removing <10% of protein, initiation codon variants with pathogenic variants upstream of closest potential in-frame start codon, premature truncation within first 100 bp (codons 1-34). |
-| **Supporting** | 1 | See PVS1 flowchart. Applies to initiation codon variants with a different functional transcript using alternative start codon. |
+| **Very Strong** | 8 | See the CAPN3 PVS1 flowchart. |
+| **Strong** | 4 | See the CAPN3 PVS1 flowchart. |
+| **Moderate** | 2 | See the CAPN3 PVS1 flowchart. |
+| **Supporting** | 1 | See the CAPN3 PVS1 flowchart. |
+
+**Distributed-source limitations and contradictions:**
+
+- The PowerPoint uses footnote markers **a**, **b**, **c**, and **d**, but neither the slide nor its speaker notes defines them. The notes contain only template instructions. Do not infer the footnotes.
+- Marker placement is nevertheless visible: **a** labels the GT-AG ±1,2 splice-site branch; **b** labels NMD predictions; **c** labels the struck-through critical-region branches; and **d** labels the full-gene-deletion PVS1 endpoint.
+- Every percentage branch uses strict **>10%** and **<10%** comparators. A variant that removes exactly 10% of the protein has no assigned path.
+- The PDF publishes a PVS1 Supporting block (1 point), but the flowchart's only `PVS1_Supp` endpoint is struck through. The package therefore does not specify an active PVS1 Supporting scenario.
+- The flowchart strikes through every "critical to protein function (none specified)" branch and its `PVS1_Strong` endpoint.
 
 #### PVS1 Decision Tree Key Points for CAPN3
 
 **Nonsense or Frameshift:**
 - Predicted to undergo NMD (premature truncation in codons 35-795): **PVS1**
-- Not predicted to undergo NMD: Evaluate based on region criticality and percent of protein removed
-- Premature truncation within first 100 bp (codons 1-34): **PVS1_Moderate**
+- Not predicted to undergo NMD: evaluate the active role-unknown branches using strict >10% and <10% paths; exactly 10% is unassigned
+- Premature truncation within first 100 bp (codons 1-34; PMID: 27618451): **PVS1_Moderate**
 
 **GT-AG +/-1,2 Splice Sites:**
 - Use SpliceAI prediction for most likely splice effect
 - Exon skipping/cryptic splice disrupting reading frame + NMD predicted: **PVS1**
-- Exon skipping/cryptic splice preserving reading frame: Evaluate based on region criticality
+- Exon skipping/cryptic splice preserving reading frame: evaluate the active role-unknown branches using strict >10% and <10% paths; exactly 10% is unassigned
 - In-frame exons where exon skipping is NOT expected to result in NMD: 1, 6, 7, 9, 12, 15, 16, 17, 20, 22, 24
 
 **Deletions:**
 - Single/multi-exon deletion disrupting reading frame + NMD predicted: **PVS1**
-- Single/multi-exon deletion preserving reading frame: Evaluate based on region criticality
+- Single/multi-exon deletion preserving reading frame: evaluate the active role-unknown branches using strict >10% and <10% paths; exactly 10% is unassigned
 - Full gene deletion: **PVS1**
 
 **Duplications (must be completely contained within gene):**
 - Proven in tandem with reading frame disrupted + NMD: **PVS1**
 - Presumed in tandem with reading frame presumed disrupted + NMD: **PVS1_Strong**
-- No or unknown impact on reading frame: **N/A**
+- Proven in tandem with no or unknown impact on reading frame and NMD predicted to occur: **N/A**
 
 **Initiation Codon:**
-- Different functional transcript uses alternative start codon: **PVS1_Supporting**
 - No known alternative start codon + pathogenic variant(s) upstream of closest potential in-frame start codon: **PVS1_Moderate**
-- No known alternative start codon + no pathogenic variants upstream: **N/A**
+- ~~Different functional transcript uses alternative start codon: N/A~~ *(branch and endpoint struck through in the source flowchart)*
+- ~~No pathogenic variants upstream of closest potential in-frame start codon: PVS1_Supp~~ *(branch and endpoint struck through in the source flowchart)*
 
 ---
 
@@ -188,11 +197,17 @@ For any variant type, experimental evidence for altered splicing should be score
 
 **Note:** Apply PS3 only once, for the piece of evidence that meets the highest possible strength level.
 
+The PDF also publishes a PS3 Supporting block with a 1-point default, but that block states only that in-vitro assays are not applicable, redirects altered-splicing evidence to PVS1, and repeats the apply-once instruction. It provides no positive condition for PS3_Supporting; do not infer one.
+
 ---
 
 ### PS4 - Prevalence in Affected
 
 **Original ACMG Summary:** The prevalence of the variant in affected individuals is significantly increased compared to the prevalence in controls.
+
+**Note 1:** Relative risk (RR) or odds ratio (OR), as obtained from case-control studies, is >5.0 and the confidence interval around the estimate of RR or OR does not include 1.0. See manuscript for detailed guidance.
+
+**Note 2:** In instances of very rare variants where case-control studies may not reach statistical significance, the prior observation of the variant in multiple unrelated patients with the same phenotype, and its absence in controls, may be used as moderate-level evidence.
 
 **VCEP Specifications:**
 
@@ -266,12 +281,15 @@ Use the SVI Working Group's recommended point system to determine PM3 strength.
 | ≥2.0 but <4.0 | PM3_Strong | 4 |
 | ≥4.0 | PM3_Very Strong | 8 |
 
-#### Important Notes on Phase Unknown:
+#### PM3 Source Footnotes
 
-PM3 points should **NOT** be awarded for variants identified in unknown phase under the following circumstances:
-- The same variants were ever confirmed in cis (e.g., in a different patient in the literature)
-- gnomAD co-occurrence data ([gnomAD variant co-occurrence](https://gnomad.broadinstitute.org/variant-cooccurrence)) predict the variants may be part of the same haplotype in at least one genetic ancestry group
-- More than 2 variants are reported in the patient, none of which can be classified as likely benign or benign
+1. Author assertions on phase, including assertions based on allele-specific transcript expression, are acceptable.
+2. PM3 points should **NOT** be awarded for variants identified in unknown phase under the following circumstances:
+   - The same variants were ever confirmed in cis (e.g., in a different patient in the literature)
+   - gnomAD co-occurrence data ([gnomAD variant co-occurrence](https://gnomad.broadinstitute.org/variant-cooccurrence)) predict the variants may be part of the same haplotype in at least one genetic ancestry group
+   - More than 2 variants are reported in the patient, none of which can be classified as likely benign or benign
+3. Any variant awarded points as likely pathogenic or pathogenic must have been classified using the LGMD VCEP specifications.
+4. For any variant awarded points as VUS, benign-frequency codes BA1 and BS1 cannot be applicable.
 
 #### PM3 Co-Application Note:
 
@@ -392,14 +410,14 @@ Use the PP4 table to determine the appropriate strength level. Apply PP4 only on
 | **Requirement** | **Supporting** | **Moderate** | **Strong** |
 | **Clinical:** Progressive limb-girdle pattern of muscle weakness observed over ≥6 months OR clinical suspicion of LGMD | Required | Required | Required |
 | **Genetic testing:** 2 presumed diagnostic variants in CAPN3, 1 of which is the variant under curation | Required | Required | Required |
-| **Protein expression:** Severely reduced (≤~30% normal) expression of full-length calpain-3 in skeletal muscle (e.g., WB) | Not required | Required (Option A) | Not applicable |
+| **Protein expression:** Severely reduced (<~30% normal) expression of full-length calpain-3 in skeletal muscle (e.g., WB) | Not required | Required (Option A) | Not applicable |
 | **Protein expression:** Absent/trace expression of full-length calpain-3 in skeletal muscle (e.g., WB) | Not required | Not applicable | Required (Option B) |
 
 **Notes:**
 - Clinical findings may be accompanied by supporting EMG, MRI, muscle histology, elevated CK but not required
 - Genetic testing: Screening of all exons and exon/intron boundaries of CAPN3 required; screening of additional neuromuscular disease genes (e.g., through a panel) is recommended but not required
-- For genetic testing: If variants have not yet been curated by the LGMD VCEP, confirm they cannot be classified as LB or B (e.g., through application of BA1, BS1, and/or BP4/BP7). If phase is unknown, do not apply if the identified variants were ever confirmed in cis or if gnomAD co-occurrence data predict the variants may be part of the same haplotype
-- "Severely reduced" means ≤~30% normal; may also be described as "drastically" or "strongly" reduced
+- For genetic testing: If variants have not yet been curated by the LGMD VCEP, confirm they cannot be classified as LB or B (e.g., through application of BA1, BS1, and/or BP4/BP7). If phase is unknown, do not apply if the identified variants were ever confirmed in cis or if gnomAD co-occurrence data predict the variants may be part of the same haplotype in at least one genetic ancestry group
+- "Severely reduced" means **<~30% normal**; may also be described as "drastically" or "strongly" reduced. The unusual `<~` comparator is reproduced verbatim from the source.
 - "Absent" may also be described as "trace" or "barely detectable"
 
 **Important:** When applied together, PP1 and PP4 cannot exceed 5 Bayesian points (Supporting + Strong or Moderate + Moderate). If PP1_Moderate is applied and the criteria for PP4_Strong are also met, a downgraded PP4_Moderate can be applied.
@@ -424,7 +442,7 @@ Use the PP4 table to determine the appropriate strength level. Apply PP4 only on
 
 ### BA1 - Allele Frequency >0.3%
 
-**Original ACMG Summary:** Allele frequency is above 5% in population databases.
+**Original ACMG Summary:** Allele frequency is above 5% in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.
 
 **VCEP Specifications:**
 
@@ -455,12 +473,16 @@ Use the PP4 table to determine the appropriate strength level. Apply PP4 only on
 - See benign frequency exceptions table below
 - Variants whose frequency may not be reliable should be critically evaluated
 
-#### Benign Frequency Exceptions for CAPN3
+#### Benign Frequency Exceptions
+
+The distributed workbook is panel-wide and contains all four rows below. The two CAPN3 rows are directly applicable to this guideline.
 
 | Variant | Status | Comment |
 |---------|--------|---------|
-| NM_000070.3(CAPN3):c.1746-20C>G | BS1 exception | Proposed hypomorph |
-| NM_000070.3(CAPN3):c.2120A>G (p.Asp707Gly) | BS1 exception | Likely founder in East Asian population |
+| NM_003494.3(DYSF):c.2643+1G>A | BS1 exception | common pathogenic variant |
+| NM_213599.3(ANO5):c.191dup (p.Asn64LysfsTer15) | BS1 exception | common pathogenic variant |
+| NM_000070.3(CAPN3):c.1746-20C>G | BS1 exception | proposed hypomorph |
+| NM_000070.3(CAPN3):c.2120A>G (p.Asp707Gly) | BS1 exception | likely founder in East Asian population |
 
 ---
 
@@ -521,11 +543,13 @@ Use the PP4 table to determine the appropriate strength level. Apply PP4 only on
 
 | Category | Point Range |
 |----------|-------------|
-| **Pathogenic** | ≥10 |
+| **Pathogenic** | 10 (the source prints no comparator or range) |
 | **Likely Pathogenic** | 6 - 9 |
 | **Uncertain Significance** | 0 - 5 |
 | **Likely Benign** | -6 to -1 |
-| **Benign** | ≤-7 OR BA1 applies |
+| **Benign** | -7 (the source prints no comparator or range) |
+
+**Additional Note:** A Benign classification can also be assigned when BA1 applies.
 
 ### Bayesian Point Values Summary
 
@@ -581,6 +605,8 @@ Use the PP4 table to determine the appropriate strength level. Apply PP4 only on
 
 ### Appendix A: PVS1 Flowchart for CAPN3
 
+The transcription below preserves which branches are active. In the distributed slide, all "critical to protein function (none specified)" branches and their `PVS1_Strong` endpoints are struck through. The two inactive initiation-codon paths are likewise struck through. Footnote markers **a**, **b**, **c**, and **d** are present but undefined. Strict **>10%** and **<10%** branches leave exactly 10% unassigned.
+
 #### Nonsense or Frameshift Variants
 
 ```
@@ -591,13 +617,12 @@ Nonsense or Frameshift
          │
          └── NOT predicted to undergo NMD
                    │
-                   ├── Premature truncation within first 100 bp (codons 1-34)
+                   ├── Premature truncation within first 100 bp (codons 1-34; PMID: 27618451)
                    │         └── PVS1_Moderate
                    │
                    └── Exon present in biologically relevant transcript (NM_000070.3)
                              │
-                             ├── Truncated/altered region critical to protein function (none specified)
-                             │         └── PVS1_Strong
+                             ├── [INACTIVE/STRUCK THROUGH: critical region (none specified) → PVS1_Strong]
                              │
                              └── Role of region in protein function unknown
                                        │
@@ -633,8 +658,7 @@ GT-AG ±1,2 splice sites
                              └── In-frame exons (exon skipping NOT expected to result in NMD):
                                  1, 6, 7, 9, 12, 15, 16, 17, 20, 22, 24
                                        │
-                                       ├── Truncated/altered region critical (none specified)
-                                       │         └── PVS1_Strong
+                                       ├── [INACTIVE/STRUCK THROUGH: critical region (none specified) → PVS1_Strong]
                                        │
                                        └── Role unknown
                                                  │
@@ -656,7 +680,7 @@ GT-AG ±1,2 splice sites
 Deletion (single exon to full gene)
          │
          ├── Full gene deletion
-         │         └── PVS1
+         │         └── PVS1 [undefined marker d]
          │
          ├── Single/multi-exon deletion - DISRUPTS reading frame
          │         │
@@ -697,16 +721,13 @@ Duplication (≥1 exon, completely contained within gene)
 ```
 Initiation Codon
          │
-         ├── Different functional transcript uses alternative start codon
-         │         └── PVS1_Supporting
-         │
          └── No known alternative start codon in other transcripts
                    │
                    ├── ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon
                    │         └── PVS1_Moderate
-                   │
-                   └── No pathogenic variants upstream of closest potential in-frame start codon
-                             └── N/A
+
+[INACTIVE/STRUCK THROUGH: Different functional transcript uses alternative start codon → N/A]
+[INACTIVE/STRUCK THROUGH: No pathogenic variants upstream of closest potential in-frame start codon → PVS1_Supp]
 ```
 
 ---
@@ -729,12 +750,14 @@ Initiation Codon
 - The strength of the prediction for the VUA must be of similar or higher strength than the strength of the prediction for the comparison [likely] pathogenic variant
 - For an exonic variant, predicted or proven functional effect of missense substitution(s) encoded by the VUA and (likely) pathogenic variant should also be considered before application of this code
 - Dinucleotide positions refer to donor and acceptor dinucleotides in reference transcript(s) used for curation
-- Designated donor and acceptor motif ranges should be based on position weight matrices for intron category. For GT-AG introns: donor motif = last 3 bases of exon + 6 nucleotides of intronic sequence adjacent to exon; acceptor motif = first base of exon + 20 nucleotides upstream from exon boundary
+- Designated donor and acceptor motif ranges should be based on position weight matrices for intron category. For GT-AG introns: donor motif = last 3 bases of exon + 6 nucleotides of intronic sequence adjacent to exon; acceptor motif = first base of exon + 20 nucleotides upstream from exon boundary. Consider other motif ranges for non-GT-AG introns.
 - If relevant, splicing assay data for a pathogenic variant outside a ±1,2 dinucleotide position may be used to update a PVS1 decision tree and hence the applicable PVS1 code for a ±1,2 dinucleotide variant
 
 ---
 
 ### Appendix C: PM3 Co-Application Examples
+
+**Source typo note:** The distributed DOCX has unmatched opening parentheses in several example evidence-combination sentences (including the `e.g.` combinations for variants B in both examples). The structured combinations below preserve the criterion content while making that punctuation defect explicit.
 
 #### Example 1: PM3 can be awarded to both variants without circularity
 
@@ -768,6 +791,8 @@ Initiation Codon
 - For Variant B curation: PM3 can be awarded for patient X (confirmed in trans with LP variant A = 1.0 pt). Final classification: **LP** (PS3_Moderate + PP3 + PM2_Supporting + PP4 [patient Y] + PM3 [patient X])
 - For Variant A curation: PM3 CANNOT be awarded for patient X because variant B was classified as VUS independent of patient X observation, and 0.25 PM3 pts (for being in trans with VUS) is insufficient for any PM3 strength level. However, PP4 can be applied. Final classification: **P** (PVS1 + PM2_Supporting + PP4 [patient X])
 
+**Source footnotes:** Although variant A's final classification is P and variant B's is LP, the classification used when awarding PM3 points for their co-observation in patient X is the classification reached without evidence from that co-observation. This avoids circularity and double counting.
+
 ---
 
 ### Appendix D: Experimental Splice Data Interpretation
@@ -781,21 +806,33 @@ For any variant with RNA/splicing data, follow the SVI Working Group's recommend
 - RNA source
 - Gene-specific knowledge
 
+> **Source-image limitation:** The distributed PNG is clipped at its left boundary: an incoming arrow begins at the image edge. No visible criterion text is missing, but any upstream origin beyond that edge cannot be verified from the file.
+
+> **Undefined image markers:** The image appends **(d)** to “Follow PVS1 flowchart for OBSERVED RNA impact for your gene” and **(e)** to “variant allele,” but includes no definitions for either marker.
+
 **For Silent/Intronic Variants:**
-- No variant-specific observed impact (compared to controls): Apply BP7_S (RNA)
-- Variant-specific impact (compared to controls): Follow PVS1 flowchart for OBSERVED RNA impact for your gene
+- No variant-specific observed impact (compared to controls): apply `BP7_S (RNA)`, consider splicing predictive data, then record `BP7_S (RNA) + prediction (PP3/BP4)`.
 
 **For Other Variants:**
-- Assess pathogenicity using protein pathway
-- If PVS1_Strength assigned to at least 1 transcript: Follow flowchart
+- With no variant-specific observed impact, assess pathogenicity using the protein pathway, then ask whether protein impact can be ruled out from functional and/or clinical data:
+  - **Yes:** `BP7_S (RNA) + prediction (PP3/BP4)`.
+  - **No:** Document as `BP7_S (RNA) Not Met` to indicate that the data were present and reviewed.
 
-**Proportion of Alternative Transcripts:**
+**For Variant-Specific Impact (compared with controls):**
+- Follow the PVS1 flowchart for **observed RNA impact** for the gene.
+- Continue to transcript-proportion assessment only when a PVS1 strength is assigned to at least one transcript.
+
+**Proportion of Alternative Transcripts (inferred to be produced by variant allele (e)):**
 - Complete (variant allele): Keep strength level
 - Near complete: Reduce strength by 1 level
 - Incomplete: Do not apply codes
 
-**If background rate is considered to be at/above tolerable levels suggesting tolerance of being tolerated:**
-- Consider reducing PVS1 (RNA) codes by an additional level
+**Source wording for the background-rate qualification:**
+- “If background rate is considered to be at low-moderate levels suggestive of being tolerated, consider reducing PVS1 (RNA) codes by an additional level.”
+
+**Endpoints:**
+- Complete or near-complete alternative transcript production proceeds to “Determine PVS1 (RNA) weight from combined analysis (PP3/BP4 not applicable).”
+- Incomplete alternative transcript production proceeds to “PVS1 (RNA) or BP7_S (RNA) not applicable (reconsider PVS1 decision tree as appropriate).”
 
 ---
 
@@ -817,13 +854,18 @@ For any variant with RNA/splicing data, follow the SVI Working Group's recommend
 
 ### Appendix F: Computational Prediction Thresholds Summary
 
-| Criterion | Tool | Pathogenic Threshold | Benign Threshold |
-|-----------|------|---------------------|------------------|
-| PP3/BP4 (missense) | REVEL | ≥0.7 | ≤0.1 |
-| PP3/BP4/BP7 (splicing) | SpliceAI | ≥0.5 | ≤0.05 |
-| PS1/PM5 (splice exclusion) | SpliceAI | >0.10 suggests splice effect | ≤0.10 excludes splice effect |
-| PM5 (missense requirement) | REVEL | >0.7 required | - |
-| PM5 (splice exclusion) | SpliceAI | ≥0.5 suggests splice effect | <0.5 excludes splice effect |
+| Criterion context | Source-stated application requirement |
+|-------------------|---------------------------------------|
+| PP3, missense | REVEL ≥0.7 |
+| PP3, possible splicing effect | SpliceAI ≥0.5 |
+| BP4, missense | REVEL ≤0.1 **and** SpliceAI ≤0.05 |
+| BP4, possible splicing effect | SpliceAI ≤0.05 |
+| BP7 prediction | SpliceAI ≤0.05 |
+| PS1 missense comparison, splice-effect exclusion | SpliceAI ≤0.10 or experimental evidence of normal splicing |
+| PM5 missense comparison, splice-effect exclusion | SpliceAI <0.5 or experimental evidence of normal splicing |
+| PM5 variant under curation | REVEL >0.7 |
+
+The source does not say that the complementary score ranges prove a splice effect or normal splicing; no such inference is made here.
 
 **SpliceAI Lookup:** https://spliceailookup.broadinstitute.org/
 
@@ -834,7 +876,6 @@ For any variant with RNA/splicing data, follow the SVI Working Group's recommend
 | Resource | URL |
 |----------|-----|
 | LGMD VCEP Webpage | https://clinicalgenome.org/affiliation/50061/ |
-| gnomAD Browser | https://gnomad.broadinstitute.org/ |
 | gnomAD Variant Co-occurrence | https://gnomad.broadinstitute.org/variant-cooccurrence |
 | SpliceAI Lookup | https://spliceailookup.broadinstitute.org/ |
 | Confit-de-MAF Calculator | https://www.genecalculators.net/confit-de-maf.html |
@@ -856,6 +897,7 @@ For any variant with RNA/splicing data, follow the SVI Working Group's recommend
 | Version | Date | Changes |
 |---------|------|---------|
 | 2.0.0 | 7/9/2025 | Specification type defined as Bayesian adaptation; Correction to in-frame exons in PVS1 flowchart; Clarification on use of experimental RNA/splice data (PVS1, PP3, BP4, BP7); Clarification on use of gnomAD population frequency data (PM2, BA1, BS1); Reduced weighting of de novo observation (PS2, PM6); Updated guidance on evaluating missense variants at same position (PM5) |
+| 2.0.0 document corrections | 2026-08-09 | Source-first correction against `ClinGen_ACMG_Specifications_CAPN3_v2.0.pdf`, `PVS1 flowchart CAPN3.pptx`, `PP4 table CAPN3.pptx`, `PM3 table.pptx`, `PM3 co-application examples.docx`, `benign frequency exceptions.xlsx`, `experimental splice data.png`, and `PS1 splicing.png`: restored the source type and DOI; restored the PVS1 flowchart's struck-through/inactive branches, marker placement with undefined definitions, exact-10% gap, and body/flowchart Supporting contradiction; removed active strength assignments contradicted by struck-through branches; disclosed the unspecified PS3 Supporting condition; restored the PM3 phase-assertion footnote and disclosed its source punctuation defects; restored the PS1 non-GT-AG qualifier; restored PP4's strict `<~30%` wording and genetic-ancestry-group qualifier; corrected the RNA/splicing decision-tree transcription, its undefined (d)/(e) markers, and its clipped boundary; transcribed the complete panel-wide exception workbook; removed an unsourced generic resource and inferred complementary predictor claims; and changed the Pathogenic/Benign classification endpoints from invented inequalities to the source's bare values. |
 
 ---
 

@@ -2,6 +2,7 @@
 
 **Version:** 2.0.0
 **Released:** 7/9/2025
+**DOI:** 10.5281/zenodo.21434833
 **Affiliation:** Limb Girdle Muscular Dystrophy VCEP
 **Based on:** Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015
 **Specification Type:** Bayesian adaptation
@@ -32,13 +33,15 @@
 
 | Category | Point Ranges |
 |----------|-------------|
-| Pathogenic | ≥10 |
+| Pathogenic | 10 (operator not stated) |
 | Likely Pathogenic | 6 – 9 |
 | Uncertain Significance | 0 – 5 |
 | Likely Benign | -6 – -1 |
-| Benign | ≤-7 |
+| Benign | -7 (operator not stated) |
 
 **Additional Notes:** A Benign classification can also be assigned when BA1 applies.
+
+> The distributed criteria PDF prints the bare values `10` and `-7`; it does not state `≥` or `≤` for totals beyond them.
 
 ---
 
@@ -101,13 +104,15 @@
 ##### Nonsense or Frameshift
 
 1. **Predicted to undergo NMD** (premature truncation in codons 35–214):
-   - → **PVS1** (Very Strong, 8 pts)
+   - Exon present in NM_000337.6 -> **PVS1** (Very Strong, 8 pts)
+   - Exon absent from NM_000337.6 -> **N/A**
 
 2. **Not predicted to undergo NMD:**
-   - Exon is present in biologically relevant transcript(s) (NM_000337.6):
-     - Truncated/altered region is critical to protein function (none specified) → **PVS1_Strong** (4 pts)
-     - Role of region in protein function is unknown → **N/A**
-   - Exon is absent from biologically relevant transcript(s) → **N/A**
+   - Role of region in protein function is unknown:
+     - LoF variants in this exon are frequent in the general population and/or the exon is absent from biologically relevant transcript(s) -> **N/A**
+     - LoF variants are not frequent and the exon is present in NM_000337.6:
+       - Variant removes >10% of protein -> **PVS1_Strong** (4 pts)
+       - Variant removes <10% of protein -> **PVS1_Moderate** (2 pts)
 
 3. **Premature truncation within the first 100 bp** (codons 1–34; PMID: 27618451):
    - → **PVS1_Supporting** (1 pt)
@@ -117,42 +122,36 @@
 Use the SpliceAI prediction of the most likely splice effect and then determine the expected protein consequence. (https://spliceailookup.broadinstitute.org)
 
 1. **Exon skipping or use of a cryptic splice site disrupts reading frame and is predicted to undergo NMD:**
-   - → **PVS1** (Very Strong, 8 pts)
+   - Exon present in NM_000337.6 -> **PVS1** (Very Strong, 8 pts)
+   - Exon absent from NM_000337.6 -> **N/A**
 
 2. **Exon skipping or use of a cryptic splice site preserves reading frame:**
    - In-frame exons for which exon skipping is not expected to result in NMD: 2, 3, 4, 6, 9
-   - Exon is present in biologically relevant transcript(s) (NM_000337.6):
-     - Truncated/altered region is critical to protein function (none specified) → **PVS1_Strong** (4 pts)
-     - Role of region in protein function is unknown:
-       - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) → **N/A**
-       - LoF variants in this exon are NOT frequent in the general population and exon IS present in biologically relevant transcript(s):
-         - Variant removes >10% of protein → **PVS1_Strong** (4 pts)
-         - Variant removes <10% of protein → **PVS1_Moderate** (2 pts)
-   - Exon is absent from biologically relevant transcript(s) → **N/A**
+   - Role of region in protein function is unknown:
+     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) -> **N/A**
+     - LoF variants in this exon are NOT frequent in the general population and exon IS present in NM_000337.6:
+       - Variant removes >10% of protein -> **PVS1_Strong** (4 pts)
+       - Variant removes <10% of protein -> **PVS1_Moderate** (2 pts)
 
 3. **Exon skipping or use of a cryptic splice site disrupts reading frame and is NOT predicted to undergo NMD:**
-   - Exon is present in biologically relevant transcript(s) (NM_000337.6):
-     - Truncated/altered region is critical to protein function (none specified) → **PVS1_Strong** (4 pts)
-     - Role of region in protein function is unknown:
-       - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) → **N/A**
-       - LoF variants in this exon are NOT frequent in the general population and exon IS present:
-         - Variant removes >10% of protein → **PVS1_Strong** (4 pts)
-         - Variant removes <10% of protein → **PVS1_Moderate** (2 pts)
+   - Role of region in protein function is unknown:
+     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) -> **N/A**
+     - LoF variants in this exon are NOT frequent in the general population and exon IS present in NM_000337.6:
+       - Variant removes >10% of protein -> **PVS1_Strong** (4 pts)
+       - Variant removes <10% of protein -> **PVS1_Moderate** (2 pts)
 
 ##### Deletion (Single Exon to Full Gene)
 
 1. **Single to multi-exon deletion — disrupts reading frame and is predicted to undergo NMD:**
-   - → **PVS1** (Very Strong, 8 pts)
+   - Exon present in NM_000337.6 -> **PVS1** (Very Strong, 8 pts)
+   - Exon absent from NM_000337.6 -> **N/A**
 
 2. **Single to multi-exon deletion — preserves reading frame:**
-   - Exon is present in biologically relevant transcript(s) (NM_000337.6):
-     - Truncated/altered region is critical to protein function (none specified) → **PVS1_Strong** (4 pts)
-     - Role of region in protein function is unknown:
-       - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) → **N/A**
-       - LoF variants in this exon are NOT frequent and exon IS present:
-         - Variant removes >10% of protein → **PVS1_Strong** (4 pts)
-         - Variant removes <10% of protein → **PVS1_Moderate** (2 pts)
-   - Exon is absent from biologically relevant transcript(s) → **N/A**
+   - Role of region in protein function is unknown:
+     - LoF variants in this exon are frequent in the general population and/or exon is absent from biologically relevant transcript(s) -> **N/A**
+     - LoF variants in this exon are NOT frequent and exon IS present in NM_000337.6:
+       - Variant removes >10% of protein -> **PVS1_Strong** (4 pts)
+       - Variant removes <10% of protein -> **PVS1_Moderate** (2 pts)
 
 3. **Single to multi-exon deletion — disrupts reading frame and is NOT predicted to undergo NMD:**
    - Same logic as frame-preserving deletions above (uses exon presence, functional region criticality, and variant size thresholds)
@@ -176,10 +175,9 @@ Use the SpliceAI prediction of the most likely splice effect and then determine 
 
 ##### Initiation Codon Variants
 
-1. Different functional transcript uses alternative start codon → **N/A**
-2. No known alternative start codon in other transcripts:
-   - ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Moderate** (2 pts)
-   - No pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Supporting** (1 pt)
+The only operative branch is: no known alternative start codon in other transcripts and no pathogenic variant upstream of the closest potential in-frame start codon -> **PVS1_Supporting** (1 pt). The flowchart visibly strikes through the alternative-functional-transcript -> N/A path and the ≥1-upstream-pathogenic-variant -> PVS1_Moderate path.
+
+> **Distributed-source limitations:** The `PVS1 flowchart SGCD.pptx` percentage branches are strict `>10%` and `<10%`, so exactly 10% is unassigned. Its critical-region -> PVS1_Strong branches are visibly struck through and state that no critical region is specified. Superscripts `a`, `b`, `c`, and `d` have no definitions in the slide or speaker notes; `d` appears on full-gene-deletion PVS1. The slide supplies only bare PMID 27618451 for the codons 1–34 branch.
 
 ---
 
@@ -220,7 +218,7 @@ For variants for which the nucleotide change is the expected mechanism of diseas
 | Located outside splice donor/acceptor ±1,2 dinucleotide positions | PP3 | same nucleotide | PS1 | PS1_Moderate |
 | Located outside splice donor/acceptor ±1,2 dinucleotide positions | PP3 | within same splice donor/acceptor motif (including at ±1,2 positions) | PS1_Moderate | PS1_Supporting |
 | Located at splice donor/acceptor ±1,2 dinucleotide positions | PVS1 | within same splice donor/acceptor ±1,2 dinucleotide | PS1_Supporting | N/A |
-| Located at splice donor/acceptor ±1,2 dinucleotide positions | PP3 | within same splice donor/acceptor region, but outside ±1,2 dinucleotide* | PS1_Supporting | PS1_Supporting |
+| Located at splice donor/acceptor ±1,2 dinucleotide positions | PVS1 | within same splice donor/acceptor region, but outside ±1,2 dinucleotide* | PS1_Supporting | PS1_Supporting |
 | Located at splice donor/acceptor ±1,2 dinucleotide positions | PVS1_Strong, PVS1_Moderate, or PVS1_Supporting | within same splice donor/acceptor ±1,2 dinucleotide | PS1 | N/A |
 | Located at splice donor/acceptor ±1,2 dinucleotide positions | PVS1_Strong, PVS1_Moderate, or PVS1_Supporting | within same splice donor/acceptor motif, but outside ±1,2 dinucleotide* | PS1_Moderate | PS1_Supporting |
 
@@ -242,7 +240,7 @@ For variants for which the nucleotide change is the expected mechanism of diseas
 
 Apply for confirmed *de novo* occurrence in a proband meeting the criteria for PP4 (Supporting). Maternity and paternity should be confirmed by trio WES/WGS or other testing.
 
-> **Note:** PS2 is applied at Supporting only for SGCD due to autosomal recessive inheritance. PM6 is not applicable — see PS2.
+> **Note:** The SGCD VCEP specification provides PS2 only at Supporting strength. PM6 is not applicable — see PS2.
 
 ---
 
@@ -304,10 +302,15 @@ Apply PS3 only once, for the piece of evidence that meets the highest possible s
 | **Negative control** | Met; expression of α-sarcoglycan alone |
 | **Validation controls P/LP** | 3; 0 validated by VCEP |
 | **Validation controls B/LB** | 0 |
+| **Statistical analysis** | N/A |
 | **Threshold for normal** | Membrane localized |
 | **Threshold for abnormal** | Absent at membrane |
 | **Approved assay** | Yes |
 | **Proposed strength** | PS3_Supporting; BS3 not applied |
+
+> **Package limitation:** Although the criteria PDF permits PS3_Moderate for a clinically validated membrane-localization assay with ≥11 controls and directs readers to `PS3 assays SGCD.xlsx`, the workbook contains only this three-P/LP-control Soheili instance at PS3_Supporting. It supplies no populated SGCD PS3_Moderate assay.
+
+> The populated assay appears on a worksheet still named `Cell survival assay (Example)`, although its contents describe membrane localization. The remaining general-class worksheets are empty templates.
 
 ---
 
@@ -647,13 +650,15 @@ This VCEP uses the **Bayesian point-based framework** (Tavtigian et al., 2020) f
 
 | Category | Point Ranges |
 |----------|-------------|
-| **Pathogenic** | ≥10 |
+| **Pathogenic** | 10 (operator not stated) |
 | **Likely Pathogenic** | 6 – 9 |
 | **Uncertain Significance** | 0 – 5 |
 | **Likely Benign** | -6 – -1 |
-| **Benign** | ≤-7 |
+| **Benign** | -7 (operator not stated) |
 
 **Additional Notes:** A Benign classification can also be assigned when BA1 applies.
+
+> The distributed criteria PDF prints the bare values `10` and `-7`; it does not state `≥` or `≤` for totals beyond them.
 
 ### Default Point Values Summary
 
@@ -684,26 +689,21 @@ The PVS1 decision tree for SGCD is provided as a supplementary file ("PVS1 flowc
 - **NMD boundary:** Codons 35–214 (premature truncation predicted to undergo NMD)
 - **First 100 bp exception:** Codons 1–34 (PMID: 27618451) → PVS1_Supporting
 - **In-frame exons** (exon skipping not expected to result in NMD): 2, 3, 4, 6, 9
-- **Critical protein regions:** None specified
-- **Initiation codon guidance:** Use standard PVS1 initiation codon decision path
+- **Critical protein regions:** None specified; the critical-region/PVS1_Strong paths are visibly struck through and are not operative
+- **Initiation codon guidance:** The only operative path is no known alternative start codon plus no upstream pathogenic variant -> PVS1_Supporting. The alternative-transcript/N/A and ≥1-upstream-pathogenic/PVS1_Moderate paths are struck through.
+- **Unresolved source gaps:** Strict `>10%`/`<10%` leaves exactly 10% unassigned; footnotes `a`–`d` are undefined in the slide and speaker notes.
 
 ### Appendix B: Experimental Splice Data Decision Tree
 
-For any variant with RNA or other experimental data:
+For variants with RNA/splicing data, follow the distributed `experimental splice data.png`:
 
-1. **Silent/Intronic variants:** If RNA/splicing is observed, categorize the specific impact; note that multiple factors including technique, RNA source, and gene-specific knowledge need consideration.
-2. **Variant-specific changes compared to control:** Follow PVS1 flowchart for observed RNA impact for your gene.
-3. **Consider splicing predictive data:**
-   - If BP7_S (RNA) is applied → consider splicing predictive data
-   - BP7_S (RNA) + prediction → may inform strength level
-   - If BP7_S (RNA) + prediction aligns → document as "BP7_S (RNA)"; note: do not include data that was present and reviewed
-4. **Proportion of alternative transcript(s) (inferred to be) produced by mutant allele:**
-   - If independent evidence at transcriptomic or protein levels suggests loss of function:
-     - **Complete** → Keep strength level
-     - **Near complete** → Reduce strength by 1 level
-     - **Incomplete** → Do not apply codes
-5. **Determine PVS1 (RNA) weight from combined analyses** (PVS1/BP4 not applicable if incomplete)
-6. **PVS1 (RNA) or BP7_S (RNA) — use appropriate decision tree as applicable**
+- Categorization must consider assay/technique, RNA source, and gene-specific knowledge.
+- **No variant-specific observed impact:**
+  - Silent/intronic variant -> apply BP7_S (RNA), then consider splicing-prediction data; the image shows `BP7_S (RNA) + prediction (PP3/BP4)`.
+  - Other variant -> assess pathogenicity through the protein pathway. If the protein impact can be ruled out from functional and/or clinical data, apply BP7_S (RNA) plus prediction (PP3/BP4); otherwise document `BP7_S (RNA) Not Met` to record that the data were reviewed.
+- **Variant-specific impact compared with controls:** Follow the gene PVS1 flowchart for observed RNA impact. Once a PVS1 strength is assigned for at least one transcript, evaluate the proportion of alternative transcript(s) inferred to be produced by the variant allele: complete -> keep strength; near complete -> reduce by one level; incomplete -> do not apply codes. If the background rate is at low-moderate levels suggestive of being tolerated, consider a further one-level reduction. Determine the PVS1 (RNA) weight from the combined analysis; PP3/BP4 are not applicable. If PVS1 (RNA) or BP7_S (RNA) is not applicable, reconsider the PVS1 decision tree as appropriate.
+
+> **Distributed-image limitations:** Footnote markers `(d)` and `(e)` are not defined. The image is clipped at its left boundary and begins with a partial incoming arrow, but no visible criterion text is missing.
 
 ### Appendix C: PS1 Splicing Reference Table
 
@@ -752,15 +752,31 @@ See [PS1 - Same Amino Acid Change](#ps1---same-amino-acid-change) section for th
 
 ---
 
+## Version History
+
+| Version | Date | Notes |
+|---------|------|-------|
+| 2.0.0 | 7/9/2025 | Bayesian adaptation; PVS1 flowchart correction; experimental splice data clarification; gnomAD guidance clarification; reduced de novo weighting; updated PM5 guidance |
+
+**Document corrections (2026-08-09), source-verified against `ClinGen_ACMG_Specifications_SGCD_v2.0.pdf`, `PVS1 flowchart SGCD.pptx`, `PP4 table SGCD.pptx`, `PS3 assays SGCD.xlsx`, `PM3 table.pptx`, `PM3 co-application examples.docx`, `PS1 splicing.png`, `experimental splice data.png`, and `benign frequency exceptions.xlsx`. No change to the underlying ClinGen specification version.**
+
+- Preserved SGCD's deliberate codons 1–34 PVS1_Supporting assignment; restored exon-presence conditions omitted from PVS1 NMD paths; removed visibly struck-through critical-region and initiation branches from the operative rules; and recorded the exact-10% gap and undefined `a`–`d` footnotes.
+- Corrected the PS1 splicing table's source-contradicting `PP3` baseline to `PVS1` for the canonical-position VUA / outside-canonical comparator row.
+- Replaced the source-contradicting experimental-splice appendix with the image's actual paths and recorded undefined `(d)`/`(e)` markers and left-boundary clipping.
+- Removed invented `≥`/`≤` comparators from the PDF's bare Pathogenic `10` and Benign `-7` values; documented that the workbook contains no populated SGCD PS3_Moderate assay; and replaced the unverified “Abou Tayoun et al., 2018” expansion with the bare PMID 27618451 actually supplied by the slide.
+- Restored the core criteria PDF's DOI.
+
+---
+
 ## Key References
 
-- Richards et al., 2015 — ACMG/AMP Standards and Guidelines (PMID: 25741868)
-- Tavtigian et al., 2020 — Bayesian framework for variant classification (calibrated point system)
+- Richards et al., 2015 — cited in the criteria PDF header; no PMID is supplied there
+- Tavtigian et al., 2020 — cited in the criteria PDF header for the Bayesian adaptation
 - Brnich et al., 2020 — PS3/BS3 functional evidence recommendations (PMID: 31892348)
 - Walker et al., 2023 — SVI Working Group RNA/splice data recommendations (PMID: 37352859)
 - ClinGen SVI recommendation against PP5/BP6 (PMID: 29543229)
 - Soheili et al., 2012 — Sarcoglycan complex membrane localization assay (PMID: 22095924)
-- Abou Tayoun et al., 2018 — PVS1 first 100 bp (PMID: 27618451)
+- PMID 27618451 — cited without author, year, or title in `PVS1 flowchart SGCD.pptx` for premature truncation in codons 1–34; expanded Abou Tayoun provenance is not supplied by the distributed package
 
 ---
 
