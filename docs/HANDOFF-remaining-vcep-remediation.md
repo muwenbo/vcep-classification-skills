@@ -1,24 +1,25 @@
-# Handoff — remediation of the 46 remaining VCEP guidelines
+# Handoff — remediation of the 39 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-09 after the Limb Girdle remediation round
+**Written:** 2026-08-07, revised 2026-08-09 after the Congenital Myopathies remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
-**Working tree:** Round 5 is complete and committed; this handoff revision follows it
+**Round 6 remediation commit:** `0bad381`
+**Working tree:** Round 6 is complete and committed; this handoff revision follows it
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–5).** Four batches have been completed since this
+**Revision note (rounds 2–6).** Five batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
 source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
-remediated source-first (§7a, §13). The next panel is Congenital Myopathies.
-Read §1, §2a, §7, §7a and §13 before planning further work; the rest of the
-document stands.
+remediated source-first (§7a, §13), as are all seven Congenital Myopathies
+specs (§7b, §13). The next panel is Cardiomyopathy. Read §1, §2a, §7, §7a,
+§7b and §13 before planning further work; the rest of the document stands.
 
 ---
 
@@ -66,12 +67,13 @@ whether this document transcribed it honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 46 specs remain
+## 2. Scope: 39 specs remain
 
-122 unique spec IDs; 76 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 83 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
-specs of round 5). **46 remain.** Full list: run the snippet in §6.
+specs of round 5, and the 7 Congenital Myopathies specs of round 6). **39 remain.**
+Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
 repeat within a panel:
@@ -79,7 +81,6 @@ repeat within a panel:
 | n | VCEP |
 |---|---|
 | 7 | Cardiomyopathy |
-| 7 | Congenital Myopathies |
 | 5 | Epilepsy Sodium Channel |
 | 3 | Monogenic Diabetes |
 | 3 | Platelet Disorders |
@@ -317,10 +318,12 @@ zero_supp = {"GN010","GN011","GN012","GN013","GN014","GN015","GN018","GN023"}  #
 rasopathy = {"GN038","GN039","GN040","GN041","GN042","GN043","GN044","GN045",
              "GN046","GN047","GN048","GN049","GN087","GN094","GN127","GN128"}  # round 4
 limb_girdle = {"GN180","GN184","GN185","GN186","GN187","GN188","GN189"}  # round 5
+congenital_myopathies = {"GN146","GN147","GN148","GN149","GN150","GN169","GN179"}  # round 6
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
-                                | ranges | zero_supp | rasopathy | limb_girdle))
-print(len(remaining))  # 46
+                                | ranges | zero_supp | rasopathy | limb_girdle
+                                | congenital_myopathies))
+print(len(remaining))  # 39
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -345,11 +348,11 @@ see §2a.
 
 ~~3. RASopathy panel (16 specs)~~ — **done, round 4** (`3b62aeb`). See §13.
 ~~4. Limb Girdle (7)~~ — **done, round 5** (`78ad52b`). See §7a and §13.
-5. **Congenital Myopathies (7). Start here.** Run the panel-wide §2a preflight
-   before dispatch; this is now the next supplement-heavy panel.
-6. **Cardiomyopathy (7).** MYH7 is already audited and known bad (phantom
-   PS2/PM6, Appendix A listing strengths the spec never defines) — its six
-   siblings share conventions and are likely to share defects. Note MYH7's
+~~5. Congenital Myopathies (7)~~ — **done, round 6** (`0bad381`). See §7b and
+   §13.
+6. **Cardiomyopathy (7). Start here.** MYH7 is already audited and known bad
+   (phantom PS2/PM6, Appendix A listing strengths the spec never defines) — its
+   six siblings share conventions and are likely to share defects. Note MYH7's
    defect is now recognisable as **mode 1b**, the generic-flowchart graft, so
    check its siblings' PVS1 appendices specifically.
 
@@ -453,7 +456,65 @@ PVS1_Supporting while the other six use PVS1_Moderate.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 46
+## 7b. Congenital Myopathies remediation — complete
+
+Round 6 (`0bad381`) remediated NEB (GN146), ACTA1-AD (GN147), DNM2
+(GN148), MTM1 (GN149), RYR1-AD (GN150), ACTA1-AR (GN169), and RYR1-AR
+(GN179). The panel-wide §2a preflight found all 24 advertised artifacts
+present, readable, correctly typed, and source-cited. Each guideline was then
+drafted source-first before local comparison. All spreadsheet cells, embedded
+images, raw Office XML, speaker notes, PDF pages, and flowchart connectors were
+inspected. No registry entry or filename changed.
+
+Recurring and high-impact findings:
+
+- Package-absent generic content recurred. NEB and RYR1-AR had generic
+  PS2/PM6 point systems; NEB also had a generic PM3 per-proband table; both
+  RYR1 specs had generic PP1 threshold grids despite shipping no segregation
+  chart. ACTA1-AD's generic likelihood/LOD PP1 table contradicted its actual
+  attached point chart. These grafts were deleted and the missing conversion
+  or artifact was stated explicitly.
+- PVS1 flowcharts again lost transcript-presence, frequency/exon, splice,
+  deletion, duplication, and initiation-codon gates. MTM1 had two reversed
+  initiation outcomes; RYR1-AR had omitted transcript gates on all predicted-
+  NMD branches. Undefined `a`–`d` markers and strict `>10%`/`<10%` exact-10%
+  gaps recur in NEB, MTM1, ACTA1-AR, and RYR1-AR.
+- MTM1 contained a fabricated mouse-model assay row. Its actual workbook has
+  19 approved Supporting instances, all with zero P/LP and B/LB validation
+  controls, and several unresolved source defects: questioned/blank fields,
+  apparently cross-assigned localization thresholds, and variant lists placed
+  under `Proposed strength (modified)` instead of `Variants evaluated`.
+- ACTA1-AD omitted most of its 15 approved Supporting assay instances and
+  replaced the byte-identical AD/AR PP1 attachment with the wrong framework.
+  The attachment supplies segregation points but no point-to-strength mapping;
+  its +5-point-per-allele cap coexists with the core PDFs' Strong cap.
+  ACTA1-AD separately says to stack "the two assays" while listing three
+  Supporting assay categories.
+- DNM2's workbook proposes Supporting for every populated assay but leaves all
+  `Approved assay (y/n)` cells blank. Its 11×11 segregation grid was truncated
+  locally to six columns. PS4 Moderate/Supporting are bare values while Strong
+  is inclusive only in the core PDF, leaving attainable totals such as 0.75
+  unmapped.
+- RYR1-AD's approved PMID 16958053 assay defines abnormality as **reduced**
+  voltage-gated calcium release, contradicting the core PS3_Moderate rule's
+  **increased** release. Its PS4 source pair also leaves 0.75 unmapped.
+  RYR1-AR's PVS1 PowerPoint contains three broken raw connector bindings even
+  though the rendered deletion arrows remain visually continuous; both raw
+  and rendered readings are now reported.
+- Several core combination tables invoke undefined or inapplicable strengths.
+  MTM1 is the inverse case: it defines operative PVS1 criteria at four
+  strengths but omits PVS1 entirely from every Pathogenic/Likely Pathogenic
+  combination. No contradiction was silently reconciled.
+- All seven core-PDF DOIs and source-supplied reference DOIs were restored;
+  unsupplied bibliographic expansions were removed. Exact source typos,
+  missing comparators, blank cells, and bare point values remain explicit.
+
+Round 6 found no plausible gene-specific excess that needed a warning banner:
+the removed material was either generic, source-contradicting, or fabricated.
+
+---
+
+## 8. Loose ends unrelated to the remaining 39
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -512,6 +573,27 @@ Accumulated across sessions; worth sending as a batch.
   controls for SGCD, 4 for SGCG) and no populated Moderate assay. Is a
   Moderate assay attachment missing, or is the criterion intentionally
   prospective?
+- **Congenital Myopathies missing segregation material.** NEB references an
+  absent AR segregation Table 5. RYR1-AD and RYR1-AR both direct users to an
+  Oza et al. segregation chart that is neither listed nor distributed. The
+  ACTA1 AD/AR chart is present but supplies points without mapping them to PP1
+  strengths, while its +5-point cap differs in form from the core Strong cap.
+- **NEB incomplete/conflicting package.** The core lists transcript
+  NM_001164507.1 while the PVS1 flowchart lists NM_001164507.2; its PM3 chart
+  is an external link rather than a distributed artifact; its in-frame/exon-55
+  PVS1 strengths conflict; and the functional workbook's exon-55 deletion
+  coordinates differ from the core BA1 exclusion.
+- **Congenital Myopathies functional-assay gaps.** ACTA1-AD says to stack "the
+  two assays" but lists three Supporting categories. DNM2 proposes Supporting
+  for populated assay entries while leaving every approval result blank.
+  MTM1 approves 19 Supporting entries with zero validation controls and
+  contains apparently cross-assigned threshold fields. RYR1-AD approves a
+  reduced-calcium-release assay while its core criterion requires increased
+  release. Which readings and assay instances are intended to be operative?
+- **MTM1 classification combinations omit PVS1.** The criteria and flowchart
+  define PVS1 at four strengths, but every published Pathogenic/Likely
+  Pathogenic combination omits PVS1 and names PS2_Very Strong as the only Very
+  Strong member. Is that omission intentional?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -596,7 +678,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–5 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–6 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -615,16 +697,17 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–5 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–6 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
-(round 5). Round 5's source-first scratch drafts live in isolated `/tmp`
-directories and are ephemeral. Prefer the in-guideline pattern going forward:
-a finding recorded only in `/tmp` is a finding you will lose.
+(round 5), and `0bad381` (round 6). Rounds 5–6 source-first scratch drafts live
+in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
+pattern going forward: a finding recorded only in `/tmp` is a finding you will
+lose.
 
 ---
 
-## 13. Rounds 2–5 summary
+## 13. Rounds 2–6 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -686,6 +769,26 @@ Round 5 final gate: all seven `check_vcep_spec.py` lookups passed;
 `plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
 registry/disk consistency passed at 125 entries and 125 files with no missing
 or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+and `git diff --check` was clean. The only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue.
+
+**Round 6 — `0bad381`** — all seven Congenital Myopathies specs: NEB (GN146),
+ACTA1-AD (GN147), DNM2 (GN148), MTM1 (GN149), RYR1-AD (GN150), ACTA1-AR
+(GN169), and RYR1-AR (GN179). The complete 24-artifact panel was preflighted,
+then every guideline was drafted source-first. Recurring defects included
+package-absent generic PS2/PM6, PM3 and PP1 tables; omitted PVS1 transcript and
+branch gates; incomplete assay workbooks; missing segregation artifacts;
+unmapped point totals; comparator inventions; and unsupplied provenance. MTM1
+contained a fabricated mouse-model assay row. Full findings and upstream
+questions are in §7b and §9.
+
+Round 6 final gate: all seven exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17; all
+24 source filenames appeared in the dated correction histories; registry/disk
+consistency passed at 125 entries and 125 files with no missing or orphaned
+guidelines; the registry SHA-256 remained
 `491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
 and `git diff --check` was clean. The only version/filename mismatch remains
 the pre-existing GN094 LZTR1 issue.
