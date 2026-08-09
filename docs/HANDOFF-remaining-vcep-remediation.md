@@ -1,25 +1,27 @@
-# Handoff — remediation of the 39 remaining VCEP guidelines
+# Handoff — remediation of the 32 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-09 after the Congenital Myopathies remediation round
+**Written:** 2026-08-07, revised 2026-08-09 after the Cardiomyopathy remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
 **Round 6 remediation commit:** `0bad381`
-**Working tree:** Round 6 is complete and committed; this handoff revision follows it
+**Round 7 remediation commit:** `16212de`
+**Working tree:** Round 7 is complete and committed; this handoff revision follows it
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–6).** Five batches have been completed since this
+**Revision note (rounds 2–7).** Six batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
 source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
-specs (§7b, §13). The next panel is Cardiomyopathy. Read §1, §2a, §7, §7a,
-§7b and §13 before planning further work; the rest of the document stands.
+specs (§7b, §13) and all seven Cardiomyopathy specs (§7c, §13). The next panel
+is Epilepsy Sodium Channel. Read §1, §2a, §7, §7a, §7b, §7c and §13 before
+planning further work; the rest of the document stands.
 
 ---
 
@@ -38,7 +40,13 @@ Recommendation v1.1, distributed by the VCEPs themselves, and it really does
 contain both tables. Confirmed source-backed for RMRP, F9, IL7R, DCLRE1C,
 FOXN1, JAK3, RAG1 and IL2RG.
 
-The signature was detecting a **shipping manifest, not a fabrication.**
+The signature was detecting a **shipping manifest, not a fabrication.** Round
+7 reinforces the rule from the opposite direction: TNNI3, TNNT2, and TPM1
+contained the full local matrix even though their packages ship no
+`PS2_PM6.pdf`; their cores only say to refer to external SVI guidance. Those
+three matrices were genuine remediation targets, but only package-level source
+comparison established that fact. The grep alone still cannot distinguish
+them from the many source-backed instances.
 
 One narrower variant of it appeared to survive. Where the "Evidence Strength
 Thresholds" block prints *ranges or operators* rather than four bare values,
@@ -60,19 +68,21 @@ ranges are printed verbatim in the specifications:
   points / 2 points / 1 point / 0.5 point" with no operator, and the local file
   had invented `≥`. Now recorded as unstated per §10.
 
-So F9 remains the only substantive instance. **Do not build another signature
-out of table shape.** Both attempts failed the same way: VCEPs copy shared
-ClinGen SVI material verbatim, so shape tells you about the template, not about
-whether this document transcribed it honestly. Only source comparison works.
+So F9 remains the only substantive *range/operator* instance from that narrow
+lead. **Do not build another signature out of table shape.** Both attempts
+failed the same way: VCEPs copy shared ClinGen SVI material verbatim, so shape
+tells you about the template, not about whether this document transcribed it
+honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 39 specs remain
+## 2. Scope: 32 specs remain
 
-122 unique spec IDs; 83 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 90 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
-specs of round 5, and the 7 Congenital Myopathies specs of round 6). **39 remain.**
+specs of round 5, the 7 Congenital Myopathies specs of round 6, and the 7
+Cardiomyopathy specs of round 7). **32 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -80,7 +90,6 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 7 | Cardiomyopathy |
 | 5 | Epilepsy Sodium Channel |
 | 3 | Monogenic Diabetes |
 | 3 | Platelet Disorders |
@@ -319,11 +328,12 @@ rasopathy = {"GN038","GN039","GN040","GN041","GN042","GN043","GN044","GN045",
              "GN046","GN047","GN048","GN049","GN087","GN094","GN127","GN128"}  # round 4
 limb_girdle = {"GN180","GN184","GN185","GN186","GN187","GN188","GN189"}  # round 5
 congenital_myopathies = {"GN146","GN147","GN148","GN149","GN150","GN169","GN179"}  # round 6
+cardiomyopathy = {"GN095","GN098","GN099","GN100","GN101","GN102","GN103"}  # round 7
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
-                                | congenital_myopathies))
-print(len(remaining))  # 39
+                                | congenital_myopathies | cardiomyopathy))
+print(len(remaining))  # 32
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -350,11 +360,12 @@ see §2a.
 ~~4. Limb Girdle (7)~~ — **done, round 5** (`78ad52b`). See §7a and §13.
 ~~5. Congenital Myopathies (7)~~ — **done, round 6** (`0bad381`). See §7b and
    §13.
-6. **Cardiomyopathy (7). Start here.** MYH7 is already audited and known bad
-   (phantom PS2/PM6, Appendix A listing strengths the spec never defines) — its
-   six siblings share conventions and are likely to share defects. Note MYH7's
-   defect is now recognisable as **mode 1b**, the generic-flowchart graft, so
-   check its siblings' PVS1 appendices specifically.
+~~6. Cardiomyopathy (7)~~ — **done, round 7** (`16212de`). See §7c and §13.
+7. **Epilepsy Sodium Channel (5). Start here.** SCN1A (GN067), SCN2A
+   (GN068), SCN3A (GN069), SCN8A (GN070), and SCN1B (GN076). Preflight the
+   full panel before opening local guideline bodies; shared sodium-channel
+   conventions and supplements should be corroborated across all five, while
+   gene-specific thresholds remain independent.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -514,7 +525,70 @@ the removed material was either generic, source-contradicting, or fabricated.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 39
+## 7c. Cardiomyopathy remediation — complete
+
+Round 7 (`16212de`) remediated MYBPC3 (GN095), TNNI3 (GN098), TNNT2
+(GN099), TPM1 (GN100), ACTC1 (GN101), MYL2 (GN102), and MYL3 (GN103).
+The panel-wide preflight found all 15 advertised PDFs present, readable,
+correctly typed, and source-cited: seven core specifications, seven copies of
+the shared three-page PS4 examples, and the MYBPC3 PVS1 decision tree. The
+PS4 copies are byte-identical (SHA-256
+`3375902edf77e2e4048bf84bd3cad83a44211b94993859d01b3f37c85a59e57f`).
+All 163 core pages were text-extracted and visually inspected in full-page
+renders; the four unique supplemental pages were rendered at higher
+resolution and checked for table values and arrow topology. The independent
+baseline was saved before opening any guideline body at
+`/tmp/cardiomyopathy-round7.hVgVNY/SOURCE_BASELINE.md`. No registry entry or
+filename changed.
+
+Recurring and high-impact findings:
+
+- TNNI3, TNNT2, and TPM1 carried the complete `2/1/0.5/0.25` de novo matrix
+  and `0.5/1/2/4` strength ladder even though their packages ship no SVI de
+  novo attachment. Their cores only refer to external SVI guidance, mention
+  points without defining them, and print PS2 under Strong and PM6 under
+  Moderate. The undistributed numeric grafts and derived point-based
+  applicability claims were removed; the source limitation is explicit.
+- MYBPC3's genuine shipped PVS1 tree had been normalized in ways that erased
+  source information. The guideline now preserves undefined markers `a`–`d`,
+  full-gene `PVS1 d`, initiation `PVS1_Supp`, the presumed-in-tandem
+  no/unknown-impact N/A route, and strict `>10%`/`<10%` branches that leave
+  exactly 10% unassigned. The gray critical-region paths remain visible but
+  are not treated as pre-authorized: the attachment explicitly says no
+  MYBPC3 critical regions/domains have been pre-defined.
+- The shared PS4 supplement was incompletely represented in several files.
+  All seven now retain its nine exact comparisons, ancestry-matched Variant B
+  decision, and Variant C conclusion that Strong is acceptable while Moderate
+  is also appropriate under conservative clinical judgment. The literal
+  `gnomAF` typo is recorded rather than silently corrected.
+- TNNI3 had inferred distinct negative assay outcomes for BS3 Strong,
+  Moderate, and Supporting. The source says only `See PS3 specifications` at
+  all three strengths; the inferred outcomes were deleted. Several files also
+  invented a distinct positive PM4 Supporting condition. The cores permit a
+  downgrade from Moderate based on predicted impact but supply no separate
+  Supporting condition or numeric size/location/conservation threshold.
+- For TNNI3, TNNT2, TPM1, ACTC1, MYL2, and MYL3, PVS1 says LoF is not an
+  established mechanism while the shared BP1 comment says "the current
+  genes" have null variants as a known mechanism. Both source statements are
+  now reported without harmonization; BP1 remains N/A as printed.
+- MYL3's phenotype appendix had categorized DCM as excluded, although the
+  source calls for careful consideration because end-stage HCM can resemble
+  DCM. That overstatement, invented version-history bullets, generic resource
+  appendix, and stale generated-date footer were removed.
+- All seven specification DOIs and every source-supplied reference DOI were
+  restored. No plausible gene-specific excess needed a warning banner; the
+  removed material was source-contradicting, generic, or derived from an
+  undistributed external table.
+
+Unresolved source issues are preserved rather than repaired: the MYBPC3 PVS1
+marker definitions and exact-10% route are absent; its critical regions are
+not pre-defined; the three point-matrix packages reference external SVI
+guidance they do not distribute; PM4 gives no separate Supporting rule; the
+six LoF/BP1 statements conflict; and the shared PS4 PDF contains `gnomAF`.
+
+---
+
+## 8. Loose ends unrelated to the remaining 32
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -594,6 +668,23 @@ Accumulated across sessions; worth sending as a batch.
   define PVS1 at four strengths, but every published Pathogenic/Likely
   Pathogenic combination omits PVS1 and names PS2_Very Strong as the only Very
   Strong member. Is that omission intentional?
+- **Cardiomyopathy MYBPC3 PVS1 gaps.** The shipped tree prints footnote markers
+  `a`–`d` without definitions and uses strict `>10%`/`<10%` branches with no
+  exactly-10% route. Its gray critical-region branches end at Strong while the
+  same attachment says critical regions/domains have not been pre-defined.
+  What evidence is intended to activate those gray routes?
+- **Cardiomyopathy LoF/BP1 contradiction.** TNNI3, TNNT2, TPM1, ACTC1, MYL2,
+  and MYL3 each say in PVS1 that LoF is not an established mechanism, but the
+  shared BP1 comment says the current genes have null variants as a known
+  mechanism. Is the BP1 rationale stale template text?
+- **Cardiomyopathy external de novo mapping.** TNNI3, TNNT2, and TPM1 refer to
+  SVI case-combination guidance and to assigned points but distribute no de
+  novo attachment or numeric map. Which SVI version and point-to-strength
+  conversion should curators use?
+- **Cardiomyopathy PM4 Supporting gap.** All seven cores permit downgrading
+  PM4 to Supporting based on predicted impact but provide no separate positive
+  Supporting condition or numeric size/location/conservation threshold. Is
+  the downgrade intentionally left to unrestricted clinical judgment?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -678,7 +769,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–6 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–7 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -697,17 +788,17 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–6 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–7 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
-(round 5), and `0bad381` (round 6). Rounds 5–6 source-first scratch drafts live
-in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
+(round 5), `0bad381` (round 6), and `16212de` (round 7). Rounds 5–7
+source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–6 summary
+## 13. Rounds 2–7 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -793,9 +884,42 @@ guidelines; the registry SHA-256 remained
 and `git diff --check` was clean. The only version/filename mismatch remains
 the pre-existing GN094 LZTR1 issue.
 
+**Round 7 — `16212de`** — all seven Cardiomyopathy specs: MYBPC3 (GN095),
+TNNI3 (GN098), TNNT2 (GN099), TPM1 (GN100), ACTC1 (GN101), MYL2 (GN102),
+and MYL3 (GN103). The complete 15-PDF panel was preflighted and drafted
+source-first. Recurring defects were undistributed de novo point matrices,
+inferred PM4/BS3 qualification logic, incomplete PS4 examples, stripped
+MYBPC3 PVS1 routes/markers, source contradictions silently harmonized, and
+missing DOI provenance. Full findings and upstream questions are in §7c and
+§9.
+
+Round 7 final gate: all seven exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17 plus
+8 subtests; all 15 source filenames appeared in the dated correction
+histories; registry/disk consistency passed at 125 entries and 125 files with
+no missing or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+and `git diff --check` was clean. The only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
 SLC19A3/PDHA1/POLG/ETHE1; GN015 is the mtDNA document). The registry is right
 and needs no change; only the ephemeral download folder names are wrong. Do
 not "fix" a registry entry on the strength of a source folder name.
+
+---
+
+## 14. Suggested skills for the next session
+
+- Use `pdf:pdf` for complete page rendering and visual verification of every
+  source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
+- If the Epilepsy Sodium Channel packages contain Office supplements, use
+  `documents:documents`, `presentations:Presentations`, and
+  `spreadsheets:Spreadsheets` for their respective formats, including raw
+  OOXML/media inspection and rendered QA where the skill requires it.
+- Use the handoff skill again only after the batch has passed all §11 gates and
+  the remediation commit exists; update this workspace handoff in place because
+  that is the project's durable continuation record.
