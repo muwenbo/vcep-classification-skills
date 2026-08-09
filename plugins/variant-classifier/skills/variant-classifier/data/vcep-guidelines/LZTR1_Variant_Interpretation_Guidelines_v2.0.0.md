@@ -1,9 +1,12 @@
 # ClinGen RASopathy VCEP Variant Interpretation Guidelines for LZTR1
 
-**Version:** 2.0.0
+**Version:** 1.3
 **Released:** 12/3/2024
 **Affiliation:** RASopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**DOI:** 10.5281/zenodo.21434326
+
+> **Known repository version mismatch:** The governing ClinGen PDF and GN094 package metadata identify this specification as **version 1.3**. The existing repository filename remains `LZTR1_Variant_Interpretation_Guidelines_v2.0.0.md`, and the registry remains at its pre-existing `1.3.0` entry. This source-fidelity correction does not rename the file or alter the registry.
 
 ---
 
@@ -47,6 +50,12 @@
    - [BP1-BP7 - Benign Supporting](#bp1-bp7---benign-supporting)
 3. [Rules for Combining Criteria](#rules-for-combining-criteria)
 4. [Appendices](#appendices)
+   - [Appendix A: Population Frequency Thresholds Summary](#appendix-a-population-frequency-thresholds-summary)
+   - [Appendix B: Computational Predictor Thresholds](#appendix-b-computational-predictor-thresholds)
+   - [Appendix C: Key PMIDs and References](#appendix-c-key-pmids-and-references)
+   - [Appendix D: RASopathy Phenotype Reference](#appendix-d-rasopathy-phenotype-reference)
+   - [Appendix E: Distributed Package and Source-Fidelity Notes](#appendix-e-distributed-package-and-source-fidelity-notes)
+   - [Appendix F: Pilot-Variant Source Notes](#appendix-f-pilot-variant-source-notes)
 
 ---
 
@@ -54,14 +63,25 @@
 
 ### Case Level Inheritance Determination
 
-Before applying criteria, reference the **Case Level Inheritance Flowchart** to determine the inheritance pattern of variants in LZTR1. The flowchart indicates which ACMG/AMP criteria can be applied to autosomal dominant (AD) vs. autosomal recessive (AR) variants.
+The distributed `Case Level Inheritance Flowchart.pdf` determines which ACMG/AMP criteria can be applied to autosomal dominant (AD) versus autosomal recessive (AR) LZTR1 variants. Its visual arrow topology is:
 
-**Key considerations:**
-- **Dominant-negative variants**: Use point-based scoring for autosomal dominant cases
-- **Loss-of-function variants**: Usage is case specific based on inheritance pattern
-- Only PS4 OR PM3 can be applied to a single case (not both)
-- Cases with autosomal recessive NS should use PM3
-- Cases with autosomal dominant isolated schwannomatosis should use PS4
+1. **Step 1 — case data:** branch to AD, AR, or Unknown inheritance.
+2. **AD:** follow the standard RASopathy specifications and score case evidence with PS4.
+3. **AR:** include PVS1, PM3, and PM2_Supporting assessments. The flowchart prints `AF <0.0025%` for this branch.
+4. **Unknown — Step 2, variant data:**
+   - a typical loss-of-function variant flows to AR;
+   - a missense, atypical loss-of-function, or unique variant with functional data has dotted paths to **both AD and AR**;
+   - such a variant without functional data flows to VUS.
+
+**Application constraints:**
+
+- PVS1 applies only when curating AR disease.
+- Dominant-negative variants use point-based scoring for AD cases.
+- Loss-of-function usage is case-specific according to inheritance.
+- Only PS4 **or** PM3 can be applied to a single case, not both.
+- AR Noonan syndrome cases use PM3; AD isolated schwannomatosis cases use PS4.
+
+> **Source contradiction — do not resolve silently:** The inheritance flowchart prints the strict AR threshold **AF <0.0025%**, whereas the main PDF's PM2 criterion prints **PM2_P ≤0.0025%**. Both source presentations are retained; the package does not identify which comparator controls at the boundary.
 
 ---
 
@@ -90,11 +110,13 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 
 #### PVS1 Decision Tree
 
+The following generic-looking decision tree is not a local graft: `PVS1 Decision Tree.jpg` is one of the nine artifacts distributed in the GN094 LZTR1 package. Its LZTR1-specific annotations identify NM_006767.4, the NMD cutoff, and the in-frame exons below.
+
 **For Nonsense or Frameshift variants:**
 
 | Scenario | Exon Status | NMD Prediction | Strength |
 |----------|-------------|----------------|----------|
-| Predicted to undergo NMD (c.2357 or p.786 are terminal) | Present in biologically-relevant transcript(s) (NM_006767.4) | Yes | PVS1 |
+| Predicted to undergo NMD (`c.2357` or `p.786` are the terminal nucleotide and codon, respectively, predicted to undergo NMD) | Present in biologically-relevant transcript(s) (NM_006767.4) | Yes | PVS1 |
 | Predicted to undergo NMD | Absent from biologically-relevant transcript(s) | Yes | N/A |
 | Not predicted to undergo NMD | LoF variants in exon frequent OR exon absent from relevant transcript | - | N/A |
 | Not predicted to undergo NMD | LoF not frequent, exon present, variant removes >10% of protein | - | PVS1_Strong |
@@ -123,7 +145,10 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 | Single to multi exon deletion - Disrupts reading frame, NOT predicted to undergo NMD | LoF frequent OR exon absent | N/A |
 | Single to multi exon deletion - Disrupts reading frame, NOT predicted to undergo NMD, LoF not frequent, exon present | Removes >10% of protein | PVS1_Strong |
 | Single to multi exon deletion - Disrupts reading frame, NOT predicted to undergo NMD, LoF not frequent, exon present | Removes <10% of protein | PVS1_Moderate |
-| Single to multi exon deletion - Preserves reading frame | Role of region unknown | See above criteria |
+| Single to multi exon deletion - Preserves reading frame | Truncated region critical to protein function | PVS1_Strong |
+| Single to multi exon deletion - Preserves reading frame | Role unknown and LoF frequent OR region absent from relevant transcript | N/A |
+| Single to multi exon deletion - Preserves reading frame, role unknown, LoF not frequent, region present | Removes >10% of protein | PVS1_Strong |
+| Single to multi exon deletion - Preserves reading frame, role unknown, LoF not frequent, region present | Removes <10% of protein | PVS1_Moderate |
 
 **For Duplication variants (>=1 exon, completely contained within gene):**
 
@@ -141,6 +166,8 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 | No known alternative start codon in other transcripts | >=1 pathogenic variant(s) upstream of closest potential in-frame start codon | PVS1_Moderate |
 | No known alternative start codon in other transcripts | No pathogenic variant(s) upstream | PVS1_Supp |
 | Different functional transcript uses alternative start | - | N/A |
+
+> **Decision-tree source limitations:** The image uses strict **>10%** and **<10%** branches and gives no path for exactly 10%. It also prints `PVS1` with superscript `d` for a full-gene deletion but defines no footnote `d` anywhere in the image or distributed package. These gaps are reported without inferring a rule.
 
 ---
 
@@ -182,12 +209,16 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 
 #### Evidence Strength Thresholds
 
-| Points | Strength Level |
+The main PDF's displayed PS2 block contains Very Strong (4 points), Strong (2), and Moderate (1), but no Supporting row. Its displayed PM6 block contains Strong (2), Moderate (1), and Supporting (0.5), but no Very Strong row. The distributed `PS2_PM6 Scoring.jpg` instead presents this shared exact-value scale:
+
+| Points (exact values printed in image) | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
 | 1.0 | Moderate (PS2_Moderate or PM6) |
 | 2.0 | Strong (PS2 or PM6_Strong) |
 | 4.0 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
+
+> **Source discrepancy — do not resolve silently:** `PS2_PM6 Scoring.jpg` adds PS2_Supporting and PM6_VeryStrong to the strengths shown in the respective PDF criterion blocks. The image prints exact point values without comparator symbols. Both presentations are retained; the package does not state which controls when they differ.
 
 ---
 
@@ -204,28 +235,59 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 | **Moderate (PS3_Moderate)** | Two or more different approved assays | Gene-specific, Strength |
 | **Supporting (PS3_Supporting)** | One approved assay | Gene-specific, Strength |
 
-#### Approved Functional Assay for LZTR1
+#### Approved Functional Studies for LZTR1
 
-**LZTR1 Stability and Localization Assay**
+The distributed `Approved Functional Studies.xlsx` contains four approved LZTR1 assay types. Every LZTR1 row designates **PS3_Supporting; BS3_NA**. Two or more different approved assay types support PS3_Moderate; a single approved assay supports PS3_Supporting.
+
+The workbook's `READ ME` states that assays are evaluated under the functional-evidence framework (PMID 31892348), pathway-level controls may be shared across RASopathy genes, gene-specific assays require gene-specific controls, animal models and variant-specific assays are excluded, and an unlisted assay can receive at most PS3_Supporting or BS3_Supporting. That general allowance does not override the explicit **BS3_NA** designation for every approved LZTR1 assay below.
+
+##### RAS Activation Assay
+
+- **Citations:** Motta (2019), PMID 30481304, DOI 10.1093/hmg/ddy412; Bigenzahn (2018), PMID 30442766, DOI 10.1126/science.aap8210.
+- **Materials/readout:** HEK293T cells; semi-quantitative RAS/RBD activation readout.
+- **Replicates/controls/statistics:** Biological and technical replicates met; WT and mock controls; Student's t-test.
+- **Thresholds:** WT-like activation is normal; increased RAS/RBD activation is abnormal.
+- **Validation examples:** The row headed `5 Variants` / P/LP lists M91V (VUS), R170Q (P/LP), Y193H (LP/VUS), G248R (P/LP), and R284C (P). No B/LB validation examples are listed.
+- **Approved strength:** PS3_Supporting; BS3_NA.
+
+##### MEK Activation Assay
+
+- **Citations:** Motta (2019), PMID 30481304, DOI 10.1093/hmg/ddy412; Bigenzahn (2018), PMID 30442766, DOI 10.1126/science.aap8210.
+- **Materials/readout:** HEK293T cells; semi-quantitative MEK activation.
+- **Replicates/controls:** Biological and technical replicates met; WT and mock controls.
+- **Thresholds:** WT pattern is normal; constitutive, increased, and/or prolonged activation is abnormal **for AD LZTR1 variants only**.
+- **Validation examples:** The row headed 17 P/LP variants includes entries labeled VUS, NA, or with mixed classifications. No B/LB validation examples are listed.
+- **Approved strength:** PS3_Supporting; BS3_NA.
+
+##### ERK Activation Assay
+
+- **Citations:** Motta (2019), PMID 30481304, DOI 10.1093/hmg/ddy412; Bigenzahn (2018), PMID 30442766, DOI 10.1126/science.aap8210.
+- **Materials/readout:** HEK293T cells; semi-quantitative ERK activation.
+- **Replicates/controls:** Biological and technical replicates met; WT and mock controls.
+- **Thresholds:** WT pattern is normal; constitutive, increased, and/or prolonged activation is abnormal **for AD LZTR1 variants only**.
+- **Validation examples:** The row headed 14 P/LP variants includes entries labeled VUS, NA, or with mixed classifications. No B/LB validation examples are listed.
+- **Approved strength:** PS3_Supporting; BS3_NA.
+
+##### LZTR1 Stability and Localization Assay
 
 | Parameter | Details |
 |-----------|---------|
-| **PMID** | 30481304, 30442766 |
-| **Authors** | Motta, Bigenzahn |
-| **Year** | 2019, 2018 |
-| **Assay Description** | Expression levels and stability of a representative panel of NS-causing and dominant schwannomatosis-associated LZTR1 variants. Western blot analysis shows WT and variant LZTR1 protein levels in transfected COS-1/HeLa/HEK293T cells, with or without stimulation following basal conditions |
-| **Material Used** | Transfected COS-1 cells basally and after CHX treatment; Transfected HeLa cells under basal conditions; Transfected HEK293T cells under basal conditions |
-| **Readout Type** | Semi-quantitative (Qualitative) |
-| **Readout Description** | Accelerated degradation/visualization of the subcellular localization/stability of mutant LZTR1 protein |
-| **Biological Replicates** | Met |
-| **Technical Replicates** | Met; Stability & Localization are assayed in tandem |
-| **Positive Control** | Met; WT |
-| **Negative Control** | Met; empty, LZTR1 ΔBTB2, ΔKelch, and/or ΔBTB1+2 |
-| **Statistical Analysis** | Student's t-test |
-| **Threshold for Normal** | Normal LZTR1 protein levels/Golgi localization (applies to DN variants and a subset of LoF variants) |
-| **Threshold for Abnormal** | Decreased LZTR1 protein levels/abnormal localization within cells (applies to a subset of LoF variants only - recessive NS form) |
-| **Approved Strength** | PS3_Supporting; BS3_NA |
-| **Comment** | Due to limited control availability and reproducibility by multiple laboratories, this gene-specific assay may only provide supporting evidence at this time |
+| **PMID / DOI** | 30481304 / 10.1093/hmg/ddy412; 30442766 / 10.1126/science.aap8210 |
+| **Authors / year** | Motta, 2019; Bigenzahn, 2018 |
+| **Assay description** | Expression, stability, and localization of Noonan-syndrome and dominant-schwannomatosis LZTR1 variants |
+| **Material used** | Transfected COS-1 cells basally and after CHX treatment; transfected HeLa and HEK293T cells under basal conditions |
+| **Readout type** | Semi-quantitative (qualitative) |
+| **Biological / technical replicates** | Met / met; stability and localization assayed in tandem |
+| **Controls** | WT; empty, LZTR1 ΔBTB2, ΔKelch, and/or ΔBTB1+2 |
+| **Statistical analysis** | Student's t-test |
+| **Threshold for normal** | Normal LZTR1 protein abundance/Golgi localization; observed for dominant-negative variants and a subset of LoF variants |
+| **Threshold for abnormal** | Reduced LZTR1 abundance/abnormal cellular localization; applies to a subset of LoF variants in recessive Noonan syndrome |
+| **Approved strength** | PS3_Supporting; BS3_NA |
+| **Limitation** | Limited control availability and inter-laboratory reproducibility restrict this gene-specific assay to Supporting |
+
+The P/LP-headed row labeled 7 variants lists H121D (P), E217A (NA), E563Q (LP), I821T (VUS), V456G (NA), P520L (VUS), and R688C (LP/VUS). The B/LB-headed row contains 12 entries whose adjacent labels are instead P/LP, VUS, NA, or mixed, including M91V, R170Q, Y193H, Y193N, G286R, M400R, S247N, G248R, and R284C.
+
+> **Workbook contradictions — do not resolve silently:** Several validation rows have headings inconsistent with their entry-level classifications, most conspicuously the stability/localization B/LB row. These source labels are reported without reclassifying any variant. Normal readouts do **not** support BS3 under this package because every approved LZTR1 row explicitly says BS3_NA.
 
 ---
 
@@ -258,11 +320,13 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 
 #### PS4 Evidence Strength Thresholds
 
-| Points | Strength Level |
+| Aggregate points (main PDF) | Strength Level |
 |--------|----------------|
 | >=1 | Supporting (PS4_Supporting) |
 | >=3 | Moderate (PS4_Moderate) |
 | >=5 | Strong (PS4) |
+
+> **Source discrepancy — do not resolve silently:** The main PDF explicitly prints the inclusive thresholds **≥1**, **≥3**, and **≥5**. The distributed `PS4 Scoring.jpg` labels the corresponding strength rows with exact **1**, **3**, and **5** values and no comparator symbols. Both presentations are retained; do not convert the image's values into inferred inequalities.
 
 ---
 
@@ -288,6 +352,8 @@ Before applying criteria, reference the **Case Level Inheritance Flowchart** to 
 |----------|----------|-------------------|
 | **Supporting (PM2_Supporting)** | The variant must be absent from controls (gnomAD). For variants in LZTR1, PM2_P <=0.0025% may be applied to support AR disease. | Disease-specific, Gene-specific, Strength |
 
+> **Source contradiction — do not resolve silently:** `Case Level Inheritance Flowchart.pdf` assigns PM2_Supporting to the AR branch with **AF <0.0025%**, while the main PDF uses **PM2_P ≤0.0025%**. The threshold boundary is therefore inconsistent within the distributed package.
+
 ---
 
 ### PM3 - In Trans with Pathogenic
@@ -306,15 +372,6 @@ Usage of this rule is case specific based on the inheritance of the variant and 
 | **Strong (PM3_Strong)** | >=2 points | Disease-specific, Gene-specific, Strength |
 | **Moderate (PM3)** | >=1 points | Disease-specific, Gene-specific |
 | **Supporting (PM3_Supporting)** | >=0.5 points | Disease-specific, Gene-specific, Strength |
-
-#### PM3 Point System (Per Proband) - Standard SVI Scoring
-
-| Classification/Zygosity of Other Variant | Confirmed in Trans | Phase Unknown |
-|------------------------------------------|-------------------|---------------|
-| Pathogenic or Likely pathogenic variant | 1.0 | 0.5 (P) / 0.25 (LP) |
-| Homozygous (non-consanguineous) | 1.0 | 1.0 |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 | 0.5 |
-| VUS (max 0.5 total) | 0.25 | 0.0 |
 
 ---
 
@@ -345,6 +402,8 @@ Usage of this rule is case specific based on the inheritance of the variant and 
 | **Strong (PM5_Strong)** | >=2 different [likely] pathogenic residue changes at the same codon observed in >=5 probands | Strength |
 | **Moderate (PM5)** | 1 [likely] pathogenic residue change at the same codon | Disease-specific |
 
+The version 1.3 release note states that “Observed in ≥5 probands” was removed from PM5 at Moderate strength. The requirement remains printed for PM5_Strong. The PDF also retains its PM1/PM5 co-application sentence even though PM1 is designated Not Applicable; this source inconsistency is not resolved here.
+
 ---
 
 ### PM6 - De Novo (Assumed)
@@ -360,6 +419,8 @@ Usage of this rule is case specific based on the inheritance of the variant and 
 | **Supporting (PM6_Supporting)** | 0.5 points | Strength |
 
 *See PS2 section for full point scoring table.*
+
+`PS2_PM6 Scoring.jpg` additionally maps 4 exact points to PM6_VeryStrong, although the main PDF's displayed PM6 criterion block stops at Strong. See the PS2 source-discrepancy note; the supplement-only strength is reported without silently merging it into the PDF block.
 
 ---
 
@@ -468,11 +529,17 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
-| Points | Strength Level |
+The main PDF body specifies **Strong at -4 points** and **Supporting at -1 point**; it does not display a Moderate row or comparator symbols for either value.
+
+The distributed `BS2 Scoring.jpg` instead gives:
+
+| Points (exact values printed in image) | Strength Level |
 |--------|----------------|
 | -1 | Supporting (BS2_Supporting) |
 | N/A | Moderate (not applicable) |
 | -3.0 | Strong (BS2) |
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns BS2 Strong at **-4**, whereas `BS2 Scoring.jpg` assigns Strong at **-3.0**. Neither source supplies a comparator for these totals. Both presentations are retained; no `≤` comparator is inferred.
 
 ---
 
@@ -483,6 +550,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 **VCEP Specifications:** *Not Applicable*
 
 **Comments:** Approved functional studies are available for each individual gene in the supplemental material. Additional functional studies can be submitted to the expert panel for approval.
+
+All four approved LZTR1 assay rows in `Approved Functional Studies.xlsx` explicitly designate **BS3_NA**. A WT-like or normal readout in an approved LZTR1 assay must therefore not be converted into BS3 evidence under this package.
 
 ---
 
@@ -521,11 +590,23 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BP2/BP5 Evidence Strength Thresholds
 
-| Points | Strength Level |
+The main PDF body defines inclusive aggregate thresholds for both BP2 and BP5:
+
+| Aggregate points (main PDF) | Strength Level |
+|--------|----------------|
+| >=(-1) | Supporting (BP5/BP2) |
+| >=(-2) | Moderate (BP5_Moderate/BP2_Moderate) |
+| >=(-4) | Strong (BP5_Strong/BP2_Strong) |
+
+The distributed `BP5_BP2 Scoring.jpg` instead gives:
+
+| Points (exact values printed in image) | Strength Level |
 |--------|----------------|
 | -1 | Supporting (BP5/BP2) |
 | N/A | Moderate (not applicable) |
 | -3.0 | Strong (BP5_Strong/BP2_Strong) |
+
+> **Source contradiction — do not resolve silently:** The PDF body prints **≥(-4)**, **≥(-2)**, and **≥(-1)**; the image prints exact **-3.0**, **N/A**, and **-1** with no comparator symbols. Both source presentations are retained and neither is converted into the other.
 
 ---
 
@@ -612,13 +693,74 @@ For phenotypic assessment in PS2/PM6 and PS4 scoring, refer to Table 1 in PMID: 
 
 ---
 
+### Appendix E: Distributed Package and Source-Fidelity Notes
+
+The GN094 metadata reports a complete version 1.3 package with nine downloaded source artifacts and no failures:
+
+1. `ClinGen_ACMG_Specifications_LZTR1_v1.3.pdf`
+2. `Case Level Inheritance Flowchart.pdf`
+3. `Approved Functional Studies.xlsx`
+4. `Pilot Variants.xlsx`
+5. `PS4 Scoring.jpg`
+6. `PVS1 Decision Tree.jpg`
+7. `BS2 Scoring.jpg`
+8. `BP5_BP2 Scoring.jpg`
+9. `PS2_PM6 Scoring.jpg`
+
+All PDF pages, all five JPGs (four scoring images and one decision tree), and all visible and hidden worksheets in both workbooks were inspected. Neither workbook contains embedded media or chart objects.
+
+The following contradictions and source defects remain unresolved because the distributed package does not choose between them:
+
+1. The PM2 PDF criterion uses **≤0.0025%**; the inheritance flowchart uses **<0.0025%**.
+2. The PDF's displayed PS2 block omits Supporting and its displayed PM6 block omits Very Strong; `PS2_PM6 Scoring.jpg` includes both at exact 0.5 and 4 points, respectively.
+3. The PS4 PDF body uses inclusive **≥1**, **≥3**, and **≥5**; `PS4 Scoring.jpg` prints exact 1, 3, and 5 values without comparators.
+4. The BS2 PDF body gives Strong at **-4**; `BS2 Scoring.jpg` gives Strong at exact **-3.0**, with Moderate N/A and Supporting at exact -1.
+5. The BP2/BP5 PDF body gives **≥(-4)** Strong, **≥(-2)** Moderate, and **≥(-1)** Supporting; `BP5_BP2 Scoring.jpg` gives exact -3.0 Strong, Moderate N/A, and exact -1 Supporting.
+6. `PVS1 Decision Tree.jpg` leaves exactly 10% unassigned between its strict >10% and <10% branches and uses an undefined superscript `d` for full-gene deletion.
+7. The PDF retains a PM1/PM5 co-application statement despite designating PM1 Not Applicable.
+8. `Approved Functional Studies.xlsx` contains validation-row headings that conflict with entry-level classifications, especially the stability/localization B/LB row. All LZTR1 rows nevertheless agree on PS3_Supporting and BS3_NA.
+9. `Pilot Variants.xlsx` applies PS1_M to c.1149+1G>T although the PDF defines PS1 only at Strong, applies BP3 to c.651+10_651+46del although the PDF defines BP3 Not Applicable, and uses a strict BA1 `>0.0005` summary for c.2373C>T although the PDF uses inclusive `≥0.05%` (≥0.0005 as a fraction).
+10. The pilot workbook refers to “RASopathy VCEP specifications version 2,” while the governing LZTR1 PDF and GN094 metadata identify version 1.3.
+
+These notes report source content; they do not reconcile conflicts, infer missing boundary rules, or reclassify workbook variants.
+
+### Appendix F: Pilot-Variant Source Notes
+
+`Pilot Variants.xlsx` tests the panel framework across 147 variants. The LZTR1 worksheet contains 24 populated rows. Representative applications include:
+
+| Variant | Inheritance / classification in workbook | Applied evidence shown in workbook | Source note |
+|---------|------------------------------------------|-------------------------------------|-------------|
+| c.742G>A | AD / LP | PM2_P, PP3, PS3_P, PS4_M, PS2 | AD case and functional/de novo example |
+| c.1084C>T | AR / P | PVS1, PM3 | Illustrates AR-only PVS1 use |
+| c.1149+1G>T | AR / LP | PVS1_M, PM2_P, PM3, PS1_M | PS1_M conflicts with PDF's Strong-only PS1 |
+| c.27dup | inheritance blank / P | PVS1, PS3_P | Inheritance is not inferred here |
+| c.1234C>T | AD / VUS | PS4_P | AD case-level application |
+| c.650A>C | AR / VUS | PM2_P, PS3_P, PM3_P | AR criteria plus functional evidence |
+| c.1723G>A | not stated / VUS | BP4 | Workbook example |
+| c.651+10_651+46del | not stated / LB | BP3, BP4, BP7 | BP3 conflicts with PDF's Not Applicable status |
+| c.2373C>T | not stated / B | BA1, BP4, BP7 | Summary uses strict `>0.0005`, unlike PDF `≥0.05%` |
+
+The workbook also includes c.850C>T (AD/LP), c.1149+1G>A (AR/LP), c.2178C>A (AR/P), c.842C>T (AD/P), and c.1687G>C (AR/VUS). Pilot entries are examples, not overrides of the governing criterion text.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 2.0.0 | 12/3/2024 | Current version |
-| 1.3.0 | 12/3/2024 | "Observed in >=5 probands" removed from PM5 at Moderate strength |
+| 1.3 | 12/3/2024 | “Observed in ≥5 probands” removed from PM5 at Moderate strength |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_LZTR1_v1.3.pdf`, `Case Level Inheritance Flowchart.pdf`, `Approved Functional Studies.xlsx`, `Pilot Variants.xlsx`, `PS4 Scoring.jpg`, `PVS1 Decision Tree.jpg`, `BS2 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, and `PS2_PM6 Scoring.jpg`. No change to the underlying ClinGen specification version; the pre-existing filename/registry version mismatch was deliberately left unresolved.**
+
+- Corrected the document metadata to identify the governing ClinGen source as version 1.3 and added its DOI, while leaving the v2.0.0 filename and registry untouched.
+- Transcribed the inheritance-flowchart arrow topology, including Unknown-to-variant-data branching and the dotted functional-data paths to both AD and AR; reported its strict PM2 comparator against the PDF's inclusive comparator.
+- Verified that the apparently generic PVS1 decision tree is genuinely distributed for LZTR1; restored the deletion branches and documented the exactly-10% gap and undefined full-gene-deletion footnote.
+- Separated the PDF-body and scoring-image presentations for PS2/PM6, PS4, BS2, and BP2/BP5, preserving every printed comparator and exact-value semantic without synthesizing a rule.
+- Restored all four LZTR1 assay types from `Approved Functional Studies.xlsx`, their AD/AR readout qualifiers, the explicit BS3_NA status, citations, validation limitations, and the workbook's internally inconsistent control-category labels.
+- Removed the locally supplied generic PM3 per-proband table because it is not present in the distributed GN094 package; retained the PDF's SVI instruction and exact aggregate thresholds.
+- Added source-auditable pilot examples and reported PS1_M, BP3, BA1-comparator, and version-provenance conflicts without reclassifying variants or resolving them by inference.
+- Replaced the unsupported two-version local history with the source PDF's version 1.3 release note.
 
 ---
 
-*This document was compiled from ClinGen RASopathy VCEP specifications. For the most current version, please refer to the ClinGen website.*
+*This document was compiled from the distributed ClinGen RASopathy VCEP specifications for LZTR1. For the most current version, refer to the ClinGen website.*

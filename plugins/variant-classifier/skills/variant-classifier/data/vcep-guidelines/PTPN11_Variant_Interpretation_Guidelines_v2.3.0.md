@@ -98,6 +98,8 @@ LOF and/or haploinsufficiency has not been clearly identified as disease mechani
 
 #### Evidence Strength Thresholds
 
+The PTPN11 PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared ladder are not stated.
+
 | Points | Strength Level |
 |:------:|----------------|
 | 0.5 | PS2_Supporting or PM6_Supporting |
@@ -134,25 +136,15 @@ All approved functional assays are expected to be validated by the performing la
 | **Readout** | Semi-quantitative; substrate dephosphorylation |
 | **Threshold (Normal)** | Normal dephosphorylation |
 | **Threshold (Abnormal)** | Increased dephosphorylation |
-| **Validation Controls (P/LP)** | 16 variants (T42A, D61N, Y63C, F71I, A72S, A72V, T73I, E76D, E76K, E76A, Q79R, E139D, I282V, N308D, S502T, M504V) |
-| **Validation Controls (B/LB)** | 17 variants (T42I, T42K, T42P, T42R, T42S, E139A, E139G, E139K, E139Q, E139V, I282L, I282F, I282N, I282T, I282S, I282M, (N308D);(C459G) trans) |
+| **Validation Controls (P/LP-labeled workbook row)** | 16 variants: T42A - P, D61N - P, Y63C - P, F71I - NA, A72S - P, A72V - P/VUS, T73I - P, E76D - P, E76K - P/LP/VUS, E76A - P, Q79R - P, E139D - P, I282V - P, N308D - P, S502T - P, M504V - P |
+| **Validation Controls (B/LB-labeled workbook row)** | 17 variants: T42I - NA, T42K - NA, T42P - NA, T42R - NA, T42S - NA, E139A - NA, E139G - LP, E139K - NA, E139Q - NA, E139V - NA, I282L - NA, I282F - NA, I282N - NA, I282T - P, I282S - NA, I282M - P/LP, (N308D);(C459G) trans |
 | **PMIDs** | 14974085, 15834506, 17177198, 18372317 |
 | **Approved** | Yes |
 | **Proposed Strength** | PS3/BS3 |
 
-##### 2. RAS Activation Assay (Pathway-Specific)
+> **Source conflict / ambiguity:** The PDF declares BS3 **Not Applicable**, while the distributed workbook marks this assay `PS3/BS3`. The workbook does not append a strength suffix, and the PDF's PS3 rows top out at Moderate through assay counting. These statements are not reconciled here.
 
-| Attribute | Details |
-|-----------|---------|
-| **Assay Type** | Pathway-Specific (works for genes upstream from RAS and RAS proteins) |
-| **Description** | Measures the bound RAS protein that immunoprecipitated with RAF1 or RBD (synthetic) |
-| **Readout** | Semi-quantitative; ratio of GTP-bound RAS to total RAS |
-| **Threshold (Normal)** | Normal (WT) pattern |
-| **Threshold (Abnormal)** | Increased RAS/RBD complexes compared with positive control range in assay |
-| **Approved** | Yes |
-| **Proposed Strength** | PS3_Supporting; BS3 not applicable |
-
-##### 3. MEK Activation Assay (Pathway-Specific)
+##### 2. MEK Activation Assay (Pathway-Specific)
 
 | Attribute | Details |
 |-----------|---------|
@@ -162,13 +154,13 @@ All approved functional assays are expected to be validated by the performing la
 | **Readout** | Semi-quantitative; pMEK/MEK ratio basally and/or after RTK stimulation |
 | **Threshold (Normal)** | Normal (WT) pattern |
 | **Threshold (Abnormal)** | Constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation |
-| **Validation Controls (P/LP)** | 7 variants (D61N, Y63C, A72S, E76D, Q79R, I282V, N308D) |
-| **Validation Controls (B/LB)** | 1 ((N308D);(C459G) trans, catalytically inactive / C459S) |
+| **Validation Controls (P/LP-labeled workbook row)** | 7 variants: D61N - P, Y63C - P, A72S - P, E76D - P, Q79R - P, I282V - P, N308D - P |
+| **Validation Controls (B/LB-labeled workbook row)** | 1: (N308D);(C459G) trans, catalytically inactive / C459S, catalytically inactive |
 | **PMIDs** | 14974085, 15834506 |
 | **Approved** | Yes |
 | **Proposed Strength** | PS3_Supporting; BS3 not applicable |
 
-##### 4. ERK Activation Assay (Pathway-Specific)
+##### 3. ERK Activation Assay (Pathway-Specific)
 
 | Attribute | Details |
 |-----------|---------|
@@ -178,13 +170,15 @@ All approved functional assays are expected to be validated by the performing la
 | **Readout** | Semi-quantitative; pERK/ERK ratio basally and after RTK stimulation |
 | **Threshold (Normal)** | Normal (WT) pattern |
 | **Threshold (Abnormal)** | Constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation |
-| **Validation Controls (P/LP)** | 3 variants (A72S, I282V, N308D) |
-| **Validation Controls (B/LB)** | 3 ((N308D);(C459G) trans or C459S catalytically inactive, D61N, E76D) |
+| **Validation Controls (P/LP-labeled workbook row)** | 3 variants: A72S - P, I282V - P, N308D - P |
+| **Validation Controls (B/LB-labeled workbook row)** | 3 entries: (N308D);(C459G) trans or C459S catalytically inactive, D61N - P, E76D - P |
 | **PMIDs** | 14974085, 15834506 |
 | **Approved** | Yes |
 | **Proposed Strength** | PS3_Supporting; BS3 not applicable |
 
-> **Note on combining assays:** Multiple pathway-specific assays (e.g. RAS activation + MEK activation) count as different assay types and may be combined for PS3_Moderate. Animal models and variant-specific assays (e.g. myristoylation assays) have been excluded as the approved assays are considered the most appropriate to evaluate variant pathogenicity for all genes.
+> **Workbook control caveat:** Several validation-control rows do not match their own labels. The SHP-2 “P/LP” row includes NA and mixed VUS entries; its “B/LB” row includes LP, P, and P/LP entries. The ERK “B/LB” row includes D61N and E76D marked P. These labels and statuses are transcribed rather than silently normalized.
+
+> **Note on combining assays:** Multiple pathway-specific assays (e.g. MEK activation + ERK activation) count as different assay types and may be combined for PS3_Moderate. Animal models and variant-specific assays (e.g. myristoylation assays) have been excluded as the approved assays are considered the most appropriate to evaluate variant pathogenicity for all genes.
 
 ---
 
@@ -293,8 +287,10 @@ All approved functional assays are expected to be validated by the performing la
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands. |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. |
+
+> **Source wording:** “Applicable for observed analogous residue positions in PTPN11” is preserved from the PDF even though it is self-referential, and “residues changes” appears to be a grammatical typo.
 
 ---
 
@@ -305,6 +301,8 @@ All approved functional assays are expected to be validated by the performing la
 **VCEP Specifications:** Same as PS2 - use point-based system above. Follow SVI recommendations for point-based scoring in conjunction with PS2.
 
 See [PS2/PM6 Point System](#ps2pm6-point-system-per-proband) above.
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement.
 
 ---
 
@@ -411,11 +409,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**, with no comparator symbols. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is unavailable. The image also states exact values without operators.
+
 | Total Points | Strength Level |
 |:------------:|----------------|
-| ≤ -1 | BS2_Supporting |
+| -1 (operator not stated) | BS2_Supporting |
 | N/A | BS2_Moderate (not applicable) |
-| ≤ -3 | BS2 (Strong) |
+| -3 (operator not stated) | BS2 (Strong) |
 
 ---
 
@@ -425,7 +425,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 **VCEP Specifications:** *Not Applicable*
 
-> **Note:** Approved functional studies are available for each individual gene in the supplemental material. The SHP-2 Phosphatase Activity assay is the only approved assay for BS3 application in PTPN11 (at PS3/BS3 strength). All pathway-specific assays (RAS activation, MEK activation, ERK activation) are approved for PS3_Supporting only, with BS3 not applicable. Additional functional studies can be submitted to the expert panel for approval.
+> **Source conflict — do not resolve silently:** The PDF marks BS3 Not Applicable and says only that approved studies are in the supplement. `Approved Functional Studies.xlsx` marks the SHP-2 Phosphatase Activity assay `PS3/BS3`, while its PTPN11 MEK and ERK assays are `PS3_Supporting; BS3_NA`. The workbook contains no approved PTPN11 RAS activation assay. The unsuffixed SHP-2 strength and its conflict with the PDF remain unresolved.
 
 ---
 
@@ -455,6 +455,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Applicable (Supporting) | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. Also applicable for intronic positions (except canonical splice sites) or non-coding variants; should be used in conjunction with BP4. |
 
+> **Missing distributed content:** BP1 says to see supplemental dosage-sensitivity information, but the PTPN11 package contains only the functional workbook and four scoring images. No dosage-sensitivity supplement is distributed. The PVS1 section's general instruction to consult the live ClinGen Dosage Sensitivity Map is source-backed; no gene-specific supplemental table can be reproduced from this package.
+
 #### BP5/BP2 Point System (Per Individual)
 
 | Phenotypic Consistency | Points per Individual |
@@ -464,11 +466,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BP5/BP2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The image states exact values without comparator symbols.
+
 | Total Points | Strength Level |
 |:------------:|----------------|
-| ≤ -1 | BP5/BP2 (Supporting) |
+| -1 (operator not stated) | BP5/BP2 (Supporting) |
 | N/A | Moderate (not applicable) |
-| ≤ -3 | BP5_Strong / BP2_Strong |
+| -3 (operator not stated) | BP5_Strong / BP2_Strong |
 
 ---
 
@@ -540,14 +544,14 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PP5 | No | - | Not recommended (PMID: 29543229) |
 | BA1 | Yes | Stand Alone | gnomAD FAF ≥0.05% |
 | BS1 | Yes | Strong | gnomAD FAF ≥0.025% |
-| BS2 | Yes | Strong | Point-based; ≤-3 points |
-| BS3 | No | - | See supplemental; only SHP-2 phosphatase assay approved for BS3 |
+| BS2 | Yes | Strong | PDF body: -4; image: -3; operators unstated |
+| BS3 | Conflicting sources | Unstated | PDF: Not Applicable; workbook: SHP-2 assay `PS3/BS3` |
 | BS4 | Yes | Strong | 1 informative meiosis |
 | BP1 | Yes | Supporting | Truncating/LOF variant in GOF gene |
-| BP2 | Yes | Strong | Point-based; alternative RASopathy cause in same gene |
+| BP2 | Yes | Strong | PDF and image publish conflicting point tiers |
 | BP3 | No | - | No benign repetitive areas |
 | BP4 | Yes | Supporting | REVEL ≤0.3 |
-| BP5 | Yes | Strong | Point-based; alternative RASopathy cause in different gene |
+| BP5 | Yes | Strong | PDF and image publish conflicting point tiers |
 | BP6 | No | - | Not recommended (PMID: 29543229) |
 | BP7 | Yes | Supporting | Synonymous + no splicing impact + not conserved |
 
@@ -569,7 +573,7 @@ AA 4, AA 7-9, AA 58-63, AA 69-77, AA 247, AA 251, AA 255, AA 256, AA 258, AA 261
 
 | Assay | Specificity | Approved Genes | PS3 Strength | BS3 |
 |-------|------------|----------------|:------------:|:---:|
-| SHP-2 Phosphatase Activity | Gene-specific (PTPN11) | PTPN11 | Supporting (PS3/BS3 for SHP-2) | Yes |
+| SHP-2 Phosphatase Activity | Gene-specific (PTPN11) | PTPN11 | Workbook says `PS3/BS3` without a strength suffix | PDF N/A; workbook Yes |
 | RAS Activation Assay | Pathway-specific | MRAS, HRAS, KRAS, NRAS, SOS1, SOS2, LZTR1, RRAS2, RIT1 | Supporting | N/A |
 | MEK Activation Assay | Pathway-specific | PTPN11, MRAS, NRAS, HRAS, KRAS, MAP2K1, MAP2K2, RAF1, BRAF, SOS1, SOS2, LZTR1, RIT1, RRAS2 | Supporting | N/A |
 | ERK Activation Assay | Pathway-specific | PTPN11, MRAS, HRAS, KRAS, NRAS, MAP2K1, MAP2K2, RAF1, BRAF, SOS1, SOS2, LZTR1, RIT1, RRAS2 | Supporting | N/A |
@@ -598,6 +602,15 @@ AA 4, AA 7-9, AA 58-63, AA 69-77, AA 247, AA 251, AA 255, AA 256, AA 258, AA 261
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants attached in LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_PTPN11_v2.3.pdf`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, and `Approved Functional Studies.xlsx`. No change to the underlying ClinGen specification version.**
+
+- **Fabricated PTPN11 RAS activation assay removed:** the workbook has no PTPN11 column in its RAS Activation sheet and its comparison matrix does not approve that assay for PTPN11. The previous guideline presented it as an approved fourth assay.
+- **Functional-source conflict exposed:** the PDF declares BS3 Not Applicable, while the workbook marks SHP-2 Phosphatase Activity `PS3/BS3` without a strength suffix. The prior text silently treated that as an approved BS3 strength. The unresolved discrepancy is now explicit.
+- **Qualifying control statuses restored:** P/LP and B/LB worksheet rows contain NA, VUS, LP, P, and mixed classifications inconsistent with their labels. Those statuses—including pathogenic D61N and E76D in the ERK B/LB row—had been stripped from the prior tables and are now transcribed.
+- **Shared scoring contradictions restored:** BS2 is -4 in the PDF body versus -3 in its image; BP2/BP5 use PDF tiers ≥(-4)/≥(-2)/≥(-1) versus image tiers -3/N/A/-1. Invented `≤` comparators were removed from image-derived tables, whose operators are unstated.
+- **Supplement-only strengths and wording identified:** the shared image adds PS2_Supporting and PM6_VeryStrong to criterion blocks that do not list them. The PM5 self-reference to “analogous residue positions in PTPN11” and its “residues changes” typo are preserved and flagged.
+- **Missing supplement recorded:** BP1 cites supplemental dosage-sensitivity information, but no such table is distributed with PTPN11.
 
 ---
 

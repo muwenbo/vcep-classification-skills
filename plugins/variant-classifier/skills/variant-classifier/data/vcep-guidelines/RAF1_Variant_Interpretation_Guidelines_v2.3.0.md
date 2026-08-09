@@ -86,7 +86,7 @@ Caveat: Beware of changes that impact splicing rather than at the amino acid/pro
 |----------|----------|-------------------|
 | **Strong** | Same amino acid change as a previously established pathogenic variant regardless of nucleotide change. Applicable for observed analogous residue positions in *BRAF* and *RAF1*. | Analogous Gene |
 
-> **Note:** Analogous residue positions between BRAF and RAF1 can be used for this criterion. Refer to the Analogous Residues supplemental table.
+> **Supplement format:** `Analogous Residues.xlsx` supplies an image-only alignment of NP_001361187.1 and NP_001341618.1. It does **not** provide a discrete BRAF↔RAF1 residue-pair table. Use the distributed alignment itself; do not infer an exhaustive mapping from this guideline.
 
 ---
 
@@ -111,6 +111,8 @@ Note: Confirmation of paternity only is insufficient. Egg donation, surrogate mo
 \*\*Applicable to prenatal cases, cases with a clinical order of a RASopathy panel without clinical information, and cases with limited clinical information in other global tests (such as WES). Phenotypes for prenatal cases include hypertrophic cardiomyopathy, increased nuchal translucency, cystic hygroma, or hydrops.
 
 #### Evidence Strength Thresholds
+
+> **Source discrepancy — do not resolve silently:** The PDF's displayed PS2 criterion block lists only Very Strong (4), Strong (2), and Moderate (1), while its displayed PM6 block lists only Strong (2), Moderate (1), and Supporting (0.5). The VCEP-distributed `PS2_PM6 Scoring.jpg` extends the common scale to all four strengths for either criterion, explicitly including **PS2_Supporting at 0.5** and **PM6_VeryStrong at 4**. The scoring image prints exact point values without comparator symbols. Both source presentations are reproduced below; the distributed package does not state which controls when they differ.
 
 | Points | Strength Level |
 |--------|----------------|
@@ -150,15 +152,38 @@ Note: Functional studies that have been validated and shown to be reproducible a
 
 > **Note:** Each approved assay counts as PS3_Supporting. Two or more different approved assays = PS3_Moderate. BS3 is not applicable for RAF1 functional studies.
 
+> **General workbook guidance:** The performing laboratory is expected to validate each assay with appropriate controls (PMID: 31892348). Because most assays are semi-quantitative, abnormal results are compared with controls of known status. Pathway-specific assays may use controls from any RASopathy gene; gene-specific assays require gene-specific controls. Assays not listed in the workbook are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting or BS3_Supporting. Animal models and variant-specific assays are excluded from the approved list. Two or more **unique assay types** support PS3_Moderate.
+
+**MEK Activation Assay Details (RAF1 column):**
+- **Source:** PMID 17603482; DOI 10.1038/ng2078; Razzaque, 2007
+- **Material:** HEK293T/17 cells “Transfected with with” [sic] 4.5 μg plasmid DNA and Lipofectamine LTX reagent
+- **Readout:** Semi-quantitative (Qualitative); pMEK/MEK ratio basally and/or after RTK stimulation
+- **Replicates:** Biological replicates not met; technical replicates met, with data representing three independent experiment [sic]
+- **Controls:** WT positive control; vector negative control; P/LP controls S257L, P261S, P261A, V263A, and L613V; no B/LB controls
+- **Statistics and thresholds:** No statistical analysis; normal WT pattern versus constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation
+
+**ERK Activation Assay Details (RAF1 column):**
+- **Source:** PMIDs 17603482 and 17603483; DOIs 10.1038/ng2078 and 10.1038/ng2073; Razzaque and Pandit, 2007
+- **Material:** HEK293T/17 cells “Transfected with with” [sic] 4.5 μg plasmid DNA and Lipofectamine LTX reagent
+- **Readout:** Semi-quantitative (Qualitative); pERK/ERK ratio basally and after RTK stimulation
+- **Replicates:** Biological replicates not met; technical replicates met, with data representing three independent experiment [sic]
+- **Controls:** WT positive control; vector negative control; P/LP controls S257L, P261S, P261A, V263A, L613V, and T491I; D486N (NA) listed as the B/LB control
+- **Statistics and thresholds:** No statistical analysis; normal WT pattern versus constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation
+
 **RAF1 Kinase Activity Assay Details:**
+- **Source:** PMIDs 17603482 and 17603483; DOIs 10.1038/ng2078 and 10.1038/ng2073; Razzaque and Pandit, 2007
 - **Material:** HEK293 cells transfected at 70% confluence with 4.5 μg plasmid DNA and Lipofectamine LTX reagent
 - **Readout type:** Semi-quantitative (Qualitative)
+- **Readout:** Phosphorylation of substrate in a coupled kinase assay; normal = normal substrate phosphorylation; abnormal = increased substrate phosphorylation
 - **Biological replicates:** Not met
 - **Technical replicates:** Met; three independent experiments
 - **Positive control:** WT
 - **Negative control:** Vector/Nontransfected
 - **Validation controls P/LP:** S257L (P), P261A (P/LP), P261S (P), V263A (P/LP), L613V (P)
 - **Validation controls B/LB:** D486N (NA) and T491I (P) — kinase impaired
+- **Statistical analysis:** None
+
+> **Workbook inconsistency:** In the `RAF1 Kinase Activity` sheet, the row headed “Validation controls B/LB (#)” lists two kinase-impaired variants, but labels D486N as NA and **T491I as P**, not B/LB. The `ERK Activation Assay` sheet separately places T491I among P/LP controls. These source entries are reported without reclassification.
 
 ---
 
@@ -212,6 +237,8 @@ Note 2: In instances of very rare variants where case-control studies may not re
 | **Moderate** | Applicable only to critical and well-established functional domains available in the supplementary table: **CR2 domain [AA 251-266/exon7], exon 14, exon 17**. Not applicable to specific amino acid residues (see PM5). | Gene-specific |
 
 > **Important:** PM1 and PM5 may be used in conjunction at moderate levels. PM1 may **not** be applied if PM5_Strong is applied, to avoid overweighting.
+
+> **Distributed-package limitation:** Although the PDF says the domains are available in a supplementary table, the RAF1 package contains no dedicated PM1 domain table. The three locations above are transcribed from the PDF criterion row itself.
 
 ---
 
@@ -267,10 +294,12 @@ Caveat: Beware of changes that impact splicing rather than at the amino acid/pro
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Analogous Gene, Disease-specific |
 
 > **Note:** Analogous residue positions between BRAF and RAF1 are applicable for this criterion. When PM5_Strong is applied, PM1 may **not** be applied to avoid overweighting.
+
+> **Source wording:** “residues changes” is preserved verbatim from the PDF and appears to be a typographical error.
 
 ---
 
@@ -401,6 +430,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3.0 points**, Supporting at -1, and says Moderate is not available. Neither presentation prints a comparator for these strength totals. The body values and image values are both reproduced below; the distributed package does not say which is operative.
+
 | Points | Strength Level |
 |--------|----------------|
 | -1 points | Supporting (BS2_Supporting) |
@@ -452,6 +483,8 @@ Caveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PubMed: 29543229) |
 | **BP7** | Applicable | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. **(Supporting)** |
 
+> **Distributed-package limitation (BP1):** The PDF directs users to supplemental dosage-sensitivity information and gene-specific disorders associated with LoF variants. No dedicated dosage-sensitivity or RAF1 LoF-disorder table is present in the distributed RAF1 package. Do not infer the missing information.
+
 #### BP5/BP2 Point System (Per Individual)
 
 | Phenotypic Consistency | Points per Individual |
@@ -460,6 +493,8 @@ Caveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy
 | Phenotype inconsistent with a RASopathy and no causative variant identified/reported | 0 |
 
 #### BP5/BP2 Evidence Strength Thresholds
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3.0**, says Moderate is **N/A**, and assigns Supporting at **-1**. The body explicitly prints inclusive `≥` operators; the image prints exact values with no comparator symbols. The criterion summary above preserves the PDF-body values, while the table below reproduces the supplied image. The distributed package does not identify an operative presentation.
 
 | Points | Strength Level |
 |--------|----------------|
@@ -529,7 +564,7 @@ Caveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy
 | PM3 | Not Applicable | — |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable (Analogous Gene) | Strong |
-| PM6 | Applicable (Point-based) | Strong |
+| PM6 | Applicable (Point-based) | Strong in PDF criterion block; scoring image also labels Very Strong |
 | PP1 | Applicable | Strong |
 | PP2 | Not Applicable | — |
 | PP3 | Applicable | Supporting |
@@ -550,11 +585,13 @@ Caveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy
 
 ### Appendix B: PM1 Functional Domains for RAF1
 
-| Domain | Amino Acid Range | Exon |
-|--------|-----------------|------|
-| CR2 domain | AA 251-266 | Exon 7 |
-| Kinase domain | — | Exon 14 |
-| Kinase domain | — | Exon 17 |
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** The existing guideline labeled exons 14 and 17 as “Kinase domain,” but the distributed PDF identifies only **exon 14** and **exon 17**, without a domain name, and the package contains no dedicated PM1 supplemental table. The plausible labels are retained below only as unverified local context; the PDF wording is authoritative.
+
+| PDF wording | Amino Acid Range | Exon | Unverified existing label |
+|-------------|------------------|------|---------------------------|
+| CR2 domain | AA 251-266 | Exon 7 | CR2 domain |
+| Domain not specified | — | Exon 14 | Kinase domain |
+| Domain not specified | — | Exon 17 | Kinase domain |
 
 ### Appendix C: Population Frequency Thresholds Summary
 
@@ -574,6 +611,8 @@ Caveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy
 
 > **Scoring:** One approved assay = PS3_Supporting. Two or more different approved assays = PS3_Moderate. BS3 is not applicable for any RAF1 assay.
 
+The workbook also contains other RASopathy-gene assay columns plus hidden template/example, comparison, AKT, animal-model, and myristoylation sheets. Those sheets were inspected but do not define additional approved RAF1 assay types. The hidden animal-model sheet lists RAF1 mouse models but marks animal models “weight less”; the workbook `READ ME` says animal models are excluded from the approved assays.
+
 ### Appendix E: Computational Predictors
 
 | Predictor | Pathogenic Threshold (PP3) | Benign Threshold (BP4) |
@@ -586,13 +625,26 @@ For splicing impact: predicted outcome must match disease mechanism (PP3) or pre
 
 | PMID | Reference |
 |------|-----------|
-| 29543229 | ClinGen SVI recommendation on PP5/BP6 |
+| 29543229 | Citation supplied by the PDF for the PP5/BP6 non-use recommendation |
 | 17603482 | Razzaque et al., 2007 — RAF1 functional studies |
 | 17603483 | Pandit et al., 2007 — RAF1 functional studies |
 
 ### Appendix G: References
 
 1. ClinGen SVI Proposal for De Novo Criteria: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
+
+### Appendix H: Source-Fidelity Notes
+
+The following source conflicts and package gaps remain unresolved because the VCEP-distributed materials do not choose between them:
+
+1. `PS2_PM6 Scoring.jpg` includes PS2_Supporting and PM6_VeryStrong, while those strengths are absent from the respective displayed criterion blocks in the PDF. The PDF's criteria-combination rules name PS2_VeryStrong, but not PM6_VeryStrong.
+2. The PDF body assigns BS2 Strong at -4; `BS2 Scoring.jpg` assigns it at -3.0.
+3. The PDF body assigns BP2/BP5 Strong ≥(-4), Moderate ≥(-2), and Supporting ≥(-1); `BP5_BP2 Scoring.jpg` instead gives Strong -3.0, Moderate N/A, and Supporting -1 without comparator symbols.
+4. `Approved Functional Studies.xlsx` lists T491I (P) in a RAF1 kinase row headed “Validation controls B/LB (#),” while its ERK sheet lists T491I among P/LP controls.
+5. The PDF cites a PM1 supplementary table and BP1 dosage-sensitivity supplement that are not present as dedicated files in the distributed RAF1 package.
+6. `Analogous Residues.xlsx` supplies an image alignment but no discrete BRAF↔RAF1 residue map. Its hidden SOS1/SOS2 working sheets do not define RAF1 analogous positions.
+
+These are reports of the distributed sources, not reconciliations or inferred rules.
 
 ---
 
@@ -601,6 +653,15 @@ For splicing impact: predicted outcome must match disease mechanism (PP3) or pre
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_RAF1_v2.3.pdf`, `Analogous Residues.xlsx`, `Approved Functional Studies.xlsx`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, `PS2_PM6 Scoring.jpg`, and `PS4 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- Reported, without resolving, the PS2/PM6 strength mismatch between the PDF criterion blocks and `PS2_PM6 Scoring.jpg`.
+- Reported the BS2 threshold conflict (PDF -4 versus image -3.0) and the BP2/BP5 conflict (PDF ≥-4/≥-2/≥-1 versus image -3/N/A/-1), preserving each source's comparator semantics.
+- Added the complete RAF1-relevant assay set and validation limitations from `Approved Functional Studies.xlsx`, including the source's inconsistent placement of T491I under a B/LB-labeled RAF1 kinase row.
+- Clarified that `Analogous Residues.xlsx` contains an image alignment, not a discrete residue-pair table, and that its hidden SOS working sheets are not RAF1 rules.
+- Marked the absent PM1 and BP1 referenced supplements as distributed-package limitations; retained the existing plausible “Kinase domain” labels only under the required unverified-content warning.
+- Restored and flagged the PDF's apparent PM5 typo, “residues changes.”
 
 ---
 

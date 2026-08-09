@@ -98,6 +98,8 @@
 
 #### PS2/PM6 Evidence Strength Thresholds
 
+The RIT1 PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared ladder are not stated.
+
 | Points | Strength Level |
 |:------:|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -134,6 +136,16 @@
 | **MEK Activation Assay** | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | 24469055, 25959749 (Berger 2014, Koenighofer 2016) | PS3_Supporting; BS3_NA |
 | **ERK Activation Assay** | Measures the ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation | Pathway Specific | 25959749, 29734338 (Koenighofer 2016, Buschenfelde 2018) | PS3_Supporting; BS3_NA |
 
+#### RIT1 Assay Validation Details
+
+| Assay | Replication and basic controls | Workbook validation-control rows | DOI(s) |
+|-------|--------------------------------|----------------------------------|--------|
+| RAS activation | Biological: not met; technical: met; WT and vector controls met | P/LP row: A57G - P, T83P - P, Y89H - P. B/LB row: Q79L - absent from ClinVar/gnomAD; **S35T - P** | 10.1074/jbc.M116.714196; 10.1126/sciadv.adf4766 |
+| MEK activation | Biological: not met; technical: met; WT and vector controls met | P/LP row includes A57G - P, M90I - P, Q79L - absent from ClinVar/gnomAD, A77P - P/LP, A77S - P, F82L - P, R122L - LP. B/LB row: Q40L - absent from ClinVar/gnomAD | 10.1038/onc.2013.581; 10.1111/cge.12608 |
+| ERK activation | Biological: not met; technical: met; WT and vector controls met | P/LP row includes A57G - P, M90I - P, Q79L - absent from ClinVar/gnomAD, K23N - P, G31R - P/LP, F82L - P, M90V - P, G95A - P. B/LB row: none | 10.1111/cge.12608; 10.1371/journal.pgen.1007370 |
+
+> **Workbook control caveat:** The RAS activation B/LB-labeled row contains S35T marked pathogenic, and multiple labeled validation sets include variants whose only status is absence from ClinVar/gnomAD. These statuses are transcribed rather than silently normalized.
+
 > **Important:** Prior to evaluation of an assay for a variant, all assays are expected to be validated by the performing laboratory in accordance with standard procedures with all appropriate control inclusions (PMID: 31892348) to enable accurate detection of abnormal and normal results. As most of these assays are semi-quantitative in nature, abnormal results should be compared relative to the known status of the controls included in the assay. Multiple assays are pathway specific, meaning controls from any RAS/MAPK gene may be used to support abnormal pathway function.
 
 > **BS3 Note:** BS3 is **Not Applicable** for RIT1. Approved functional studies are available for each individual gene in the supplemental material, but no BS3 assays are currently approved. Additional functional studies can be submitted to the expert panel for approval.
@@ -162,9 +174,9 @@
 
 | Points | Strength Level |
 |:------:|----------------|
-| 1.0 | Supporting (PS4_Supporting) |
-| 3.0 | Moderate (PS4_Moderate) |
-| 5.0 | Strong (PS4) |
+| ≥1.0 | Supporting (PS4_Supporting) |
+| ≥3.0 | Moderate (PS4_Moderate) |
+| ≥5.0 | Strong (PS4) |
 
 ---
 
@@ -236,10 +248,12 @@
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Analogous Gene, Disease-specific |
 
 > **Note:** PM1 and PM5 may be used in conjunction at moderate levels. However, PM1 may **not** be applied if PM5_Strong is applied to avoid overweighting.
+
+> **Source wording:** “residues changes” is preserved from the PDF and appears to be a grammatical typo.
 
 ---
 
@@ -256,6 +270,8 @@ Same point-based system as PS2 -- see [PS2/PM6 Point System](#ps2pm6-points-per-
 | **Strong** | 2 Points | Strength |
 | **Moderate** | 1 Point | None |
 | **Supporting** | 0.5 Points | Strength |
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement.
 
 ---
 
@@ -368,6 +384,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**, with no comparator symbols. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is unavailable. The image also states exact values without operators.
+
 | Points | Strength Level |
 |:------:|----------------|
 | -1 | Supporting (BS2_Supporting) |
@@ -417,6 +435,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Applicable | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
 
+> **Missing distributed content:** BP1 cites supplemental dosage-sensitivity information, but the RIT1 package contains no dosage-sensitivity file. The analogous-residue PDF, functional workbook, and four scoring images do not supply that information.
+
 #### BP5/BP2 Point System
 
 | Phenotypic Consistency | Points per Individual |
@@ -425,6 +445,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Phenotype inconsistent with a RASopathy and no causative variant identified/reported | 0 |
 
 #### BP5/BP2 Evidence Strength Thresholds
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The image states exact values without comparator symbols.
 
 | Points | Strength Level |
 |:------:|----------------|
@@ -490,6 +512,8 @@ The following table specifies analogous functional domains between RAS genes ass
 | **Switch I** | AA 25-40 | AA 25-40 | AA 35-50 | AA 25-40 | AA 43-58 | AA 36-51 |
 | **Switch II** | AA 57-64 | AA 57-64 | AA 67-74 | AA 57-64 | AA 75-82 | AA 68-75 |
 
+> **Provenance:** `Analogous Residues.pdf` supplies these relationships as two image alignments rather than a discrete lookup table. The cross-gene ranges above are derived from the highlighted alignment blocks; the RIT1 PM1 ranges are also stated directly in the main PDF. Do not infer unprinted residue mappings beyond the alignment.
+
 ### Appendix B: Approved Functional Assays Summary
 
 | Assay Type | Specificity | Applicable to RIT1 | Strength |
@@ -526,7 +550,7 @@ The following table specifies analogous functional domains between RAS genes ass
 | PM3 | Not Applicable | - |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable (Analogous genes) | Strong |
-| PM6 | Applicable (Point-based) | Strong |
+| PM6 | Applicable (Point-based) | Very Strong (supplement; PDF body lists through Strong) |
 | PP1 | Applicable (Modified thresholds) | Strong |
 | PP2 | Not Applicable | - |
 | PP3 | Applicable (REVEL ≥ 0.7) | Supporting |
@@ -560,6 +584,15 @@ The following table specifies analogous functional domains between RAS genes ass
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_RIT1_v2.3.pdf`, `Analogous Residues.pdf`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, and `BS2 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- **Scoring contradictions restored:** BS2 is -4 in the PDF body versus -3 in its image; BP2/BP5 use PDF tiers ≥(-4)/≥(-2)/≥(-1) versus image tiers -3/N/A/-1. Both readings and the image's unstated comparator semantics are now explicit.
+- **PS4 comparators corrected:** the prior table dropped the PDF's inclusive `≥` operators from all three PS4 thresholds. They have been restored.
+- **Functional qualifiers transcribed:** assay replication, controls, DOIs, and validation-control statuses were added. The workbook's RAS activation B/LB row contains S35T marked pathogenic, and other labeled control rows contain variants described only as absent from ClinVar/gnomAD; these issues are no longer hidden.
+- **Supplement provenance qualified:** the analogous-residue file contains image alignments, not a discrete lookup table. Cross-gene range mappings are identified as alignment-derived, and no unprinted residue mapping is implied.
+- **Supplement-only strengths and source wording identified:** the scoring image adds PS2_Supporting and PM6_VeryStrong to criterion blocks that omit them; PM6's summary maximum was corrected accordingly. The PDF's “residues changes” typo is preserved and flagged.
+- **Missing BP1 content recorded:** no dosage-sensitivity supplement is distributed for RIT1.
 
 ---
 

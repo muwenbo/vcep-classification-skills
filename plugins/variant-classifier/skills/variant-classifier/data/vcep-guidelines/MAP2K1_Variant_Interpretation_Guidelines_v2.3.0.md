@@ -121,6 +121,8 @@
 
 **Modification Type:** Strength
 
+> **Source discrepancy (unresolved):** `PS2_PM6 Scoring.jpg` names PS2_Supporting and PM6_VeryStrong, but `ClinGen_ACMG_Specifications_MAP2K1_v2.3.pdf` does not define either strength. The PDF defines PS2 at Moderate, Strong, and Very Strong and PM6 at Supporting, Moderate, and Strong. Both sources print exact point values without threshold comparators. The image-only strength names are reported without extending the PDF criteria.
+
 ---
 
 ### PS3 - Functional Studies
@@ -144,8 +146,8 @@ The following assays have been approved for use with MAP2K1 variants:
 
 | Assay | Description | Specificity | Applicable to MAP2K1 |
 |-------|-------------|-------------|---------------------|
-| **MEK Activation Assay** | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | Yes |
-| **ERK Activation Assay** | Measures the ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation | Pathway Specific | Yes |
+| **MEK Activation Assay** | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | PS3_Supporting; BS3_NA |
+| **ERK Activation Assay** | Measures the ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation | Pathway Specific | PS3_Supporting; BS3_NA |
 | **RAS Activation Assay** | Measures the bound RAS protein that immunoprecipitated with RAF1 or RBD (synthetic) | Pathway Specific (upstream genes only) | No* |
 
 *\*RAS activation assay is pathway-specific for genes upstream from RAS and RAS proteins themselves but not for downstream components like MAP2K1.*
@@ -154,8 +156,32 @@ The following assays have been approved for use with MAP2K1 variants:
 - All assays are expected to be validated by the performing laboratory in accordance with standard procedures with all appropriate control inclusions (PMID: 31892348)
 - Abnormal results should be compared relative to the known status of the controls included in the assay
 - Multiple assays are pathway-specific meaning they evaluate the effect of a variant on the Ras/MAPK pathway; controls from any gene may be used to support abnormal pathway function
-- Assays not listed are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting
+- Assays not listed are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting or BS3_Supporting; however, both approved MAP2K1 assay columns explicitly state BS3_NA
 - Animal models and variant-specific assays have been excluded as the assays herein are considered most appropriate
+
+#### MAP2K1 Assay Validation Details
+
+**MEK Activation Assay**
+
+- Sources: Nelson (2015), Chen (2020), and Smits (2020); PMIDs 25899310, 31972311, and 32703450; DOI 10.1002/gcc.22247, 10.1016/j.gene.2020.144369, and 10.1016/j.bbrc.2020.06.022.
+- Material/readout: HEK293T cells transfected with 0.5 mg DDK-tagged MAP2K1 or MAP3K1 cDNAs or empty vector using FuGENE HD; SH-SY5Y cells separately transfected with WT or variant; and HUVEC lentiviral cell lines generated in ECFCs isolated from human white adipose tissue. The semi-quantitative/qualitative readout is the pMEK/MEK ratio basally and/or after RTK stimulation.
+- Replication and controls: biological replicates not met; technical replicates met (`3 independent experiment/experiment repeated 3 times`); WT/HWAT ECFC/HUVEC WT positive controls and vector/empty-lentivirus negative controls met.
+- P/LP validation controls: `4 (F57C, P128Q, Y130C - NA, (S222D);(S226D) trans)`; no B/LB controls.
+- Statistics: one-way ANOVA/Mann-Whitney U test.
+- Normal readout: normal WT pattern. Abnormal readout: constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation.
+
+**ERK Activation Assay**
+
+- Sources: Nelson (2015), Chen (2020), and Smits (2020); PMIDs 25899310, 31972311, and 32703450; DOI 10.1002/gcc.22247, 10.1016/j.gene.2020.144369, and 10.1016/j.bbrc.2020.06.022.
+- Material/readout: HEK293T cells transfected with 0.5 mg DDK-tagged MAP2K1 or MAP3K1 cDNAs or empty vector using FuGENE HD; SH-SY5Y cells transfected with WT/mutants using Lipofectamine 2000; and HUVEC WT/K57N lentiviral lines generated in ECFCs isolated from human white adipose tissue. The semi-quantitative/qualitative readout is the pERK/ERK ratio basally and after stimulation.
+- Replication and controls: biological replicates not met; technical replicates met (`3 independent/repeated experiments`); WT/HWAT ECFC positive controls and vector negative control met.
+- P/LP validation controls: `8 (56_61QKQKVG>R - NA, K57M - P, K57N - P/LP, C121S - P/LP, G128D - LP, G128V - P/LP, (C121S);(G128D) trans, Y130C - P)`; no B/LB controls.
+- Statistics: one-way ANOVA/Mann-Whitney U test.
+- Normal readout: normal WT pattern. Abnormal readout: constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation.
+
+> **Source control notes:** `Approved Functional Studies.xlsx` places Y130C labelled `NA` in the MEK P/LP validation-control row and `56_61QKQKVG>R` labelled `NA` in the ERK P/LP row. These internal workbook inconsistencies are reported without reassigning the controls.
+
+> **Workbook scope note:** MAP2K1 has no RAS Activation Assay column. The hidden AKT sheet is explicitly unapproved and contains NRAS only; the hidden cell-survival sheet is dummy example data (PMID 1234567, Jones, 1985); and the hidden animal-model and myristoylation material is excluded by the workbook's own policy.
 
 ---
 
@@ -192,6 +218,8 @@ The following assays have been approved for use with MAP2K1 variants:
 
 **Modification Type:** Disease-specific
 
+> **Comparator note:** The inclusive `≥` thresholds above come from `ClinGen_ACMG_Specifications_MAP2K1_v2.3.pdf`. `PS4 Scoring.jpg` prints exact 1.0, 3.0, and 5.0 values without comparators. The attachment's omission is reported rather than treated as a different operator.
+
 ---
 
 ### PM1 - Mutational Hot Spot
@@ -207,6 +235,10 @@ The following assays have been approved for use with MAP2K1 variants:
 **Modification Type:** Gene-specific
 
 #### MAP2K1 Critical Functional Domains
+
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.**
+>
+> The distributed specification defines only the ranges AA 43–61 and AA 124–134; neither it nor `Analogous Residues.xlsx` names these ranges. The prior descriptive labels are retained below as unverified operational context.
 
 | Domain | Amino Acid Range |
 |--------|------------------|
@@ -271,12 +303,14 @@ The following assays have been approved for use with MAP2K1 variants:
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong (PM5_Strong)** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands |
+| **Strong (PM5_Strong)** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands |
 | **Moderate (PM5)** | 1 [likely] pathogenic residue change at the same codon |
 
 **Modification Type:** Analogous Gene, Strength (for Strong); Analogous Gene, Disease-specific (for Moderate)
 
 **Note:** PM1 may NOT be applied if PM5_Strong is applied to avoid overweighting.
+
+> **Source wording note:** The source typo `residues changes` is preserved verbatim. The v2.3 release note removed `observed in ≥5 probands` only from PM5 at Moderate strength; the qualifier remains in the Strong row.
 
 ---
 
@@ -415,13 +449,24 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### Evidence Strength Thresholds
 
+`ClinGen_ACMG_Specifications_MAP2K1_v2.3.pdf` defines:
+
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≤-1 | Supporting (BS2_Supporting) |
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
+| -4 points (operator unstated) | Strong (BS2) |
+
+`BS2 Scoring.jpg` defines:
+
+| Total Points | Strength Level |
+|--------------|----------------|
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
 | N/A | Moderate (not applicable) |
-| ≤-3.0 | Strong (BS2) |
+| -3.0 points (operator unstated) | Strong (BS2) |
 
 **Modification Type:** Strength
+
+> **Source contradiction (unresolved):** BS2 Strong is -4 points in the PDF but -3.0 points in the attached image. Neither source supplies an inclusive or strict comparator. The prior `≤` interpretation was not source-supported and has been removed.
 
 ---
 
@@ -431,7 +476,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 **VCEP Specification:** *Not Applicable*
 
-**Comments:** Approved functional studies are available for each individual gene in the supplemental material. Additional functional studies can be submitted to the expert panel for approval.
+**Comments:** Approved functional studies are available for each individual gene in the supplemental material. Additional functional studies can be submitted to the expert panel for approval. Both approved MAP2K1 assay columns in `Approved Functional Studies.xlsx` explicitly state BS3_NA.
 
 ---
 
@@ -463,6 +508,10 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PMID: 29543229) |
 | **BP7** | Applicable | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
 
+> **Unavailable referenced material (BP1):** The specification refers to supplemental dosage-sensitivity information, but no dosage-sensitivity document is present in the complete distributed MAP2K1 package. No MAP2K1-specific dosage claim is inferred.
+
+> **Source presentation note (BP4):** The PDF's VCEP summary includes both the missense and splicing rules, while its Supporting row repeats only the missense rule. Both source statements are retained without treating the shorter row as a retraction.
+
 #### BP5/BP2 Point System (Per Individual)
 
 | Phenotypic Consistency | Points per Individual |
@@ -472,11 +521,23 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BP5/BP2 Evidence Strength Thresholds
 
+`ClinGen_ACMG_Specifications_MAP2K1_v2.3.pdf` defines both BP2 and BP5 as:
+
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≤-1 | Supporting (BP5/BP2) |
+| ≥(-1) | Supporting |
+| ≥(-2) | Moderate |
+| ≥(-4) | Strong |
+
+`BP5_BP2 Scoring.jpg` instead defines:
+
+| Total Points | Strength Level |
+|--------------|----------------|
+| -1 point (operator unstated) | Supporting (BP5/BP2) |
 | N/A | Moderate (not applicable) |
-| ≤-3.0 | Strong (BP5_Strong/BP2_Strong) |
+| -3.0 points (operator unstated) | Strong (BP5_Strong/BP2_Strong) |
+
+> **Source contradiction (unresolved):** The PDF and image disagree on whether Moderate is available and on the Strong value. The image supplies no comparator, while the PDF explicitly uses `≥`. The prior `≤` interpretation of the image was not source-supported and has been removed.
 
 ---
 
@@ -537,6 +598,10 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 
 *Refer to the supplementary file "Analogous Residues" for the complete alignment and mapping of analogous residues between MAP2K1 and MAP2K2.*
 
+The visible `MAP2K Alignment` sheet contains two embedded alignment images spanning MAP2K1 (393 amino acids) and MAP2K2 (400 amino acids). It does not identify pathogenic residues or provide an approved codon-by-codon PM5 list.
+
+> **Package scope note:** The workbook's two hidden sheets, `SOS variants from HGMD` and `SOS variants case counts`, contain SOS1/SOS2 data and unfinished notes. They are unrelated to the MAP2K1/MAP2K2 alignment and are not MAP2K1 evidence.
+
 ### Appendix B: Population Frequency Thresholds Summary
 
 | Criterion | Threshold | Strength |
@@ -547,19 +612,21 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 
 **Note:** Use gnomAD filtering allele frequency for all population frequency assessments.
 
-### Appendix C: Critical Functional Domains
+### Appendix C: Source-Defined PM1 Ranges
 
-| Domain | Amino Acid Range | Applicable Criterion |
-|--------|------------------|---------------------|
-| Negative regulatory region | AA 43-61 | PM1 (Moderate) |
-| Catalytic core region | AA 124-134 | PM1 (Moderate) |
+| Amino Acid Range | Applicable Criterion |
+|------------------|---------------------|
+| AA 43–61 | PM1 (Moderate) |
+| AA 124–134 | PM1 (Moderate) |
 
 ### Appendix D: Approved Functional Assays Summary
 
 | Assay | PS3 Strength | BS3 Strength | Gene Applicability |
 |-------|--------------|--------------|-------------------|
-| MEK Activation Assay | Supporting (1 assay) / Moderate (2+ assays) | Not Applicable | MAP2K1, MAP2K2, and pathway genes |
-| ERK Activation Assay | Supporting (1 assay) / Moderate (2+ assays) | Not Applicable | All RASopathy genes |
+| MEK Activation Assay | Supporting | Not Applicable | MAP2K1 |
+| ERK Activation Assay | Supporting | Not Applicable | MAP2K1 |
+
+Two or more different approved assay types for the same variant support PS3_Moderate.
 
 ### Appendix E: Point-Based Scoring Summary
 
@@ -572,6 +639,8 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 | 2.0 | Strong |
 | 4.0 | Very Strong |
 
+The image prints exact values without operators and names PS2_Supporting and PM6_VeryStrong, which the PDF does not define.
+
 #### Case Counting (PS4) Evidence Strength
 
 | Points | Evidence Level |
@@ -580,19 +649,21 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 | 3.0 | Moderate |
 | 5.0 | Strong |
 
-#### Healthy Individual (BS2) Evidence Strength
+The inclusive `≥` comparators are supplied by the PDF body; the image prints only exact values.
 
-| Points | Evidence Level |
-|--------|----------------|
-| -1.0 | Supporting |
-| -3.0 | Strong |
+#### Healthy Individual (BS2) Evidence Strength — Conflicting Sources
 
-#### Alternative Molecular Cause (BP5/BP2) Evidence Strength
+| Source | Supporting | Moderate | Strong |
+|--------|------------|----------|--------|
+| Specification PDF | -1, operator unstated | Not defined | -4, operator unstated |
+| `BS2 Scoring.jpg` | -1, operator unstated | N/A | -3, operator unstated |
 
-| Points | Evidence Level |
-|--------|----------------|
-| -1.0 | Supporting |
-| -3.0 | Strong |
+#### Alternative Molecular Cause (BP5/BP2) Evidence Strength — Conflicting Sources
+
+| Source | Supporting | Moderate | Strong |
+|--------|------------|----------|--------|
+| Specification PDF | ≥(-1) | ≥(-2) | ≥(-4) |
+| `BP5_BP2 Scoring.jpg` | -1, operator unstated | N/A | -3, operator unstated |
 
 ---
 
@@ -600,9 +671,9 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 
 1. ClinGen SVI Proposal for De Novo Criteria: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
 
-2. Brnich SE, et al. Recommendations for application of the functional evidence PS3/BS3 criterion using the ACMG/AMP sequence variant interpretation framework. Genome Med. 2019;12(1):3. PMID: 31892348
+2. Functional-evidence assay validation recommendation cited by `Approved Functional Studies.xlsx`: PMID 31892348
 
-3. Biesecker LG, Harrison SM; ClinGen Sequence Variant Interpretation Working Group. The ACMG/AMP reputable source criteria for the interpretation of sequence variants. Genet Med. 2018;20(12):1687-1688. PMID: 29543229
+3. ClinGen Sequence Variant Interpretation VCEP Review Committee recommendation cited by the specification: PMID 29543229
 
 ---
 
@@ -610,6 +681,7 @@ MAP2K1 and MAP2K2 are highly homologous genes. Analogous residue positions can b
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 2.3.0 | 2026-08-07 | **Document corrections.** Restored the PM5_Strong source typo and `observed in ≥5 probands` qualifier and documented BP4's split presentation from `ClinGen_ACMG_Specifications_MAP2K1_v2.3.pdf`; removed invented BS2 and BP2/BP5 `≤` comparators and reported the unresolved scoring conflicts verified against the PDF, `BS2 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `PS2_PM6 Scoring.jpg`, and `PS4 Scoring.jpg`; transcribed MAP2K1 assay citations, controls, readouts, strengths, and control-row inconsistencies from `Approved Functional Studies.xlsx`; verified both embedded alignment images and excluded the unrelated hidden SOS sheets in `Analogous Residues.xlsx`; marked the unverified PM1 range names with the required warning and replaced the source-contradicting all-RASopathy assay claim; documented the absent BP1 dosage-sensitivity attachment after checking the complete package. |
 | 2.3.0 | December 3, 2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
 
 ---

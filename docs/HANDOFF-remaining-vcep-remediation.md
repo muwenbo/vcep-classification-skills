@@ -1,20 +1,22 @@
-# Handoff — remediation of the 69 unremediated VCEP guidelines
+# Handoff — remediation of the 53 unremediated VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-07 after two further rounds
+**Written:** 2026-08-07, revised 2026-08-07 after the RASopathy round and Limb Girdle preflight
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
-**Head at writing:** `4c91f2c`
+**Head at this revision:** `6dbdba9`
+**Working tree:** RASopathy round complete but **uncommitted**; 16 guideline files plus this handoff are modified
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (round 2 and 3).** Two batches have been completed since this
-document was first written, and both changed what it says. The three "ranges"
-suspects turned out to be almost entirely false positives (§1), and the
-zero-supplement premise turned out to be too broad (§2a). One genuinely
-predictive signal did emerge, and it is greppable — see **§2a**. Read §1, §2a
-and §7 before planning any further work; the rest of the document stands.
+**Revision note (rounds 2–4).** Three batches have been completed since this
+document was first written. The three "ranges" suspects turned out to be
+almost entirely false positives (§1), the zero-supplement premise turned out
+to be too broad (§2a), and all 16 RASopathy specs have now been remediated
+source-first (§13). The next panel is Limb Girdle Muscular Dystrophy; its §2a
+preflight is already complete and clean (§7a). Read §1, §2a, §7 and §13 before
+planning further work; the rest of the document stands.
 
 ---
 
@@ -62,34 +64,33 @@ whether this document transcribed it honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 69 specs remain
+## 2. Scope: 53 specs remain
 
-122 unique spec IDs; 53 covered so far (6 audited, 14 major bumps, 8 new specs,
-13 minor bumps, BRCA2, the 3 range-suspects of round 2, and the 8
-zero-supplement specs of round 3). **69 remain.** Full list: run the snippet
-in §6.
+122 unique spec IDs; 69 covered so far (6 audited, 14 major bumps, 8 new specs,
+13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
+specs of round 3, and the 16 RASopathy specs of round 4). **53 remain.** Full
+list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
 repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 16 | RASopathy |
 | 7 | Cardiomyopathy |
 | 7 | Congenital Myopathies |
 | 7 | Limb Girdle Muscular Dystrophy |
 | 5 | Epilepsy Sodium Channel |
-| 4 | Platelet Disorders |
 | 3 | Monogenic Diabetes |
-| 3 | Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
-| 2 each | Lysosomal, Mitochondrial, HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Hereditary Hemorrhagic Telangiectasia |
-| 1 each | 13 further panels |
+| 3 | Platelet Disorders |
+| 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy, Hereditary Hemorrhagic Telangiectasia |
+| 1 each | 9 further panels |
 
 **Batch by panel, not alphabetically.** The 2026-08-07 run put nine sibling
 SCID specs in flight together and they corroborated each other — the same
 PS3 sentence was independently traced across four of them, which is what
 turned a vague suspicion into a precise upstream query. The RASopathy group
-(16) is the single biggest win available.
+(16) has now been completed the same way; its recurring shared-source defects
+would have been much harder to identify one gene at a time.
 
 ---
 
@@ -312,10 +313,12 @@ bumps     = {"GN003","GN008","GN021","GN080","GN088","GN113","GN114","GN116",
 brca2     = {"GN097"}
 ranges    = {"GN022","GN167","GN084"}                       # round 2
 zero_supp = {"GN010","GN011","GN012","GN013","GN014","GN015","GN018","GN023"}  # round 3
+rasopathy = {"GN038","GN039","GN040","GN041","GN042","GN043","GN044","GN045",
+             "GN046","GN047","GN048","GN049","GN087","GN094","GN127","GN128"}  # round 4
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
-                                | ranges | zero_supp))
-print(len(remaining))  # 69
+                                | ranges | zero_supp | rasopathy))
+print(len(remaining))  # 53
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -338,11 +341,14 @@ positives; see §1.
 the ninth and was covered by round 2. Five of the remaining eight were clean;
 see §2a.
 
-3. **RASopathy panel (16 specs).** Biggest single batch; siblings corroborate.
-   **Start here.**
-4. **Limb Girdle (7) and Congenital Myopathies (7).** Both ship 7–8
-   supplements per spec, so mode-2 exposure is high.
-5. **Cardiomyopathy (7).** MYH7 is already audited and known bad (phantom
+~~3. RASopathy panel (16 specs)~~ — **done, round 4 in the current uncommitted
+working tree.** See §13.
+4. **Limb Girdle (7). Start here.** Its panel-wide §2a preflight is complete;
+   all seven packages are complete and every claimed supplement exists. See
+   §7a for the exact manifest and source caveats.
+5. **Congenital Myopathies (7).** This is the next supplement-heavy panel after
+   Limb Girdle.
+6. **Cardiomyopathy (7).** MYH7 is already audited and known bad (phantom
    PS2/PM6, Appendix A listing strengths the spec never defines) — its six
    siblings share conventions and are likely to share defects. Note MYH7's
    defect is now recognisable as **mode 1b**, the generic-flowchart graft, so
@@ -354,12 +360,65 @@ batch are likely to be the expensive ones.
 
 ---
 
-## 8. Loose ends unrelated to the 69
+## 7a. Limb Girdle preflight — complete, proceed to source-first remediation
 
-- **GN094 LZTR1 registry inconsistency**: `version` is `1.3.0` but
-  `guideline_file` is `LZTR1_..._v2.0.0.md`. Pre-existing, predates this
-  session. Either the field or the filename is wrong — check against the live
-  spec. Also 17 title/version mismatches, mostly benign mtDNA suffixes.
+The §2a preflight was completed on 2026-08-07 for all seven Limb Girdle
+Muscular Dystrophy specs. It was read-only; no Limb Girdle guideline was
+changed.
+
+| Spec | Substantive files | Provenance result | PVS1 result |
+|---|---:|---|---|
+| ANO5 (GN188) | 7/7 | clean | genuine shipped flowchart |
+| CAPN3 (GN187) | 8/8 | clean | genuine shipped flowchart |
+| DYSF (GN180) | 9/9 | clean | genuine shipped flowchart |
+| SGCA (GN189) | 9/9 | clean | genuine shipped flowchart |
+| SGCB (GN184) | 9/9 | clean | genuine shipped flowchart |
+| SGCD (GN186) | 9/9 | clean | genuine shipped flowchart |
+| SGCG (GN185) | 9/9 | clean | genuine shipped flowchart |
+
+All 60 advertised substantive files are present, readable, correctly typed and
+non-empty. Metadata and disk agree; there are no missing, duplicate, extra or
+zero-byte files. Every guideline claim involving PVS1, PM3, PS1 splicing,
+experimental splice data, benign-frequency exceptions, PP4 or PS3 appears in
+the corresponding ClinGen PDF and has a physical artifact in that gene's
+package.
+
+The PVS1 appendices trigger the §1b signature (`role of region unknown`,
+`>10%`/`<10%` of protein), but they are **not grafts**. ClinGen ships a distinct
+gene-specific `PVS1 flowchart <GENE>.pptx` for all seven. Each uses that shared
+template with a gene-specific transcript, NMD boundary and in-frame exon list.
+Do not delete the shared branches merely because they resemble Tayoun/SVI.
+
+Carry these source caveats into remediation without resolving them:
+
+- Every flowchart uses strict `>10%` and `<10%` branches, leaving exactly 10%
+  unassigned.
+- Footnote markers `a`, `b`, `c` and `d` appear without a definition block in
+  the slide or its speaker notes.
+- SGCD deliberately differs from its siblings: premature truncation in codons
+  1–34 is `PVS1_Supporting`; the other six use `PVS1_Moderate`.
+- SGCD's local bibliography expands PMID 27618451 to “Abou Tayoun et al.,
+  2018”, while the distributed package supplies only the bare PMID in the
+  PVS1 PowerPoint. Treat the expanded provenance as unverified unless another
+  distributed source supports it.
+
+Shared supplements are byte-identical across all seven for PM3 co-application,
+PM3 scoring, PS1 splicing, experimental splice data and benign-frequency
+exceptions. PP4 PowerPoints and PS3 workbooks are gene-specific. This is a good
+panel for sibling corroboration, but gene-specific PVS1, PP4 and PS3 content
+must still be transcribed independently.
+
+---
+
+## 8. Loose ends unrelated to the 53
+
+- **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
+  that the governing distributed specification and registry version are
+  `1.3.0`, while `guideline_file` remains `LZTR1_..._v2.0.0.md`. The mismatch
+  predates round 4 and was deliberately not folded into a same-version content
+  correction. Resolve the filename separately if desired; do not change the
+  registry version to 2.0.0. Also 17 title/version mismatches remain, mostly
+  benign mtDNA suffixes.
 - **`read_word.py` cannot reach images embedded inside `.docx`.** Agents worked
   around it by unzipping the archive manually. Worth fixing properly; several
   tables exist only as embedded PNGs.
@@ -390,9 +449,19 @@ Accumulated across sessions; worth sending as a batch.
   ships no Corrections file at all, the gate appears nowhere in its nine
   sources, yet local v2.1.0 carried it twice, and a release note attributes a
   "PS3_Moderate specification edit" to a file that was never delivered.
-- **PVS1 flowchart footnote markers `a`, `b`, `d` are cited but never defined**
-  — in F9, IL7R, DCLRE1C, FOXN1, ACADVL, IL2RG and RAG2. One shared template
-  whose footnote block was never populated.
+- **PVS1 flowchart footnote markers are cited but never defined.** Markers
+  `a`, `b`, `d` are affected in F9, IL7R, DCLRE1C, FOXN1, ACADVL, IL2RG and
+  RAG2. The Limb Girdle preflight found the same problem for `a`, `b`, `c` and
+  `d` in all seven ANO5/CAPN3/DYSF/SGCA/SGCB/SGCD/SGCG flowcharts; their
+  speaker notes contain only template instructions, not definitions.
+- **Limb Girdle PVS1 exact-10% gap.** All seven distributed gene-specific
+  flowcharts use strict `>10%` and `<10%` branches with no path for a variant
+  that removes exactly 10% of the protein.
+- **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
+  -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
+  `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
+  operators. The PS2/PM6 image also supplies strengths omitted from the body
+  criterion blocks. Which artifact is authoritative?
 - **InSiGHT (MLH1/MSH2/MSH6/PMS2):** all four v2.0 specs publish an erratum
   ("Changed '2 Strong' in combining rules from Pathogenic to Likely
   Pathogenic") that none of their own tables reflect. Which is authoritative?
@@ -472,7 +541,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–3 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–4 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -491,15 +560,16 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2 and 3 the changelogs are **in the guidelines themselves**, under
-"Document corrections" in each Version History, and in the two commit
-messages (`2f9674b`, `4c91f2c`) — which are deliberately detailed and are not
-ephemeral. Prefer that pattern going forward: a finding recorded in `/tmp` is
-a finding you will lose.
+For rounds 2–4 the durable changelogs are **in the guidelines themselves**,
+under dated "Document corrections" entries. Rounds 2 and 3 also have detailed
+commit messages (`2f9674b`, `4c91f2c`). Round 4 is still uncommitted at this
+revision; its source-first drafts live in isolated `/tmp` directories and are
+ephemeral. Prefer the in-guideline pattern going forward: a finding recorded
+only in `/tmp` is a finding you will lose.
 
 ---
 
-## 13. Round 2 and 3 summary
+## 13. Rounds 2–4 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -511,6 +581,39 @@ table. All three had lost the SVI heterogeneity-row cap footnote.
 (ETHE1/PDHA1/POLG/SLC19A3), mtDNA (GN015), Platelet Disorders (GN011).
 Defective: LDLR (GN013), GAA (GN010), Hearing Loss (GN023) — all three caught
 by the §2a signal.
+
+**Round 4 — uncommitted working tree at `6dbdba9`** — all 16 RASopathy specs:
+SHOC2 (GN038), NRAS (GN039), RAF1 (GN040), SOS1 (GN041), SOS2 (GN042),
+PTPN11 (GN043), KRAS (GN044), MAP2K1 (GN045), HRAS (GN046), RIT1 (GN047),
+MAP2K2 (GN048), BRAF (GN049), MRAS (GN087), LZTR1 (GN094), RRAS2 (GN127)
+and PPP1CB (GN128). Each was drafted source-first from its complete package,
+then remediated in place. The registry was not changed and no file was renamed.
+
+Recurring panel findings:
+
+- The PDF body and distributed images disagree: BS2 Strong is -4 versus -3;
+  BP2/BP5 are PDF `>=(-4)`/`>=(-2)`/`>=(-1)` versus image -3/N/A/-1.
+  Both readings are now reported; invented image comparators were removed.
+- The PS2/PM6 image adds PS2_Supporting and PM6_VeryStrong to criterion blocks
+  that omit them.
+- Functional workbooks contained omitted assay details, miscategorised
+  validation controls and, in several local guidelines, generic or fabricated
+  assay prose. Source-contradicting content was removed; plausible but
+  unverifiable gene-specific history was retained only under the required
+  warning banner.
+- Analogous-residue files were frequently working sheets or image alignments,
+  not authoritative exhaustive lookup tables. Their limitations are now
+  explicit.
+- BP1 repeatedly cites dosage-sensitivity material that is not distributed.
+- LZTR1's apparently generic PVS1 and inheritance flowcharts are genuine
+  shipped artifacts. Its source is v1.3; the pre-existing v2.0.0 filename
+  mismatch remains deliberately unresolved (§8).
+
+Round 4 final gate: all 16 `check_vcep_spec.py` lookups passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+`git diff --check` was clean. Before the handoff edit, the round comprised 16
+modified guidelines, 1,254 insertions and 372 deletions.
 
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is

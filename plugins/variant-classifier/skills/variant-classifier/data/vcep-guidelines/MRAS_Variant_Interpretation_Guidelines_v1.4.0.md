@@ -4,6 +4,10 @@
 **Released:** 12/3/2024
 **Affiliation:** RASopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**DOI:** 10.5281/zenodo.21434125
+**Source package reviewed:** `ClinGen_ACMG_Specifications_MRAS_v1.4.pdf`, `Analogous Residues.pdf`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BS2 Scoring.jpg`, and `BP5_BP2 Scoring.jpg`
+
+**Release Notes:** These are the ACMG/AMP variant classification specifications developed by the RASopathy VCEP for MRAS. Pilot variants are included in the LZTR1 submission. “Observed in ≥5 probands” removed from PM5 at Moderate strength.
 
 ---
 
@@ -72,7 +76,7 @@
 
 | Status | Comment |
 |--------|---------|
-| **Not Applicable** | Not applicable. Loss of function is not a known disease mechanism for MRAS in RASopathies. |
+| **Not Applicable** | Not applicable. The VCEP gives no MRAS-specific rationale in the PVS1 row; its BP1 rule separately describes the RASopathy mechanism as gain-of-function. |
 
 ---
 
@@ -118,7 +122,9 @@ Follow SVI recommendations for point-based scoring in conjunction with PM6 (see 
 
 *\*\*Applicable to prenatal cases, cases with a clinical order of a RASopathy panel without clinical information, and cases with limited clinical information in other global tests (such as WES). Phenotypes for prenatal cases include hypertrophic cardiomyopathy, increased nuchal translucency, cystic hygroma, or hydrops.*
 
-#### Evidence Strength Thresholds
+#### Strength Ladder in `PS2_PM6 Scoring.jpg`
+
+The image prints exact totals without inequality comparators:
 
 | Points | Strength Level |
 |--------|----------------|
@@ -126,6 +132,17 @@ Follow SVI recommendations for point-based scoring in conjunction with PM6 (see 
 | 1.0 point | Moderate (PS2_Moderate or PM6) |
 | 2.0 points | Strong (PS2 or PM6_Strong) |
 | 4.0 points | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
+
+#### Strength Levels in the Main PDF
+
+| Criterion | Published strengths and point totals |
+|-----------|--------------------------------------|
+| **PS2** | Very Strong: 4; Strong: 2; Moderate: 1 |
+| **PM6** | Strong: 2; Moderate: 1; Supporting: 0.5 |
+
+The main PDF also prints bare totals without inequality comparators.
+
+> **SOURCE CONTRADICTION / OMISSION — do not silently resolve:** `PS2_PM6 Scoring.jpg` defines PS2 Supporting at 0.5 point and PM6 Very Strong at 4 points, but those strengths are absent from the main PDF's PS2 and PM6 strength rows. Keep the image-only tiers distinct and do not infer `>=`.
 
 **Modification Type:** Strength
 
@@ -160,6 +177,8 @@ The following functional studies have been approved by the ClinGen RASopathy CDW
 
 **Note:** Two or more unique assay types (i.e. RAS activation assay and MEK activation assay) for a given variant provides sufficient evidence to upgrade PS3 to the Moderate strength.
 
+The workbook also says pathway-specific controls may come from any gene, unlisted assays may be sufficient only for PS3_Supporting/BS3_Supporting, and animal or variant-specific assays are excluded.
+
 ##### MRAS-Specific RAS Activation Assay Details
 
 | Parameter | MRAS Specifications |
@@ -171,7 +190,62 @@ The following functional studies have been approved by the ClinGen RASopathy CDW
 | **Material Used** | HEK293T/17 cells: Expression of MRAS was accomplished by transfecting 10 μg MRAS WT or mutant p.Gly23Val-MRAS cDNA with the use of Effectene Transfection Reagent (Qiagen) |
 | **Readout Type** | Semi-quantitative (Qualitative) |
 | **Readout Description** | The ratio of GTP-MRAS to total MRAS was calculated. The relative MRAS activation for p.Gly23Val-MRAS was calculated by normalizing the WT-MRAS sample to 1. |
+| **Biological Replicates** | Not met |
+| **Technical Replicates** | Not met |
+| **Basic Positive Control** | Met; WT-MRAS |
+| **Basic Negative Control** | Not met |
 | **Validation Controls (P/LP)** | G23V - Pathogenic |
+| **Validation Controls (B/LB)** | None |
+| **Statistical Analysis** | Two-tailed Student’s t-test |
+| **Threshold (Normal)** | Normal (WT) pattern |
+| **Threshold (Abnormal)** | Increased RAS/RBD complexes compared with positive control range in assay. |
+| **Approved** | Y |
+| **Proposed Strength** | PS3_Supporting; BS3_NA |
+
+##### MRAS MEK Activation Assay Details
+
+| Parameter | MRAS Specifications |
+|-----------|---------------------|
+| **Citation** | `Based on analogy with other RAS genes/proteins` (the PMID field contains this text) |
+| **DOI / Author / Year** | Not supplied |
+| **Material Used** | Engineered variants in cell lines, patient cells |
+| **Readout Type** | Semi-quantitative (Qualitative) |
+| **Readout Description** | pMEK/MEK ratio basally and/or after RTK stimulation |
+| **Biological Replicates** | Not Met |
+| **Technical Replicates** | Not Met |
+| **Basic Positive Control** | Not Met |
+| **Basic Negative Control** | Not Met |
+| **Validation Controls (P/LP)** | 0 |
+| **Validation Controls (B/LB)** | 0 |
+| **Statistical Analysis** | Not supplied |
+| **Threshold (Normal)** | Normal (WT) pattern |
+| **Threshold (Abnormal)** | Abnormal pattern indicating constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation |
+| **Approved** | Y |
+| **Proposed Strength** | PS3_Supporting; BS3_NA |
+
+##### MRAS ERK Activation Assay Details
+
+| Parameter | MRAS Specifications |
+|-----------|---------------------|
+| **PMID** | 28289718 |
+| **DOI** | `doi:10.1172/jci.insight.91225` |
+| **Author / Year** | Higgins / 2017 |
+| **Material Used** | HEK293T/17 cells: expression of MRAS by transfecting 10 μg MRAS WT or mutant p.Gly23Val-MRAS cDNA with Effectene Transfection Reagent (Qiagen) according to the manufacturer’s instructions |
+| **Readout Type** | Semi-quantitative (Qualitative) |
+| **Readout Description** | pERK/ERK ratio basally and after stimulation, compared with controls |
+| **Biological Replicates** | not met |
+| **Technical Replicates** | not met |
+| **Basic Positive Control** | met; WT-MRAS |
+| **Basic Negative Control** | not met |
+| **Validation Controls (P/LP)** | G23V - P |
+| **Validation Controls (B/LB)** | 0 |
+| **Statistical Analysis** | 2-tailed Student’s t test with Bonferroni multiple-significance-test correction |
+| **Threshold (Normal)** | Normal (WT) Pattern |
+| **Threshold (Abnormal)** | Constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation |
+| **Approved** | Y |
+| **Proposed Strength** | PS3_Supporting; BS3_NA |
+
+> **SOURCE QUALITY WARNING — analogy-only approval and unfinished validation:** `Approved Functional Studies.xlsx` marks all three MRAS assays approved (`Y`). The MEK entry, however, has no study citation, DOI, author, year, controls, or statistical analysis; its citation field says only “Based on analogy with other RAS genes/proteins.” RAS and ERK each use only G23V as a P/LP validation control and have no B/LB control. Replicate and negative-control fields are not met. These source values are transcribed without inventing missing evidence or overriding the published approval.
 
 ---
 
@@ -200,13 +274,17 @@ Strength adjustment using point-based scoring for autosomal dominant cases with 
 
 *\*\*Negative points for PS4 represent proband affected with a non-RASopathy congenital disorder rather than a healthy individual (BS2). This typically applies to probands tested by exome analysis with multiple other clinical features supporting a distinct syndromic disorder. (e.g. CHARGE, CdLS)*
 
-#### PS4 Evidence Strength Thresholds
+#### PS4 Main-PDF Strength Thresholds
+
+The main PDF explicitly uses inclusive `>=` comparators. The image footer prints exact totals 1.0, 3.0, and 5.0 without operators.
 
 | Points | Strength Level |
 |--------|----------------|
-| 1.0 point | Supporting (PS4_Supporting) |
-| 3.0 points | Moderate (PS4_Moderate) |
-| 5.0 points | Strong (PS4) |
+| ≥1 points | Supporting (PS4_Supporting) |
+| ≥3 points | Moderate (PS4_Moderate) |
+| ≥5 points | Strong (PS4) |
+
+**Source typo preserved:** the main PDF prints “≥1 points.”
 
 **Modification Type:** Disease-specific
 
@@ -232,6 +310,8 @@ Located in a mutational hot spot and/or critical and well-established functional
 | **Switch I (SW1)** | AA 35-50 |
 | **Switch II (SW2)** | AA 67-74 |
 | **SAK** | Not applicable for PM1 |
+
+`Analogous Residues.pdf` visually aligns an MRAS sequence homologous to the highlighted HRAS 145–156 region, but the MRAS main PDF explicitly says **“no SAK.”** Sequence analogy must not be promoted to an MRAS PM1 domain.
 
 **Modification Type:** Gene-specific
 
@@ -295,10 +375,12 @@ Applicable for observed analogous residue positions in HRAS, KRAS, MRAS, NRAS, R
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands. |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. |
 
 **Modification Type:** Analogous Gene, Strength
+
+**Source typo preserved:** the Strong row prints “residues changes.”
 
 ---
 
@@ -317,6 +399,8 @@ Follow SVI recommendations for point-based scoring in conjunction with PS2 (see 
 | **Supporting** | 0.5 Points. |
 
 *See PS2 section for detailed point system.*
+
+`PS2_PM6 Scoring.jpg` additionally publishes PM6 Very Strong at exactly 4 points; the main PDF has no PM6 Very Strong row. See PS2.
 
 **Modification Type:** Strength
 
@@ -443,13 +527,26 @@ Strength adjustment using point-based scoring based on phenotypic specifications
 
 *\*Typically applicable to parental or sibling samples during clinical family evaluations.*
 
-#### BS2 Evidence Strength Thresholds
+#### BS2 Strength Ladder in `BS2 Scoring.jpg`
+
+The image prints exact totals without inequality comparators:
 
 | Points | Strength Level |
 |--------|----------------|
 | -1 points | Supporting (BS2_Supporting) |
 | N/A | Moderate (N/A) |
 | -3.0 points | Strong (BS2) |
+
+#### BS2 Strength Levels in the Main PDF
+
+| Strength | Published point total |
+|----------|-----------------------|
+| **Strong** | -4 points |
+| **Supporting** | -1 point |
+
+Neither main-PDF total carries an inequality comparator.
+
+> **SOURCE CONTRADICTION — do not silently resolve:** BS2 Strong is -4 points in the main PDF but -3.0 points in `BS2 Scoring.jpg`. Both give Supporting at -1 point. No single operative Strong threshold can be selected.
 
 **Modification Type:** Strength
 
@@ -463,7 +560,7 @@ Strength adjustment using point-based scoring based on phenotypic specifications
 
 | Status | Comment |
 |--------|---------|
-| **Not Applicable** | Approved functional studies are available for each individual gene in the supplemental material. Additional functional studies can be submitted to the expert panel for approval. |
+| **Not Applicable** | The main PDF marks BS3 Not Applicable. Every MRAS assay column in `Approved Functional Studies.xlsx` explicitly records `BS3_NA`; additional functional studies may be submitted to the panel. |
 
 ---
 
@@ -493,9 +590,11 @@ Truncating, LOF variant in a gene for which primarily missense, GOF variants are
 
 | Strength | Criteria |
 |----------|----------|
-| **Supporting** | This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function for RASopathies, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi-exon deletion) in genes without established LOF correlation to disease. See the supplemental material regarding dosage sensitivity information for each individual gene and potential association to disorders associated with LOF variants. |
+| **Supporting** | This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function for RASopathies, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi-exon deletion) in genes without established LOF correlation to disease. The source refers to supplemental dosage-sensitivity and LoF-disorder information, but it is absent from the distributed MRAS package. |
 
 **Modification Type:** Disease-specific
+
+> **MISSING DISTRIBUTED MATERIAL:** `Analogous Residues.pdf`, `Approved Functional Studies.xlsx`, and the four scoring images contain no MRAS dosage-sensitivity information or LoF-associated disorder list. Do not infer or substitute generic ACMG/AMP content.
 
 ---
 
@@ -516,6 +615,8 @@ Points are awarded for an alternative molecular cause of a RASopathy in the same
 
 #### BP2 Evidence Strength Thresholds
 
+These are the main-PDF thresholds, with comparators preserved exactly:
+
 | Points | Strength Level |
 |--------|----------------|
 | ≥(-1) Point | Supporting (BP2) |
@@ -523,6 +624,8 @@ Points are awarded for an alternative molecular cause of a RASopathy in the same
 | ≥(-4) Points | Strong (BP2_Strong) |
 
 **Modification Type:** Strength
+
+`BP5_BP2 Scoring.jpg` instead publishes Supporting at exactly -1, Moderate as N/A, and Strong at exactly -3. See the unresolved source warning under BP5.
 
 ---
 
@@ -552,6 +655,8 @@ Points are awarded for an alternative molecular cause of a RASopathy in the same
 
 **Modification Type:** Disease-specific
 
+**Source wording note:** the VCEP summary includes both missense (`REVEL <=0.3`, inclusive) and splicing, but the strength-specific Supporting row repeats only the missense rule. Both are retained; the omission is not treated as withdrawal of the splicing statement.
+
 ---
 
 ### BP5 - Alternate Molecular Basis
@@ -564,6 +669,8 @@ Points are awarded for an alternative molecular cause of a RASopathy in a differ
 
 #### BP5 Evidence Strength Thresholds
 
+These are the main-PDF thresholds, with comparators preserved exactly:
+
 | Points | Strength Level |
 |--------|----------------|
 | ≥(-1) Point | Supporting (BP5) |
@@ -571,6 +678,18 @@ Points are awarded for an alternative molecular cause of a RASopathy in a differ
 | ≥(-4) Points | Strong (BP5_Strong) |
 
 **Modification Type:** Strength
+
+#### BP5/BP2 Strength Ladder in `BP5_BP2 Scoring.jpg`
+
+| Points | Strength Level |
+|--------|----------------|
+| -1 point | Supporting (BP5/BP2) |
+| N/A | Moderate |
+| -3.0 points | Strong (BP5_Strong/BP2_Strong) |
+
+The image prints exact totals without inequality comparators.
+
+> **SOURCE CONTRADICTION — do not silently resolve:** the main PDF publishes BP2 and BP5 as Strong at `>= (-4)`, Moderate at `>= (-2)`, and Supporting at `>= (-1)`. The image instead publishes Strong at exactly -3.0, Moderate N/A, and Supporting exactly -1. The main PDF's `>=` direction on a negative evidence scale is also operationally anomalous. Both presentations are reported without selecting one.
 
 ---
 
@@ -642,6 +761,8 @@ Points are awarded for an alternative molecular cause of a RASopathy in a differ
 | 1 Strong (BS1, BS2, BS4, BP2_Strong, BP5_Strong) |
 | 1 Strong (BS1) |
 
+**Published-rule tensions:** the combination tables list PS3_Supporting but omit the separately defined PS3_Moderate. They list BP2/BP5 Supporting and Strong but not Moderate, although the body defines Moderate and the scoring image marks Moderate N/A. The tables above remain as published; these conflicts are not harmonized.
+
 ---
 
 ## Appendices
@@ -669,6 +790,8 @@ The following residues are analogous between genes associated with RASopathies. 
 | RIT1 | NP_008843.1 | |
 | RRAS2 | NP_036382.2 | |
 
+`Analogous Residues.pdf` consists of two image-based whole-protein alignments rather than a discrete exhaustive residue-pair lookup table. It highlights HRAS-anchored P-loop, Switch I, Switch II, and HRAS 145–156 regions. For MRAS PM1, the main PDF authorizes only AA 20–27, 35–50, and 67–74 and explicitly says “no SAK”; consult the alignment for other PS1/PM5 analogous positions rather than extrapolating PM1 domains.
+
 ### Appendix B: Population Frequency Thresholds Summary
 
 | Criterion | Threshold | Strength | Population Database |
@@ -685,11 +808,14 @@ The following residues are analogous between genes associated with RASopathies. 
 
 ### Appendix D: MRAS Functional Domains
 
-| Domain | Amino Acid Range | Description |
-|--------|------------------|-------------|
-| **P-loop** | 20-27 | Phosphate-binding loop; critical for GTP binding |
-| **Switch I (SW1)** | 35-50 | Conformational switch region involved in effector binding |
-| **Switch II (SW2)** | 67-74 | Conformational switch region involved in GTP hydrolysis |
+| Domain | Amino Acid Range |
+|--------|------------------|
+| **P-loop** | 20-27 |
+| **Switch I (SW1)** | 35-50 |
+| **Switch II (SW2)** | 67-74 |
+| **SAK** | Not applicable for PM1 (“no SAK”) |
+
+The previous functional descriptions were removed because neither the main PDF nor `Analogous Residues.pdf` supplies them.
 
 ### Appendix E: Criteria Applicability Summary
 
@@ -697,7 +823,7 @@ The following residues are analogous between genes associated with RASopathies. 
 |-----------|--------|----------------------|
 | PVS1 | Not Applicable | - |
 | PS1 | Applicable | Strong |
-| PS2 | Applicable | Very Strong, Strong, Moderate, Supporting |
+| PS2 | Applicable | Main PDF: Very Strong, Strong, Moderate; scoring image additionally lists Supporting |
 | PS3 | Applicable | Moderate, Supporting |
 | PS4 | Applicable | Strong, Moderate, Supporting |
 | PM1 | Applicable | Moderate |
@@ -705,7 +831,7 @@ The following residues are analogous between genes associated with RASopathies. 
 | PM3 | Not Applicable | - |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable | Strong, Moderate |
-| PM6 | Applicable | Strong, Moderate, Supporting |
+| PM6 | Applicable | Main PDF: Strong, Moderate, Supporting; scoring image additionally lists Very Strong |
 | PP1 | Applicable | Strong, Moderate, Supporting |
 | PP2 | Not Applicable | - |
 | PP3 | Applicable | Supporting |
@@ -713,14 +839,14 @@ The following residues are analogous between genes associated with RASopathies. 
 | PP5 | Not Applicable | - |
 | BA1 | Applicable | Stand Alone |
 | BS1 | Applicable | Strong |
-| BS2 | Applicable | Strong, Supporting |
+| BS2 | Applicable | Strong, Supporting (Strong is -4 in PDF, -3 in image) |
 | BS3 | Not Applicable | - |
 | BS4 | Applicable | Strong |
 | BP1 | Applicable | Supporting |
-| BP2 | Applicable | Strong, Moderate, Supporting |
+| BP2 | Applicable | Main PDF: Strong, Moderate, Supporting; image: Strong/Supporting, Moderate N/A |
 | BP3 | Not Applicable | - |
 | BP4 | Applicable | Supporting |
-| BP5 | Applicable | Strong, Moderate, Supporting |
+| BP5 | Applicable | Main PDF: Strong, Moderate, Supporting; image: Strong/Supporting, Moderate N/A |
 | BP6 | Not Applicable | - |
 | BP7 | Applicable | Supporting |
 
@@ -730,9 +856,11 @@ The following residues are analogous between genes associated with RASopathies. 
 
 1. ClinGen SVI Proposal for De Novo Criteria v1.1: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
 
-2. ClinGen Sequence Variant Interpretation VCEP Review Committee Recommendations (PubMed: 29543229)
+2. PMID 29543229 (cited by the source for PP5/BP6 non-use)
 
-3. Higgins EM, et al. (2017) Elucidation of MRAS-mediated Noonan syndrome with cardiac hypertrophy. JCI Insight. 2(5):e91225. PMID: 28289718
+3. PMID 28289718; Higgins; 2017; DOI 10.1172/jci.insight.91225 (fields supplied by `Approved Functional Studies.xlsx`)
+
+4. PMID 31892348 (cited in `Approved Functional Studies.xlsx` for functional-evidence guidance)
 
 ---
 
@@ -741,7 +869,27 @@ The following residues are analogous between genes associated with RASopathies. 
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.4.0 | 12/3/2024 | "Observed in ≥5 probands" removed from PM5 at Moderate strength. Pilot variants are included in the LZTR1 submission. |
+
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.**
+>
+> The prior local guideline recorded “1.1.0 — Prior — Initial specifications.” The v1.4 distributed package does not provide earlier version history, so that plausible historical note is retained here only as unverified provenance.
+
+| Historical version | Date | Unverified local note |
+|--------------------|------|-----------------------|
 | 1.1.0 | Prior | Initial specifications |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_MRAS_v1.4.pdf`, both rendered pages of `Analogous Residues.pdf`, every worksheet (including hidden sheets) in `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BS2 Scoring.jpg`, and `BP5_BP2 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- **PS2/PM6 mismatch exposed:** image-only PS2 Supporting and PM6 Very Strong tiers are distinguished from the main-PDF tiers; their bare totals remain comparator-unstated.
+- **PS4 comparator restored:** main-PDF inclusive `>=1 / >=3 / >=5` thresholds are separated from the image's exact 1/3/5 footer.
+- **BS2 contradiction exposed:** main-PDF -4 Strong and image -3 Strong are both retained and flagged.
+- **BP2/BP5 contradiction exposed:** main-PDF `>=(-4) / >=(-2) / >=(-1)` conflicts with image `-3 / N/A / -1`; the anomalous negative-score comparator direction is reported without resolution.
+- **Functional evidence completed:** transcribed RAS, MEK and ERK citations, materials, controls, statistics, thresholds, approval and strength fields. The prior document omitted the MEK and ERK detail almost entirely. The analogy-only MEK approval, empty citation metadata, zero controls, unmet validation fields, and sparse RAS/ERK controls are now explicit.
+- **PM1/analogy clarified:** preserved MRAS AA 20–27, 35–50, 67–74 and “no SAK”; the aligned HRAS 145–156 homolog is not promoted to an MRAS PM1 domain. Removed unsourced domain-function descriptions.
+- **Missing BP1 support documented:** no distributed supplement contains MRAS dosage-sensitivity/LoF-disorder content.
+- **Source wording preserved:** restored PM5 “residues changes,” flagged PS4 “≥1 points,” and recorded BP4 and combining-rule split presentations.
+- **Fabricated provenance removed:** replaced the full titles/journal details previously supplied for bare or partial workbook citations with the exact PMID/author/year/DOI fields the package provides.
+- **Older local history quarantined:** retained the plausible 1.1.0 note only under the required unverified-content banner because the distributed v1.4 package cannot confirm it.
 
 ---
 

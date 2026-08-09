@@ -54,6 +54,7 @@
    - [Appendix E: Functional Domains](#appendix-e-functional-domains)
    - [Appendix F: Analogous Residues](#appendix-f-analogous-residues)
    - [Appendix G: Approved Functional Assays](#appendix-g-approved-functional-assays)
+   - [Appendix H: Source-Fidelity Notes](#appendix-h-source-fidelity-notes)
 
 ---
 
@@ -105,12 +106,15 @@
 
 #### Strength Levels
 
+The displayed HRAS PDF criterion block defines:
+
 | Strength | Points |
 |----------|--------|
 | **Very Strong** | 4 Points |
 | **Strong** | 2 Points |
 | **Moderate** | 1 Point |
-| **Supporting** | 0.5 Points |
+
+> **Source discrepancy — do not resolve silently:** The PDF's displayed PS2 criterion block omits Supporting, while its displayed PM6 block omits Very Strong. The VCEP-distributed `PS2_PM6 Scoring.jpg` explicitly extends the shared scale to **PS2_Supporting at 0.5 points** and **PM6_VeryStrong at 4 points**. The image prints exact point values without comparator symbols. Both source presentations are retained; the distributed package does not identify which controls when they differ.
 
 #### PS2/PM6 Point System
 
@@ -145,7 +149,7 @@ See [Appendix A: PS2/PM6 Scoring](#appendix-a-ps2pm6-scoring) for the complete s
 
 **Modification Type:** Disease-specific, Gene-specific, Strength
 
-> **Note:** PS3 at Strong level is not applicable for HRAS. The maximum strength achievable is Moderate (with 2+ different approved assays).
+> **Defined strengths:** The HRAS PDF specifies only Supporting (one approved assay) and Moderate (two or more different approved assays). It does not define a PS3 Strong tier.
 
 See [Appendix G: Approved Functional Assays](#appendix-g-approved-functional-assays) for the list of approved assays.
 
@@ -271,12 +275,14 @@ See [Appendix E: Functional Domains](#appendix-e-functional-domains) for additio
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon |
 
 **Modification Type:** Analogous Gene, Strength (for Strong), Disease-specific (for Moderate)
 
 > **Note:** This criterion allows the use of pathogenic variants at analogous positions across RAS family genes. See [Appendix F: Analogous Residues](#appendix-f-analogous-residues).
+
+> **Source wording:** “residues changes” is preserved verbatim from the PDF and appears to be a typographical error. Both `≥` comparators in the Strong rule are inclusive. The Moderate rule has no proband minimum; the v2.3 release note says that qualifier was removed.
 
 ---
 
@@ -404,8 +410,10 @@ See [PS2 - De Novo (Confirmed)](#ps2---de-novo-confirmed) for the complete point
 
 | Strength | Points |
 |----------|--------|
-| **Strong** | -4 Points (≤ -3.0) |
+| **Strong** | -4 Points |
 | **Supporting** | -1 Point |
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and Supporting at -1. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3.0 points**, Supporting at -1, and Moderate N/A. Neither presentation supplies a comparator for these totals. The former local text `-4 Points (≤ -3.0)` silently fused the values and invented `≤`; that reconciliation has been removed.
 
 #### BS2 Point System
 
@@ -459,6 +467,8 @@ See [Appendix C: BS2 Scoring](#appendix-c-bs2-scoring) for the complete scoring 
 | **BP5** | Applicable (Modified) | Supporting/Moderate/Strong | Points are awarded for an alternative molecular cause of a RASopathy in a different gene (and/or in conjunction with BP2) and the phenotype is consistent with expected severity of the RASopathy. Points are also awarded for phenotypes inconsistent with a RASopathy and fully explained by a different causative variant (e.g. WES testing). Supporting: ≥(-1) point; Moderate: ≥(-2) points; Strong: ≥(-4) points |
 | **BP6** | Not Applicable | — | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PubMed: 29543229) |
 | **BP7** | Applicable | Supporting | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
+
+> **Distributed-package limitation (BP1):** The PDF directs users to supplemental dosage-sensitivity information and gene-specific disorders associated with LoF variants. No dedicated dosage-sensitivity or HRAS LoF-disorder table is present in the distributed HRAS package. Do not infer the missing information.
 
 See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete scoring table.
 
@@ -526,6 +536,8 @@ See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete s
 
 #### Evidence Strength Thresholds
 
+> **PDF block versus scoring image:** The PDF criterion blocks define PS2 at 4/2/1 and PM6 at 2/1/0.5. `PS2_PM6 Scoring.jpg` additionally labels 0.5 as PS2_Supporting and 4 as PM6_VeryStrong. The image uses exact values without comparator symbols; this table reproduces the image rather than silently expanding the PDF blocks.
+
 | Strength | Points Required |
 |----------|-----------------|
 | Supporting (PS2_Supporting or PM6_Supporting) | 0.5 points |
@@ -552,6 +564,8 @@ See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete s
 
 #### Evidence Strength Thresholds
 
+> **Comparator semantics:** The PDF body explicitly defines the PS4 thresholds with inclusive operators: Supporting **≥1**, Moderate **≥3**, Strong **≥5**. `PS4 Scoring.jpg` prints the corresponding values 1.0/3.0/5.0 without operators; the inclusive semantics come from the PDF body.
+
 | Strength | Points Required |
 |----------|-----------------|
 | Supporting (PS4_Supporting) | 1.0 point |
@@ -575,6 +589,8 @@ See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete s
 
 #### Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body gives BS2 Strong **-4** and Supporting **-1**. `BS2 Scoring.jpg` gives Strong **-3.0**, Moderate **N/A**, and Supporting **-1**. Neither source uses an operator for these totals. The table below reproduces the image; it does not replace the PDF-body values above.
+
 | Strength | Points Required |
 |----------|-----------------|
 | Supporting (BS2_Supporting) | -1 points |
@@ -594,6 +610,8 @@ See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete s
 
 #### Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns BP2 and BP5 Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)**. `BP5_BP2 Scoring.jpg` instead gives Strong **-3.0**, Moderate **N/A**, and Supporting **-1**. The PDF operators are explicitly inclusive; the image prints exact values without operators. The table below reproduces the image without choosing an operative presentation.
+
 | Strength | Points Required |
 |----------|-----------------|
 | Supporting (BP5/BP2) | -1 points |
@@ -606,14 +624,16 @@ See [Appendix D: BP5/BP2 Scoring](#appendix-d-bp5bp2-scoring) for the complete s
 
 **Critical and well-established functional domains for HRAS (PM1)**
 
-| Domain | Amino Acid Range | Description |
-|--------|------------------|-------------|
-| **P-loop** | AA 10-17 | Phosphate-binding loop; critical for GTP/GDP binding |
-| **Switch I (SW1)** | AA 25-40 | Effector binding region; undergoes conformational change upon GTP binding |
-| **Switch II (SW2)** | AA 57-64 | GAP binding region; involved in GTP hydrolysis |
-| **SAK** | AA 145-156 | C-terminal region; involved in membrane localization and protein interactions |
+| Domain | Amino Acid Range |
+|--------|------------------|
+| **P-loop** | AA 10-17 |
+| **Switch I (SW1)** | AA 25-40 |
+| **Switch II (SW2)** | AA 57-64 |
+| **SAK** | AA 145-156 |
 
-> **Note:** PM1 is applicable only to variants located within these functional domains. Not applicable to specific amino acid residues outside these domains (see PM5 for specific residue considerations).
+> **Note:** PM1 is applicable only to these functional domains and is not a specific-residue rule (see PM5 for specific residue considerations).
+
+`Analogous Residues.pdf` supplies the corresponding visual sequence alignments and highlights all four HRAS windows, so the PDF's “supplementary table” provenance is fulfilled by this distributed file. The removed biochemical descriptions were not present in either source; in particular, the package does not call AA 145-156 a C-terminal membrane-localization region.
 
 ---
 
@@ -625,14 +645,18 @@ The following genes have analogous residue positions that can be used for PS1 an
 
 #### Reference Sequences
 
-| Gene | RefSeq Protein | RefSeq Transcript |
-|------|----------------|-------------------|
-| HRAS | NP_005334.1 | NM_005343.4 |
-| KRAS | NP_004976.2 | NM_004985.5 |
-| MRAS | NP_036351.3 | NM_012219.5 |
-| NRAS | NP_002515.1 | NM_002524.5 |
-| RIT1 | NP_008843.1 | NM_006912.5 |
-| RRAS2 | NP_036382.2 | NM_012250.5 |
+The six protein accessions below are printed in `Analogous Residues.pdf`.
+
+> **⚠️ NOT IN DISTRIBUTED PACKAGE — could not be source-verified.** Except for the HRAS transcript NM_005343.4, which is specified in the main PDF, the transcript accessions in the final column were already present locally but do not appear anywhere in the distributed HRAS package. They are plausible gene-specific context and are retained only as unverified; do not use them as the source of an analogous-position call.
+
+| Gene | Source-verified RefSeq Protein | Transcript context |
+|------|-------------------------------|--------------------|
+| HRAS | NP_005334.1 | NM_005343.4 (source-verified) |
+| KRAS | NP_004976.2 | NM_004985.5 (unverified) |
+| MRAS | NP_036351.3 | NM_012219.5 (unverified) |
+| NRAS | NP_002515.1 | NM_002524.5 (unverified) |
+| RIT1 | NP_008843.1 | NM_006912.5 (unverified) |
+| RRAS2 | NP_036382.2 | NM_012250.5 (unverified) |
 
 #### Domain Alignment
 
@@ -644,6 +668,8 @@ The following genes have analogous residue positions that can be used for PS1 an
 | **SAK equivalent** | 145-156 | 145-156 | 157-168 | 145-156 | 165-176 | 158-169 |
 
 > **Important:** When applying PS1 or PM5 using analogous residues, pathogenic variants from any of these six genes at corresponding positions can support pathogenicity for the variant under evaluation.
+
+The coordinate table above is a transcription of the highlighted alignment windows, not a VCEP-supplied residue-pair list. The supplement contains two visual alignments and no discrete exhaustive mapping table.
 
 ---
 
@@ -657,11 +683,37 @@ Prior to evaluation of an assay for a variant, all assays are expected to be val
 
 #### Approved Assay Types for HRAS
 
-| Assay Type | Category | Applicable Strength |
-|------------|----------|---------------------|
-| **RAS Activation Assay** | Pathway-specific | PS3_Supporting (single), PS3_Moderate (with 2+ assays) |
-| **MEK Activation Assay** | Pathway-specific | PS3_Supporting (single), PS3_Moderate (with 2+ assays) |
-| **ERK Activation Assay** | Pathway-specific | PS3_Supporting (single), PS3_Moderate (with 2+ assays) |
+| Assay Type | Category | HRAS PMIDs | Workbook designation |
+|------------|----------|------------|----------------------|
+| **RAS Activation Assay** | Pathway-specific | 25914166, 23335589, 21850009, 19035362 | PS3_Supporting; BS3_NA |
+| **MEK Activation Assay** | Pathway-specific | 19995790, 19035362, 25914166, 23335589 | PS3_Supporting; BS3_NA |
+| **ERK Activation Assay** | Pathway-specific | 19995790, 19035362, 25914166, 23335589, 21850009 | PS3_Supporting; BS3_NA |
+
+#### RAS Activation Assay — HRAS column
+
+- **Citations:** Gripp (2015), Lorenz (2013), Niihori (2011), Rosenberger (2009); DOIs 10.1002/ajmg.a.37128, 10.1093/hmg/ddt014, 10.1038/jhg.2011.85, 10.1002/humu.20855.
+- **Materials/readout:** COS-7 cells transiently transfected with HA-HRASWT or HA variants, or primary fibroblast cells from six Costello syndrome patients and three healthy `indivduals` [sic]; semi-quantitative bound RAS immunoprecipitated with RAF1 or synthetic RBD.
+- **Replicates/controls:** Biological replicates not met except G12S; technical replicates met, with 3/4 independent experiments; WT/normal fibroblasts positive control and vector negative control.
+- **Validation controls:** Ten P/LP controls — G12V, G12S, G12A, G12D, G13C, G13D, G60D, E63_D69dup, K117R, A146T; no B/LB controls.
+- **Statistics/thresholds:** Two-tailed unpaired Student's t-test; normal WT pattern versus increased RAS/RBD complexes compared with the positive-control range.
+
+#### MEK Activation Assay — HRAS column
+
+- **Citations:** Gremer (2010), Rosenberger (2009), Gripp (2015), Lorenz (2013); DOIs 10.1093/hmg/ddp548, 10.1002/humu.20855, 10.1002/ajmg.a.37128, 10.1093/hmg/ddt014.
+- **Materials/readout:** COS-7 cells `transfectected` [sic] with WT or HRAS variant, or primary fibroblast cells from six Costello syndrome patients and three healthy individuals; semi-quantitative pMEK/MEK ratio basally and/or after RTK stimulation.
+- **Replicates/controls:** Biological replicates not met except G12S; technical replicates met, with 3/4 independent experiments; WT/normal fibroblasts positive control and vector negative control.
+- **Validation controls:** Four P/LP controls — G12V, G12S, E37dup, E63_D69dup. The B/LB-headed row contains `1 (G60D - P)`.
+- **Statistics/thresholds:** `2-tailed unpaired Student’s ttest` [sic]; normal WT pattern versus an abnormal constitutively active, increased-phosphorylation, and/or prolonged-phosphorylation pattern.
+
+#### ERK Activation Assay — HRAS column
+
+- **Citations:** Gremer (2010), Rosenberger (2009), Gripp (2015), Lorenz (2013), Niihori (2011); DOIs 10.1093/hmg/ddp548, 10.1002/humu.20855, 10.1002/ajmg.a.37128, 10.1093/hmg/ddt014, 10.1038/jhg.2011.85.
+- **Materials/readout:** COS-7 cells transiently transfected with HA-HRASWT or HA variants, or primary fibroblast cells; semi-quantitative pERK levels under basal conditions and after stimulation.
+- **Replicates/controls:** Biological replicates not met except G12S; technical replicates met, with 3/4 independent experiments; WT positive control and vector/normal fibroblasts negative control.
+- **Validation controls:** Ten P/LP controls — G12S, G12V, G12A, G12D, G13C, G13D, E37dup, E63_D69dup, K117R, A146T. The B/LB-headed row contains `1 (G60D - P)`.
+- **Statistics/thresholds:** Two-tailed unpaired Student's t-test. The workbook explicitly gives the normal-readout threshold as **“Not recommended”**; the abnormal threshold is constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation.
+
+> **Workbook contradiction — do not resolve silently:** G60D is labeled **P** but placed in the B/LB-control row for both MEK and ERK activation. The same workbook places G60D among the P/LP controls for RAS activation. These entries are reported exactly and G60D is not reclassified here.
 
 #### Notes on Functional Evidence Application
 
@@ -669,6 +721,21 @@ Prior to evaluation of an assay for a variant, all assays are expected to be val
 2. **Two or more different approved assays** = PS3_Moderate
 3. Assays not listed are presumed to lack sufficient historical evidence to evaluate the functional impact of a given variant and may only be sufficient for the application of PS3_Supporting or BS3_Supporting
 4. Animal models and variant-specific assays (i.e. myristoylation assays) have been excluded as the assays listed herein are considered the most appropriate to evaluate variant pathogenicity for all genes
+
+The hidden `Animal Models` sheet contains two HRAS columns (mouse and zebrafish models), but neither is marked approved and both proposed-strength cells read `weight less` [sic]. This agrees with the `READ ME` exclusion and does not create another approved HRAS assay.
+
+### Appendix H: Source-Fidelity Notes
+
+The following source conflicts and package limitations remain unresolved because the distributed VCEP materials do not choose between them:
+
+1. `PS2_PM6 Scoring.jpg` includes PS2_Supporting and PM6_VeryStrong, while those strengths are absent from the respective displayed criterion blocks in `ClinGen_ACMG_Specifications_HRAS_v2.3.pdf`. The PDF's combination rules name PS2_VeryStrong but not PM6_VeryStrong.
+2. The PDF body assigns BS2 Strong at -4; `BS2 Scoring.jpg` assigns -3.0. The former local `≤ -3.0` comparator was not present in either source and has been removed.
+3. The PDF body assigns BP2/BP5 Strong ≥(-4), Moderate ≥(-2), Supporting ≥(-1); `BP5_BP2 Scoring.jpg` instead gives Strong -3.0, Moderate N/A, Supporting -1 without comparator symbols.
+4. `Approved Functional Studies.xlsx` labels G60D pathogenic but places it under B/LB controls for MEK and ERK, while placing it among P/LP controls for RAS activation. Its ERK normal-readout threshold is “Not recommended.”
+5. `Analogous Residues.pdf` supplies two visual alignments and the six protein accessions, not an exhaustive residue-pair table or the five non-HRAS transcript accessions retained above under warning.
+6. The PM1 reference to supplementary material is fulfilled by `Analogous Residues.pdf`, which highlights all four HRAS windows. In contrast, the BP1 dosage-sensitivity/LoF-disorder supplement referred to by the PDF is not distributed.
+
+These are reports of the source package, not reconciliations or inferred rules.
 
 ---
 
@@ -686,7 +753,7 @@ Prior to evaluation of an assay for a variant, all assays are expected to be val
 
 1. SVI Proposal for De Novo Criteria: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
 
-2. ClinGen Sequence Variant Interpretation Recommendations for PP5 and BP6: PubMed 29543229
+2. Citation supplied by the PDF for the PP5/BP6 non-use recommendation: PubMed 29543229
 
 3. ClinGen Recommendations for Functional Evidence PS3/BS3: PMID 31892348
 
@@ -697,6 +764,16 @@ Prior to evaluation of an assay for a variant, all assays are expected to be val
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | December 3, 2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_HRAS_v2.3.pdf`, `Analogous Residues.pdf`, `Approved Functional Studies.xlsx`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, `PS2_PM6 Scoring.jpg`, and `PS4 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- Removed the fabricated BS2 `≤ -3.0` comparator and the silent fusion `-4 Points (≤ -3.0)`. The PDF's -4 and scoring image's -3.0 are now reported separately without choosing between them.
+- Reported the BP2/BP5 body-versus-image conflict and the PS2/PM6 cross-source strength mismatch, preserving exact comparator semantics.
+- Restored and flagged the PDF's PM5 wording “residues changes” and retained both inclusive Strong-rule comparators; confirmed that PM5 Moderate has no proband-count qualifier.
+- Transcribed the complete HRAS-specific RAS, MEK, and ERK assay columns from `Approved Functional Studies.xlsx`, including citations, validation limits, source typos, G60D's conflicting control-category placement, and the ERK “Not recommended” normal threshold.
+- Removed generic biochemical descriptions from Appendix E because neither PDF supplies them and the former SAK membrane-localization description was not supported by the distributed package.
+- Clarified that `Analogous Residues.pdf` is a visual alignment, not a discrete residue-pair table. Five plausible but unverified non-HRAS transcript accessions remain only under the required warning banner.
+- Confirmed that `Analogous Residues.pdf` substantiates the four PM1 domains; separately marked the BP1 dosage/LoF supplement as absent.
 
 ---
 

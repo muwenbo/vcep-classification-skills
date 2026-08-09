@@ -117,6 +117,8 @@
 | 2.0 | Strong (PS2 or PM6_Strong) |
 | 4.0 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
 
+> **Source discrepancy (unresolved):** `PS2_PM6 Scoring.jpg` names PS2_Supporting and PM6_VeryStrong, but `ClinGen_ACMG_Specifications_BRAF_v2.3.pdf` does not define either strength. The PDF defines PS2 at Moderate, Strong, and Very Strong and PM6 at Supporting, Moderate, and Strong. Both sources print exact point values without threshold comparators. The image-only strength names are reported without extending the PDF criteria.
+
 ---
 
 ### PS3 - Functional Studies
@@ -136,48 +138,40 @@
 
 #### Approved Assay Instances for BRAF
 
-##### 1. BRAF Kinase Activity Assay
+The workbook requires performing-laboratory validation and appropriate controls (PMID 31892348). Most assays are semi-quantitative; results are judged relative to known-status controls. Unlisted assays may only support PS3_Supporting or BS3_Supporting, although all approved BRAF columns explicitly state BS3_NA. Animal models and variant-specific assays are excluded by the workbook's READ ME.
 
-| Parameter | Details |
-|-----------|---------|
-| **PMID** | 16439621 |
-| **DOI** | 10.1126/science.1124642 |
-| **Author** | Rodriguez-Viciana |
-| **Year** | 2006 |
-| **Assay Description** | Measure activity of kinase phosphorylating species of MEK and ERK in transfected cells |
-| **Material** | HEK 293T cells transfected with empty vector, WT B-Raf, or B-Raf mutants |
-| **Readout Type** | Semi-quantitative (Qualitative) |
-| **Readout Description** | Phosphorylation of myelin basic protein in a coupled MEK/ERK2 kinase assay |
-| **Biological Replicates** | Not met |
-| **Technical Replicates** | Met; data shown is aggregate of duplicates |
-| **Positive Control** | Met; WT |
-| **Negative Control** | Met; Vector |
-| **Validation Controls (P/LP)** | 4 (Q257R - P, S467A - P, L485F - P, K499E - P/LP) |
-| **Validation Controls (B/LB)** | 2 (E501G - P/LP, G596V - P) |
-| **Threshold for Normal** | Normal MBP phosphorylation |
-| **Threshold for Abnormal** | Increased MBP phosphorylation |
-| **Approved** | Yes |
-| **Proposed Strength** | PS3_Supporting; BS3_NA |
+##### 1. BRAF Kinase Activity Assay — PS3_Supporting; BS3_NA
 
-##### 2. MEK Activation Assay (applicable to BRAF)
+- Source: Rodriguez-Viciana (2006), PMID 16439621, DOI 10.1126/science.1124642.
+- Material/readout: HEK293T cells transfected with empty vector, WT B-Raf, or B-Raf mutants; semi-quantitative/qualitative phosphorylation of myelin basic protein in a coupled MEK/ERK2 kinase assay.
+- Replication and controls: biological replicates not met; technical replicates met (aggregate of duplicates); WT positive control and vector negative control met; no statistical analysis.
+- P/LP validation controls: Q257R (P), S467A (P), L485F (P), K499E (P/LP).
+- `Validation controls B/LB` row: E501G (P/LP), G596V (P).
+- Normal: normal MBP phosphorylation. Abnormal: increased MBP phosphorylation.
 
-| Parameter | Details |
-|-----------|---------|
-| **Assay Description** | Measures phosphorylation of MEK in cells expressing variant proteins |
-| **Readout** | Phospho-MEK levels by Western blot or other detection methods |
-| **Threshold for Abnormal** | Increased phospho-MEK compared to WT |
-| **Approved** | Yes |
-| **Proposed Strength** | PS3_Supporting |
+##### 2. MEK Activation Assay — PS3_Supporting; BS3_NA
 
-##### 3. ERK Activation Assay (applicable to BRAF)
+- Sources: Rodriguez-Viciana (2006) and Sarkozy (2009), PMIDs 16439621 and 19206169, DOI 10.1126/science.1124642 and 10.1002/humu.20955.
+- Material/readout: HEK293 cells transiently transfected with WT or variant; semi-quantitative/qualitative pMEK/MEK ratio basally and/or after RTK stimulation.
+- Replication and controls: biological and technical replicates met (three independent experiments, each performed in duplicate); WT positive and vector negative controls met; no statistical analysis.
+- P/LP validation controls: T241P (P/LP), Q257R (P), S467A (P), L485F (P), K499E (P/LP), W531C (P), L597V (P), T599R (P), K601Q (P).
+- `Validation controls B/LB` row: E275K (P/LP), G466E (LP/VUS), G466V (P/LP), G469E (P), E501G (P/LP), D594V (P), G596V (P).
+- Normal: normal WT pattern. Abnormal: abnormal pattern indicating constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation.
 
-| Parameter | Details |
-|-----------|---------|
-| **Assay Description** | Measures phosphorylation of ERK in cells expressing variant proteins |
-| **Readout** | Phospho-ERK levels by Western blot or other detection methods |
-| **Threshold for Abnormal** | Increased phospho-ERK compared to WT |
-| **Approved** | Yes |
-| **Proposed Strength** | PS3_Supporting |
+##### 3. ERK Activation Assay — PS3_Supporting; BS3_NA
+
+- Sources: Rodriguez-Viciana (2006) and Sarkozy (2009), PMIDs 16439621 and 19206169, DOI 10.1126/science.1124642 and 10.1002/humu.20955.
+- Material/readout: HEK293 cells transiently transfected with WT or variant; semi-quantitative/qualitative pERK/ERK ratio basally and after RTK stimulation.
+- Replication and controls: biological and technical replicates met (three independent experiments, each performed in duplicate); WT positive and vector negative controls met; no statistical analysis.
+- P/LP validation controls: Q257R (P), S467A (P), L485F (P), K499E (P/LP), T599R (P), K601Q (P).
+- `Validation controls B/LB` row: T241P (P/LP), E275K (P/LP), G466V (P/LP), G466E (LP/VUS), G469E (P), E501G (P/LP), W531C (P), D594V (P), G596V (P), L597V (P).
+- Normal: normal WT pattern. Abnormal: constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation.
+
+> **Source control conflict:** Across all three approved BRAF assays, entries in rows labelled `Validation controls B/LB` are themselves labelled P, P/LP, or LP/VUS. The labels and their row placement are transcribed without reclassifying or moving the controls.
+
+> **Workbook contradiction (unresolved):** The READ ME excludes animal models, but the hidden BRAF `Animal Models` column says `Approved assay (y/n): y` and gives the non-ACMG phrase `Proposed strength: weight less`. The animal models are not included among the three approved assay types because the workbook's operative policy excludes them; the contradictory hidden entry is reported rather than silently reconciled.
+
+> **Workbook scope note:** BRAF has no RAS Activation Assay column. The hidden AKT sheet is explicitly unapproved and NRAS-only; the hidden cell-survival sheet is dummy example data (PMID 1234567, Jones, 1985); and the hidden myristoylation material is excluded by workbook policy.
 
 ---
 
@@ -208,9 +202,11 @@
 
 | Points | Strength Level |
 |--------|----------------|
-| 1.0 | Supporting (PS4_Supporting) |
-| 3.0 | Moderate (PS4_Moderate) |
-| 5.0 | Strong (PS4) |
+| ≥1.0 | Supporting (PS4_Supporting) |
+| ≥3.0 | Moderate (PS4_Moderate) |
+| ≥5.0 | Strong (PS4) |
+
+> **Comparator note:** The inclusive `≥` thresholds come from `ClinGen_ACMG_Specifications_BRAF_v2.3.pdf`. `PS4 Scoring.jpg` prints exact 1.0, 3.0, and 5.0 values without comparators. The image's omission is reported rather than used to remove the PDF operators.
 
 ---
 
@@ -284,10 +280,12 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | >=2 different [likely] pathogenic residue changes at the same codon observed in >=5 probands |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon |
 
 **Modification Type:** Analogous Gene, Strength (Strong), Disease-specific (Moderate)
+
+> **Source wording note:** The typo `residues changes` is preserved verbatim. The release note removed `observed in ≥5 probands` only from PM5 at Moderate strength; it remains in the Strong row.
 
 ---
 
@@ -317,9 +315,9 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | >=7 informative meioses |
-| **Moderate** | >=5 informative meioses |
-| **Supporting** | >=3 informative meioses |
+| **Strong** | ≥7 informative meioses |
+| **Moderate** | ≥5 informative meioses |
+| **Supporting** | ≥3 informative meioses |
 
 **Modification Type:** Strength (Strong, Moderate), Disease-specific (Supporting)
 
@@ -349,7 +347,7 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Supporting** | For missense variants: **REVEL >= 0.7**. For splicing impact, predicted outcome must match disease mechanism. |
+| **Supporting** | For missense variants: **REVEL ≥0.7**. For splicing impact, predicted outcome must match disease mechanism. |
 
 **Modification Type:** Disease-specific
 
@@ -389,7 +387,7 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Stand Alone** | gnomAD filtering allele frequency **>=0.05%** (0.0005) |
+| **Stand Alone** | gnomAD filtering allele frequency **≥0.05%** |
 
 **Modification Type:** Disease-specific
 
@@ -403,7 +401,7 @@
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | gnomAD filtering allele frequency **>=0.025%** (0.00025) |
+| **Strong** | gnomAD filtering allele frequency **≥0.025%** |
 
 **Modification Type:** Disease-specific
 
@@ -428,11 +426,22 @@
 
 #### BS2 Evidence Strength Thresholds
 
+`ClinGen_ACMG_Specifications_BRAF_v2.3.pdf` defines:
+
 | Points | Strength Level |
 |--------|----------------|
-| -1 point | Supporting (BS2_Supporting) |
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
+| -4 points (operator unstated) | Strong (BS2) |
+
+`BS2 Scoring.jpg` defines:
+
+| Points | Strength Level |
+|--------|----------------|
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
 | N/A | Moderate |
-| -3.0 points | Strong (BS2) |
+| -3.0 points (operator unstated) | Strong (BS2) |
+
+> **Source contradiction (unresolved):** BS2 Strong is -4 points in the PDF but -3.0 points in the attached image. Neither source supplies an inclusive or strict comparator. Both presentations are retained without inventing `≤`.
 
 ---
 
@@ -469,12 +478,16 @@
 | Criterion | Status | Comment |
 |-----------|--------|---------|
 | **BP1** | Modified | Truncating, LOF variant in a gene for which primarily missense, GOF variants are known to cause disease. This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi-exon deletion) in genes without established LOF correlation to disease. See supplemental material regarding dosage sensitivity. |
-| **BP2** | Modified | Points are awarded for an alternative molecular cause of a RASopathy in the same gene (and/or in conjunction with BP5) and the phenotype is consistent with expected severity of the RASopathy. **Strong:** >= (-4) Points; **Moderate:** >= (-2) Points; **Supporting:** >= (-1) Point |
+| **BP2** | Modified | Points are awarded for an alternative molecular cause of a RASopathy in the same gene (and/or in conjunction with BP5) and the phenotype is consistent with expected severity of the RASopathy. **Strong:** ≥ (-4) Points; **Moderate:** ≥ (-2) Points; **Supporting:** ≥ (-1) Point |
 | **BP3** | Not Applicable | No known benign repetitive areas in RASopathy genes. |
-| **BP4** | Modified | For missense variants: **REVEL <=0.3**. For splicing variants: predicted outcome is negligible or does not match disease mechanism. |
-| **BP5** | Modified | Points are awarded for an alternative molecular cause of a RASopathy in a different gene (and/or in conjunction with BP2) and the phenotype is consistent with expected severity of the RASopathy. Points are also awarded for phenotypes inconsistent with a RASopathy and fully explained by a different causative variant (e.g. WES testing). **Strong:** >= (-4) Points; **Moderate:** >= (-2) Points; **Supporting:** >= (-1) Point |
+| **BP4** | Modified | For missense variants: **REVEL ≤0.3**. For splicing variants: predicted outcome is negligible or does not match disease mechanism. |
+| **BP5** | Modified | Points are awarded for an alternative molecular cause of a RASopathy in a different gene (and/or in conjunction with BP2) and the phenotype is consistent with expected severity of the RASopathy. Points are also awarded for phenotypes inconsistent with a RASopathy and fully explained by a different causative variant (e.g. WES testing). **Strong:** ≥ (-4) Points; **Moderate:** ≥ (-2) Points; **Supporting:** ≥ (-1) Point |
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PMID: 29543229) |
 | **BP7** | Modified | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
+
+> **Unavailable referenced material (BP1):** The specification refers to supplemental dosage-sensitivity information, but no dosage-sensitivity document is present in the complete BRAF package. No BRAF-specific dosage claim is inferred.
+
+> **Source presentation note (BP4):** The PDF's VCEP summary includes the missense and splicing rules, while the Supporting row repeats only the missense rule. Both source statements are retained without treating the shorter row as a retraction.
 
 #### BP5/BP2 Point System
 
@@ -485,11 +498,23 @@
 
 #### BP5/BP2 Evidence Strength Thresholds
 
+`ClinGen_ACMG_Specifications_BRAF_v2.3.pdf` defines both BP2 and BP5 as:
+
 | Points | Strength Level |
 |--------|----------------|
-| -1 point | Supporting (BP5/BP2) |
+| ≥(-1) | Supporting |
+| ≥(-2) | Moderate |
+| ≥(-4) | Strong |
+
+`BP5_BP2 Scoring.jpg` instead defines:
+
+| Points | Strength Level |
+|--------|----------------|
+| -1 point (operator unstated) | Supporting (BP5/BP2) |
 | N/A | Moderate |
-| -3.0 points | Strong (BP5_Strong/BP2_Strong) |
+| -3.0 points (operator unstated) | Strong (BP5_Strong/BP2_Strong) |
+
+> **Source contradiction (unresolved):** The PDF and image disagree on Moderate availability and the Strong value. The PDF explicitly uses `≥`; the image supplies no comparator. Both are reported without harmonization or an invented image operator.
 
 ---
 
@@ -499,14 +524,14 @@
 
 | Criteria Combination |
 |---------------------|
-| 1 Very Strong (PS2_VeryStrong) **AND** >=1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) |
-| 1 Very Strong (PS2_VeryStrong) **AND** >=2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
+| 1 Very Strong (PS2_VeryStrong) **AND** ≥1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) |
+| 1 Very Strong (PS2_VeryStrong) **AND** ≥2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
 | 1 Very Strong (PS2_VeryStrong) **AND** 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** 1 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
-| 1 Very Strong (PS2_VeryStrong) **AND** >=2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
-| >=2 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) |
-| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** >=3 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
-| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** 2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** >=2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
-| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** >=4 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| 1 Very Strong (PS2_VeryStrong) **AND** ≥2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| ≥2 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) |
+| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** ≥3 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
+| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** 2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** ≥2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** ≥4 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
 
 ### Likely Pathogenic Classification
 
@@ -514,16 +539,16 @@
 |---------------------|
 | 1 Very Strong (PS2_VeryStrong) **AND** 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
 | 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
-| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** >=2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
-| >=3 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
-| 2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** >=2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
-| 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** >=4 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| 1 Strong (PS1, PS2, PS4, PM5_Strong, PM6_Strong, PP1_Strong) **AND** ≥2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| ≥3 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) |
+| 2 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** ≥2 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
+| 1 Moderate (PS2_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate) **AND** ≥4 Supporting (PS3_Supporting, PS4_Supporting, PM2_Supporting, PM6_Supporting, PP1, PP2, PP3) |
 
 ### Benign Classification
 
 | Criteria Combination |
 |---------------------|
-| >=2 Strong (BS1, BS2, BS4, BP2_Strong, BP5_Strong) |
+| ≥2 Strong (BS1, BS2, BS4, BP2_Strong, BP5_Strong) |
 | 1 Stand Alone (BA1) |
 
 ### Likely Benign Classification
@@ -531,7 +556,8 @@
 | Criteria Combination |
 |---------------------|
 | 1 Strong (BS1, BS2, BS4, BP2_Strong, BP5_Strong) **AND** 1 Supporting (BS2_Supporting, BP1, BP2, BP4, BP5, BP7) |
-| >=2 Supporting (BS2_Supporting, BP1, BP2, BP4, BP5, BP7) |
+| ≥2 Supporting (BS2_Supporting, BP1, BP2, BP4, BP5, BP7) |
+| 1 Strong (BS1, BS2, BS4, BP2_Strong, BP5_Strong) |
 | 1 Strong (BS1) |
 
 ---
@@ -551,16 +577,16 @@
 
 | Criterion | Threshold | Strength |
 |-----------|-----------|----------|
-| BA1 | >=0.05% (FAF) | Stand Alone |
-| BS1 | >=0.025% (FAF) | Strong |
+| BA1 | ≥0.05% gnomAD filtering allele frequency | Stand Alone |
+| BS1 | ≥0.025% gnomAD filtering allele frequency | Strong |
 | PM2 | Absent from gnomAD | Supporting |
 
 ### Appendix C: Computational Prediction Thresholds
 
 | Criterion | Tool | Threshold | Strength |
 |-----------|------|-----------|----------|
-| PP3 | REVEL | >=0.7 | Supporting (Pathogenic) |
-| BP4 | REVEL | <=0.3 | Supporting (Benign) |
+| PP3 | REVEL | ≥0.7 | Supporting (Pathogenic) |
+| BP4 | REVEL | ≤0.3 | Supporting (Benign) |
 | PP2 | gnomAD missense z-score | >3.09 | Supporting (Pathogenic) |
 
 ### Appendix D: Analogous Genes
@@ -570,6 +596,10 @@ PS1 and PM5 may be applied using observed analogous residue positions between:
 - **RAF1**
 
 Refer to the "Analogous Residues" supplementary documentation for specific residue mappings.
+
+The visible `RAF alignment ` sheet contains two embedded full-protein alignment images. They print accessions NP_001361187.1 (ending at residue 807) and NP_001341618.1 (ending at residue 668), but do not print gene labels beside the accessions. The specification identifies the analogous genes as BRAF and RAF1. The workbook does not identify pathogenic residues or provide an approved codon-by-codon PM5 list.
+
+> **Package scope note:** The hidden sheets `SOS variants from HGMD` and `SOS variants case counts` contain unrelated SOS1/SOS2 counts and unfinished notes. They are not BRAF/RAF1 evidence.
 
 ### Appendix E: Approved Functional Studies Summary
 
@@ -583,13 +613,13 @@ Refer to the "Analogous Residues" supplementary documentation for specific resid
 
 ### Appendix F: References
 
-1. Richards S, et al. Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology. *Genet Med*. 2015;17(5):405-424.
+1. ACMG/AMP original criteria reproduced by the specification (Richards et al., 2015).
 
-2. Biesecker LG, Harrison SM; ClinGen Sequence Variant Interpretation Working Group. The ACMG/AMP reputable source criteria for the interpretation of sequence variants. *Genet Med*. 2018;20(12):1687-1688. (PMID: 29543229)
+2. ClinGen Sequence Variant Interpretation VCEP Review Committee recommendation cited by the specification: PMID 29543229.
 
 3. SVI Recommendation for de novo criteria: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
 
-4. Rodriguez-Viciana P, et al. Germline mutations in genes within the MAPK pathway cause cardio-facio-cutaneous syndrome. *Science*. 2006;311(5765):1287-1290. (PMID: 16439621)
+4. BRAF functional-assay source cited by `Approved Functional Studies.xlsx`: Rodriguez-Viciana (2006), PMID 16439621, DOI 10.1126/science.1124642.
 
 ---
 
@@ -597,7 +627,8 @@ Refer to the "Analogous Residues" supplementary documentation for specific resid
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in >=5 probands" removed from PM5 at Moderate strength. |
+| 2.3.0 | 2026-08-07 | **Document corrections.** Replaced generic, source-contradicting MEK/ERK assay prose with exact BRAF kinase, MEK, and ERK citations, methods, strengths, controls, and mixed-control findings from `Approved Functional Studies.xlsx`; documented its hidden animal-model contradiction and excluded sheets; restored the PDF's PS4 `≥` comparators and PM5_Strong typo/qualifier from `ClinGen_ACMG_Specifications_BRAF_v2.3.pdf`; reported unresolved PS2/PM6, BS2, and BP2/BP5 differences verified against the PDF, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BS2 Scoring.jpg`, and `BP5_BP2 Scoring.jpg`; removed unsupported decimal frequency conversions and full bibliographic provenance; restored the omitted general one-Strong Likely Benign rule; verified both embedded BRAF/RAF1 alignment images and excluded unrelated hidden SOS sheets from `Analogous Residues.xlsx`; documented the absent BP1 dosage-sensitivity attachment after checking the complete package. |
+| 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
 
 ---
 

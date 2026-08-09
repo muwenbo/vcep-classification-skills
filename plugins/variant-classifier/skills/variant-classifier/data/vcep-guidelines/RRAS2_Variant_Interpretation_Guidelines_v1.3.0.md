@@ -102,6 +102,8 @@ Caveats:
 
 #### Evidence Strength Thresholds
 
+The RRAS2 PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared ladder are not stated.
+
 | Points | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -156,6 +158,8 @@ Caveats:
 | **Threshold (Abnormal)** | Increased RAS/RBD complexes compared with positive control range in assay |
 | **Approved** | Yes |
 | **Strength** | PS3_Supporting; BS3_NA |
+
+All three workbook columns state **Statistical analysis: None**. The RAS and MEK assays cite DOI 10.1016/j.ajhg.2019.04.014; ERK cites 10.1016/j.ajhg.2019.04.013 and 10.1016/j.ajhg.2019.04.014. Several validation controls are described only as absent from ClinVar/gnomAD rather than B/LB or P/LP; those statuses are preserved rather than normalized.
 
 ##### MEK Activation Assay (RRAS2)
 
@@ -299,10 +303,12 @@ Caveats:
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Analogous Gene, Disease-specific |
 
 > **Note:** PM1 and PM5 may be used in conjunction at moderate levels. PM1 may **not** be applied if PM5_Strong is applied (to avoid overweighting).
+
+> **Source wording:** “residues changes” is preserved from the PDF and appears to be a grammatical typo.
 
 ---
 
@@ -319,6 +325,8 @@ Same as PS2 - use point-based system above (see [PS2/PM6 Point System](#ps2pm6-p
 | **Strong** | 2 Points | Strength |
 | **Moderate** | 1 Point | None |
 | **Supporting** | 0.5 Points | Strength |
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement.
 
 ---
 
@@ -431,6 +439,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**, with no comparator symbols. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is unavailable. The image states exact values without operators.
+
 | Points | Strength Level |
 |--------|----------------|
 | -1 | Supporting (BS2_Supporting) |
@@ -448,13 +458,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 **Original ACMG Summary:** Well-established in vitro or in vivo functional studies show no damaging effect on protein function or splicing.
 
-**VCEP Specifications:** Well-established in vitro or in vivo functional studies supportive of no damaging effect on the gene or gene product. Approved assays are available in the supplemental materials.
+**VCEP Specifications (verbatim):** Well-established in vitro or in vivo functional studies supportive of a **damaging** effect on the gene or gene product. Approved assays are available in the supplemental materials.
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Supporting** | Assays approved by the VCEP sufficiently evaluate the functional impact of a given variant for the application of PS3_Supporting. | Disease-specific, Strength |
+| **Supporting** | Assays approved by the VCEP sufficiently evaluate the functional impact of a given variant for the application of `PS3_Supporting`. | Disease-specific, Strength |
 
-> **Note:** BS3 is only available at Supporting strength for RRAS2. The same approved assays (RAS Activation, MEK Activation, ERK Activation) are used; a normal/WT-pattern result provides BS3_Supporting evidence.
+> **Source contradiction — do not operationalize a resolution:** This text appears under BS3 (“no damaging effect”) but instead specifies a damaging effect and explicitly names `PS3_Supporting`. The classification-combination rules nevertheless include `BS3_Supporting` as benign evidence. The distributed functional workbook marks every approved RRAS2 assay `PS3_Supporting; BS3_NA`. The prior guideline silently changed “damaging” to “no damaging” and asserted that normal results provide BS3_Supporting; that reconciliation has been removed.
 
 ---
 
@@ -482,6 +492,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee. (PubMed: 29543229) |
 | **BP7** | Applicable | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. Also applicable for intronic positions (except canonical splice sites) or non-coding variants. Should be used in conjunction with BP4. |
 
+> **Missing distributed content:** BP1 cites supplemental dosage-sensitivity information for RRAS2, but the package contains no dosage-sensitivity file. The analogous-residue PDF, functional workbook, and scoring images do not supply it.
+
 #### BP5/BP2 Point System (Per Individual)
 
 | Phenotypic Consistency | Points per Individual |
@@ -490,6 +502,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Phenotype inconsistent with a RASopathy and no causative variant identified/reported | 0 |
 
 #### BP5/BP2 Evidence Strength Thresholds
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The image states exact values without comparator symbols.
 
 | Points | Strength Level |
 |--------|----------------|
@@ -574,17 +588,15 @@ The following proteins are used for analogous residue comparisons (applicable to
 | RIT1 | NP_008843.1 | AA 28-35 | AA 43-58 | AA 75-82 |
 | **RRAS2** | **NP_036382.2** | **AA 21-28** | **AA 36-51** | **AA 68-75** |
 
+> **Provenance:** `Analogous Residues.pdf` provides these relationships as two image alignments, not an exhaustive discrete residue-pair table. The RRAS2 ranges are also stated directly in the main PDF; do not infer unprinted mappings beyond the alignment.
+
 ### Appendix B: Approved Functional Assays Summary
 
-| Assay | Applicable Genes | Specificity | Strength |
-|-------|-----------------|-------------|----------|
-| RAS Activation Assay | HRAS, KRAS, MRAS, NRAS, SOS1, SOS2, LZTR1, RRAS2, RIT1 | Pathway Specific | PS3_Supporting |
-| MEK Activation Assay | All RASopathy genes | Pathway Specific | PS3_Supporting |
-| ERK Activation Assay | All RASopathy genes | Pathway Specific | PS3_Supporting |
-| SHP-2 Phosphatase Activity | PTPN11 | Gene Specific | PS3/BS3 |
-| BRAF Kinase Activity | BRAF | Gene Specific | PS3_Supporting |
-| RAF1 Kinase Activity | RAF1 | Gene Specific | PS3_Supporting |
-| LZTR1 Stability Localization | LZTR1 | Gene Specific | PS3_Supporting |
+| Assay | Applicable to RRAS2 | Workbook strength |
+|-------|:-------------------:|-------------------|
+| RAS Activation Assay | Yes | PS3_Supporting; BS3_NA |
+| MEK Activation Assay | Yes | PS3_Supporting; BS3_NA |
+| ERK Activation Assay | Yes | PS3_Supporting; BS3_NA |
 
 > **Note:** Animal models and variant-specific assays (e.g. myristoylation assays) have been excluded as the assays above are considered the most appropriate to evaluate variant pathogenicity for all genes. Assays not listed here are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting or BS3_Supporting.
 
@@ -610,7 +622,7 @@ The following proteins are used for analogous residue comparisons (applicable to
 | PM3 | Not Applicable | - |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable (Analogous Gene) | Strong |
-| PM6 | Applicable (Point-based) | Strong |
+| PM6 | Applicable (Point-based) | Very Strong (supplement; PDF body lists through Strong) |
 | PP1 | Applicable | Strong |
 | PP2 | Not Applicable | - |
 | PP3 | Applicable | Supporting |
@@ -619,7 +631,7 @@ The following proteins are used for analogous residue comparisons (applicable to
 | BA1 | Applicable | Stand Alone |
 | BS1 | Applicable | Strong |
 | BS2 | Applicable (Point-based) | Strong |
-| BS3 | Applicable | Supporting |
+| BS3 | Conflicting sources | PDF says Supporting but describes PS3/damaging evidence; workbook says BS3_NA |
 | BS4 | Applicable | Strong |
 | BP1 | Applicable (Modified) | Supporting |
 | BP2 | Applicable (Point-based) | Strong |
@@ -650,6 +662,15 @@ The following proteins are used for analogous residue comparisons (applicable to
 |---------|------|-------|
 | 1.3.0 | 12/3/2024 | "Observed in ≥5 probands" removed from PM5 at Moderate strength. Pilot variants included in the LZTR1 submission. |
 | 1.0.0 | Initial | Initial ACMG/AMP variant classification specifications developed by the RASopathy VCEP. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_RRAS2_v1.3.pdf`, `Analogous Residues.pdf`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, and `BS2 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- **BS3 silent reconciliation removed:** the PDF's BS3 block assigns Supporting but describes a *damaging* effect and explicitly says `PS3_Supporting`; its combining rules nevertheless use `BS3_Supporting`. The workbook marks all three RRAS2 assays `BS3_NA`. The prior guideline changed the text to “no damaging effect” and asserted normal results support BS3. All source readings are now reported without choosing one.
+- **Shared scoring contradictions restored:** BS2 is -4 in the PDF body versus -3 in its image; BP2/BP5 use PDF tiers ≥(-4)/≥(-2)/≥(-1) versus image tiers -3/N/A/-1. The image's operators remain unstated.
+- **Functional qualifiers completed:** DOIs, absence of statistical analyses, and the absence-only ClinVar/gnomAD statuses used in validation-control rows are now recorded. Appendix B no longer makes false “all RASopathy genes” claims and is limited to RRAS2's actual approved columns.
+- **Supplement provenance qualified:** the analogous-residue file contains image alignments, not an exhaustive pairwise lookup table.
+- **Supplement-only strengths and source typo identified:** the shared image adds PS2_Supporting and PM6_VeryStrong to criterion blocks that omit them; PM6's summary maximum was corrected accordingly. The PDF's “residues changes” typo is preserved and flagged.
+- **Missing BP1 content recorded:** no dosage-sensitivity supplement is distributed for RRAS2.
 
 ---
 
