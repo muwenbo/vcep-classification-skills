@@ -1,22 +1,24 @@
-# Handoff — remediation of the 53 unremediated VCEP guidelines
+# Handoff — remediation of the 46 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-07 after the RASopathy round and Limb Girdle preflight
+**Written:** 2026-08-07, revised 2026-08-09 after the Limb Girdle remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
-**Head at this revision:** `6dbdba9`
-**Working tree:** RASopathy round complete but **uncommitted**; 16 guideline files plus this handoff are modified
+**Round 4 remediation commit:** `3b62aeb`
+**Round 5 remediation commit:** `78ad52b`
+**Working tree:** Round 5 is complete and committed; this handoff revision follows it
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–4).** Three batches have been completed since this
+**Revision note (rounds 2–5).** Four batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
-source-first (§13). The next panel is Limb Girdle Muscular Dystrophy; its §2a
-preflight is already complete and clean (§7a). Read §1, §2a, §7 and §13 before
-planning further work; the rest of the document stands.
+source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
+remediated source-first (§7a, §13). The next panel is Congenital Myopathies.
+Read §1, §2a, §7, §7a and §13 before planning further work; the rest of the
+document stands.
 
 ---
 
@@ -64,12 +66,12 @@ whether this document transcribed it honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 53 specs remain
+## 2. Scope: 46 specs remain
 
-122 unique spec IDs; 69 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 76 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
-specs of round 3, and the 16 RASopathy specs of round 4). **53 remain.** Full
-list: run the snippet in §6.
+specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
+specs of round 5). **46 remain.** Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
 repeat within a panel:
@@ -78,7 +80,6 @@ repeat within a panel:
 |---|---|
 | 7 | Cardiomyopathy |
 | 7 | Congenital Myopathies |
-| 7 | Limb Girdle Muscular Dystrophy |
 | 5 | Epilepsy Sodium Channel |
 | 3 | Monogenic Diabetes |
 | 3 | Platelet Disorders |
@@ -315,10 +316,11 @@ ranges    = {"GN022","GN167","GN084"}                       # round 2
 zero_supp = {"GN010","GN011","GN012","GN013","GN014","GN015","GN018","GN023"}  # round 3
 rasopathy = {"GN038","GN039","GN040","GN041","GN042","GN043","GN044","GN045",
              "GN046","GN047","GN048","GN049","GN087","GN094","GN127","GN128"}  # round 4
+limb_girdle = {"GN180","GN184","GN185","GN186","GN187","GN188","GN189"}  # round 5
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
-                                | ranges | zero_supp | rasopathy))
-print(len(remaining))  # 53
+                                | ranges | zero_supp | rasopathy | limb_girdle))
+print(len(remaining))  # 46
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -341,13 +343,10 @@ positives; see §1.
 the ninth and was covered by round 2. Five of the remaining eight were clean;
 see §2a.
 
-~~3. RASopathy panel (16 specs)~~ — **done, round 4 in the current uncommitted
-working tree.** See §13.
-4. **Limb Girdle (7). Start here.** Its panel-wide §2a preflight is complete;
-   all seven packages are complete and every claimed supplement exists. See
-   §7a for the exact manifest and source caveats.
-5. **Congenital Myopathies (7).** This is the next supplement-heavy panel after
-   Limb Girdle.
+~~3. RASopathy panel (16 specs)~~ — **done, round 4** (`3b62aeb`). See §13.
+~~4. Limb Girdle (7)~~ — **done, round 5** (`78ad52b`). See §7a and §13.
+5. **Congenital Myopathies (7). Start here.** Run the panel-wide §2a preflight
+   before dispatch; this is now the next supplement-heavy panel.
 6. **Cardiomyopathy (7).** MYH7 is already audited and known bad (phantom
    PS2/PM6, Appendix A listing strengths the spec never defines) — its six
    siblings share conventions and are likely to share defects. Note MYH7's
@@ -360,11 +359,11 @@ batch are likely to be the expensive ones.
 
 ---
 
-## 7a. Limb Girdle preflight — complete, proceed to source-first remediation
+## 7a. Limb Girdle preflight and remediation — complete
 
 The §2a preflight was completed on 2026-08-07 for all seven Limb Girdle
-Muscular Dystrophy specs. It was read-only; no Limb Girdle guideline was
-changed.
+Muscular Dystrophy specs. The source-first remediation followed on 2026-08-09
+and is committed as `78ad52b`.
 
 | Spec | Substantive files | Provenance result | PVS1 result |
 |---|---:|---|---|
@@ -408,9 +407,53 @@ exceptions. PP4 PowerPoints and PS3 workbooks are gene-specific. This is a good
 panel for sibling corroboration, but gene-specific PVS1, PP4 and PS3 content
 must still be transcribed independently.
 
+### Round 5 outcome
+
+All seven guidelines — ANO5 (GN188), CAPN3 (GN187), DYSF (GN180), SGCA
+(GN189), SGCB (GN184), SGCD (GN186), and SGCG (GN185) — were independently
+drafted from their complete packages before comparison with the local files.
+All 60 substantive artifacts were opened; Office XML, speaker notes, workbook
+cells, original PNGs, and rendered arrow topology were inspected. No registry
+entry or filename changed.
+
+Recurring findings:
+
+- PVS1 transcriptions had stripped the exon-presence gate from NMD-producing
+  nonsense/frameshift, splice, and deletion paths in multiple genes. This is a
+  load-bearing over-call: the source assigns N/A when the exon is absent from
+  the biologically relevant transcript.
+- Visibly struck-through critical-region and initiation-codon paths were
+  presented as active in several local files. SGCB's initiation outcomes were
+  reversed; SGCA also had source-contradicting initiation assignments. These
+  operative contradictions were removed or marked inactive, not retained as
+  alternative guidance.
+- All seven local classification tables had inferred `>=10`/`<=-7` outer
+  comparators. The core PDFs print bare `10` and `-7`; the guidelines now state
+  that the operator is unspecified. SGCA also carried a generic traditional
+  combination-rule graft absent from its package; it was deleted.
+- The byte-identical experimental-splice PNG had been mistranscribed in several
+  ways, including routing the silent/intronic branch through a protein-impact
+  question that belongs only to "other variants". All seven now follow the
+  actual arrows. The source image itself begins with a clipped incoming arrow
+  at its left boundary, though no visible criterion text is missing, and its
+  `(d)`/`(e)` markers are undefined.
+- Shared PM3 footnotes, PS1 qualifications, benign-frequency exception rows,
+  and gene-specific PS3 workbook fields were incompletely represented in
+  several files. SGCD and SGCG permit PS3_Moderate in their criteria PDFs but
+  ship no populated Moderate assay instance; only Supporting instances exist
+  in their workbooks. This limitation is now explicit.
+- All seven core-PDF DOIs were restored. Unsupplied bibliographic expansions
+  were removed, including SGCD's "Abou Tayoun et al., 2018" expansion of the
+  bare PMID 27618451.
+
+The preflight caveats remain unresolved source issues, not local defects:
+strict `>10%`/`<10%` leaves exactly 10% unassigned, PVS1 markers `a`–`d` have
+no definitions, and SGCD deliberately assigns codons 1–34
+PVS1_Supporting while the other six use PVS1_Moderate.
+
 ---
 
-## 8. Loose ends unrelated to the 53
+## 8. Loose ends unrelated to the remaining 46
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -457,6 +500,18 @@ Accumulated across sessions; worth sending as a batch.
 - **Limb Girdle PVS1 exact-10% gap.** All seven distributed gene-specific
   flowcharts use strict `>10%` and `<10%` branches with no path for a variant
   that removes exactly 10% of the protein.
+- **Limb Girdle experimental-splice artifact is incomplete.** The byte-identical
+  PNG shipped with all seven packages starts with an incoming arrow clipped at
+  its left boundary; no visible criterion text is missing, but its off-canvas
+  predecessor is unknowable. Markers `(d)` and `(e)` are also printed without
+  definitions in any package.
+- **SGCD/SGCG PS3 Moderate assay gap.** Both criteria PDFs permit
+  PS3_Moderate for a clinically validated membrane-localization assay with at
+  least 11 qualifying controls and direct readers to their gene workbooks.
+  Those workbooks contain only Supporting Soheili assay instances (3 P/LP
+  controls for SGCD, 4 for SGCG) and no populated Moderate assay. Is a
+  Moderate assay attachment missing, or is the criterion intentionally
+  prospective?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -541,7 +596,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–4 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–5 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -560,16 +615,16 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–4 the durable changelogs are **in the guidelines themselves**,
-under dated "Document corrections" entries. Rounds 2 and 3 also have detailed
-commit messages (`2f9674b`, `4c91f2c`). Round 4 is still uncommitted at this
-revision; its source-first drafts live in isolated `/tmp` directories and are
-ephemeral. Prefer the in-guideline pattern going forward: a finding recorded
-only in `/tmp` is a finding you will lose.
+For rounds 2–5 the durable changelogs are **in the guidelines themselves**,
+under dated "Document corrections" entries. The remediation commits are
+`2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
+(round 5). Round 5's source-first scratch drafts live in isolated `/tmp`
+directories and are ephemeral. Prefer the in-guideline pattern going forward:
+a finding recorded only in `/tmp` is a finding you will lose.
 
 ---
 
-## 13. Rounds 2–4 summary
+## 13. Rounds 2–5 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -582,7 +637,7 @@ table. All three had lost the SVI heterogeneity-row cap footnote.
 Defective: LDLR (GN013), GAA (GN010), Hearing Loss (GN023) — all three caught
 by the §2a signal.
 
-**Round 4 — uncommitted working tree at `6dbdba9`** — all 16 RASopathy specs:
+**Round 4 — `3b62aeb`** — all 16 RASopathy specs:
 SHOC2 (GN038), NRAS (GN039), RAF1 (GN040), SOS1 (GN041), SOS2 (GN042),
 PTPN11 (GN043), KRAS (GN044), MAP2K1 (GN045), HRAS (GN046), RIT1 (GN047),
 MAP2K2 (GN048), BRAF (GN049), MRAS (GN087), LZTR1 (GN094), RRAS2 (GN127)
@@ -612,8 +667,28 @@ Recurring panel findings:
 Round 4 final gate: all 16 `check_vcep_spec.py` lookups passed;
 `plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
 `plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
-`git diff --check` was clean. Before the handoff edit, the round comprised 16
-modified guidelines, 1,254 insertions and 372 deletions.
+`git diff --check` was clean. The remediation commit contains the 16 guidelines
+and the contemporaneous handoff update.
+
+**Round 5 — `78ad52b`** — all seven Limb Girdle specs: ANO5 (GN188), CAPN3
+(GN187), DYSF (GN180), SGCA (GN189), SGCB (GN184), SGCD (GN186), and SGCG
+(GN185). Every package was complete and source-first drafting covered all 60
+substantive artifacts. Recurring defects were omitted PVS1 exon-presence
+gates, operative transcription of struck-through flowchart paths, incorrect
+experimental-splice routing, stripped shared-table footnotes/qualifications,
+partial benign-exception and PS3 workbook transcription, invented
+classification endpoint comparators, and unsupplied provenance. SGCA also had
+a generic combination-rule graft. Full findings and unresolved source caveats
+are in §7a.
+
+Round 5 final gate: all seven `check_vcep_spec.py` lookups passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+and `git diff --check` was clean. The only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue.
 
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
