@@ -1,6 +1,6 @@
-# Handoff — remediation of the 24 remaining VCEP guidelines
+# Handoff — remediation of the 21 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-10 after the Monogenic Diabetes remediation round
+**Written:** 2026-08-07, revised 2026-08-10 after the Platelet Disorders remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
@@ -8,23 +8,25 @@
 **Round 7 remediation commit:** `16212de`
 **Round 8 remediation commit:** `bb87729`
 **Round 9 remediation commit:** `f298ac8`
-**Working tree:** Round 9 is complete and committed; this handoff revision follows it
+**Round 10 remediation commit:** `983d931`
+**Working tree:** Round 10 is complete and committed; this handoff revision follows it. The user asked to stop after this batch.
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–9).** Eight batches have been completed since this
+**Revision note (rounds 2–10).** Nine batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
 source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
 specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
-Epilepsy Sodium Channel specs (§7d, §13), and all three Monogenic Diabetes
-specs (§7e, §13). The next panel is Platelet Disorders.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e and §13 before
+Epilepsy Sodium Channel specs (§7d, §13), all three Monogenic Diabetes specs
+(§7e, §13), and all three remaining Platelet Disorders specs (§7f, §13).
+Twenty-one specifications remain for a future session.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -80,14 +82,15 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 24 specs remain
+## 2. Scope: 21 specs remain
 
-122 unique spec IDs; 98 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 101 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
-round 8, and the 3 Monogenic Diabetes specs of round 9). **24 remain.**
+round 8, the 3 Monogenic Diabetes specs of round 9, and the 3 remaining
+Platelet Disorders specs of round 10). **21 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -95,7 +98,6 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 3 | Platelet Disorders |
 | 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy, Hereditary Hemorrhagic Telangiectasia |
 | 1 each | 9 further panels |
 
@@ -334,12 +336,14 @@ congenital_myopathies = {"GN146","GN147","GN148","GN149","GN150","GN169","GN179"
 cardiomyopathy = {"GN095","GN098","GN099","GN100","GN101","GN102","GN103"}  # round 7
 epilepsy_sodium = {"GN067","GN068","GN069","GN070","GN076"}  # round 8
 monogenic_diabetes = {"GN017","GN085","GN086"}  # round 9
+platelet_disorders = {"GN079","GN082","GN083"}  # round 10
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
-                                | epilepsy_sodium | monogenic_diabetes))
-print(len(remaining))  # 24
+                                | epilepsy_sodium | monogenic_diabetes
+                                | platelet_disorders))
+print(len(remaining))  # 21
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -372,10 +376,11 @@ see §2a.
    full panel before opening local guideline bodies; see §7d and §13.
 ~~8. Monogenic Diabetes (3)~~ — **done, round 9** (`f298ac8`). HNF1A
    (GN017), HNF4A (GN085), and GCK (GN086); see §7e and §13.
-9. **Platelet Disorders (3). Start here.** GP1BA (GN079), GP1BB (GN082), and
-   GP9 (GN083). Each package has the core PDF plus three shared DOCX files, a
-   PS3 workbook, and a gene-specific PVS1 PowerPoint. Preflight the full panel
-   before opening local guideline bodies; verify shared-file identity first.
+~~9. Platelet Disorders (3)~~ — **done, round 10** (`983d931`). GP1BA
+   (GN079), GP1BB (GN082), and GP9 (GN083); see §7f and §13.
+
+The user asked to stop after round 10. A future session should choose the next
+panel from the 21-entry list produced by §6 rather than starting automatically.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -696,7 +701,58 @@ interval remains operative.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 24
+## 7f. Platelet Disorders remediation — complete
+
+Round 10 (`983d931`) remediated GP1BA (GN079), GP1BB (GN082), and GP9
+(GN083). Each complete package contained a 15-page core PDF, three DOCX
+attachments, a four-sheet PS3 workbook, and a one-slide gene-specific PVS1
+deck. All 18 advertised files were inspected source-first. The combining,
+PS2/PM6, and workbook files are byte-identical across all three genes;
+GP1BA/GP1BB share a BSS-specific PM3 document while GP9 ships a different,
+generic PM3 document.
+
+Recurring and high-impact findings:
+
+- The local PVS1 summaries omitted or misrouted many branches and reversed
+  some initiation-codon outcomes. The remediations now preserve every visible
+  nonsense/frameshift, splice, deletion, duplication, and initiation route,
+  exact `>10%`/`<10%` and amino-acid cutoffs, and literal terminal labels such
+  as `PVS1_Supp`. The slides' red X symbols and `a`–`d` markers have no legend
+  or definitions; several raw connectors have incomplete endpoint bindings.
+  Those source limitations remain explicit.
+- The shared de novo document's two-level headers, four-row phenotype table,
+  maximum-one heterogeneity footnote, exact code labels, and bare
+  `0.5`/`1`/`2`/`4` totals are restored. All three cores make PM6 Not
+  Applicable/use PS2 while the attachment labels both PS2 and PM6, and the
+  attachment also supplies PS2_Supporting absent from some core blocks. No
+  precedence is inferred.
+- Local PM3 tables invented consanguinity categories or altered cells. GP9 in
+  particular assigned `0.5` instead of `0.25` to a phase-unknown LP partner.
+  Exact attachment cells and footnotes are restored, with no inferred
+  `>=` ladder or pooling rule. GP9's generic attachment requires all variants
+  to meet PM2, while its core exempts qualifying P/LP partners from
+  PM2_Supporting when BS1/BA1 do not apply; the contradiction remains open.
+- The conflicting-evidence DOCX applies Tavtigian et al. 2020 only when benign
+  and pathogenic criteria coexist. Its complete pathogenic/benign point
+  weights and classification bands are restored. Superscripts `a` and `b`
+  appear in embedded images but have no supplied definitions.
+- Every one of the workbook's 305 populated cells was inspected: visible
+  `GPIX` 93, `GPIBA` 108, `GPIBB` 77, and hidden `Mufti` 27. Each guideline
+  uses only its gene sheet operationally. Sibling sheets remain disclosed,
+  and the hidden sheet's sparse VWF/FVIII material is reported as unrelated
+  working-source contamination rather than converted into criteria.
+- Source-derived tables are labeled as editorial accessibility summaries;
+  their named Office artifacts remain controlling. Source typos, exact verbal
+  comparator forms, compact labels, URLs, and same-group assay PMIDs were
+  preserved. No plausible undistributed gene-specific excess remained, so no
+  warning banner was needed.
+
+All three independent reviews and the final cross-panel gate passed after
+targeted exactness and provenance fixes.
+
+---
+
+## 8. Loose ends unrelated to the remaining 21
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -815,6 +871,22 @@ Accumulated across sessions; worth sending as a batch.
   novo table labels PM6 strengths although the gene cores make PM6 Not
   Applicable. Which readings and missing branch/footnote definitions are
   intended?
+- **Platelet Disorders source conflicts and undefined flowchart notation.**
+  GP1BA, GP1BB, and GP9 cores make PM6 Not Applicable or direct users to PS2,
+  while the shared de novo attachment labels PM6 strengths, including
+  Supporting. Their PVS1 slides also print undefined markers `a`–`d`, red-X
+  symbols, and in some cases connectors whose raw endpoint bindings are
+  incomplete. Which attachment precedence, marker definitions, and connector
+  paths are intended?
+- **GP9 PM3 rarity conflict.** The GP9-specific PM3 attachment says that all
+  variants being evaluated must meet PM2, while the core permits a Pathogenic
+  or Likely Pathogenic variant in trans without requiring rarity. Neither
+  artifact declares precedence. Which condition governs?
+- **Platelet Disorders hidden workbook material.** The shared functional-assay
+  workbook contains 93 visible GPIX, 108 visible GPIBA, 77 visible GPIBB, and
+  27 hidden `Mufti` populated cells. The hidden sheet is unrelated VWF/FVIII
+  working material. Was it intentionally distributed, and should curators
+  ignore it?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -899,7 +971,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–9 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–10 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -918,18 +990,18 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–9 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–10 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
 (round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
-(round 8), and `f298ac8` (round 9). Rounds 5–9
+(round 8), `f298ac8` (round 9), and `983d931` (round 10). Rounds 5–10
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–9 summary
+## 13. Rounds 2–10 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -1076,6 +1148,26 @@ the independent three-spec cross-panel scratch review passed; and
 `git diff --check` was clean. The only version/filename mismatch remains the
 pre-existing GN094 LZTR1 issue.
 
+**Round 10 — `983d931`** — all three remaining Platelet Disorders specs:
+GP1BA (GN079), GP1BB (GN082), and GP9 (GN083). The complete 18-file panel was
+preflighted and drafted source-first. Recurring defects were collapsed or
+reversed PVS1 topology, altered PS2 and PM3 tables, generic or invented PM3
+categories, normalized source typography, omitted conflicting-evidence
+tables, incomplete workbook provenance, and silently resolved contradictions.
+Full findings and unresolved source caveats are in §7f and §9.
+
+Round 10 final gate: all three exact registry-to-guideline mappings passed;
+`check_updates.py` reported 0 new and 0 outdated released specifications;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17; all
+18 advertised source filenames appeared in the dated correction histories;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+the independent three-spec cross-panel scratch review passed; and
+`git diff --check` was clean. The only version/filename mismatch remains the
+pre-existing GN094 LZTR1 issue.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1089,10 +1181,12 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- The next Platelet Disorders packages contain PDFs, DOCX files, XLSX
-  workbooks, and PPTX flowcharts. Use `pdf:pdf`, `documents:documents`,
-  `presentations:Presentations`, and `spreadsheets:Spreadsheets`; inspect raw
-  Office XML/media when renderers omit text, notes, or connector topology.
+- The user deliberately stopped after round 10. A future session should choose
+  the next panel from the 21-spec inventory in §6, then load only the artifact
+  skills its packages require. Use `documents:documents`,
+  `presentations:Presentations`, and `spreadsheets:Spreadsheets` when DOCX,
+  PPTX, or XLSX artifacts are present; inspect raw Office XML/media when
+  renderers omit text, notes, or connector topology.
 - Use the handoff skill again only after the batch has passed all §11 gates and
   the remediation commit exists; update this workspace handoff in place because
   that is the project's durable continuation record.
