@@ -4,619 +4,383 @@
 **Released:** 9/29/2025
 **Affiliation:** Platelet Disorders VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**DOI:** 10.5281/zenodo.21433998
 
 ---
 
 ## Gene Information
 
 | Attribute | Value |
-|-----------|-------|
+|---|---|
 | **Gene** | GP1BB (HGNC:4440) |
 | **HGNC Name** | glycoprotein Ib platelet subunit beta |
 | **Transcript** | NM_000407.5 |
 | **Disease** | Bernard-Soulier syndrome (MONDO:0009276) |
 | **Inheritance** | Autosomal recessive inheritance |
 
----
+## Source-integrity notices
 
-## Table of Contents
-
-1. [Pathogenic Criteria](#pathogenic-criteria)
-   - [PVS1 - Null Variant](#pvs1---null-variant)
-   - [PS1 - Same Amino Acid Change](#ps1---same-amino-acid-change)
-   - [PS2 - De Novo (Confirmed)](#ps2---de-novo-confirmed)
-   - [PS3 - Functional Studies](#ps3---functional-studies)
-   - [PS4 - Prevalence in Affected](#ps4---prevalence-in-affected)
-   - [PM1 - Mutational Hot Spot](#pm1---mutational-hot-spot)
-   - [PM2 - Absent from Controls](#pm2---absent-from-controls)
-   - [PM3 - In Trans with Pathogenic](#pm3---in-trans-with-pathogenic)
-   - [PM4 - Protein Length Changes](#pm4---protein-length-changes)
-   - [PM5 - Novel Missense at Same Residue](#pm5---novel-missense-at-same-residue)
-   - [PM6 - De Novo (Assumed)](#pm6---de-novo-assumed)
-   - [PP1 - Co-segregation](#pp1---co-segregation)
-   - [PP2 - Missense in Constrained Gene](#pp2---missense-in-constrained-gene)
-   - [PP3 - Computational Evidence](#pp3---computational-evidence)
-   - [PP4 - Phenotype Specificity](#pp4---phenotype-specificity)
-   - [PP5 - Reputable Source](#pp5---reputable-source)
-2. [Benign Criteria](#benign-criteria)
-   - [BA1 - Allele Frequency >0.1%](#ba1---allele-frequency-01)
-   - [BS1 - Frequency Greater Than Expected](#bs1---frequency-greater-than-expected)
-   - [BS2 - Observed in Healthy Adult](#bs2---observed-in-healthy-adult)
-   - [BS3 - Functional Studies (No Effect)](#bs3---functional-studies-no-effect)
-   - [BS4 - Lack of Segregation](#bs4---lack-of-segregation)
-   - [BP1-BP7 - Benign Supporting](#bp1-bp7---benign-supporting)
-3. [Rules for Combining Criteria](#rules-for-combining-criteria)
-4. [Appendices](#appendices)
+- `Instructions for PS2_PM6 code use.docx` assigns PS2 and PM6 labels at all four strengths. The core specification makes PM6 not applicable and says to use PS2 instead. It also gives PS2 only at Very Strong, Strong, and Moderate strengths, while the attachment includes PS2_Supporting. This conflict is unresolved; no precedence is inferred.
+- The PVS1 slide uses markers `(a)` through `(d)` and red X symbols but supplies no definitions or legend, including in the notes. The affected branches are transcribed below but remain unresolved.
+- The combining-rules images use superscripts `a` and `b`, but the DOCX supplies no footnote definitions. They are preserved without inferred definitions.
+- The hidden `Mufti` worksheet contains sparse VWF material and no approved-assay designation. It is not used as GP1BB functional evidence.
 
 ---
 
 ## Pathogenic Criteria
 
-### PVS1 - Null Variant
+### PVS1 — Null Variant
 
-**Original ACMG Summary:** Null variant (nonsense, frameshift, canonical +/-1 or 2 splice sites, initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease.
+Use the GP1BB-modified decision tree for Very Strong, Strong, Moderate, and Supporting evidence.
 
-**Caveats:**
-- Beware of genes where LOF is not a known disease mechanism (e.g., GFAP, MYH7)
-- Use caution interpreting LOF variants at the extreme 3' end of a gene
-- Use caution with splice variants that are predicted to lead to exon skipping but leave the remainder of the protein intact
-- Use caution in the presence of multiple transcripts
+#### Nonsense or frameshift
 
-**VCEP Specifications:** Use GP1BB modified decision tree below.
+- Predicted to undergo NMD `(b)`:
+  - the distributed slide states: `GP1BB coding sequence begins in the last 50 nucleotides of the penultimate exon (1 of 2) which is not considered subject to NMD`;
+  - exon present in biologically relevant transcript(s) → **PVS1** (red X shown at/near this outcome);
+  - exon absent from biologically relevant transcript(s) → **N/A** (red X shown at/near this outcome).
+- Not predicted to undergo NMD `(b)`:
+  - critical region `(c)` / transmembrane region amino acids 148–173 → **PVS1_Strong**;
+  - role unknown and exon frequent/absent from biologically relevant transcript(s) → **N/A**;
+  - role unknown and exon not frequent/present → truncation removes `>10%` (before p.186) → **PVS1_Strong**;
+  - role unknown and exon not frequent/present → truncation removes `<10%` (at/after p.186) → **PVS1_Moderate**.
 
-#### Strength Levels
+Terminal-most PTV annotation: `NM_000407.5:c.448del (Ala150Argfs*43)`, ClinVar 627075 (`Likely Pathogenic, 1 star`).
 
-| Strength | Criteria |
-|----------|----------|
-| **Very Strong** | Use GP1BB modified decision tree as per SVI WG |
-| **Strong** | Use GP1BB modified decision tree as per SVI WG |
-| **Moderate** | Use GP1BB modified decision tree as per SVI WG |
-| **Supporting** | Use GP1BB modified decision tree as per SVI WG |
+#### GT--AG 1,2 splice sites `(a)`
 
-#### PVS1 Decision Tree for GP1BB
+- Disrupts reading frame and predicted to undergo NMD `(b)`:
+  - exon present → **PVS1** (red X shown at/near this outcome);
+  - exon absent → **N/A** (red X shown at/near this outcome).
+- Disrupts reading frame and is not predicted to undergo NMD `(b)`:
+  - critical region `(c)` / transmembrane region → **PVS1_Strong**;
+  - role unknown and exon frequent/absent → **N/A**;
+  - role unknown and exon not frequent/present → `>10%` (`truncation before p.186 or deletion of >20 amino acids`) → **PVS1_Strong**;
+  - role unknown and exon not frequent/present → `<10%` (`truncation at/after p.186 or deletion of <21 amino acids`) → **PVS1_Moderate**.
+- Preserves reading frame:
+  - critical region `(c)` / transmembrane region → **PVS1_Strong**;
+  - role unknown → use the same exon-frequency and `>10%` / `<10%` split above.
 
-**Nonsense or Frameshift:**
-- **Predicted to undergo NMD:**
-  - GP1BB coding sequence begins in the last 50 nucleotides of the penultimate exon (1 of 2) which is not considered subject to NMD
-- **Not predicted to undergo NMD:**
-  - Exon is present in biologically-relevant transcript(s):
-    - Truncated/altered region is critical to protein function (transmembrane domain, amino acids 148-173) → **PVS1_Strong**
-    - Role of region in protein function is unknown → See decision tree
-  - Exon is absent from biologically-relevant transcript(s) → **N/A**
+#### Deletion
 
-**Canonical Splice Sites (GT-AG, +/-1,2):**
-- Exon skipping or use of cryptic splice site disrupts reading frame and predicted to undergo NMD:
-  - Exon present in biologically-relevant transcript(s) → **PVS1**
-  - Exon absent from biologically-relevant transcript(s) → **N/A**
-- Exon skipping or use of cryptic splice site preserves reading frame → See full decision tree
-- Exon skipping disrupts reading frame and NOT predicted to undergo NMD → See full decision tree
+- Full-gene deletion → **PVS1** `(d)`.
+- Disrupts reading frame and predicted to undergo NMD `(b)`:
+  - exon present → **PVS1** (red X shown at/near this outcome);
+  - exon absent → **N/A** (red X shown at/near this outcome).
+- Disrupts reading frame and is not predicted to undergo NMD `(b)`:
+  - critical region `(c)` / transmembrane region → **PVS1_Strong**;
+  - role unknown and exon frequent/absent → **N/A**;
+  - role unknown and exon not frequent/present → `>10%` or deletion of `>20` amino acids → **PVS1_Strong**;
+  - role unknown and exon not frequent/present → `<10%` or deletion of `<21` amino acids → **PVS1_Moderate**.
+- Preserves reading frame: critical region → **PVS1_Strong**; otherwise use the same role-unknown size split.
 
-**Deletion (Single exon to full gene):**
-- Single to multi exon deletion disrupts reading frame and predicted to undergo NMD:
-  - Exon present in biologically-relevant transcript(s) → **PVS1**
-  - Exon absent from biologically-relevant transcript(s) → **N/A**
-- Single to multi exon deletion preserves reading frame → See full decision tree
-- Full gene deletion → **PVS1**
+#### Duplication(≥1 exon in size and must be completely contained within gene)
 
-**Duplication (≥1 exon, completely contained within gene):**
 - Proven in tandem:
-  - Reading frame disrupted and NMD predicted → **PVS1**
-  - No or unknown impact on reading frame and NMD → **N/A**
+  - reading frame disrupted and NMD predicted → **PVS1**;
+  - no or unknown impact on reading frame → **N/A**.
 - Presumed in tandem:
-  - Reading frame presumed disrupted and NMD predicted → **PVS1_Strong**
-- Proven not in tandem → **N/A**
+  - reading frame presumed disrupted and NMD predicted → **PVS1_Strong**;
+  - no or unknown impact on reading frame → **N/A**.
+- Proven not in tandem → **N/A**.
 
-**Initiation Codon:**
-- Different functional transcript uses alternative start codon → See decision tree
+#### Initiation codon
+
+- Different functional transcript uses alternative start codon → **N/A**.
 - No known alternative start codon in other transcripts:
-  - ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1**
-  - No pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Supporting**
-- **Note:** GP1BB does not have another potential in-frame start codon
+  - `≥1 pathogenic variant(s) upstream of closest potential in-frame start codon` → **PVS1**;
+  - `No pathogenic variant(s) upstream of closest potential in-frame start codon` → **PVS1_Supp** (red X shown at/near this outcome).
 
-**Terminal-most PTV:** NM_000407.5:c.448del (Ala150Argfs*43) - ClinVar 627075 (Likely Pathogenic)
+Source annotation: `GP1BB does not have another potential in-frame start codon`.
 
----
+The slide's `(a)`–`(d)` markers and red X symbols have no supplied definitions. Raw OOXML also leaves some connector endpoints unbound, so the rendered arrow routing controls this transcription; no missing meaning is inferred.
 
-### PS1 - Same Amino Acid Change
-
-**Original ACMG Summary:** Same amino acid change as a previously established pathogenic variant regardless of nucleotide change.
-
-**Example:** Val->Leu caused by either G>C or G>T in the same codon.
-
-**Caveat:** Beware of changes that impact splicing rather than at the amino acid/protein level.
-
-**VCEP Specifications:**
+### PS1 — Same amino-acid change
 
 | Strength | Criteria |
-|----------|----------|
-| **Strong** | Use as originally specified, but the comparison variant must reach a **pathogenic** classification using these rule specifications in order to apply code |
-| **Moderate** | Use as originally specified, but the comparison variant must reach a **likely pathogenic** classification using these rule specifications in order to apply code |
+|---|---|
+| **Strong** | Use as originally specified, but the comparison variant must reach a pathogenic classification using `the these rule specifications` [sic] in order to apply code. |
+| **Moderate** | Use as originally specified, but the comparison variant must reach a likely pathogenic classification using `the these rule specifications` [sic] in order to apply code. |
 
----
+### PS2 — De novo
 
-### PS2 - De Novo (Confirmed)
+Only applicable when the proband has a known pathogenic or likely pathogenic variant according to the BSS rule specifications along with the de novo variant. Use the phenotype consistency `Phenotype highly specific for gene` only when all three genes (`GP1BA`, `GP1BB` and `GP9`) have been sequenced. When only one or two have been sequenced, use `Phenotype consistent with gene but not highly specific`.
 
-**Original ACMG Summary:** De novo (both maternity and paternity confirmed) in a patient with the disease and no family history.
+#### Table 1. Points awarded per de novo occurrence
 
-**Note:** Confirmation of paternity only is insufficient. Egg donation, surrogate motherhood, errors in embryo transfer, etc. can contribute to non-maternity.
+<table>
+  <thead>
+    <tr><th rowspan="2">Phenotypic consistency</th><th colspan="2">Points per Proband</th></tr>
+    <tr><th>Confirmed de novo</th><th>Assumed de novo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Phenotype highly specific for gene</td><td>2</td><td>1</td></tr>
+    <tr><td>Phenotype consistent with gene but not highly specific</td><td>1</td><td>0.5</td></tr>
+    <tr><td>Phenotype consistent with gene but not highly specific and high genetic heterogeneity*</td><td>0.5</td><td>0.25</td></tr>
+    <tr><td>Phenotype not consistent with gene</td><td>0</td><td>0</td></tr>
+  </tbody>
+</table>
 
-**VCEP Specifications:**
-- Only applicable when proband has a known pathogenic or likely pathogenic variant according to the BSS rule specifications along with the de novo variant
-- Only use "highly specific phenotype" scoring if all three BSS genes (GP1BA, GP1BB, GP9) were sequenced
-- Otherwise use the "consistent but not highly specific" scoring
+`*Maximum allowable value of 1 may contribute to overall score`
 
-#### PS2/PM6 Point System
+#### Table 2. Recommendation for determining the appropriate ACMG/AMP evidence strength level for de novo occurrence(s)
 
-| Phenotype Consistency | Confirmed Parental Relationships | Unconfirmed |
-|-----------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene (all 3 BSS genes sequenced) | 2 points | 1 point |
-| Phenotype consistent but not highly specific (1-2 genes sequenced) | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
+The attachment prints bare point values:
 
-#### Evidence Strength Thresholds
+| Strength | Criterion label(s) | Points |
+|---|---|---:|
+| Supporting | PS2_Supporting or PM6_Supporting | 0.5 |
+| Moderate | PS2_Moderate or PM6 | 1 |
+| Strong | PS2 or PM6_Strong | 2 |
+| Very Strong | PS2_VeryStrong or PM6_VeryStrong | 4 |
 
-| Total Points | Strength Level |
-|--------------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate (PS2_Moderate) |
-| 2.0 | Strong (PS2) |
-| 4.0 | Very Strong (PS2_VeryStrong) |
+The core specification provides PS2 only at total 1 (Moderate), 2 (Strong), and 4 (Very Strong), makes PM6 not applicable, and says to use PS2 for de novo cases. The attachment's Supporting and PM6 labels are retained above to disclose the unresolved source conflict. No precedence is inferred.
 
----
-
-### PS3 - Functional Studies
-
-**Original ACMG Summary:** Well-established in vitro or in vivo functional studies supportive of a damaging effect on the gene or gene product.
-
-**Note:** Functional studies that have been validated and shown to be reproducible and robust in a clinical diagnostic laboratory setting are considered the most well-established.
-
-**VCEP Specifications:**
+### PS3 — Functional studies
 
 | Strength | Criteria |
-|----------|----------|
-| **Strong** | In a transgenic animal model, must demonstrate minimal to no function |
-| **Supporting** | Functional assays measuring quantity of GP1ba and/or GPIX expression on cell surface measured by flow cytometry (see approved assays below) |
+|---|---|
+| **Strong** | In a transgenic animal model, must demonstrate minimal to no function. |
+| **Supporting** | Functional assays measuring quantity of GP1ba and/or GPIX expression on cell surface measured by flow cytometry. See the approved GP1BB assays below. |
 
-#### Approved Functional Assays for PS3_Supporting (GP1BB)
+#### Approved GP1BB assays in `PS3_Supporting Functional Assays.xlsx`
 
-| PMID | Year | First Author | Assay Description | Cell Line | Threshold for Abnormal |
-|------|------|--------------|-------------------|-----------|------------------------|
-| 10216092 | 1999 | Kenny D | Transient transfection of mutant GPIbb with wild-type GPIba and GPIX into 293T cells, measured by flow cytometry | 293T | Absent or near absent expression, >75% reduction from WT |
-| 10928480 | 2000 | Kunishima S | 293T cells transiently cotransfected with wild-type or mutant GPIbb with wild-type GPIba and GPIX, measured by flow cytometry | 293T | Absent or near absent expression, >75% reduction from WT |
-| 12958615 | 2003 | González-Manchón C | CHO cells transiently cotransfected with normal GPIba and GPIX cDNAs, and either normal or mutant GPIbb cDNAs, measured by flow cytometry | CHO | Absent or near absent expression, >75% reduction from WT |
-| 16409472 | 2006 | Strassel C | CHO cells expressing GPIba and GPIX subunits, transfected with wild-type or mutant GPIbb, measured by flow cytometry | CHO | Absent or near absent expression, >75% reduction from WT |
+| PMID | Year | First author | Source assay summary |
+|---:|---:|---|---|
+| 10216092 | 1999 | Dermot Kenny; also PMID 12529755 from the same research group | Transient transfection of mutant GPIbb with wild-type GPIba and GPIX into 293T cells; quantity of GP1ba expression on the cell surface by flow cytometry. |
+| 10928480 | 2000 | Shinji Kunishima; also PMIDs 12447957 and 16978236 from the same research group | 293T cells transiently cotransfected with wild-type or mutant GPIb with wild-type GPIb and GPIX; quantity of GP1ba and GPIX expression on the cell surface by flow cytometry. |
+| 12958615 | 2003 | Consuelo González-Manchón | CHO cells transiently cotransfected with normal GPIba and GPIX cDNAs and normal or mutant GPIbβ cDNAs; quantity of GP1ba and GPIX expression on the cell surface by flow cytometry. |
+| 16409472 | 2006 | C. STRASSEL; also PMID 12693941 from the same research group | CHO cells expressing the GPIbaand GPIX subunits, further transfected with wild-type (bWT) ormutant (bmut) GPIbb; quantity of GP1b-IX expression on the cell surface by flow cytometry. |
 
-**Controls Required:**
-- Basic positive control: wild-type GPIBB
-- Basic negative control: mock transfection or empty vector
-- Readout: Quantity of GP1ba and/or GPIX expression on the cell surface
+Each is marked `y`, proposes `PS3_supporting`, and uses the exact threshold `when there is absent or near absent expression, >75% reduction`. The exact abnormal-readout wording is `Sigificantly decreased from WT` [sic]. Source gene/protein typography and defects are preserved where quoted.
 
----
+The workbook also contains approved GPIX and GPIBA assays for the related panel genes. Its hidden `Mufti` sheet contains no approved assay or proposed strength and includes VWF material; it is not promoted into GP1BB criteria.
 
-### PS4 - Prevalence in Affected
+### PS4 — Prevalence in affected
 
-**Original ACMG Summary:** The prevalence of the variant in affected individuals is significantly increased compared to the prevalence in controls.
+Before scoring a heterozygote: the variant must meet PM2_supporting; there must be an assumed unrelated biallelic BSS proband meeting PP4; a family proband is counted in PM3 or PS4 but not both; and additional family members are considered under PP1, not PS4.
 
-**Note 1:** Relative risk (RR) or odds ratio (OR), as obtained from case-control studies, is >5.0 and the confidence interval around the estimate of RR or OR does not include 1.0.
+| Evidence from a heterozygous individual | Points |
+|---|---:|
+| Significantly reduced surface expression of GP1b measured by flow cytometry | 0.5 |
+| Giant platelets (MPD `>7` microns) **or** macrothrombocytopenia (MPV `>12` fL **and** platelet count `<150x10^9/L`) | 0.25 |
 
-**Note 2:** In instances of very rare variants where case-control studies may not reach statistical significance, the prior observation of the variant in multiple unrelated patients with the same phenotype, and its absence in controls, may be used as moderate level of evidence.
+| Strength | Total |
+|---|---|
+| **Moderate** | `2+ points` |
+| **Supporting** | `1-1.75` |
 
-**VCEP Specifications:**
-According to Bragadottir et al. (PMID: 25370924), individuals heterozygous for Bernard-Soulier syndrome variants are considered informative due to measurable, quantitative abnormalities relevant to the disease.
+### PM1 — Critical cysteine residues
 
-**Caveats:**
-1. The variant must be sufficiently rare, meeting PM2_supporting
-2. There must be an assumed unrelated biallelic BSS patient, meeting PP4, before heterozygotes are considered
-3. A single proband of a family can be included in either PM3 (biallelic proband) or PS4 (monoallelic proband), not both
-4. Any additional family members are not included in PS4; they may be considered for segregation in PP1
+Apply at Moderate strength when cysteine residues 93, 95, 118, 141, or 147 are altered. The source states that these disulfide bonds are critical for interaction with GPIX (PMID 12036872) and receptor binding to von Willebrand factor (PMID 18647229), and that no known benign variants occur at these residues.
 
-#### PS4 Scoring for Heterozygous Individuals
+### PM2 — Population frequency
 
-| Evidence Type | Points |
-|---------------|--------|
-| Significantly reduced surface expression of GP1b measured by flow cytometry | 0.5 points |
-| Giant platelets (MPD >7 microns) OR macrothrombocytopenia (MPV >12 fL and platelet count <150x10^9/L) | 0.25 points |
+**Supporting:** gnomAD MAF less than or equal to `0.00006517`.
 
-#### PS4 Strength Thresholds
+### PM3 — In-trans evidence
 
-| Total Points | Strength Level |
-|--------------|----------------|
-| 1.0 - 1.75 | PS4_Supporting |
-| 2.0+ | PS4_Moderate |
+An in-trans VUS under the BSS specifications must meet PM2_supporting. An in-trans pathogenic or likely pathogenic variant need not meet PM2_supporting, but cannot meet BS1 or BA1.
 
----
+#### Table 1. Points awarded per in trans proband
 
-### PM1 - Mutational Hot Spot
+<table>
+  <thead>
+    <tr><th rowspan="2">Classification/Zygosity of other variant¹</th><th colspan="2">Points per Proband</th></tr>
+    <tr><th>Confirmed in trans</th><th>Phase unknown</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Pathogenic or Likely pathogenic variant</td><td>1.0</td><td>0.5 (P)<br>0.25 (LP)</td></tr>
+    <tr><td>Homozygous occurrence<br><em>(max point 1.0)</em></td><td>0.5</td><td>N/A</td></tr>
+    <tr><td>Uncertain significance variant<br><em>(max point 0.5)</em></td><td>0.25</td><td>0.0</td></tr>
+  </tbody>
+</table>
 
-**Original ACMG Summary:** Located in a mutational hot spot and/or critical and well-established functional domain (e.g., active site of an enzyme) without benign variation.
+¹ In trans variants classified as a variants [sic] of uncertain significance, as per the Bernard Soulier syndrome (BSS) rule specifications, must meet PM2_supporting to be scored. Conversely, in trans variants that meet a pathogenic or likely pathogenic classification using the BSS rule specifications do not have to meet PM2_supporting criteria; however, they cannot meet BS1 or BA1 criteria; P – Pathogenic; LP – Likely pathogenic
 
-**VCEP Specifications:**
+#### Table 2. Recommendation for determining the appropriate evidence strength level for PM3
 
-| Strength | Criteria |
-|----------|----------|
-| **Moderate** | Disulfide bonds in GPIb are well-established as critical to function, both for interaction with GPIX (PMID: 12036872) and receptor binding to von Willebrand factor (PMID: 18647229). PM1 can be applied when the following cysteine residues (at which there are no known benign variants) are altered: **93, 95, 118, 141, and 147** |
+The attachment prints bare point values:
 
----
+| PM3_Supporting | PM3 | PM3_Strong | PM3_VeryStrong |
+|---:|---:|---:|---:|
+| 0.5 | 1.0 | 2.0 | 4.0 |
 
-### PM2 - Absent from Controls
+The core prints the source-supplied link at each applicable strength:
 
-**Original ACMG Summary:** Absent from controls (or at extremely low frequency if recessive) in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.
+| Strength | Core `22q11.2` exception |
+|---|---|
+| **Very Strong** | A `22q11.2` deletion in trans (`https://www.ncbi.nlm.nih.gov/books/NBK1523/`) may be scored automatically as 1 point when confirmed to include `GP1BB`. |
+| **Strong** | A `22q11.2` deletion in trans (`https://www.ncbi.nlm.nih.gov/books/NBK1523/`) may be scored automatically as 1 point when confirmed to include `GP1BB`. |
+| **Moderate** | A `22q11.2` deletion in trans (`https://www.ncbi.nlm.nih.gov/books/NBK1523/`) may be scored automatically as 1 point when confirmed to include `GP1BB`. |
+| **Supporting** | The core does not state this exception. |
 
-**Caveat:** Population data for indels may be poorly called by next generation sequencing.
+### PM4 — Protein-length changes
 
-**VCEP Specification (Supporting only):**
+**Moderate:** use with no specification.
 
-| Strength | Criteria |
-|----------|----------|
-| **Supporting** | gnomAD MAF ≤ 0.00006517 |
-
----
-
-### PM3 - In Trans with Pathogenic
-
-**Original ACMG Summary:** For recessive disorders, detected in trans with a pathogenic variant.
-
-**Note:** This requires testing of parents (or offspring) to determine phase.
-
-**VCEP Specifications:**
-- *In trans* variants classified as VUS, per the GP1BB rule specifications, must meet PM2_supporting to be scored
-- *In trans* variants that meet a pathogenic or likely pathogenic classification using the GP1BB rule specifications do not have to meet PM2_supporting criteria; however, they cannot meet BS1 or BA1 criteria
-- A 22q11.2 deletion in trans (https://www.ncbi.nlm.nih.gov/books/NBK1523/) may be automatically scored 1 point with confirmation that the deletion includes the GP1BB gene
-
-#### PM3 Point System (Per Proband)
-
-| Classification of Other Variant | Phase Confirmed (in trans) | Phase Unknown |
-|---------------------------------|---------------------------|---------------|
-| Pathogenic variant | 1.0 point | 0.5 point |
-| Likely pathogenic variant | 1.0 point | 0.25 point |
-| Homozygous (non-consanguineous) | 1.0 point | 1.0 point |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 point | 0.5 point |
-| VUS (max 0.5 total) | 0.25 point | 0.0 point |
-| 22q11.2 deletion (confirmed to include GP1BB) | 1.0 point | 1.0 point |
-
-#### PM3 Evidence Strength Thresholds
-
-| Total Points | Strength Level |
-|--------------|----------------|
-| 0.5 | PM3_Supporting |
-| 1.0 | PM3 (Moderate) |
-| 2.0 | PM3_Strong |
-| 4.0 | PM3_VeryStrong |
-
----
-
-### PM4 - Protein Length Changes
-
-**Original ACMG Summary:** Protein length changes due to in-frame deletions/insertions in a non-repeat region or stop-loss variants.
-
-**VCEP Specifications:**
+### PM5 — Novel missense at the same residue
 
 | Strength | Criteria |
-|----------|----------|
-| **Moderate** | Use with no specification |
+|---|---|
+| **Moderate** | Comparison variant must reach pathogenic using these rule specifications. |
+| **Supporting** | Comparison variant must reach likely pathogenic using these rule specifications. |
 
----
+### PM6 — Assumed de novo
 
-### PM5 - Novel Missense at Same Residue
+**Not Applicable.** `Use PS2 for de novo cases in lieu of this rule code.` See the unresolved attachment conflict under PS2.
 
-**Original ACMG Summary:** Novel missense change at an amino acid residue where a different missense change determined to be pathogenic has been seen before.
+### PP1 — Co-segregation
 
-**Example:** Arg156His is pathogenic; now you observe Arg156Cys.
+There must be a biallelic BSS proband meeting PP4 before points are awarded. Heterozygotes used for PP1 cannot also be used for PS4.
 
-**Caveat:** Beware of changes that impact splicing rather than at the amino acid/protein level.
+| Evidence | Points |
+|---|---:|
+| Proband | 0 |
+| BSS-affected relative with the same biallelic variants as the proband | 1 |
+| Heterozygous relative with significantly reduced surface GP1b by flow cytometry | 0.5 |
+| Heterozygous relative with giant platelets (MPD `>7` microns) **or** macrothrombocytopenia (MPV `>12` fL **and** platelets `<150x10^9/L`) | 0.25 |
 
-**VCEP Specifications:**
+Only one parent of a homozygous proband in a consanguineous pedigree is scored.
 
-| Strength | Criteria |
-|----------|----------|
-| **Moderate** | Use as originally specified, but the comparison variant must reach a **pathogenic** classification using these rule specifications in order to apply code |
-| **Supporting** | Use as originally specified, but the comparison variant must reach a **likely pathogenic** classification using these rule specifications in order to apply code |
+| Strength | Total segregation score |
+|---|---|
+| **Supporting** | `1-1.75 points` |
+| **Moderate** | `2-2.75 points` |
+| **Strong** | `3+ points` |
 
----
+### PP2 — Missense in constrained gene
 
-### PM6 - De Novo (Assumed)
+**Not Applicable.** The source says BSS is rare and GP1BB is not constrained for missense variation in gnomAD.
 
-**Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
-
-**VCEP Specifications:** **Not Applicable**
-
-**Comments:** Use PS2 for de novo cases in lieu of this rule code. The PS2/PM6 point system incorporates both confirmed and unconfirmed de novo cases.
-
----
-
-### PP1 - Co-segregation
-
-**Original ACMG Summary:** Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease.
-
-**Note:** May be used as stronger evidence with increasing segregation data.
-
-**VCEP Specifications:**
-For Bernard-Soulier syndrome (BSS), segregation of the variant in a pedigree is considered informative in the case of both:
-- Additional relatives with BSS
-- Heterozygous relatives with measurable, quantitative abnormalities relevant to the disease
-
-**Caveats:**
-- There must be a biallelic BSS patient, meeting PP4, before segregation points are awarded
-- Heterozygotes used for PP1 cannot be applied to PS4
-
-#### PP1 Segregation Scoring
-
-| Evidence Type | Points |
-|---------------|--------|
-| Proband | 0 points (proband should be accounted for in PP4 or PS4) |
-| BSS affected relative with the same biallelic variant(s) identified in the proband | 1.0 point |
-| Relative heterozygous for the variant with significantly reduced surface expression of GP1b measured by flow cytometry | 0.5 points |
-| Relative heterozygous for the variant with giant platelets (MPD >7 microns) OR macrothrombocytopenia (MPV >12 fL and platelet count <150x10^9/L) | 0.25 points |
-
-**Note:** Only score one parent of a homozygous proband in a consanguineous pedigree.
-
-#### PP1 Strength Thresholds
-
-| Total Segregation Score | Strength Level |
-|------------------------|----------------|
-| 1.0 - 1.75 | PP1_Supporting |
-| 2.0 - 2.75 | PP1_Moderate |
-| 3.0+ | PP1_Strong |
-
----
-
-### PP2 - Missense in Constrained Gene
-
-**Original ACMG Summary:** Missense variant in a gene that has a low rate of benign missense variation and where missense variants are a common mechanism of disease.
-
-**VCEP Specifications:** **Not Applicable**
-
-**Comments:** This rule does not apply because BSS is a rare disease and this gene is not constrained for missense variation (gnomAD).
-
----
-
-### PP3 - Computational Evidence
-
-**Original ACMG Summary:** Multiple lines of computational evidence support a deleterious effect on the gene or gene product (conservation, evolutionary, splicing impact, etc.).
-
-**Caveat:** As many in silico algorithms use the same or very similar input for their predictions, each algorithm should not be counted as an independent criterion. PP3 can be used only once in any evaluation of a variant.
-
-**VCEP Specifications:**
+### PP3 — Computational evidence
 
 | Strength | Criteria |
-|----------|----------|
-| **Moderate** | REVEL score ≥ 0.773 (based on Pejaver et al., 2022; PMID: 36413997) |
-| **Supporting** | REVEL score ≥ 0.644 (to < 0.773) (based on Pejaver et al., 2022; PMID: 36413997) **OR** SpliceAI score ≥ 0.5 for suggested splicing effect |
+|---|---|
+| **Moderate** | REVEL `≥0.773`. |
+| **Supporting** | REVEL `≥0.644 (to <0.773)` **or** SpliceAI greater than or equal to `0.5`. |
 
----
+PP3 may be used only once in an evaluation.
 
-### PP4 - Phenotype Specificity
-
-**Original ACMG Summary:** Patient's phenotype or family history is highly specific for a disease with a single genetic etiology.
-
-**VCEP Specifications:**
+### PP4 — Phenotype specificity
 
 | Strength | Criteria |
-|----------|----------|
-| **Moderate** | Must meet **BOTH** criteria: (1) Proband with platelet aggregation study absent for ristocetin and present for all other agonists **OR** flow cytometry or Western blot less than 10% expression of GPIba; **AND** (2) Proband must have full sequencing of all three BSS genes (GP1BA, GP1BB and GP9) and deletion/duplication analysis |
-| **Supporting** | Proband with platelet aggregation study absent for ristocetin and present for all other agonists **OR** flow cytometry or Western blot less than 10% expression of GPIba |
+|---|---|
+| **Moderate** | Both: (1) absent ristocetin aggregation with all other agonists present **or** flow cytometry/Western blot less than `10%` GPIba expression; **and** (2) full sequencing of `GP1BA`, `GP1BB`, and `GP9` plus deletion/duplication analysis. |
+| **Supporting** | Absent ristocetin aggregation with all other agonists present **or** flow cytometry/Western blot less than `10%` GPIba expression. |
 
----
+### PP5 — Reputable source
 
-### PP5 - Reputable Source
-
-**Original ACMG Summary:** Reputable source recently reports variant as pathogenic, but the evidence is not available to the laboratory to perform an independent evaluation.
-
-**VCEP Specifications:** **Not Applicable**
-
-This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee (PMID: 29543229).
+**Not Applicable.** The ClinGen Sequence Variant Interpretation VCEP Review Committee recommends not using this criterion (PMID 29543229).
 
 ---
 
 ## Benign Criteria
 
-### BA1 - Allele Frequency >0.1%
+### BA1 — Population frequency
 
-**Original ACMG Summary:** Allele frequency is above 5% in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.
+**Stand Alone:** gnomAD MAF greater than or equal to `0.001` (or 0.1%).
 
-**VCEP Specification (Stand Alone):**
+### BS1 — Population frequency
 
-| Strength | Criteria |
-|----------|----------|
-| **Stand Alone** | gnomAD MAF ≥ 0.001 (0.1%) |
+**Strong:** gnomAD MAF greater than or equal to `0.0005` but less than `0.001`.
 
----
+### BS2 — Unaffected homozygotes
 
-### BS1 - Frequency Greater Than Expected
+**Strong:** use with one or more homozygotes who are unaffected, proven with `aggregometry OR flow cytometry AND normal platelet count AND normal platelet size`. The source's operator scope is retained exactly.
 
-**Original ACMG Summary:** Allele frequency is greater than expected for disorder.
-
-**VCEP Specification (Strong):**
+### BS3 — Functional studies showing no damaging effect
 
 | Strength | Criteria |
-|----------|----------|
-| **Strong** | gnomAD MAF ≥ 0.0005 but < 0.001 (0.05% to <0.1%) |
+|---|---|
+| **Strong** | Normal aggregometry in a transgenic mouse model. |
+| **Supporting** | In a heterologous cell line, both normal expression and normal protein function compared with wildtype. |
 
----
+### BS4 — Lack of segregation
 
-### BS2 - Observed in Healthy Adult
+**Strong:** variant not tracking in an affected family member.
 
-**Original ACMG Summary:** Observed in a healthy adult individual for a recessive (homozygous), dominant (heterozygous), or X-linked (hemizygous) disorder, with full penetrance expected at an early age.
-
-**VCEP Specifications:**
-
-| Strength | Criteria |
-|----------|----------|
-| **Strong** | Use this rule with 1 or more homozygotes who are unaffected (proven with aggregometry **OR** flow cytometry **AND** normal platelet count **AND** normal platelet size) |
-
----
-
-### BS3 - Functional Studies (No Effect)
-
-**Original ACMG Summary:** Well-established in vitro or in vivo functional studies show no damaging effect on protein function or splicing.
-
-**VCEP Specifications:**
-
-| Strength | Criteria |
-|----------|----------|
-| **Strong** | Must demonstrate normal aggregometry in a transgenic mouse model |
-| **Supporting** | In a heterologous cell line, must demonstrate **BOTH** normal expression **AND** normal protein function as compared to wildtype |
-
----
-
-### BS4 - Lack of Segregation
-
-**Original ACMG Summary:** Lack of segregation in affected members of a family.
-
-**Caveat:** The presence of phenocopies for common phenotypes (i.e., cancer, epilepsy) can mimic lack of segregation among affected individuals. Also, families may have more than one pathogenic variant contributing to an autosomal dominant disorder, further confounding an apparent lack of segregation.
-
-**VCEP Specifications:**
-
-| Strength | Criteria |
-|----------|----------|
-| **Strong** | Variant not tracking in an affected family member |
-
----
-
-### BP1-BP7 - Benign Supporting
+### BP1–BP7
 
 | Criterion | Status | Specification |
-|-----------|--------|---------------|
-| **BP1** | Not Applicable | Rule does not apply as truncating variants do not predominate and missense variants are a known cause of disease |
-| **BP2** | Supporting | Use as written for recessive variants (i.e., variant must be observed in cis with a pathogenic variant) |
-| **BP3** | Supporting | Use with no specification (in-frame deletions/insertions in a repetitive region without a known function) |
-| **BP4** | Supporting | For a missense variant: apply when REVEL score ≤ 0.290 (based on Pejaver et al., 2022; PMID: 36413997) **AND** SpliceAI score = 0. **OR** for a synonymous or intronic variant: apply when SpliceAI score = 0. **Note:** Determine REVEL and SpliceAI cutoff before applying this code. Do not use if PP3 is applicable. |
-| **BP5** | Not Applicable | Do not use this rule as an individual can be a carrier of an unrelated pathogenic variant for a recessive disorder |
-| **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee (PMID: 29543229) |
-| **BP7** | Supporting | Use SpliceAI to rule out possible splicing defect (score ≤ 0.2) and reference PhyloP (score ≤ 1.5) to assess conservation. Can be used for intronic variants. Can be used in combination with BP4. |
+|---|---|---|
+| **BP1** | Not Applicable | Truncating variants do not predominate and missense variants are a known cause of disease. |
+| **BP2** | Supporting | Use as written for recessive variants; the variant must be observed in cis with a pathogenic variant. |
+| **BP3** | Supporting | Use with no specification. |
+| **BP4** | Supporting | Missense: REVEL less than or equal to `0.290` **and** SpliceAI `0`. Synonymous or intronic: SpliceAI `0`. Determine the REVEL and SpliceAI cutoff before applying; do not use if PP3 applies. |
+| **BP5** | Not Applicable | An individual can be a carrier of an unrelated pathogenic variant for a recessive disorder. |
+| **BP6** | Not Applicable | The ClinGen Sequence Variant Interpretation VCEP Review Committee recommends not using this criterion (PMID 29543229). |
+| **BP7** | Supporting | SpliceAI `score = 0.2 or less` and PhyloP `score = 1.5 or less`. Can be used for intronic variants and in combination with BP4. |
 
 ---
 
 ## Rules for Combining Criteria
 
-### Pathogenic Classification
+### Richards et al. qualitative combinations
 
-| Criteria Combination |
-|---------------------|
-| 1 Very Strong **AND** ≥1 Strong |
-| 1 Very Strong **AND** ≥2 Moderate |
-| 1 Very Strong **AND** 1 Moderate **AND** 1 Supporting |
-| 1 Very Strong **AND** ≥2 Supporting |
-| ≥2 Strong |
-| 1 Strong **AND** ≥3 Moderate |
-| 1 Strong **AND** 2 Moderate **AND** ≥2 Supporting |
-| 1 Strong **AND** 1 Moderate **AND** ≥4 Supporting |
+| Classification | Criteria combinations |
+|---|---|
+| **Pathogenic** | 1 Very Strong AND ≥1 Strong; 1 Very Strong AND ≥2 Moderate; 1 Very Strong AND 1 Moderate AND 1 Supporting; 1 Very Strong AND ≥2 Supporting; ≥2 Strong; 1 Strong AND ≥3 Moderate; 1 Strong AND 2 Moderate AND ≥2 Supporting; 1 Strong AND 1 Moderate AND ≥4 Supporting |
+| **Likely Pathogenic** | 1 Very Strong AND 1 Moderate; 1 Strong AND 1 Moderate; 1 Strong AND ≥2 Supporting; ≥3 Moderate; 2 Moderate AND ≥2 Supporting; 1 Moderate AND ≥4 Supporting; 1 Strong AND 2 Moderate |
+| **Benign** | ≥2 Strong; 1 Stand Alone |
+| **Likely Benign** | 1 Strong AND 1 Supporting; ≥2 Supporting |
 
-### Likely Pathogenic Classification
+### GP1BA, GP1BB, GP9 Rules for Combining Codes with Conflicting Criteria
 
-| Criteria Combination |
-|---------------------|
-| 1 Very Strong **AND** 1 Moderate |
-| 1 Strong **AND** 1 Moderate |
-| 1 Strong **AND** ≥2 Supporting |
-| ≥3 Moderate |
-| 2 Moderate **AND** ≥2 Supporting |
-| 1 Moderate **AND** ≥4 Supporting |
-| 1 Strong **AND** 2 Moderate |
+When both benign and pathogenic criteria apply, the attachment says not to assign an automatic VUS. It recommends the Tavtigian et al. 2020 point system (PMID 32720330).
 
-### Benign Classification
+#### TABLE 2 Point values for ACMG/AMP strength of evidence categories
 
-| Criteria Combination |
-|---------------------|
-| ≥2 Strong |
-| 1 Stand Alone (BA1) |
+| Evidence strength | Pathogenic point scale | Benign point scale |
+|---|---:|---:|
+| Indeterminate | 0 | 0ᵃ |
+| Supporting | 1 | -1 |
+| Moderate | 2 | -2ᵇ |
+| Strong | 4 | -4 |
+| Very strong | 8 | -8ᵇ |
 
-### Likely Benign Classification
+#### TABLE 3 Point-based variant classification categories
 
-| Criteria Combination |
-|---------------------|
-| 1 Strong **AND** 1 Supporting |
-| ≥2 Supporting |
+| Category | Point ranges |
+|---|---:|
+| Pathogenic | `≥10` |
+| Likely Pathogenic | `6 to 9ᵃ` |
+| Uncertain | `0 to 5` |
+| Likely Benign | `-1 to -6ᵃ` |
+| Benign | `≤ -7` |
 
-### Combining Pathogenic and Benign Criteria (Point-Based System)
-
-For GP1BB variants where criteria codes for both benign and pathogenic evidence apply, these variants are not subjected to an automatic VUS classification. Instead, apply the rule combination point system described by Tavtigian et al., 2020 (PMID: 32720330).
-
-#### Point Values per Evidence Strength (Tavtigian et al., Table 2)
-
-| Evidence Strength | Points |
-|-------------------|--------|
-| Very Strong (Pathogenic) | 8 |
-| Strong (Pathogenic) | 4 |
-| Moderate (Pathogenic) | 2 |
-| Supporting (Pathogenic) | 1 |
-| Supporting (Benign) | -1 |
-| Strong (Benign) | -4 |
-| Stand Alone (Benign) | -8 |
-
-#### Classification Thresholds (Tavtigian et al., Table 3)
-
-| Point Total | Classification |
-|-------------|----------------|
-| ≥10 | Pathogenic |
-| 6-9 | Likely Pathogenic |
-| 0-5 | VUS |
-| -1 to -6 | Likely Benign |
-| ≤-7 | Benign |
+The source does not supply definitions for superscripts `a` or `b`; none are inferred here.
 
 ---
 
-## Appendices
+## References
 
-### Appendix A: Population Frequency Thresholds Summary
+The core specification supplies one formal reference:
 
-| Criterion | Threshold | Strength |
-|-----------|-----------|----------|
-| BA1 | ≥0.001 (0.1%) | Stand Alone |
-| BS1 | ≥0.0005 to <0.001 (0.05% to <0.1%) | Strong |
-| PM2 | ≤0.00006517 | Supporting |
+1. Savoia A, Pastore A, et al. Clinical and genetic aspects of Bernard-Soulier syndrome: searching for genotype/phenotype correlations. *Haematologica*. 2011;96(3):417–423. PMID 21173099. DOI 10.3324/haematol.2010.032631.
 
-### Appendix B: Computational Prediction Thresholds
-
-| Tool | PP3_Moderate | PP3_Supporting | BP4 |
-|------|--------------|----------------|-----|
-| REVEL | ≥0.773 | ≥0.644 to <0.773 | ≤0.290 |
-| SpliceAI | N/A | ≥0.5 | 0 |
-| PhyloP (for BP7) | N/A | N/A | ≤1.5 |
-
-### Appendix C: Critical Cysteine Residues for PM1
-
-The following cysteine residues are critical for disulfide bond formation and can be used for PM1:
-- **Cys93**
-- **Cys95**
-- **Cys118**
-- **Cys141**
-- **Cys147**
-
-These residues are critical for:
-- Interaction with GPIX (PMID: 12036872)
-- Receptor binding to von Willebrand factor (PMID: 18647229)
-
-### Appendix D: Reference PMIDs
-
-| PMID | Description |
-|------|-------------|
-| 21173099 | Savoia A et al. Clinical and genetic aspects of Bernard-Soulier syndrome: searching for genotype/phenotype correlations. Haematologica (2011) |
-| 25370924 | Bragadottir et al. Heterozygous BSS carrier phenotype |
-| 36413997 | Pejaver et al. REVEL score recommendations (2022) |
-| 29543229 | ClinGen SVI recommendations on PP5/BP6 |
-| 32720330 | Tavtigian et al. Point-based classification system (2020) |
-| 12036872 | Disulfide bond interaction with GPIX |
-| 18647229 | Disulfide bond receptor binding to von Willebrand factor |
-
-### Appendix E: Bernard-Soulier Syndrome Associated Genes
-
-| Gene | HGNC ID | Protein |
-|------|---------|---------|
-| GP1BA | HGNC:4439 | Glycoprotein Ib platelet subunit alpha |
-| GP1BB | HGNC:4440 | Glycoprotein Ib platelet subunit beta |
-| GP9 | HGNC:4444 | Glycoprotein IX platelet |
+Other PMIDs above are identifiers printed in the criterion text or supplements; descriptions have not been expanded beyond the distributed package.
 
 ---
 
 ## Version History
 
 | Version | Date | Notes |
-|---------|------|-------|
-| 1.1.0 | 9/29/2025 | The BP4 rule was corrected to include less than "or equal to" |
-| 1.0.0 | Initial | Initial release |
+|---|---|---|
+| 1.1.0 | 9/29/2025 | `The BP4 rule was corrected to include less than “or equal to”.` |
+| 1.0.0 | Initial | Initial release. |
+
+### Document corrections — 2026-08-10
+
+Source-first remediation verified against all six distributed files: `ClinGen_ACMG_Specifications_GP1BB_v1.1.pdf`, `Guidance for Combining Pathogenic and Benign Rule Codes.docx`, `Instructions for PM3 code use.docx`, `Instructions for PS2_PM6 code use.docx`, `PS3_Supporting Functional Assays.xlsx`, and `PVS1 flowchart for GP1BB gene.pptx`.
+
+- Replaced the incomplete, partly inferred PVS1 prose with the rendered GP1BB slide topology, retaining the distributed GP1BB NMD sentence, literal `Duplication(≥1 exon in size and must be completely contained within gene)`, `≥1 pathogenic variant(s) upstream of closest potential in-frame start codon`, `PVS1_Supp`, exact `GT--AG`, `>10%`, `<10%`, `>20`, and `<21` comparators, and undefined markers/red X symbols. Removed two invented critical-region routes from the predicted-NMD branches.
+- Restored source typos and forms that had been normalized, including `the these rule specifications`, `Sigificantly decreased from WT`, and the PM3 footnote's `classified as a variants`.
+- Replaced the source-contradicting PM3 per-proband expansion with the exact two embedded tables and restored the source-supplied `https://www.ncbi.nlm.nih.gov/books/NBK1523/` link at each core strength that states the `22q11.2` exception.
+- Restored the de novo attachment's exact titles, two-level `Points per Proband` framing, bare point cells, labels, and footnote while explicitly preserving its conflict with core PM6 and PS2 strength rules.
+- Restored the full conflicting-criteria point tables, including Indeterminate, benign Moderate/Very strong values, exact point ranges, and unresolved superscripts.
+- Removed unsupported control requirements, generic/inferred summaries, and unsourced associated-gene appendix fields. Restored same-research-group PMID metadata for the three GPIBB assay records that supply it. No plausible local-only gene-specific content remains, so no package-warning banner is required.
 
 ---
 
-*This document was compiled from ClinGen VCEP specifications and ClinGen SVI recommendations. For the most current version, please refer to the ClinGen website.*
+*This remediation reflects the distributed package exactly where possible and leaves source contradictions or omissions unresolved. No web research was used.*
