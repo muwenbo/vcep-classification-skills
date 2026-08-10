@@ -1,28 +1,30 @@
-# Handoff — remediation of the 27 remaining VCEP guidelines
+# Handoff — remediation of the 24 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-10 after the Epilepsy Sodium Channel remediation round
+**Written:** 2026-08-07, revised 2026-08-10 after the Monogenic Diabetes remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
 **Round 6 remediation commit:** `0bad381`
 **Round 7 remediation commit:** `16212de`
 **Round 8 remediation commit:** `bb87729`
-**Working tree:** Round 8 is complete and committed; this handoff revision follows it
+**Round 9 remediation commit:** `f298ac8`
+**Working tree:** Round 9 is complete and committed; this handoff revision follows it
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–8).** Seven batches have been completed since this
+**Revision note (rounds 2–9).** Eight batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
 source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
 specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
-Epilepsy Sodium Channel specs (§7d, §13). The next panel is Monogenic Diabetes.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d and §13 before
+Epilepsy Sodium Channel specs (§7d, §13), and all three Monogenic Diabetes
+specs (§7e, §13). The next panel is Platelet Disorders.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -78,14 +80,14 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 27 specs remain
+## 2. Scope: 24 specs remain
 
-122 unique spec IDs; 95 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 98 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
-round 8). **27 remain.**
+round 8, and the 3 Monogenic Diabetes specs of round 9). **24 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -93,7 +95,6 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 3 | Monogenic Diabetes |
 | 3 | Platelet Disorders |
 | 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy, Hereditary Hemorrhagic Telangiectasia |
 | 1 each | 9 further panels |
@@ -332,12 +333,13 @@ limb_girdle = {"GN180","GN184","GN185","GN186","GN187","GN188","GN189"}  # round
 congenital_myopathies = {"GN146","GN147","GN148","GN149","GN150","GN169","GN179"}  # round 6
 cardiomyopathy = {"GN095","GN098","GN099","GN100","GN101","GN102","GN103"}  # round 7
 epilepsy_sodium = {"GN067","GN068","GN069","GN070","GN076"}  # round 8
+monogenic_diabetes = {"GN017","GN085","GN086"}  # round 9
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
-                                | epilepsy_sodium))
-print(len(remaining))  # 27
+                                | epilepsy_sodium | monogenic_diabetes))
+print(len(remaining))  # 24
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -368,10 +370,12 @@ see §2a.
 ~~7. Epilepsy Sodium Channel (5)~~ — **done, round 8** (`bb87729`). SCN1A (GN067), SCN2A
    (GN068), SCN3A (GN069), SCN8A (GN070), and SCN1B (GN076). Preflight the
    full panel before opening local guideline bodies; see §7d and §13.
-8. **Monogenic Diabetes (3). Start here.** HNF1A (GN017), HNF4A (GN085), and
-   GCK (GN086). All 12 distributed artifacts are PDFs. Preflight the full panel
-   before opening local guideline bodies, then transcribe gene-specific sources
-   independently while corroborating shared diabetes-panel conventions.
+~~8. Monogenic Diabetes (3)~~ — **done, round 9** (`f298ac8`). HNF1A
+   (GN017), HNF4A (GN085), and GCK (GN086); see §7e and §13.
+9. **Platelet Disorders (3). Start here.** GP1BA (GN079), GP1BB (GN082), and
+   GP9 (GN083). Each package has the core PDF plus three shared DOCX files, a
+   PS3 workbook, and a gene-specific PVS1 PowerPoint. Preflight the full panel
+   before opening local guideline bodies; verify shared-file identity first.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -646,7 +650,53 @@ either physically distributed or removed when generic/source-contradicting.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 27
+## 7e. Monogenic Diabetes remediation — complete
+
+Round 9 (`f298ac8`) remediated HNF1A (GN017), HNF4A (GN085), and GCK
+(GN086). The panel-wide preflight found all 12 advertised PDFs present,
+readable, correctly typed, and source-cited. All 68 pages were rendered and
+visually inspected before local comparison, including all three PVS1 diagrams,
+GCK's PS3/BS3 tree, its PM1 and PM3 supplements, and the shared de novo table.
+
+Recurring and high-impact findings:
+
+- The shared de novo attachment prints exact bare values `0.5`, `1`, `2`, and
+  `4`, not ranges or thresholds, and says those occurrence points are not the
+  Tavtigian et al. 2020 classification points. All three local files had
+  altered some title, value, cell, or footnote detail; exact source forms are
+  now retained. Core PM6 Not Applicable rules remain visibly in tension with
+  the attachment's generic PM6 labels.
+- HNF1A's PVS1 appendix omitted the full-gene-deletion and every duplication
+  branch. HNF4A omitted the Presumed-in-tandem/no-or-unknown-impact N/A path.
+  GCK's PS3/BS3 summary collapsed RSI and GKRP/GKA outcomes. All visually
+  verified connectors and terminal outcomes are now represented.
+- HNF1A's core requires diabetes “without clear evidence of an autoimmune
+  etiology” and then prints positive-autoantibody/very-low-C-peptide bullets
+  without a connector. The ambiguity is surfaced rather than interpreted.
+  Its plausible local-only PM3 inheritance rationale is retained only under
+  the required undistributed-package warning banner; a generic PM6 graft was
+  removed.
+- HNF4A's core places PVS1_Supporting at `c.1258 (G)/p.Gly420 and 3'`, while
+  its tree says `3' of c.1257 (Gly420)`. Its PP4 sections also differ between
+  inclusive `>=50%` and strict `>50%`; the PVS1 tree prints footnote markers
+  `a`–`d` without definitions. All remain unresolved and explicit.
+- GCK's header uses `NM_000162.5` while detailed PVS1 prose uses
+  `NM_000162.3`. Its initiation tree supplies only one path, and its PVS1
+  duplication tree has no Presumed-in-tandem N/A branch; no missing outcomes
+  were invented. The PS3/BS3 tree's RAI `<=0.5` and Kcat/S0.5 `<0.5`
+  comparators and three-way GKRP/GKA outcome are preserved exactly.
+- Source-derived convenience appendices are labeled as editorial summaries;
+  physically supplied artifacts remain controlling. Source typos, verbal
+  comparators, compact spacing, malformed examples, and missing footnotes are
+  disclosed rather than normalized.
+
+The independent per-spec reviews and final cross-panel gate passed. No
+undistributed generic decision tree, de novo pooling rule, or inferred numeric
+interval remains operative.
+
+---
+
+## 8. Loose ends unrelated to the remaining 24
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -757,6 +807,14 @@ Accumulated across sessions; worth sending as a batch.
   and `<10%` with `<200 aa` for a short protein, without AND/OR, and leaves
   exactly 10% unassigned. Is `200 aa` a copied threshold or intentional? Three
   rendered connectors also have incomplete raw endpoint bindings.
+- **Monogenic Diabetes source conflicts.** HNF1A's autoimmune-phenotype bullets
+  have no logical connector. HNF4A differs between core `c.1258` and tree
+  `3' of c.1257`, inclusive/strict PP4 thresholds, and prints undefined PVS1
+  markers `a`–`d`. GCK uses transcript `.5` in the header versus `.3` in PVS1
+  and ships only one initiation-codon path. Across all three, the shared de
+  novo table labels PM6 strengths although the gene cores make PM6 Not
+  Applicable. Which readings and missing branch/footnote definitions are
+  intended?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -841,7 +899,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–8 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–9 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -860,18 +918,18 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–8 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–9 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
-(round 5), `0bad381` (round 6), `16212de` (round 7), and `bb87729`
-(round 8). Rounds 5–8
+(round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
+(round 8), and `f298ac8` (round 9). Rounds 5–9
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–8 summary
+## 13. Rounds 2–9 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -998,6 +1056,26 @@ the independent five-spec scratch review passed; and `git diff --check` was
 clean. The only version/filename mismatch remains the pre-existing GN094
 LZTR1 issue.
 
+**Round 9 — `f298ac8`** — all three Monogenic Diabetes specs: HNF1A
+(GN017), HNF4A (GN085), and GCK (GN086). The complete 12-PDF panel was
+preflighted and drafted source-first. Recurring defects were incomplete PVS1
+and functional-tree topology, altered shared de novo titles/cells/footnotes,
+generic PM6 instructions, comparator and typography normalization, silently
+interpreted source conflicts, and unclear editorial-appendix provenance. Full
+findings and unresolved source caveats are in §7e and §9.
+
+Round 9 final gate: all three exact registry-to-guideline mappings passed;
+`check_updates.py` reported 0 new and 0 outdated released specifications;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17; all
+12 advertised source filenames appeared in the dated correction histories;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+the independent three-spec cross-panel scratch review passed; and
+`git diff --check` was clean. The only version/filename mismatch remains the
+pre-existing GN094 LZTR1 issue.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1011,10 +1089,10 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- The next Monogenic Diabetes packages contain PDFs only (12 artifacts across
-  HNF1A, HNF4A, and GCK), so no Office-artifact skill is needed for that batch.
-  For later batches, use `documents:documents`, `presentations:Presentations`,
-  and `spreadsheets:Spreadsheets` when those formats appear.
+- The next Platelet Disorders packages contain PDFs, DOCX files, XLSX
+  workbooks, and PPTX flowcharts. Use `pdf:pdf`, `documents:documents`,
+  `presentations:Presentations`, and `spreadsheets:Spreadsheets`; inspect raw
+  Office XML/media when renderers omit text, notes, or connector topology.
 - Use the handoff skill again only after the batch has passed all §11 gates and
   the remediation commit exists; update this workspace handoff in place because
   that is the project's durable continuation record.
