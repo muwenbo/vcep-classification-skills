@@ -7,7 +7,7 @@
 
 **Release Notes:** Release contains updates to transcript information and exon numbering. The PM1 table has been revised, which has altered some of the regions that are applicable from the previous version.
 
-**General Comments:** This specification uses the **points-based combining system** (Tavtigian et al., 2018) rather than the standard ACMG/AMP combining rules. Refer to the [Rules for Combining Criteria](#rules-for-combining-criteria) section.
+**General Comments:** The core says to disregard its standard “Rules for Combining Criteria” section and use the attachment it calls “Combing Rules” **[sic]**. The physical `Combining Rules.pdf` implements the points system and attributes it to “Tavtigan” **[sic]** et al., 2018.
 
 ---
 
@@ -45,7 +45,7 @@
    - [PP4 - Phenotype Specificity](#pp4---phenotype-specificity)
    - [PP5 - Reputable Source](#pp5---reputable-source)
 2. [Benign Criteria](#benign-criteria)
-   - [BA1 - Allele Frequency >5%](#ba1---allele-frequency-5)
+   - [BA1 - Conflicting Source Thresholds](#ba1---conflicting-source-thresholds)
    - [BS1 - Frequency Greater Than Expected](#bs1---frequency-greater-than-expected)
    - [BS2 - Observed in Healthy Adult](#bs2---observed-in-healthy-adult)
    - [BS3 - Functional Studies (No Effect)](#bs3---functional-studies-no-effect)
@@ -90,14 +90,14 @@
 
 | Scenario | NMD Predicted (stop 5' of p.Thr1582) | NMD Not Predicted (stop 3' of p.Thr1582) |
 |----------|--------------------------------------|------------------------------------------|
-| Exon present in biologically-relevant transcript(s) | **PVS1** | See below |
-| LoF variants frequent in general population and/or exon absent from biologically-relevant transcript(s) | **N/A** | **N/A** |
+| Exon present in biologically-relevant transcript(s) | **PVS1** | See the region/LoF/size branches below |
+| Exon absent from biologically-relevant transcript(s) | Not specified by the shipped branch | See the N/A branch below |
 
 For nonsense/frameshift **not predicted to undergo NMD** (stop codon 3' of p.Thr1582):
 - Truncated/altered region is critical to protein function → **PVS1_Strong**
 - Role of region in protein function is unknown:
   - LoF variants not frequent in general population AND exon present in biologically-relevant transcript(s):
-    - Variant removes ≥10% of protein (≥198 aa) → **PVS1_Strong**
+    - Variant removes >10% of protein (≥198 aa) → **PVS1_Strong**
     - Variant removes <10% of protein (<198 aa) → **PVS1_Moderate**
   - LoF variants frequent in general population and/or exon absent → **N/A**
 
@@ -105,24 +105,32 @@ For nonsense/frameshift **not predicted to undergo NMD** (stop codon 3' of p.Thr
 
 *If applied, PP3 is not to be used in combination.*
 
-| Exon Skipping/Cryptic Splice | Reading Frame | NMD Status | Strength |
-|------------------------------|---------------|------------|----------|
-| Disrupts reading frame | NMD predicted (stop 5' of p.Thr1582) | Exon in biologically-relevant transcript(s) | **PVS1** |
-| Disrupts reading frame | NMD not predicted (stop 3' of p.Thr1582) | Truncated region critical to protein function | **PVS1_Strong** |
-| Preserves reading frame | — | Truncated/altered region critical to protein function | **PVS1_Strong** |
-| Preserves reading frame | — | Role unknown, variant removes ≥10% protein (≥198 aa) | **PVS1_Strong** |
-| Preserves reading frame | — | Role unknown, variant removes <10% protein (<198 aa) | **PVS1_Moderate** |
+| Reading-frame outcome | NMD/region condition | Transcript/size condition | Strength |
+|-----------------------|----------------------|---------------------------|----------|
+| Disrupts reading frame | NMD predicted (stop 5' of p.Thr1582) | Exon in biologically relevant transcript(s) | **PVS1** |
+| Disrupts reading frame; NMD not predicted | Truncated/altered region critical | — | **PVS1_Strong** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF frequent and/or exon absent | — | **N/A** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF not frequent and exon present | Removes >10% / ≥198 aa | **PVS1_Strong** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF not frequent and exon present | Removes <10% / <198 aa | **PVS1_Moderate** |
+| Preserves reading frame | Truncated/altered region critical | — | **PVS1_Strong** |
+| Preserves reading frame | Role unknown; LoF frequent and/or exon absent | — | **N/A** |
+| Preserves reading frame | Role unknown; LoF not frequent and exon present | Removes >10% / ≥198 aa | **PVS1_Strong** |
+| Preserves reading frame | Role unknown; LoF not frequent and exon present | Removes <10% / <198 aa | **PVS1_Moderate** |
 
 **Deletions (Single Exon to Full Gene):**
 
-| Deletion Type | Strength |
-|---------------|----------|
-| Full gene deletion | **PVS1** |
-| Disrupts reading frame, NMD predicted, exon in biologically-relevant transcript(s) | **PVS1** |
-| Disrupts reading frame, NMD not predicted, truncated region critical | **PVS1_Strong** |
-| Preserves reading frame, truncated/altered region critical | **PVS1_Strong** |
-| Disrupts reading frame, NMD not predicted, removes ≥10% protein | **PVS1_Strong** |
-| Disrupts reading frame, NMD not predicted, removes <10% protein | **PVS1_Moderate** |
+| Deletion type/outcome | Region/LoF/size condition | Strength |
+|-----------------------|---------------------------|----------|
+| Full-gene deletion | — | **PVS1** |
+| Disrupts reading frame; NMD predicted | Exon in biologically relevant transcript(s) | **PVS1** |
+| Disrupts reading frame; NMD not predicted | Truncated/altered region critical | **PVS1_Strong** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF frequent and/or exon absent | **N/A** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF not frequent/exon present; removes >10% / ≥198 aa | **PVS1_Strong** |
+| Disrupts reading frame; NMD not predicted | Role unknown; LoF not frequent/exon present; removes <10% / <198 aa | **PVS1_Moderate** |
+| Preserves reading frame | Truncated/altered region critical | **PVS1_Strong** |
+| Preserves reading frame | Role unknown; LoF frequent and/or exon absent | **N/A** |
+| Preserves reading frame | Role unknown; LoF not frequent/exon present; removes >10% / ≥198 aa | **PVS1_Strong** |
+| Preserves reading frame | Role unknown; LoF not frequent/exon present; removes <10% / <198 aa | **PVS1_Moderate** |
 
 **Duplications (≥1 exon, completely contained within gene):**
 
@@ -141,6 +149,8 @@ For nonsense/frameshift **not predicted to undergo NMD** (stop codon 3' of p.Thr
 | No known alternative start codon, ≥1 pathogenic variant(s) upstream of closest potential in-frame start codon | **PVS1_Moderate** |
 | No known alternative start codon, no pathogenic variant(s) upstream | **PVS1_Supporting** |
 
+> **Unresolved distributed-source issues:** The decision tree uses strict **>10%** and **<10%** percentage branches, leaving exactly 10% unassigned, while pairing them with **≥198 aa** and **<198 aa**. The core says a full-gene deletion warrants **Pathogenic**, but the tree assigns PVS1 and the points attachment places PVS1's 8 points in the 6-9 **Likely Pathogenic** band. Report these readings without reconciling them.
+
 #### Key PVS1 Definitions
 
 1. **Biologically-relevant transcripts:** NM_001330260.2 (adult isoform; MANE Select) and NM_014191.4 (neonatal isoform; MANE Plus Clinical). These isoforms are developmentally regulated and differ by the alternatively spliced coding exon 5A/5N.
@@ -156,7 +166,7 @@ For nonsense/frameshift **not predicted to undergo NMD** (stop codon 3' of p.Thr
 
 **VCEP Specifications:**
 
-The paralogous sodium channel genes associated with neurodevelopmental disorders (SCN1A, SCN2A, SCN3A, SCN8A) share >77% sequence identity (PMID:33531663). The four homologous domains with voltage sensor and pore region remain largely preserved across the channels. Differences lie within the terminal regions and cytoplasmic loops. When these regions are excluded from analysis, homology increases to >90% (PMID:33531663; PMID:16382098).
+The paralogous sodium channel genes associated with “neurodevelomental” **[sic]** disorders (SCN1A, SCN2A, SCN3A, SCN8A) share >77% sequence identity (PMID:33531663). The four homologous domains with voltage sensor and pore region remain largely preserved across the channels. Differences lie within the terminal regions and cytoplasmic loops. When these regions are excluded from analysis, homology increases to >90% (PMID:33531663; PMID:16382098).
 
 As such, **Pathogenic and Likely Pathogenic variants in paralogous genes can be considered for PS1.**
 
@@ -204,6 +214,8 @@ Uses a **points-based system** for each unrelated proband determined by phenotyp
 | Complex Neurodevelopmental Disorder | 1 point |
 | Other phenotypes not consistent w/neurodevelopmental disorder | 0 points |
 
+> Source grammar retained: “Complex Neurodevelopmental Disorder: **1 points**” **[sic]**.
+
 #### PS2 Evidence Strength Thresholds
 
 | Total Points | Strength Level |
@@ -212,6 +224,8 @@ Uses a **points-based system** for each unrelated proband determined by phenotyp
 | 1 | Moderate |
 | 2 | Strong |
 | 4 | Very Strong |
+
+> The VCEP supplies these as exact totals; it does not assign intermediate or higher unprinted totals.
 
 ---
 
@@ -239,7 +253,7 @@ Uses the same points-based system as PS2, but with **0.5 points per proband** (u
 | 2 | Strong |
 | 4 | Very Strong |
 
-> **Note:** PS2 and PM6 points can be combined across probands. For example, 1 confirmed de novo (1 pt) + 2 assumed de novo (0.5 pt each) = 2 pts total = Strong.
+> The VCEP supplies these as exact totals and does not state that PS2 and PM6 points may be pooled. Do not infer cross-criterion summation.
 
 ---
 
@@ -259,7 +273,7 @@ If a variant is found to have differences from wildtype of multiple levels of st
 | **Moderate** | **Patch clamping:** Peak current ≤80.6% of WT; Persistent current ≥125% of WT; V½ activation shift ≥2.1 mV (absolute); V½ inactivation shift ≥3.0 mV (absolute). **Mouse model:** Knock-in displays induced seizures. **Zebrafish model:** Knock-in displays spontaneous seizures (evidenced by hyperexcitability through electrophysiology or calcium imaging). |
 | **Supporting** | **Zebrafish model:** Knock-in displays induced seizures (evidenced by hyperexcitability through electrophysiology or calcium imaging). |
 
-#### Approved Functional Assay Summary
+#### Functional Evidence Threshold Summary
 
 | Assay | Parameter | Strong Threshold | Moderate Threshold |
 |-------|-----------|------------------|--------------------|
@@ -292,7 +306,7 @@ Present in multiple unrelated patients with consistent phenotypes and absent in 
 | 1 - 1.5 | Supporting |
 | 2 - 3.5 | Moderate |
 | 4 - 15.5 | Strong |
-| ≥16 | Very Strong |
+| 16+ | Very Strong |
 
 ---
 
@@ -381,7 +395,7 @@ The paralogous sodium channel genes associated with neurodevelopmental disorders
 |----------|----------|
 | **Strong** | ≥2 known pathogenic variants at same site as novel change (within the same gene). |
 | **Moderate** | Novel missense change at an amino acid residue where a different missense change determined to be **Pathogenic** has been seen before. |
-| **Supporting** | Novel missense change at an amino acid residue where a different missense change determined to be **Likely Pathogenic** has been seen before. **OR** >1 non-identical amino acid change in paralogous gene(s) where a different missense change determined to be **Pathogenic or Likely Pathogenic** (SCN1A, SCN2A, SCN3A, SCN8A). |
+| **Supporting** | Novel missense change at an amino acid residue where a different missense change determined to be **Likely Pathogenic** has been seen before. **OR** >1 non-identical amino acid change in qualifying paralogous gene(s) where a different missense change is “Pathogenicor” **[sic]** Likely Pathogenic (SCN1A, SCN2A, SCN3A, SCN8A). |
 
 ---
 
@@ -449,7 +463,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 ## Benign Criteria
 
-### BA1 - Allele Frequency >5%
+### BA1 - Conflicting Source Thresholds
 
 **Original ACMG Summary:** Allele frequency is above 5% in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.
 
@@ -461,7 +475,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 |----------|-----------|
 | **Stand Alone** | Allele frequency >**0.01%** in gnomAD or other large population databases, must be ≥5 alleles if a minimum of 10,000 alleles was assessed. |
 
-> **Note:** The VCEP specifications list BA1 at 0.02% in the general description and 0.01% at the Stand Alone level. The Stand Alone threshold of **0.01%** (0.0001) with ≥5 alleles is the applicable threshold.
+> **Unresolved distributed-source contradiction:** The VCEP paragraph gives **>0.02%** without a count floor. The Stand Alone block says, verbatim, “Allele frequency is above **0.01% is gnomAD**” **[sic]** and adds ≥5 alleles if at least 10,000 were assessed. The package does not identify either reading as controlling; do not choose between them.
 
 ---
 
@@ -523,7 +537,7 @@ Reduced penetrance and phenocopies.
 
 ## Rules for Combining Criteria
 
-This VCEP uses the **points-based combining system** (Tavtigian et al, 2018) in conjunction with forthcoming points-based guidance.
+This VCEP uses the **points-based combining system** attributed in the attachment to “Tavtigan” **[sic]** et al., 2018, in conjunction with forthcoming points-based guidance.
 
 ### Points per Criterion
 
@@ -548,55 +562,10 @@ This VCEP uses the **points-based combining system** (Tavtigian et al, 2018) in 
 
 ### Additional Caveats
 
-- **PP3 + PM1** combined can reach **no higher than Strong** (max 4 points combined)
+- **PP3 + PM1** combined can reach **no higher than Strong**
 - When **PM5_Strong** is reached, **do not combine PM1** with PM5_Strong
 
-### Pathogenic Classification (≥10 points)
-
-| Criteria Combination | Example Point Calculation |
-|---------------------|--------------------------|
-| 1 Very Strong AND ≥1 Strong | 8 + 4 = 12 |
-| 1 Very Strong AND ≥2 Moderate | 8 + 2 + 2 = 12 |
-| 1 Very Strong AND 1 Moderate AND 1 Supporting | 8 + 2 + 1 = 11 |
-| 1 Very Strong AND ≥2 Supporting | 8 + 1 + 1 = 10 |
-| ≥2 Strong | 4 + 4 + ... = ≥10 (requires ≥3 strong, or 2 strong + moderate/supporting) |
-| 1 Strong AND ≥3 Moderate | 4 + 2 + 2 + 2 = 10 |
-| 1 Strong AND 2 Moderate AND ≥2 Supporting | 4 + 2 + 2 + 1 + 1 = 10 |
-| 1 Strong AND 1 Moderate AND ≥4 Supporting | 4 + 2 + 1 + 1 + 1 + 1 = 10 |
-
-### Likely Pathogenic Classification (6-9 points)
-
-| Criteria Combination | Example Point Calculation |
-|---------------------|--------------------------|
-| 1 Very Strong AND 1 Moderate | 8 + 2 = 10 (borderline; note: ≥10 = Pathogenic) |
-| 1 Strong AND 1 Moderate | 4 + 2 = 6 |
-| 1 Strong AND ≥2 Supporting | 4 + 1 + 1 = 6 |
-| ≥3 Moderate | 2 + 2 + 2 = 6 |
-| 2 Moderate AND ≥2 Supporting | 2 + 2 + 1 + 1 = 6 |
-
-### Benign Classification (≤-7 points)
-
-| Criteria Combination |
-|---------------------|
-| ≥2 Strong (BS1, BS2): -4 + -4 = -8 |
-| 1 Stand Alone (BA1) |
-
-### Likely Benign Classification (-6 to -1 points)
-
-| Criteria Combination |
-|---------------------|
-| 1 Strong (BS1, BS2) AND 1 Supporting (BP2, BP3, BP5, BP7): -4 + -1 = -5 |
-| ≥2 Supporting (BP2, BP3, BP5, BP7): -1 + -1 = -2 |
-
-### Applicable Criteria by Strength Level
-
-| Strength | Pathogenic Criteria | Benign Criteria |
-|----------|-------------------|-----------------|
-| **Very Strong (8 pts)** | PVS1, PS2_VeryStrong, PS4_VeryStrong | — |
-| **Strong (4 pts)** | PVS1_Strong, PS1, PS2, PS3, PS4, PM5_Strong, PM6_Strong, PP1_Strong, PP3_Strong | BS1, BS2 |
-| **Moderate (2 pts)** | PVS1_Moderate, PS1_Moderate, PS2_Moderate, PS3_Moderate, PS4_Moderate, PM1, PM4, PM5, PM6, PP1_Moderate, PP3_Moderate | — |
-| **Supporting (1 pt / -1 pt)** | PVS1_Supporting, PS2_Supporting, PS3_Supporting, PS4_Supporting, PM2_Supporting, PM5_Supporting, PM6_Supporting, PP1, PP3 | BP2, BP3, BP5, BP7 |
-| **Stand Alone** | — | BA1 |
+> The attachment does not supply criterion-combination recipes or criterion-by-strength enumerations. The core PDF prints legacy combinations but explicitly instructs readers to disregard that section, so those tables are intentionally omitted.
 
 ---
 
@@ -610,7 +579,7 @@ The PVS1 Decision Tree follows the SVI guidance per Tayoun et al (2018), with th
 - **Biologically-relevant transcripts:**
   - NM_001330260.2 (adult isoform; MANE Select)
   - NM_014191.4 (neonatal isoform; MANE Plus Clinical)
-- **10% of protein:** ≥198 amino acids
+- **Source branches:** `>10%` of protein / `≥198` amino acids gives PVS1_Strong; `<10%` / `<198` amino acids gives PVS1_Moderate. Exactly 10% is not assigned by the percentage branches.
 - **Critical region definition:** Presence of non-truncating pathogenic variants OR located within a Pathogenic Enriched Region (PM1)
 - **In-frame coding exons:** 1, 3, 4, 6, 9, 10, 11, 14, 15, 16, 19, 20, 21, 22, 23, 24
 - **Out-of-frame coding exons:** 2, 5A/5N, 7, 8, 12, 13, 17, 18, 25, 26
@@ -652,7 +621,7 @@ The PVS1 Decision Tree follows the SVI guidance per Tayoun et al (2018), with th
 
 | Criterion | Threshold | Strength | Additional Requirements |
 |-----------|-----------|----------|------------------------|
-| BA1 | >0.01% | Stand Alone | ≥5 alleles if minimum 10,000 alleles assessed |
+| BA1 | **Conflicting:** >0.02% in VCEP paragraph; >0.01% in Stand Alone block | Stand Alone | ≥5 alleles / ≥10,000 assessed appears only in the 0.01% block |
 | BS1 | >0.0002% | Strong | ≥5 alleles if minimum 10,000 alleles assessed |
 | PM2 | ≤1 allele | Supporting | Minimum 10,000 alleles assessed in gnomAD |
 
@@ -682,12 +651,19 @@ The PVS1 Decision Tree follows the SVI guidance per Tayoun et al (2018), with th
 | 36413997 | ClinGen SVI recommendations for computational tools (REVEL) |
 | 29543229 | ClinGen SVI VCEP Review Committee - PP5/BP6 not recommended |
 
+### Appendix F: Distributed Attachment Provenance
+
+- `PM1 Table.xlsx` is physically distributed and contains 249 residue rows across 16 PERs; the SCN8A and paralog ranges reproduced above are exact condensations of that workbook.
+- `Paralogous Gene Table.xlsx` is separately physically distributed and contains a 2,044-row whole-protein residue alignment across SCN1A, SCN2A, SCN3A, and SCN8A, including `NA` alignment gaps. It contains no variant identifiers or classifications and is not a comprehensive variant catalogue.
+- `PS1_Variants impacting splicing.pdf`, `PVS1 Decision Tree.pptx`, `PVS1 alt transcripts & exon numbering.xlsx`, and `Combining Rules.pdf` are also physically present and are transcribed in the corresponding sections.
+
 ---
 
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| Document corrections | 2026-08-10 | Source-first remediation against all seven distributed files: `ClinGen_ACMG_Specifications_SCN8A_v2.0.pdf`, `PVS1 Decision Tree.pptx`, `PVS1 alt transcripts & exon numbering.xlsx`, `PM1 Table.xlsx`, `Paralogous Gene Table.xlsx`, `PS1_Variants impacting splicing.pdf`, and `Combining Rules.pdf`. Restored strict PVS1 percentage comparators; exposed exact-10%, full-gene-deletion, and BA1 conflicts; deleted unshipped PS2/PM6 pooling and generic/legacy combining recipes; removed the unsupported “approved assay” label; clarified attachment provenance/scope; preserved and flagged source typos. |
 | 2.0.0 | 1/7/2025 | Updates to transcript information and exon numbering. Revised PM1 table with altered applicable regions. Implemented points-based combining system. |
 
 ---
