@@ -1,26 +1,28 @@
-# Handoff — remediation of the 32 remaining VCEP guidelines
+# Handoff — remediation of the 27 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-09 after the Cardiomyopathy remediation round
+**Written:** 2026-08-07, revised 2026-08-10 after the Epilepsy Sodium Channel remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
 **Round 6 remediation commit:** `0bad381`
 **Round 7 remediation commit:** `16212de`
-**Working tree:** Round 7 is complete and committed; this handoff revision follows it
+**Round 8 remediation commit:** `bb87729`
+**Working tree:** Round 8 is complete and committed; this handoff revision follows it
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–7).** Six batches have been completed since this
+**Revision note (rounds 2–8).** Seven batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
 source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
-specs (§7b, §13) and all seven Cardiomyopathy specs (§7c, §13). The next panel
-is Epilepsy Sodium Channel. Read §1, §2a, §7, §7a, §7b, §7c and §13 before
+specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
+Epilepsy Sodium Channel specs (§7d, §13). The next panel is Monogenic Diabetes.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -76,13 +78,14 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 32 specs remain
+## 2. Scope: 27 specs remain
 
-122 unique spec IDs; 90 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 95 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
-specs of round 5, the 7 Congenital Myopathies specs of round 6, and the 7
-Cardiomyopathy specs of round 7). **32 remain.**
+specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
+Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
+round 8). **27 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -90,7 +93,6 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 5 | Epilepsy Sodium Channel |
 | 3 | Monogenic Diabetes |
 | 3 | Platelet Disorders |
 | 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy, Hereditary Hemorrhagic Telangiectasia |
@@ -329,11 +331,13 @@ rasopathy = {"GN038","GN039","GN040","GN041","GN042","GN043","GN044","GN045",
 limb_girdle = {"GN180","GN184","GN185","GN186","GN187","GN188","GN189"}  # round 5
 congenital_myopathies = {"GN146","GN147","GN148","GN149","GN150","GN169","GN179"}  # round 6
 cardiomyopathy = {"GN095","GN098","GN099","GN100","GN101","GN102","GN103"}  # round 7
+epilepsy_sodium = {"GN067","GN068","GN069","GN070","GN076"}  # round 8
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
-                                | congenital_myopathies | cardiomyopathy))
-print(len(remaining))  # 32
+                                | congenital_myopathies | cardiomyopathy
+                                | epilepsy_sodium))
+print(len(remaining))  # 27
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -361,11 +365,13 @@ see §2a.
 ~~5. Congenital Myopathies (7)~~ — **done, round 6** (`0bad381`). See §7b and
    §13.
 ~~6. Cardiomyopathy (7)~~ — **done, round 7** (`16212de`). See §7c and §13.
-7. **Epilepsy Sodium Channel (5). Start here.** SCN1A (GN067), SCN2A
+~~7. Epilepsy Sodium Channel (5)~~ — **done, round 8** (`bb87729`). SCN1A (GN067), SCN2A
    (GN068), SCN3A (GN069), SCN8A (GN070), and SCN1B (GN076). Preflight the
-   full panel before opening local guideline bodies; shared sodium-channel
-   conventions and supplements should be corroborated across all five, while
-   gene-specific thresholds remain independent.
+   full panel before opening local guideline bodies; see §7d and §13.
+8. **Monogenic Diabetes (3). Start here.** HNF1A (GN017), HNF4A (GN085), and
+   GCK (GN086). All 12 distributed artifacts are PDFs. Preflight the full panel
+   before opening local guideline bodies, then transcribe gene-specific sources
+   independently while corroborating shared diabetes-panel conventions.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -588,7 +594,59 @@ six LoF/BP1 statements conflict; and the shared PS4 PDF contains `gnomAF`.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 32
+## 7d. Epilepsy Sodium Channel remediation — complete
+
+Round 8 (`bb87729`) remediated SCN1A (GN067), SCN2A (GN068), SCN3A
+(GN069), SCN8A (GN070), and SCN1B (GN076). The panel-wide provenance
+preflight found all 32 advertised substantive artifacts present, readable,
+correctly typed, and source-cited. Each specification was drafted source-first
+in an isolated scratch directory before local comparison. All 103 PDF pages,
+four one-slide PVS1 PowerPoints (including notes and raw connector topology),
+and every populated workbook cell/sheet were inspected. Four shared artifacts
+were byte-identical wherever shipped: `Combining Rules.pdf`, `PM1 Table.xlsx`,
+`PS1_Variants impacting splicing.pdf`, and `Paralogous Gene Table.xlsx`.
+
+Recurring and high-impact findings:
+
+- SCN1A's core says a PVS1 decision tree is included, but no tree exists in
+  the manifest or package. The guideline now states that only the full-gene-
+  deletion prose and raw exon table are available; no generic SVI/Tayoun tree
+  was substituted. Its core transcript `.3` conflicts with workbook `.4`.
+- The four shipped PVS1 trees had been simplified or reversed locally.
+  Remediation restored initiation-codon outcomes, role-unknown/LoF-frequency/
+  transcript-presence gates, strict `>10%` and `<10%` branches, duplication
+  topology, and branches whose negative outcome is genuinely unspecified.
+  SCN3A has a core `.3` versus supplement `.4` transcript conflict; SCN1B has
+  core `.4` versus supplement `.5`.
+- SCN1B's source visibly co-prints `>10%` with `>=200 aa` and `<10%` with
+  `<200 aa` for a short protein, without saying AND or OR. The incompatible
+  labels and exact-10% gap are preserved rather than repaired. Its PM3 table
+  also supplies no phase-unknown homozygous value; a local invented 0.5 was
+  removed. Three visually continuous PPTX connectors have incomplete raw
+  endpoint bindings and are reported as a source defect.
+- SCN2A, SCN3A, and SCN8A each have a BA1 contradiction (`>0.02%` in VCEP
+  prose versus `>0.01%` plus a count floor in the Stand Alone block). All
+  three readings are now explicit. Their full-gene-deletion prose/tree/points
+  outcomes also conflict. SCN1B has the same three-way full-deletion conflict.
+- Several local PS1 descriptions overgeneralized the shared six-row splice
+  matrix or shifted its last two baseline-code rows into the wrong column.
+  Every file now retains the position- and baseline-dependent outcomes.
+- PS2/PM6 bare totals had repeatedly been converted into invented `>=`
+  ladders, and several files asserted cross-criterion pooling not present in
+  the package. Exact totals are restored and pooling is not inferred.
+- Generic or explicitly superseded combination recipes, criterion-by-strength
+  enumerations, and an unsupported “Approved Functional Assay” label were
+  deleted. Only the shipped point weights, bands, posterior probabilities,
+  and two caveats remain operative. Source spelling `Tavtigan`, punctuation,
+  `16+`, and literal `-7 and below` are preserved.
+
+No plausible undistributed gene-specific excess needed a warning banner. PM1,
+exon, paralog, PS1-splicing, combining, and gene-specific PVS1 material was
+either physically distributed or removed when generic/source-contradicting.
+
+---
+
+## 8. Loose ends unrelated to the remaining 27
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -685,6 +743,20 @@ Accumulated across sessions; worth sending as a batch.
   PM4 to Supporting based on predicted impact but provide no separate positive
   Supporting condition or numeric size/location/conservation threshold. Is
   the downgrade intentionally left to unrestricted clinical judgment?
+- **Epilepsy Sodium Channel missing SCN1A PVS1 tree.** GN067 repeatedly says
+  the tree is included, but its complete manifest contains no decision-tree
+  artifact. Which gene-specific tree and version should curators use?
+- **Epilepsy Sodium Channel full-gene-deletion conflict.** SCN2A, SCN3A,
+  SCN8A, and SCN1B say full-gene deletion warrants Pathogenic in the core,
+  assign PVS1 in the shipped tree, and give PVS1 eight points while the shipped
+  points table calls 6-9 points Likely Pathogenic. Which outcome is intended?
+- **Epilepsy Sodium Channel BA1 conflict.** SCN2A, SCN3A, and SCN8A each print
+  strict `>0.02%` in VCEP prose but strict `>0.01%` plus a count floor in the
+  Stand Alone block. Which threshold and qualifier set governs?
+- **SCN1B PVS1 size labels.** The tree co-prints strict `>10%` with `>=200 aa`
+  and `<10%` with `<200 aa` for a short protein, without AND/OR, and leaves
+  exactly 10% unassigned. Is `200 aa` a copied threshold or intentional? Three
+  rendered connectors also have incomplete raw endpoint bindings.
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -769,7 +841,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–7 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–8 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -788,17 +860,18 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–7 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–8 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
-(round 5), `0bad381` (round 6), and `16212de` (round 7). Rounds 5–7
+(round 5), `0bad381` (round 6), `16212de` (round 7), and `bb87729`
+(round 8). Rounds 5–8
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–7 summary
+## 13. Rounds 2–8 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -903,6 +976,28 @@ no missing or orphaned guidelines; the registry SHA-256 remained
 and `git diff --check` was clean. The only version/filename mismatch remains
 the pre-existing GN094 LZTR1 issue.
 
+**Round 8 — `bb87729`** — all five Epilepsy Sodium Channel specs: SCN1A
+(GN067), SCN2A (GN068), SCN3A (GN069), SCN8A (GN070), and SCN1B (GN076).
+The complete 32-artifact panel was preflighted and drafted source-first.
+Recurring defects were incomplete/reversed PVS1 topology, invented comparator
+operators and de novo pooling, overgeneralized PS1 splice rules, silently
+resolved BA1/transcript/full-deletion conflicts, generic or superseded
+combination recipes, and imprecise attachment provenance. SCN1A's advertised
+PVS1 tree is absent; SCN1B's shipped tree contains incompatible percentage/
+absolute-length labels. Full findings and unresolved source caveats are in
+§7d and §9.
+
+Round 8 final gate: all five exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 26/26;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17; all
+32 advertised source filenames appeared in the dated correction histories;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+the independent five-spec scratch review passed; and `git diff --check` was
+clean. The only version/filename mismatch remains the pre-existing GN094
+LZTR1 issue.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -916,10 +1011,10 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- If the Epilepsy Sodium Channel packages contain Office supplements, use
-  `documents:documents`, `presentations:Presentations`, and
-  `spreadsheets:Spreadsheets` for their respective formats, including raw
-  OOXML/media inspection and rendered QA where the skill requires it.
+- The next Monogenic Diabetes packages contain PDFs only (12 artifacts across
+  HNF1A, HNF4A, and GCK), so no Office-artifact skill is needed for that batch.
+  For later batches, use `documents:documents`, `presentations:Presentations`,
+  and `spreadsheets:Spreadsheets` when those formats appear.
 - Use the handoff skill again only after the batch has passed all §11 gates and
   the remediation commit exists; update this workspace handoff in place because
   that is the project's durable continuation record.
