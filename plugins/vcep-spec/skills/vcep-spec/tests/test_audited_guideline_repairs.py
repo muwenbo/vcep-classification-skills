@@ -140,6 +140,44 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
             (GUIDELINES / "BRCA1_BRCA2_Variant_Interpretation_Guidelines_v1.2.md").exists()
         )
 
+    def test_hht_pvs1_trees_preserve_gene_specific_routes_and_source_gaps(self):
+        acvrl1 = guideline("ACVRL1_Variant_Interpretation_Guidelines_v1.1.0.md")
+        eng = guideline("ENG_Variant_Interpretation_Guidelines_v1.1.0.md")
+
+        self.assertIn("ACVRL1 ≤ codon 442 → PVS1", acvrl1)
+        self.assertIn("ACVRL1 ≤ codon 490 → PVS1_Strong", acvrl1)
+        self.assertIn("ACVRL1 → PVS1_Moderate", acvrl1)
+        self.assertIn("13 of the slide's 51 connectors", acvrl1)
+        self.assertNotIn("last 50bp of penultimate exon", acvrl1)
+
+        self.assertIn("ENG ≤ codon 601", eng)
+        self.assertIn("Variant removes >10% of protein → PVS1_Strong", eng)
+        self.assertIn("ENG → PVS1_Strong", eng)
+        self.assertIn("15 of the slide's 51 connectors", eng)
+        self.assertNotIn("Variant removes ≥10% of protein → PVS1_Strong", eng)
+        self.assertNotIn("11179217", eng)
+
+    def test_hht_shared_attachments_are_fully_transcribed_without_harmonizing_conflicts(self):
+        for gene in ("ACVRL1", "ENG"):
+            text = guideline(f"{gene}_Variant_Interpretation_Guidelines_v1.1.0.md")
+
+            self.assertEqual(text.count("Approved: Y; Proposed:"), 39)
+            self.assertIn("columns B:F of **Intracellular signaling assays** are hidden", text)
+            self.assertIn("Normal: 20-24 hours; Abnormal: <48 hours", text)
+            self.assertIn("Normal: Variants with <0.01% frequency", text)
+            self.assertIn("population at >0.01% frequency", text)
+            self.assertIn("Proposed: PS3; BS3_Supporting", text)
+            self.assertIn("normal protein expression cannot be used as benign evidence", text)
+            self.assertIn("### Document corrections (2026-08-11)", text)
+
+            for source in (
+                f"ClinGen_ACMG_Specifications_{gene}_v1.1.pdf",
+                f"{gene} PVS1 Decision Tree.pptx",
+                "HHT Phenotype.docx",
+                "HHT Functional Assays.xlsx",
+            ):
+                self.assertIn(source, text)
+
     def test_every_guideline_filename_uses_three_part_versions(self):
         """GN097's old filename was the corpus's only x.y violation, and it
         slipped through because verification checked the version field only."""
