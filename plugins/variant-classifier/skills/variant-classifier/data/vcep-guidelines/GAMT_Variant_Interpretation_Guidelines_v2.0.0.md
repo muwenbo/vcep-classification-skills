@@ -4,6 +4,7 @@
 **Released:** 5/23/2024
 **Affiliation:** Cerebral Creatine Deficiency Syndromes VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**Specification DOI:** 10.5281/zenodo.21421631
 
 ---
 
@@ -16,6 +17,10 @@
 | **Transcript** | NM_000156.6 |
 | **Disease** | Guanidinoacetate methyltransferase deficiency (MONDO:0012999) |
 | **Inheritance** | Autosomal Recessive |
+
+---
+
+> **Source fidelity note:** This transcription uses the distributed v2.0 core PDF and all five distributed GAMT appendices. Source contradictions and apparent source typos are retained and identified instead of silently reconciled.
 
 ---
 
@@ -66,7 +71,7 @@
 
 Loss of function (LOF) of GAMT is a known mechanism of disease for guanidinoacetate methyltransferase deficiency (GAMT-D). There are examples of various LOF variants, including nonsense and frameshift, in GAMT in individuals with GAMT-D. The specifications are based on the PVS1 decision tree (Figure 1, Abou Tayoun et al, 2018, PMID 30192042).
 
-**Important:** For all splice site variants (+1, +2, -1, -2), follow the guidance from the ClinGen SVI Splicing Subgroup (Walker et al, 2023, PMID: 37352859). Follow the decision tree outlined in Figure 5. If PVS1 is applied at any strength, PP3 should not be applied. Experimental evidence, such as RT-PCR, is used to determine the weight of PVS1; PS3 is not applied if PVS1 is applied; instead PVS1_Strength (RNA) is used. PS1 may also be applied for splice variants (see Table 3 in PMID: 37352859).
+**Important:** For all splice site variants (+1, +2, -1, -2), follow the guidance from the ClinGen SVI Splicing Subgroup (Walker et al, 2023, PMID: 37352859). Follow the decision tree outlined in Figure 5. If PVS1 is applied at any strength, PP3 should not be applied. Experimental evidence, such as RT-PCR, is used to determine the weight of PVS1; PS3 is not applied if PVS1 is applied; instead PVS1_Strength (RNA) is used. PS1 may also be applied for splice variants (see Table 3 in PMID: 37352859). In compound heterozygotes, a normal splice product from the other allele may complicate interpretation.
 
 #### Strength Levels
 
@@ -97,7 +102,7 @@ All nonsense and frameshift variants will meet **PVS1** unless a PTC is predicte
   - Downstream exon skipped for canonical acceptor splice site variants
 - Use SpliceAI to look for nearby (+/- 20 nucleotides) strong consensus splice sequence that may reconstitute in-frame splicing
 - If this criterion is applied, PP3 should not be used
-- Non-canonical splice variants (e.g., +3 or -3) will not meet PVS1, but could meet PS3 and/or PP3 criteria
+- The PVS1 body contains older wording that non-canonical +3/-3 variants could meet PS3 and/or PP3. This conflicts with the v2 release notes and governing SVI paragraph above, which move experimental splice evidence from PS3 into PVS1. The package does not reconcile the statements; use the explicit newer SVI instruction for RNA evidence and PP3 Supporting for the source-specified SpliceAI route.
 
 #### Initiator Codon Variants
 
@@ -121,8 +126,10 @@ Use the PVS1 decision tree (Figure 1, Abou Tayoun et al, 2018, PMID 30192042) to
 | Duplication Type | Reading Frame | PVS1 Strength |
 |------------------|---------------|---------------|
 | Proven in tandem | Disrupted, NMD predicted | PVS1 |
+| Proven in tandem | No/unknown impact on reading frame and NMD | N/A |
 | Presumed in tandem | Presumed disrupted, NMD predicted | PVS1_Strong |
-| Proven not in tandem | - | Do not apply PVS1 |
+| Presumed in tandem | No/unknown impact on reading frame and NMD | N/A |
+| Proven not in tandem | - | N/A |
 
 ---
 
@@ -168,6 +175,8 @@ Splicing assays (e.g., RT-PCR) are now included under PVS1; PS3 is not applied i
 |----------|----------|
 | **Supporting (PS3_Supporting)** | Variant expressed in GAMT-deficient fibroblasts or HeLa cells with **<15% of control value** for enzyme activity, as published in: Mercimek-Mahmutoglu et al, 2014 (PMID 24415674); Mercimek-Mahmutoglu et al, 2016 (PMID 26319512); or DesRoches et al, 2015 (PMID 26003046). |
 
+The core PDF calls PMID 26003046 “DesRoches et al, 2016,” while the distributed workbook gives 2015. The workbook also says normal and abnormal thresholds were `Not provided`; the `<15%` classification cutoff comes from the core PDF rather than the assay worksheet.
+
 #### Approved Functional Assay Details
 
 | Parameter | PMID 24415674 | PMID 26003046 | PMID 26319512 |
@@ -178,8 +187,12 @@ Splicing assays (e.g., RT-PCR) are now included under PVS1; PS3 is not applied i
 | **Material Used** | Missense variants introduced into pGAMT-EGFP plasmid by site-directed mutagenesis and expressed in primary GAMT-deficient human fibroblast cell line | Missense variants introduced into pGAMT-EGFP plasmid by site-directed mutagenesis and expressed in HeLa cells | Same method as PMID 24415674 |
 | **Readout Type** | Quantitative (enzyme assay), qualitative (Western blot) | Quantitative for variants with deficient activity, qualitative for others | Qualitative |
 | **Biological Replicates** | Met (triplicate transfections) | Met (triplicate transfections) | Met (triplicate transfections) |
+| **Technical Replicates** | `not met?` | `not met?` | `not met?` |
 | **Positive Control** | Wild type pGAMT-EGFPN1; GFP signal indicates successful transfection | Wild type pGAMT-EGFPN1; GFP signal indicates successful transfection | Wild type pGAMT-EGFPN1; GFP signal indicates successful transfection |
 | **Negative Control** | pEGFPN1 empty vector; untransfected cells | pEGFPN1 empty vector; untransfected cells | pEGFPN1 empty vector; untransfected cells |
+| **P/LP Validation** | At least two: p.Leu197Pro called known pathogenic, one VCEP LP without functional data; four more ClinVar P/LP awaited independent assessment | One ClinVar LP awaiting assessment without functional data | None |
+| **B/LB Validation** | p.Tyr27His; workbook gives gnomAD MAF 0.004706 Latino, 0.004298 European non-Finnish, two European non-Finnish homozygotes, and normal activity in a homozygous patient | None under VCEP BA1/BS1 cutoffs | None |
+| **Statistics** | Standard error of mean for triplicate transfections | Mean of biological triplicates | `not met` |
 | **Approved** | Yes | Yes | Yes |
 | **Proposed Strength** | Supporting | Supporting | Supporting |
 
@@ -239,24 +252,7 @@ Any additional variants used to support the classification of the variant under 
 
 Follow SVI guidance for PM3. Parental testing, or another appropriate molecular method (such as cloning each allele separately followed by sequencing), must have been performed to confirm that the variants are in trans if the patient is compound heterozygous.
 
-#### PM3 Point System (Per Proband)
-
-| Classification of Other Variant | Confirmed in Trans | Phase Unknown |
-|--------------------------------|-------------------|---------------|
-| Pathogenic variant | 1.0 | 0.5 |
-| Likely pathogenic variant | 1.0 | 0.25 |
-| Homozygous (non-consanguineous) | 1.0 | 1.0 |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 | 0.5 |
-| VUS (max 0.5 total) | 0.25 | 0.0 |
-
-#### PM3 Evidence Strength Thresholds
-
-| Total Points | Strength Level |
-|--------------|----------------|
-| 0.5 | PM3_Supporting |
-| 1.0 | PM3 (Moderate) |
-| 2.0 | PM3_Strong |
-| 4.0 | PM3_VeryStrong |
+The VCEP permits PM3 at Supporting, Moderate, Strong, and Very Strong, but the distributed package does **not** contain the external SVI point table or its point-to-strength thresholds. Consult the linked SVI PM3 guidance rather than treating an undistributed numeric matrix as part of this package.
 
 ---
 
@@ -287,6 +283,8 @@ Any additional variants used to support the classification of the variant under 
 |----------|----------|
 | **Moderate (PM5)** | Variant resulting in a different amino acid change, at the same amino acid position, as a variant previously established as **pathogenic** by the CCDS VCEP. If the variant is in the last 3 nucleotides of an exon, further analysis using splicing site prediction algorithms is required. |
 | **Supporting (PM5_Supporting)** | Variant resulting in a different amino acid change, at the same amino acid position, as a variant previously established as **likely pathogenic** by the CCDS VCEP. If the variant is in the last 3 nucleotides of an exon, further analysis using splicing site prediction algorithms is required. |
+
+The source's Supporting block ends with the sentence `If the variant is likely pathogenic, use PM5`, which conflicts with the Supporting row and with the preceding Moderate block's instruction to use PM5_Supporting for a likely pathogenic comparator. The package does not resolve that sentence.
 
 ---
 
@@ -335,8 +333,8 @@ Any additional variants used to support the classification of the variant under 
 | Strength | REVEL Score |
 |----------|-------------|
 | **Strong (PP3_Strong)** | ≥0.932 |
-| **Moderate (PP3_Moderate)** | 0.773 - <0.932 |
-| **Supporting (PP3)** | 0.644 - <0.773 |
+| **Moderate (PP3_Moderate)** | 0.773-0.932; the source does not state endpoint operators, while the Strong row separately includes 0.932 |
+| **Supporting (PP3)** | 0.644-0.773; the source does not state endpoint operators |
 
 *Based on guidance from Pejaver et al, 2022, PMID: 36413997*
 
@@ -375,7 +373,6 @@ Any additional variants used to support the classification of the variant under 
 
 | Total Points | Strength | Additional Requirements |
 |--------------|----------|------------------------|
-| <1 | PP4 not met | - |
 | 1-2 | PP4 (Supporting) | Based on urine and/or plasma guanidinoacetate |
 | 3 | PP4_Moderate | Two or more data types recommended |
 | ≥4 | PP4_Strong | Two or more data types required; for PP4_Strong, full GAMT gene sequencing (all coding exons and intron/exon boundaries) must have been carried out. If not, consider downgrading. |
@@ -530,6 +527,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 
+The distributed workbook's sole worksheet is named `GAA_PVS1`, an apparent carry-over; the flowchart content itself is GAMT-specific.
+
 | Type of Variant | Molecular Consequence | Additional Criteria | PVS1 Strength |
 |-----------------|----------------------|---------------------|---------------|
 | **Nonsense** | Predicted to undergo NMD | - | PVS1 |
@@ -549,12 +548,18 @@ Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 | | Single/multi-exon, out of frame, NMD not predicted | <10% altered | PVS1_Moderate |
 | | Single/multi-exon preserves reading frame | Consult Appendix B | Apply highest possible strength |
 | **Duplication** | Proven in tandem, reading frame disrupted, NMD predicted | - | PVS1 |
+| | Proven in tandem, no known impact on reading frame and NMD | - | N/A |
 | | Presumed in tandem, reading frame disrupted, NMD predicted | - | PVS1_Strong |
+| | Presumed in tandem, no known impact on reading frame and NMD | - | N/A |
+| | Proven not in tandem | - | N/A |
 
 **Footnotes:**
 - In GAMT, all exons are biologically relevant; there is no significant alternative splicing.
 - NMD is not predicted if the PTC is in the last exon (exon 6) or in the last 50 nucleotides of the penultimate exon (exon 5, 3' to c.520).
-- All donor/acceptor splice sites in GAMT follow the GT/AG rule. Use SpliceAI to assess all splice site variants for creation of a cryptic splice site.
+- All donor/acceptor splice sites in GAMT follow the GT/AG rule. A donor change predicts upstream-exon skipping; an acceptor change predicts downstream-exon skipping. Use SpliceAI to assess creation of a cryptic or alternative splice site; experimental evidence such as RT-PCR can override the prediction. The source spells `cryptic` as `crytpic` in this footnote.
+- Consult Appendix B for exon lengths and critical residues.
+
+The flowchart uses strict `>10%` and `<10%`; exactly 10% is not assigned.
 
 ---
 
@@ -567,7 +572,7 @@ Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 | **Exon 3** | 328 | 391 | 64 | Out of frame → NMD | **Very Strong** | SAM binding (Trp117, Glu118) | p.Val110Phe |
 | **Exon 4** | 392 | 459 | 68 | Out of frame → NMD | **Very Strong** | Asp135 forms part of active site; binds GAA; Tyr136 important to structure | p.Thr136Met, p.Tyr137Ser |
 | **Exon 5** | 460 | 570 | 111 | In frame, deletes 37 aa (15.5%) | **Strong** | GAA-binding residues Leu171, Thr172 | p.Gly164Asp, p.Tyr168Ser, p.Cys169Tyr |
-| **Exon 6** | 571 | 711* | 141 | In frame, deletes 47 aa (19.9%) | **Strong** | GAA-binding residue Tyr222, important in active site structure | - |
+| **Exon 6** | 571 | `*333` [sic]; workbook also says 711 is the last stop nucleotide | 141 | In frame, deletes 47 aa (19.9%) | **Strong** | GAA-binding residue Tyr222, important in active site structure | - |
 
 *Last nucleotide of stop codon = 711
 
@@ -596,17 +601,21 @@ Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 
 **Prevalence Estimates Used:**
 
-| Publication | Method | Prevalence |
-|-------------|--------|------------|
-| Viau et al, 2013 | Utah newborn population | 1 in 114,072 |
-| Mercimek-Mahmutoglu et al, 2016 | Sequenced GAMT in 500 newborns from Netherlands | 1 in 250,000 |
-| Des Roches et al, 2015 | Searched ExAC for damaging missense and LOF variants | 1 in 550,000 |
-| Des Roches et al, 2015 | Reviewed EVS, measured GAMT activity | 1 in 2,640,000 |
+| Publication/method | Carrier frequency | q | Prevalence |
+|---|---:|---:|---:|
+| Des Roches et al, 2015 (PMID 26003046); EVS review and activity measurement | 1/812 (0.123%) | 1/1624 (0.000613) | 1/2,640,000 |
+| Des Roches et al, 2015 (PMID 26003046); ExAC predicted-damaging missense and LoF | 1/372 (0.268%) | 1/744 (0.00134) | 1/550,000 |
+| `Merimek-Mahmutoglu` [sic] et al, 2012 (PMID 23031365); 2,950 British Columbia NBS samples, targeted p.Trp20Ser/c.327G>A plus two other pathogenic variants | 1/1475 (95% CI 1/409-1/4762) | 1/2950 (0.00034) | 1/9,090,090 |
+| Almeida et al, 2007 (PMID 17336114); Portuguese p.Trp20Ser screen | 1/125 (0.8%; CI 0.2%-1.3%) | 1/250 (0.004) | 1/62,500 |
+| `Merimek-Mahmutoglu` [sic] et al, 2016; GAMT sequencing of 500 Netherlands newborns, two pathogenic variants | 1/250 (0.004) | 1/500 (0.002) | 1/250,000 |
+| Viau et al, 2013; Utah newborn population, founder variant | 1/170 (0.006) | 1/340 (0.003) | 1/114,072 |
 
 **Maximum Allelic Contribution:**
 - ~40% of alleles are c.327G>A (most common pathogenic variant)
 - c.59G>C (p.W20S) occurs exclusively in Portuguese families
 - Remaining mutations occur in <3 alleles (~4%)
+
+The calculator slides show frequencies for maximum allelic contributions of 100%, 40%, and 4% across prevalence assumptions. At prevalence 1/114,000 those values are 0.003, 0.001, and 0.0001 respectively; at 1/250,000 they are 0.002, 0.0008, and 0.00008; at 1/550,000 they are 0.0014, 0.00054, and 0.00005; at 1/1,000,000 they are 0.001, 0.0004, and 0.00004; and at 1/2,640,000 they are 0.000615, 0.000246, and 0.0000246. The deck also shows c.327G>A's highest population gnomAD MAF as 0.0004. The core selects >0.003 for BA1, >0.001 for BS1, and <0.0004 for PM2 Supporting.
 
 ---
 
@@ -617,11 +626,13 @@ Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 | Score Range | PP3 Strength | BP4 Applicability |
 |-------------|--------------|-------------------|
 | ≥0.932 | Strong (PP3_Strong) | - |
-| 0.773 - <0.932 | Moderate (PP3_Moderate) | - |
-| 0.644 - <0.773 | Supporting (PP3) | - |
+| 0.773-0.932 (endpoint operators unstated) | Moderate (PP3_Moderate) | - |
+| 0.644-0.773 (endpoint operators unstated) | Supporting (PP3) | - |
 | <0.29 | - | Supporting (BP4) |
 
 *Based on Pejaver et al, 2022, PMID: 36413997*
+
+The distributed REVEL appendix itself is a box-and-whisker plot of variants classified without in-silico evidence: P/LP `n=20`, VUS `n=24`, and B/LB `n=3`. It does not print numeric cutoffs; the numeric thresholds above come from the core PDF.
 
 #### SpliceAI Scores
 
@@ -657,11 +668,35 @@ Based on Figure 1, Abou Tayoun et al, 2018 (PMID 30192042)
 
 ---
 
+### Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_GAMT_v2.0.pdf`
+- `Appendix 1_GAMT.xlsx`
+- `Appendix 2_GAMT functional studies.xlsx`
+- `Appendix 3_GAMT MAF thresholds.pptx`
+- `Appendix 4_GAMT REVEL scores.pptx`
+- `GAMT PVS1 flowchart.xlsx`
+
+---
+
+### Document corrections (2026-08-11)
+
+- Verified metadata, criteria, and combination rules against `ClinGen_ACMG_Specifications_GAMT_v2.0.pdf`; restored the DOI, removed an unsupported PP4 `<1` row, and stopped inferring endpoint operators for the REVEL ranges.
+- Re-transcribed `GAMT PVS1 flowchart.xlsx`; restored both no/unknown-impact duplication routes, the proven non-tandem route, all footnotes, the `GAA_PVS1` tab-name carry-over, and the strict exact-10% gap.
+- Re-transcribed `Appendix 1_GAMT.xlsx`; restored the literal `*333` coordinate conflict and source-supplied residue/reference qualifications.
+- Re-transcribed all three assay columns in `Appendix 2_GAMT functional studies.xlsx`; restored validation controls, replicate/statistics limitations, and the fact that the worksheet provides no normal/abnormal thresholds.
+- Re-transcribed `Appendix 3_GAMT MAF thresholds.pptx`, including all six prevalence estimates and all calculator scenarios.
+- Re-transcribed `Appendix 4_GAMT REVEL scores.pptx`; recorded its three plotted sample sizes and that the slide itself supplies no numeric cutoffs.
+- Removed the numeric PM3 point matrix because the distributed package only refers to external SVI guidance and does not ship that matrix. Preserved the package's unresolved splice-RNA, PM5, publication-year, and assay-threshold conflicts.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | 2.0.0 | 5/23/2024 | Updated to include SVI guidance on splicing variants (PMID: 37352859) and in silico predictions (PMID: 36413997); Added PS1_Moderate and PS1_Supporting for splicing variants; Removed splicing assays from PS3 (now under PVS1); Added PP3_Strong and PP3_Moderate; Updated BP4 with new REVEL and SpliceAI thresholds; Updated BP7 for intronic variants; Added BP7_Strong; Added additional Likely Pathogenic combinations including PVS1 + PM2_Supporting |
+| 2.0.0 remediation | August 11, 2026 | Re-transcribed the complete distributed package source-first. Removed the undistributed numeric PM3 graft and unsupported PP4 `<1` row; restored PVS1 duplication branches and source footnotes; preserved workbook typos and disclosed core/appendix contradictions and assay limitations. |
 
 ---
 

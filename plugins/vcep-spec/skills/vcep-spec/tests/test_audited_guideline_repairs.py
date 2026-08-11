@@ -224,6 +224,53 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
         ):
             self.assertIn(source, text)
 
+    def test_gatm_restores_the_shipped_pvs1_tree_without_silently_resolving_it(self):
+        text = guideline("GATM_Variant_Interpretation_Guidelines_v2.0.0.md")
+
+        self.assertIn("10.5281/zenodo.21421625", text)
+        self.assertIn("exon present in biologically relevant `NM_001482.3`", text)
+        self.assertIn("LoF variant is frequent in general population, or exon is absent", text)
+        self.assertIn("Different functional transcript uses an alternative start", text)
+        self.assertIn("conflicts with the core PDF's unconditional Moderate assignment", text)
+        self.assertIn("`*985` [sic]", text)
+        self.assertIn("Values strictly above 15% and below 30% are not assigned", text)
+        self.assertNotIn("#### PM3 Point System", text)
+        self.assertNotIn("| Indeterminate | 16-29% of normal |", text)
+
+        for source in (
+            "ClinGen_ACMG_Specifications_GATM_v2.0.pdf",
+            "Appendix 1_GATM (AGAT) _ PVS1 decision tree.pptx",
+            "Appendix 2_GATM (AGAT) _ exons.xlsx",
+            "Appendix 3_GATM (AGAT) _ functional studies.xlsx",
+            "Appendix 4_GATM (AGAT) _ MAFs.pptx",
+        ):
+            self.assertIn(source, text)
+
+    def test_gamt_transcribes_all_appendices_and_marks_package_conflicts(self):
+        text = guideline("GAMT_Variant_Interpretation_Guidelines_v2.0.0.md")
+
+        self.assertIn("10.5281/zenodo.21421631", text)
+        self.assertIn("sole worksheet is named `GAA_PVS1`", text)
+        self.assertIn("Proven in tandem, no known impact on reading frame and NMD", text)
+        self.assertIn("Presumed in tandem, no known impact on reading frame and NMD", text)
+        self.assertIn("`*333` [sic]", text)
+        self.assertIn("P/LP `n=20`, VUS `n=24`, and B/LB `n=3`", text)
+        self.assertIn("normal and abnormal thresholds were `Not provided`", text)
+        self.assertIn("older wording that non-canonical +3/-3 variants could meet PS3", text)
+        self.assertIn("0.773-0.932; the source does not state endpoint operators", text)
+        self.assertNotIn("#### PM3 Point System", text)
+        self.assertNotIn("| <1 | PP4 not met |", text)
+
+        for source in (
+            "ClinGen_ACMG_Specifications_GAMT_v2.0.pdf",
+            "Appendix 1_GAMT.xlsx",
+            "Appendix 2_GAMT functional studies.xlsx",
+            "Appendix 3_GAMT MAF thresholds.pptx",
+            "Appendix 4_GAMT REVEL scores.pptx",
+            "GAMT PVS1 flowchart.xlsx",
+        ):
+            self.assertIn(source, text)
+
     def test_every_guideline_filename_uses_three_part_versions(self):
         """GN097's old filename was the corpus's only x.y violation, and it
         slipped through because verification checked the version field only."""
