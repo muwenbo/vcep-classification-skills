@@ -178,6 +178,52 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
             ):
                 self.assertIn(source, text)
 
+    def test_atm_transcribes_pvs1_and_functional_attachments_literally(self):
+        text = guideline("ATM_Variant_Interpretation_Guidelines_v1.5.0.md")
+
+        self.assertIn("10.5281/zenodo.21421592", text)
+        self.assertIn("c.-31+1G>A/C/T", text)
+        self.assertIn("c.2467-2A>C/T", text)
+        self.assertIn("c.6199-2A>C/G/T", text)
+        self.assertIn("c.6347+2T>C", text)
+        self.assertIn("c.7515+2C>T", text)
+        self.assertIn("Source proposes % survival <10 at 4 days", text)
+        self.assertIn("Source proposes % survival >10 at 4 days", text)
+        self.assertIn("Approval cell: blank", text)
+        self.assertIn("workbook's radiosensitivity proposal says no weight", text)
+        self.assertNotIn("PVS1_Strength(RNA)", text)
+
+        for source in (
+            "ClinGen_ACMG_Specifications_ATM_v1.5.pdf",
+            "ATM PVS1.pdf",
+            "ATM PS1.pdf",
+            "ATM PM3_BP2.pdf",
+            "ATM PS3_BS3.xlsx",
+        ):
+            self.assertIn(source, text)
+
+    def test_palb2_restores_operational_tables_and_flags_source_conflicts(self):
+        text = guideline("PALB2_Variant_Interpretation_Guidelines_v1.2.0.md")
+
+        self.assertIn("10.5281/zenodo.21433968", text)
+        self.assertIn("ENST00000261584.9", text)
+        self.assertIn("Same donor/acceptor dinucleotide | PS1_Supporting | N/A", text)
+        self.assertIn("p.Met296", text)
+        self.assertIn("c.48+1G>A/C/T", text)
+        self.assertIn("c.3350+2C>A/G", text)
+        self.assertIn("c.108+2T>C", text)
+        self.assertIn("| Phenotype consistent with PALB2-related FA | 2.0 | 1.0 |", text)
+        self.assertIn("| First cancer onset >50 years", text)
+        self.assertIn("| First cancer onset 40-50 years", text)
+        self.assertIn("removes <10% (>356 nt)", text)
+        self.assertNotIn("| **FATKIN** |", text)
+
+        for source in (
+            "ClinGen_ACMG_Specifications_PALB2_v1.2.pdf",
+            "ClinGen HBOP ACMG Specifications PALB2 version 1.2.docx",
+        ):
+            self.assertIn(source, text)
+
     def test_every_guideline_filename_uses_three_part_versions(self):
         """GN097's old filename was the corpus's only x.y violation, and it
         slipped through because verification checked the version field only."""

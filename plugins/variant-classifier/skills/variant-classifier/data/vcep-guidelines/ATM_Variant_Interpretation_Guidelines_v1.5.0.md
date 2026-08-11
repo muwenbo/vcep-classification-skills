@@ -4,6 +4,7 @@
 **Released:** 11/7/2025
 **Affiliation:** Hereditary Breast, Ovarian and Pancreatic Cancer VCEP
 **Expert Panel Page:** https://www.clinicalgenome.org/affiliation/50039
+**Source DOI:** 10.5281/zenodo.21421592
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -75,7 +76,7 @@ Use the **ATM PVS1 Decision Tree** (see Appendix A).
 
 Key specifications:
 - **PVS1:** Predicted splice defect
-- **PVS1_Strength(RNA):** Observed splice defect
+- **PVS1_Variable(RNA):** Observed splice defect
 - The default RefSeq transcript for nucleotide (c.) annotation is **NM_000051.3/ENST00000278616.8**
 - All exons from this transcript can be considered constitutive exons without major alternate splice isoforms
 - ATM is occasionally annotated with multiple non-coding first exons; exon numbering must be carefully reviewed
@@ -97,6 +98,8 @@ Key specifications:
 - Quantification (complete effects have increased weight over incomplete effects)
 
 **Important:** If RNA data reflect substantial variant-specific impact, do not use both PVS1(RNA) and PP3 or BP4. If RNA data reflect no variant-specific impacts, PP3 or BP4 may be applied in conjunction with BP7(RNA).
+
+> **Distributed-source discrepancy:** The core PDF's RNA paragraph says that the guidance is not gene-specific for **PALB2**. The ATM PVS1 attachment gives the same paragraph with **ATM**, which is the applicable reading here. The stray PALB2 name is retained as an upstream carry-over, not interpreted as an ATM rule.
 
 #### Strength Levels
 
@@ -164,7 +167,7 @@ Key specifications:
 **VCEP Specifications:**
 
 - For **protein**: See detailed notes on ATM-specific assays below
-- For **RNA**: Use code PVS1_Strength(RNA) and modulate strength based on assay quality and quantity (curator discretion)
+- For **RNA**: Use code PVS1_Variable(RNA) and modulate strength based on assay quality and quantity (curator discretion)
 
 **IMPORTANT NOTE:** Do not use phenotypic evidence (e.g., lack of ATM activity in cells from an A-T patient) as functional data. That is a general assay that confirms the patient's diagnosis and should be considered as part of PM3. However, splice data from patient material can be considered a functional effect because the effect is relatively specific to the variant.
 
@@ -197,13 +200,31 @@ Key specifications:
 | **Assay Description** | Stable expression of cDNA in ATM null cell line; cellular radiosensitivity | Stable transfection; radiation induced chromosome aberrations (ICAs) | Stable transfection; cell viability post-irradiation |
 | **Material** | ATM null patient LCL (AT7LA1) | ATM null patient LCLs (AT1ABR) | ATM null patient LCLs (AT1ABR) |
 | **Readout** | % survival fraction (SF) by MTT staining after 1 Gy | ICAs per metaphase after 1 Gy | Viable cells up to 4 days post 1-4 Gy |
-| **Normal Threshold** | SF >36% (50.1±13.5%) | ~1 ICA (<1.5) | % survival >10 at 4 days |
-| **Abnormal Threshold** | SF <21% (13.1±7.2%) | 2.98-3.20 ICAs per metaphase | % survival <10 at 4 days |
+| **Normal Threshold** | SF >36% (50.1±13.5%) | ~1 ICA (<1.5) | Source proposes % survival <10 at 4 days |
+| **Abnormal Threshold** | SF <21% (13.1±7.2%) | 2.98-3.20 ICAs per metaphase | Source proposes % survival >10 at 4 days |
 | **Proposed Strength** | PS3_Moderate (only with PS3_Supporting from kinase) / BS3_Supporting | PS3_Moderate (only with PS3_Supporting from kinase) / BS3_Supporting | PS3_Moderate (only with PS3_Supporting from kinase) / BS3_Supporting |
 
 **Important Notes:**
 - No weight should be applied if only radiosensitivity is available
 - No weight should be applied if radiosensitivity and kinase assay are conflicting
+
+#### Complete `ATM PS3_BS3.xlsx` assay transcription
+
+The workbook contains six populated assay columns. Blank source cells remain identified as blank; they are not silently interpreted as approval or failure.
+
+**Kinase activity — Mitui 2009 (PMID 18634022; DOI 10.1002/humu.20805).** Stable transfection of ATM cDNA in AT7LA1 LCLs (homozygous `c.1563_1564delAG`), with variants introduced by site-directed mutagenesis. Qualitative gel-band readout of ATM-S1981 and SMC1-S957/S966 phosphorylation one hour after 2 or 10 Gy; CdCl2 induces a metallothionein-II promoter. Biological and technical replication are uncertain/not described. Positive controls: pMAT1 WT cDNA and NAT2 WT LCLs; negative control: AT7LA1. P/LP validation control entry: 0; `c.5908C>T (p.Gln1970Ter)` is unclear/data not shown. B/LB entry: 0; `c.1744T>C (p.Phe582Leu)` and `c.2119T>C (p.Ser707Pro)` are unclear/data not shown. Statistical analysis is uncertain/not described. Normal is the authors' “normal” relative to pMAT1; abnormal is ND or TD in Table 1. Approved: Y. Proposed: PS3_Supporting / BS3_Supporting.
+
+**Kinase activity — Barone 2009 (PMID 19431188; DOI 10.1002/humu.21034).** Stable transfection in patient 118-3 ATM-null LCLs (`c.796_797insGATT` and `c.2921+1G>A`), with site-directed variants. Quantitative densitometry of Western blots for SMC1-Ser966, NBS1-Ser343, CHK2-Thr68, p53-Ser15 and ATM-Ser1981 after mock or 5 Gy at 0/30/60 minutes; zinc chloride induces metallothionein-II expression. Biological replicates not met; technical row says “Y; 3; not sure if biological or technical.” Positive control pTAM2; negative pMEP4; zero P/LP and zero B/LB validation controls. Statistical analysis uncertain/not specified. Normal is WT kinase activity (group 1); abnormal is undetectable (group 2) or reduced (group 3), relative to pTAM2; authors caution that ATM-Ser1981 may not indicate overall kinase activity. Approved: Y. Proposed: PS3_Supporting / BS3_Supporting.
+
+**Kinase activity — Scott 2002 (PMID 11805335; DOI 10.1073/pnas.012329699).** Stable transfection in AT1ABR ATM-null LCLs with site-directed variants. Qualitative gel readout after 6 Gy: p53-Ser15 phosphorylation in lysates and after flag-ATM immunoprecipitation with p53(1-40) substrate; CdCl2 induction six hours before irradiation. Biological and technical replication uncertain/not described. Positive pMAT3; negative uninduced cells. Five A-T mutant validation controls: `c.7636del9 (p.SerArgIle2564del)`, `c.8147T>C (p.Val2716Ala)`, `c.8546G>C (p.Arg2849Pro)`, `c.8599G>C (p.Gly2867Arg)`, `c.7987delGTT (p.Val2662del)`; zero B/LB controls. Statistical analysis uncertain/not described. The source supplies no numeric normal/abnormal threshold, but says a curator can distinguish activity as present or absent. Approved: Y. Proposed: PS3_Supporting / BS3_Supporting.
+
+**Radiosensitivity — Mitui 2009 (PMID 18634022; DOI 10.1002/humu.20805).** Stable expression in AT7LA1 LCLs; quantitative MTT survival fraction after 1 Gy, with CdCl2 induction. Biological and technical replication uncertain/not specified. Positive controls pMAT1 and NAT9 WT LCLs; negative AT7LA1. P/LP entry: 0; `c.5908C>T (p.Gln1970Ter)` unclear/data not shown. B/LB entry: 0; `c.1744T>C (p.Phe582Leu)` and `c.2119T>C (p.Ser707Pro)` unclear/data not shown. Statistical analysis uncertain/not specified. Normal SF >36% (50.1±13.5%); radiosensitive SF <21% (13.1±7.2%). Approved: Y. Proposed: PS3_Moderate only with kinase PS3_Supporting; BS3_Supporting can be added to kinase BS3_Supporting; no weight alone or if results conflict.
+
+**Radiosensitivity — Scott 2002 induced chromosome aberrations (PMID 11805335; DOI 10.1073/pnas.012329699).** Stable transfection in AT1ABR; 50 metaphases after 1 Gy gamma rays, with CdCl2 induction, scored for induced chromosome aberrations. Biological and technical replication uncertain/not specified. Positive WT cDNA and C3ABR cells; negative AT1ABR. The same five A-T mutant validation controls as the Scott kinase assay; zero B/LB controls. Statistical analysis uncertain/not specified. Authors state approximately 1 ICA as normal (<1.5 proposed); abnormal 2.98-3.20 ICA/metaphase. Approval cell: blank. Proposed strength and restrictions are the same radiosensitivity text above.
+
+**Radiosensitivity — Scott 2002 cell survival (PMID 11805335; DOI 10.1073/pnas.012329699).** Stable transfection in AT1ABR; viable cells counted daily through four days after 1-4 Gy, with CdCl2 induction. Biological-replicate cell: blank; technical row says “3; unclear if biological or technical.” Positive WT cDNA and C3ABR; negative AT1ABR. The same five A-T mutant validation controls; zero B/LB controls. Statistical analysis uncertain/not specified. The workbook says “propose % survival <10 at 4 days” for **normal** and “propose % survival >10 at 4 days” for **abnormal**; this counterintuitive direction is preserved as written. Approval cell: blank. Proposed strength and restrictions are the same radiosensitivity text above.
+
+> **Distributed-source discrepancy:** The core criterion permits BS3_Supporting when either an ATM-specific feature or radiosensitivity is rescued. The workbook's radiosensitivity proposal says no weight should be applied when radiosensitivity is available alone. Both instructions are retained; the package does not state which controls.
 
 ---
 
@@ -305,6 +326,8 @@ See **ATM PM3/BP2 table** for approach to assign points per proband.
 |------------------------|-------------------|---------------|-----------------------------------|-------------------------------|
 | **Phenotype confident** | 4.0 | 2.0 | 1.0 | 2.0 |
 | **Phenotype consistent** | 2.0 | 1.0 | 0.5 | 1.0 |
+
+**Table constraints:** the VUA must be sufficiently rare not to meet a benign population code, and other panel findings must be considered. A co-occurring P/LP variant must be classified under VCEP specifications. Trans is established by parental genotyping or may be assumed when the VUA is observed with at least two different P/LP variants; with multiple unknown-phase occurrences, at least one remains unknown-phase to allow for a cis occurrence. In a homozygous A-T patient, trans can also be inferred from consanguinity or cancer-consistent histories in both maternal and paternal lineages. No more than two homozygous individuals contribute.
 
 #### PM3 Evidence Strength Thresholds
 
@@ -582,6 +605,8 @@ See **ATM PM3/BP2 table** for approach to assign points per proband.
 |----------|----------|
 | **Supporting** | **Missense:** REVEL score ≤0.249; **Splicing:** SpliceAI ≤0.1 |
 
+The splice branch is not applied to missense variants.
+
 ---
 
 ### BP5 - Alternate Molecular Basis
@@ -730,7 +755,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 - Preserves reading frame, contains full coding sequence of one HEAT repeats and one FATKIN domain → **PVS1_N/A**
 - Proven NOT in tandem → **PVS1_N/A**
 
-**GT-AG ±1,2 Splice Sites (G>non-G at last nucleotide of exon when adjacent intronic sequence is not GT):**
+**GT-AG ±1,2 splice sites and G>non-G substitutions at the last exonic nucleotide:** when the adjacent intronic sequence is not `gtgrgt` (`r` = purine), the last-exonic-G variant may receive the same PVS1 code as the indicated splice outcome, but one strength lower.
 
 *N-Solenoid (HEAT repeats) - p.Met1_Glu1892, exons 2-38:*
 
@@ -748,8 +773,50 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Exon skipping/cryptic site disrupts reading frame, NOT predicted NMD (p.Leu2980_Val3056) | **PVS1** (List E - upgraded from PVS1_Strong) |
 | Special case: cryptic site preserves frame + very small indel + PROVEAN pathogenic | **PVS1_Supporting** (List F - downgraded from PVS1_Strong) |
 
+#### Canonical-site variant lists from `ATM PVS1.pdf`
+
+The attachment defines the following substitutions explicitly. These lists are operative boundaries, not examples. Red underlining in the source marks variants with experimental splice data but does not change the listed code.
+
+**List A — N-terminal HEAT, frame-disrupting/NMD-prone → PVS1**
+
+`c.72+1G>A/C/T`; `c.72+2T>A/C/G`; `c.73-2A>C/G/T`; `c.73-1G>A/C/T`; `c.185+1G>A/C/T`; `c.185+2T>A/C/G`; `c.186-2A>C/G/T`; `c.186-1G>A/C/T`; `c.331+1G>A/C/T`; `c.331+2T>A/C/G`; `c.497-2A>C/G/T`; `c.497-1G>A/C/T`; `c.662+1G>A/C/T`; `c.662+2T>A/C/G`; `c.663-2A>C/G/T`; `c.663-1G>A/C/T`; `c.901+1G>A/C/T`; `c.901+2T>A/C/G`; `c.902-2A>C/G/T`; `c.902-1G>A/C/T`; `c.1065+1G>A/C/T`; `c.1065+2T>A/C/G`; `c.1066-2A>C/G/T`; `c.1066-1G>A/C/T`; `c.1235+1G>A/C/T`; `c.1235+2T>A/C/G`; `c.1236-2A>C/G/T`; `c.1236-1G>A/C/T`; `c.1803-2A>C/G/T`; `c.1803-1G>A/C/T`; `c.1899-2A>C/G/T`; `c.1899-1G>A/C/T`; `c.2124+1G>A/C/T`; `c.2124+2T>A/C/G`; `c.2125-2A>C/G/T`; `c.2125-1G>A/C/T`; `c.2251-2A>C/G/T`; `c.2251-1G>A/C/T`; `c.2467-2A>G`; `c.2467-1G>A`; `c.2638+1G>A/C/T`; `c.2638+2T>A/C/G`; `c.2639-2A>C/G/T`; `c.2639-1G>A/C/T`; `c.2838+1G>A/C/T`; `c.2838+2T>A/C/G`; `c.2921+1G>A/C/T`; `c.2921+2T>A/C/G`; `c.2922-2A>C/G/T`; `c.2922-1G>A/C/T`; `c.3077+1G>A/C/T`; `c.3077+2T>A/C/G`; `c.3078-2A>C/G/T`; `c.3078-1G>A/C/T`; `c.3153+1G>A/C/T`; `c.3153+2T>A/C/G`; `c.3154-2A>C/G/T`; `c.3154-1G>A/C/T`; `c.3284+1G>A/C/T`; `c.3284+2T>A/C/G`; `c.3285-2A>C/G/T`; `c.3285-1G>A/C/T`; `c.3402+1G>A/C/T`; `c.3402+2T>A/C/G`; `c.3403-2A>C/G/T`; `c.3403-1G>A/C/T`; `c.3577-2A>C/G/T`; `c.3577-1G>A/C/T`; `c.3746+1G>A/C/T`; `c.3746+2T>A/C/G`; `c.3747-2A>C/G/T`; `c.3747-1G>A/C/T`; `c.3994-2A>C/G/T`; `c.3994-1G>A/C/T`; `c.4109+1G>A/C/T`; `c.4109+2T>A/C/G`; `c.4110-2A>C/G/T`; `c.4110-1G>A/C/T`; `c.4236+1G>A/C/T`; `c.4236+2T>A/C/G`; `c.4237-1G>A`; `c.4436+1G>A/C/T`; `c.4436+2T>A/C/G`; `c.4437-1G>A`; `c.4611+1G>A/C/T`; `c.4611+2T>A/C/G`; `c.4777-2A>C/G/T`; `c.4777-1G>A/C/T`; `c.4909+1G>A/C/T`; `c.4909+2T>A/C/G`; `c.5006-2A>C/G/T`; `c.5006-1G>A/C/T`; `c.5177+1G>A/C/T`; `c.5177+2T>A/C/G`; `c.5178-2A>C/G/T`; `c.5178-1G>A/C/T`; `c.5319+1G>A/C/T`; `c.5319+2T>A/C/G`; `c.5320-2A>C/G/T`; `c.5320-1G>A/C/T`; `c.5496+2T>A/C/G`; `c.5497-2A>C/G/T`; `c.5497-1G>A/C/T`; `c.5674+1G>A/C/T`; `c.5674+2T>A/C/G`; `c.5675-2A>G`; `c.5675-1G>A/C/T`; `c.5762+1G>A/C/T`; `c.5762+2T>A/C/G`.
+
+**List B — N-terminal HEAT, in-frame → PVS1_Strong**
+
+`c.332-2A>C/G/T`; `c.332-1G>A/C/T`; `c.496+1G>A/C/T`; `c.496+2T>A/C/G`; `c.1607+1G>A/C/T`; `c.1607+2T>A/C/G`; `c.1608-2A>C/G/T`; `c.1608-1G>A/C/T`; `c.1802+1G>A/C/T`; `c.1802+2T>A/C/G`; `c.1898+1G>A/C/T`; `c.1898+2T>A/C/G`; `c.2250+1G>A/C/T`; `c.2250+2T>A/C/G`; `c.2376+1G>A/C/T`; `c.2376+2T>A/C/G`; `c.2377-2A>C/G/T`; `c.2377-1G>A/C/T`; `c.2466+1G>A/C/T`; `c.2466+2T>A/C/G`; `c.3576+1G>A/C/T`; `c.3576+2T>A/C/G`; `c.3993+1G>A/C/T`; `c.3993+2T>A/C/G`; `c.4612-2A>C/G/T`; `c.4612-1G>A/C/T`; `c.4776+1G>A/C/T`; `c.4776+2T>A/C/G`; `c.4910-2A>C/G/T`; `c.4910-1G>A/C/T`; `c.5005+1G>A/C/T`; `c.5005+2T>A/C/G`; `c.5496+1G>A/C/T`.
+
+**List C — N-terminal HEAT, small in-frame/PROVEAN → PVS1_Supporting**
+
+| Canonical variants | PROVEAN |
+|---|---:|
+| `c.2467-2A>C/T`; `c.2467-1G>C/T` | -8.91 |
+| `c.2839-2A>C/G/T`; `c.2839-1G>A/C/T` | -17.71 |
+| `c.4237-2A>C/G/T`; `c.4237-1G>C/T` | -19.00 |
+| `c.4437-2A>C/G/T`; `c.4437-1G>C/T` | -20.08 |
+| `c.5675-2A>C/T` | -4.98 |
+
+**List D — C-terminal FATKIN, frame-disrupting/NMD-prone → PVS1**
+
+`c.5674+2T>A/C/G`; `c.5675-2A>G`; `c.5675-1G>A/C/T`; `c.5762+1G>A/C/T`; `c.5762+2T>A/C/G`; `c.5763-2A>C/G/T`; `c.5763-1G>A/C/T`; `c.6006+1G>A/C/T`; `c.6006+2T>A/C/G`; `c.6007-2A>C/G/T`; `c.6007-1G>A/C/T`; `c.6095+1G>A/C/T`; `c.6095+2T>A/C/G`; `c.6096-2A>C/G/T`; `c.6096-1G>A/C/T`; `c.6198+1G>A/C/T`; `c.6198+2T>A/C/G`; `c.6199-1G>A`; `c.6347+1G>A/C/T`; `c.6347+2T>A/G`; `c.6453-2A>C/G/T`; `c.6453-1G>A/C/T`; `c.6573-2A>C/G/T`; `c.6573-1G>A/C/T`; `c.6807+1G>A/C/T`; `c.6807+2T>A/G`; `c.7090-2A>C/G/T`; `c.7090-1G>A/C/T`; `c.7307+1G>A/C/T`; `c.7307+2T>A/C/G`; `c.7308-2A>C/G/T`; `c.7308-1G>A/C/T`; `c.7515+1G>A/C/T`; `c.7515+2C>A/G`; `c.7516-2A>C/G/T`; `c.7516-1G>A/C/T`; `c.7789-2A>C/G/T`; `c.7789-1G>A/C/T`; `c.7927+1G>A/C/T`; `c.7927+2T>A/C/G`; `c.8010+1G>A/C/T`; `c.8010+2T>A/C/G`; `c.8011-2A>C/G/T`; `c.8011-1G>A/C/T`; `c.8152-2A>G`; `c.8152-1G>A`; `c.8419-2A>G`; `c.8419-1G>A`; `c.8584+1G>A/C/T`; `c.8584+2T>A/C/G`; `c.8672-2A>C/G/T`; `c.8672-1G>A/C/T`; `c.8786+1G>A/C/T`; `c.8786+2T>A/G`; `c.8787-2A>C/G/T`; `c.8787-1G>A/C/T`; `c.8850+1G>A/C/T`; `c.8850+2T>A/C/G`; `c.8851-1G>A`.
+
+**List E — C-terminal FATKIN, in-frame or non-NMD PTC → PVS1**
+
+`c.5918+1G>A/C/T`; `c.5918+2T>A/C/G`; `c.5919-2A>C/G/T`; `c.5919-1G>A/C/T`; `c.6348-2A>C/G/T`; `c.6348-1G>A/C/T`; `c.6452+1G>A/C/T`; `c.6452+2T>A/C/G`; `c.6572+1G>A/C/T`; `c.6572+2T>A/C/G`; `c.6808-2A>C/G/T`; `c.6808-1G>A/C/T`; `c.6975+1G>A/C/T`; `c.6975+2T>A/C/G`; `c.6976-2A>C/G/T`; `c.6976-1G>A/C/T`; `c.7089+1G>A/C/T`; `c.7089+2T>A/C/G`; `c.7629+1G>A/C/T`; `c.7629+2T>A/G`; `c.7630-2A>C/G/T`; `c.7630-1G>A/C/T`; `c.7788+1G>A/C/T`; `c.7788+2T>A/C/G`; `c.8151+1G>A/C/T`; `c.8151+2T>A/C/G`; `c.8268+1G>A/C/T`; `c.8268+2T>A/C/G`; `c.8269-1G>A`; `c.8418+1G>A/C/T`; `c.8418+2T>A/C/G`; `c.8585-2A>C/G/T`; `c.8585-1G>A/C/T`; `c.8671+1G>A/C/T`; `c.8671+2T>A/C/G`; `c.8851-2A>C/G/T`; `c.8851-1G>C/T`; `c.8987+1G>A/C/T`; `c.8987+2T>A/G`; `c.8988-2A>C/G/T`; `c.8988-1G>A/C/T`.
+
+**List F — C-terminal FATKIN, small in-frame/PROVEAN → PVS1_Supporting**
+
+| Canonical variants | PROVEAN |
+|---|---:|
+| `c.6199-2A>C/G/T`; `c.6199-1G>C/T` | -14.76 |
+| `c.7928-2A>C/G/T`; `c.7928-1G>A/C/T` | -6.13 |
+| `c.8152-2A>C/T`; `c.8152-1G>C/T` | -73.69 |
+| `c.8269-2A>C/G/T`; `c.8269-1G>C/T` | -34.54 |
+| `c.8419-2A>C/T`; `c.8419-1G>C/T` | -6.32 |
+
+**No coding impact / no predicted splice alteration → PVS1_N/A:** `c.-31+1G>A/C/T`; `c.-31+2T>C/G/A`; `c.-30-2A>G/C/T`; `c.-30-1G>A/C/T`.
+
 **GC-AG ±1,2 Splice Sites:**
-- No splicing alteration predicted (creates GC functional site): c.6347+2T>, c.6807+2T>, c.7629+2T>, c.8786+2T>, c.8987+2T> → **PVS1_N/A**
+- No splicing alteration predicted (creates GC functional site): `c.6347+2T>C`, `c.6807+2T>C`, `c.7629+2T>C`, `c.8786+2T>C`, `c.8987+2T>C` → **PVS1_N/A**
 - Variant improves donor site: c.7515+2C>T → **PVS1_N/A**
 
 ### Appendix B: Population Frequency Thresholds Summary
@@ -789,6 +856,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.5.0 | 11/7/2025 | Uploaded supporting documents by individual codes (PVS1, PS1, PS3/BS3, PM3/BP2) instead of one packet. Moved notes from old packet to CSPEC for PS3 instructions. No changes to any specifications. |
+
+### Document corrections (2026-08-11)
+
+- Verified the full distributed package source-first: `ClinGen_ACMG_Specifications_ATM_v1.5.pdf`, `ATM PVS1.pdf`, `ATM PS1.pdf`, `ATM PM3_BP2.pdf`, and `ATM PS3_BS3.xlsx`.
+- Added the source DOI, the complete PVS1 canonical-site lists and explicit N/A substitutions, and every populated functional-workbook assay field.
+- Corrected the local Scott survival-threshold direction to the workbook's literal (counterintuitive) `<10` normal / `>10` abnormal wording; blank Scott approval cells remain blank rather than inferred.
+- Standardized the observed-RNA label to the source's `PVS1_Variable(RNA)` and recorded, without harmonizing, the core PDF's stray PALB2 gene name.
 
 ---
 
