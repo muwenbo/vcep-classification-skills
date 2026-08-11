@@ -1,6 +1,6 @@
 # Handoff — remediation of the remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-11 after the HBOP Cancer remediation round
+**Written:** 2026-08-07, revised 2026-08-11 after the Cerebral Creatine remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
@@ -11,14 +11,15 @@
 **Round 10 remediation commit:** `983d931`
 **Round 11 remediation commit:** `efe4f3d`
 **Round 12 remediation commit:** `71c56ff`
-**Working tree:** Round 12 is complete and committed; this handoff revision follows it.
+**Round 13 remediation commit:** `69a9d62`
+**Working tree:** Round 13 is complete and committed; this handoff revision follows it.
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–12).** Eleven batches have been completed since this
+**Revision note (rounds 2–13).** Twelve batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
@@ -27,9 +28,10 @@ remediated source-first (§7a, §13), as are all seven Congenital Myopathies
 specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
 Epilepsy Sodium Channel specs (§7d, §13), all three Monogenic Diabetes specs
 (§7e, §13), all three remaining Platelet Disorders specs (§7f, §13), both
-Hereditary Hemorrhagic Telangiectasia specs (§7g, §13), and both HBOP Cancer
-specs (§7h, §13). Seventeen specifications remain for a future session.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g, §7h and §13 before
+Hereditary Hemorrhagic Telangiectasia specs (§7g, §13), both HBOP Cancer
+specs (§7h, §13), and both Cerebral Creatine specs (§7i, §13). Fifteen
+specifications remain for a future session.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g, §7h, §7i and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -85,17 +87,17 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 17 specs remain
+## 2. Scope: 15 specs remain
 
-122 unique spec IDs; 105 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 107 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
 round 8, the 3 Monogenic Diabetes specs of round 9, the 3 remaining
-Platelet Disorders specs of round 10, the 2 HHT specs of round 11, and the 2
-HBOP Cancer specs of round 12).
-**17 remain.**
+Platelet Disorders specs of round 10, the 2 HHT specs of round 11, the 2 HBOP
+Cancer specs of round 12, and the 2 Cerebral Creatine specs of round 13).
+**15 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -103,7 +105,7 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 2 each | Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
+| 2 each | von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
 | 1 each | 9 further panels |
 
 **Batch by panel, not alphabetically.** The 2026-08-07 run put nine sibling
@@ -344,13 +346,15 @@ monogenic_diabetes = {"GN017","GN085","GN086"}  # round 9
 platelet_disorders = {"GN079","GN082","GN083"}  # round 10
 hht = {"GN135","GN136"}  # round 11
 hbop = {"GN020","GN077"}  # round 12
+cerebral_creatine = {"GN025","GN026"}  # round 13
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
                                 | epilepsy_sodium | monogenic_diabetes
-                                | platelet_disorders | hht | hbop))
-print(len(remaining))  # 17
+                                | platelet_disorders | hht | hbop
+                                | cerebral_creatine))
+print(len(remaining))  # 15
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -389,9 +393,14 @@ see §2a.
    (`efe4f3d`). ACVRL1 (GN135) and ENG (GN136); see §7g and §13.
 ~~11. HBOP Cancer (2)~~ — **done, round 12** (`71c56ff`). ATM (GN020) and
    PALB2 (GN077); see §7h and §13.
+~~12. Cerebral Creatine (2)~~ — **done, round 13** (`69a9d62`). GATM (GN025)
+   and GAMT (GN026); see §7i and §13.
 
-A future session should choose the next panel from the 17-entry list produced
-by §6 rather than starting automatically.
+The recommended next batch is the von Willebrand Disease pair: VWF GN081 and
+VWF GN090. They are two specifications for the same gene, so a panel-first
+source audit should make shared versus specification-specific material easier
+to distinguish. Otherwise choose one of the other two-spec panels from the
+15-entry list produced by §6 rather than working alphabetically.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -862,7 +871,69 @@ filename changed.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 17
+## 7i. Cerebral Creatine remediation — complete
+
+Round 13 (`69a9d62`) remediated GATM (GN025) and GAMT (GN026). The complete
+pair comprised two core PDFs, three PVS1 artifacts, two exon workbooks, two
+functional workbooks, two MAF slide decks, and a GAMT REVEL slide. All 11
+artifacts were inventoried and inspected source-first: 41 core-PDF pages and
+25 rendered Office pages, with raw workbook cells, PowerPoint XML, images,
+notes, and flowchart topology checked where print layout obscured content.
+The independent baseline was frozen before either local body was opened at
+`/tmp/cerebral-creatine-round13.Ncii69/SOURCE_BASELINE.md`.
+
+Recurring and high-impact findings:
+
+- Both guidelines carried a full numeric PM3 point matrix even though neither
+  distributed package ships it; both cores only refer to external SVI PM3
+  guidance. The undistributed matrices were removed while the four permitted
+  strengths and phasing requirements were retained.
+- GATM's PVS1 appendix had collapsed a genuine shipped tree, losing the
+  biologically relevant transcript gate, frequent-LoF/exon-absence routes,
+  duplication outcomes, and conditional initiation branches. Its core assigns
+  every initiation variant Moderate, while the shipped tree can assign N/A,
+  Moderate, or Supporting. Both readings are now explicit, along with the
+  strict `>10%`/`<10%` exact-10% gap.
+- GAMT's flowchart had omitted both no/unknown-impact duplication routes and
+  the proven non-tandem N/A route. Its workbook tab is literally `GAA_PVS1`,
+  an apparent carry-over, though its content is GAMT-specific. GAMT's core
+  also retains stale language routing noncanonical splice assay evidence to
+  PS3 despite its v2 release notes and governing SVI paragraph moving RNA
+  evidence under PVS1.
+- Both functional workbooks say normal/abnormal thresholds were not provided,
+  while their cores supply pathogenic `<`/`<=15%` and benign `>=30%` cutoffs.
+  GATM additionally contains a wrong-gene `% ... GAMT activity` label and
+  contradictory duplicate-versus-triplicate replicate statements. GAMT's
+  three approved Supporting columns have questioned technical replicates and
+  uneven validation controls. The local invented GATM 16%-29% indeterminate
+  band was removed.
+- Source typos and coordinate conflicts are preserved: GATM exon 9 prints
+  `*985` while calling c.1272 the final stop nucleotide; GAMT exon 6 prints
+  `*333` while calling c.711 the final stop nucleotide. GAMT's PVS1 sheet also
+  spells `cryptic` as `crytpic`; GATM's slide spells `predicted` as `precited`.
+- GAMT's local REVEL table had inferred exclusive upper bounds. The core gives
+  Strong `>=0.932`, Moderate `0.773-0.932`, and Supporting `0.644-0.773`
+  without endpoint operators for the ranges, producing an unresolved boundary
+  ambiguity. The REVEL slide itself gives only P/LP n=20, VUS n=24, and B/LB
+  n=3, with no cutoffs.
+- Both MAF decks are now transcribed beyond their final thresholds, including
+  prevalence assumptions, maximum allelic contributions, calculator values,
+  and source annotations. Both specification DOIs and every physical source
+  filename are recorded in the guidelines' dated correction histories.
+
+Round 13 final gate: both exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 32/32;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+`git diff --check` was clean; and the only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue. `check_updates.py` was deliberately
+skipped because this same-version correction did not touch the registry.
+
+---
+
+## 8. Loose ends unrelated to the remaining 15
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -1096,7 +1167,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–12 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–13 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -1115,19 +1186,19 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–12 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–13 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), `78ad52b`
 (round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
 (round 8), `f298ac8` (round 9), `983d931` (round 10), `efe4f3d`
-(round 11), and `71c56ff` (round 12). Rounds 5–12
+(round 11), `71c56ff` (round 12), and `69a9d62` (round 13). Rounds 5–13
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–12 summary
+## 13. Rounds 2–13 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -1333,6 +1404,25 @@ was clean; and the only version/filename mismatch remains the pre-existing
 GN094 LZTR1 issue. `check_updates.py` was deliberately skipped because this
 same-version correction did not touch the registry.
 
+**Round 13 — `69a9d62`** — both Cerebral Creatine specs: GATM (GN025) and
+GAMT (GN026). The complete 11-artifact pair was inspected source-first,
+including both gene-specific PVS1 artifacts, exon and assay workbooks, MAF
+decks, and the GAMT REVEL plot. Recurring defects were undistributed PM3
+matrices, incomplete PVS1 routes, an invented assay activity band, normalized
+source-coordinate typos, inferred REVEL endpoint operators, incomplete MAF
+and functional transcription, missing DOI provenance, and silently reconciled
+core/appendix conflicts. Full findings and unresolved source caveats are in
+§7i.
+
+Round 13 final gate: both exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 32/32;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry was byte-unchanged; `git diff --check`
+was clean; and the only version/filename mismatch remains the pre-existing
+GN094 LZTR1 issue. `check_updates.py` was deliberately skipped because this
+same-version correction did not touch the registry.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1346,7 +1436,7 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- A future session should choose the next panel from the 17-spec inventory in
+- A future session should choose the next panel from the 15-spec inventory in
   §6, then load only the artifact
   skills its packages require. Use `documents:documents`,
   `presentations:Presentations`, and `spreadsheets:Spreadsheets` when DOCX,
