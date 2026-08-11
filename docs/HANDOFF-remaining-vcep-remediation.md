@@ -1,6 +1,6 @@
-# Handoff — remediation of the 21 remaining VCEP guidelines
+# Handoff — remediation of the 19 remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-10 after the Platelet Disorders remediation round
+**Written:** 2026-08-07, revised 2026-08-11 after the HHT remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
@@ -9,14 +9,15 @@
 **Round 8 remediation commit:** `bb87729`
 **Round 9 remediation commit:** `f298ac8`
 **Round 10 remediation commit:** `983d931`
-**Working tree:** Round 10 is complete and committed; this handoff revision follows it. The user asked to stop after this batch.
+**Round 11 remediation commit:** `efe4f3d`
+**Working tree:** Round 11 is complete and committed; this handoff revision follows it.
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–10).** Nine batches have been completed since this
+**Revision note (rounds 2–11).** Ten batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
@@ -24,9 +25,10 @@ source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
 specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
 Epilepsy Sodium Channel specs (§7d, §13), all three Monogenic Diabetes specs
-(§7e, §13), and all three remaining Platelet Disorders specs (§7f, §13).
-Twenty-one specifications remain for a future session.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f and §13 before
+(§7e, §13), all three remaining Platelet Disorders specs (§7f, §13), and both
+Hereditary Hemorrhagic Telangiectasia specs (§7g, §13). Nineteen
+specifications remain for a future session.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -82,15 +84,16 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 21 specs remain
+## 2. Scope: 19 specs remain
 
-122 unique spec IDs; 101 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 103 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
-round 8, the 3 Monogenic Diabetes specs of round 9, and the 3 remaining
-Platelet Disorders specs of round 10). **21 remain.**
+round 8, the 3 Monogenic Diabetes specs of round 9, the 3 remaining
+Platelet Disorders specs of round 10, and the 2 HHT specs of round 11).
+**19 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -98,7 +101,7 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy, Hereditary Hemorrhagic Telangiectasia |
+| 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
 | 1 each | 9 further panels |
 
 **Batch by panel, not alphabetically.** The 2026-08-07 run put nine sibling
@@ -337,13 +340,14 @@ cardiomyopathy = {"GN095","GN098","GN099","GN100","GN101","GN102","GN103"}  # ro
 epilepsy_sodium = {"GN067","GN068","GN069","GN070","GN076"}  # round 8
 monogenic_diabetes = {"GN017","GN085","GN086"}  # round 9
 platelet_disorders = {"GN079","GN082","GN083"}  # round 10
+hht = {"GN135","GN136"}  # round 11
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
                                 | epilepsy_sodium | monogenic_diabetes
-                                | platelet_disorders))
-print(len(remaining))  # 21
+                                | platelet_disorders | hht))
+print(len(remaining))  # 19
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -378,9 +382,11 @@ see §2a.
    (GN017), HNF4A (GN085), and GCK (GN086); see §7e and §13.
 ~~9. Platelet Disorders (3)~~ — **done, round 10** (`983d931`). GP1BA
    (GN079), GP1BB (GN082), and GP9 (GN083); see §7f and §13.
+~~10. Hereditary Hemorrhagic Telangiectasia (2)~~ — **done, round 11**
+   (`efe4f3d`). ACVRL1 (GN135) and ENG (GN136); see §7g and §13.
 
-The user asked to stop after round 10. A future session should choose the next
-panel from the 21-entry list produced by §6 rather than starting automatically.
+A future session should choose the next panel from the 19-entry list produced
+by §6 rather than starting automatically.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
 first.** It is cheap, it needs no agent, and it tells you which specs in the
@@ -752,7 +758,56 @@ targeted exactness and provenance fixes.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 21
+## 7g. Hereditary Hemorrhagic Telangiectasia remediation — complete
+
+Round 11 (`efe4f3d`) remediated ACVRL1 (GN135) and ENG (GN136). Each package
+contained a 16-page core PDF, a one-slide gene-specific PVS1 deck, the shared
+one-page HHT phenotype DOCX, and the shared seven-sheet functional-assay
+workbook. All eight advertised files were present and inspected source-first;
+the phenotype and workbook artifacts are byte-identical across the two genes.
+
+Recurring and high-impact findings:
+
+- ACVRL1's generic local PVS1 prose asserted last-exon and penultimate-exon
+  rules absent from the shipped tree. ENG's appendix was more dangerous: it
+  invented Strong routes for non-NMD nonsense and splice outcomes and replaced
+  strict source `>10%` branches with `≥10%`. Both appendices now transcribe the
+  actual nonsense/frameshift, splice, deletion, duplication, and initiation
+  routes and leave unsupplied outcomes open.
+- ACVRL1's tree supplies no role-unknown route for removal of 10% or more.
+  ENG supplies no critical-region or ≥10% route for non-NMD
+  nonsense/frameshift or splice-frame-disrupting variants; where `>10%` and
+  `<10%` branches do exist, exact 10% is unmapped. Both deletion trees require
+  an NMD-producing deleted exon to be present in a biologically relevant
+  transcript but supply no negative outcome. Raw connector endpoint bindings
+  are incomplete for 13/51 ACVRL1 and 15/51 ENG connectors.
+- The shared phenotype document is now fully transcribed. It forbids treating
+  nosebleeds alone as sufficient for PS4, defines the four Curaçao categories
+  and three-of-four PP4 threshold, and says an individual cannot be assigned
+  unaffected status with confidence for segregation analysis.
+- The workbook contains 729 populated cells representing 39 approved assay
+  instances across seven visible sheets. Columns B:F of the intracellular
+  signaling sheet are hidden but populated. Both guidelines now retain every
+  populated assay-instance field, blank, literal question mark, control,
+  threshold, DOI/PMID, approval, and proposed strength.
+- Source conflicts remain explicit: all five mRNA rows propose unqualified
+  `PS3; BS3_Supporting`, although two are not splicing assays and the core
+  reserves PS3 Strong for mRNA splicing; protein rows propose BS3_Supporting
+  although the core says normal expression cannot establish benignity; the
+  morphology tubulogenesis bands overlap; and the somatic threshold leaves
+  exactly 0.01% unmapped. The source gives no numeric assay-stacking rule.
+- ENG's prior functional appendix carried unsourced assay PMIDs and both files
+  lacked source DOI provenance. Those citations were removed or replaced with
+  the workbook transcription, all source-supplied reference DOIs were restored,
+  and ENG's controlling classification-combination member lists were expanded.
+
+Regression tests now lock the gene-specific PVS1 routes, source gaps, complete
+39-instance workbook transcription, shared conflicts, and correction-history
+provenance. No registry entry, version, or guideline filename changed.
+
+---
+
+## 8. Loose ends unrelated to the remaining 19
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -887,6 +942,21 @@ Accumulated across sessions; worth sending as a batch.
   27 hidden `Mufti` populated cells. The hidden sheet is unrelated VWF/FVIII
   working material. Was it intentionally distributed, and should curators
   ignore it?
+- **HHT PVS1 tree gaps.** ACVRL1 supplies no role-unknown route for removal of
+  10% or more. ENG supplies no critical-region or ≥10% route for non-NMD
+  nonsense/frameshift and frame-disrupting splice variants; its other branches
+  use strict `>10%`/`<10%`, leaving exact 10% open. Both deletion trees omit
+  the outcome when the deleted exon is absent from biologically relevant
+  transcripts. The decks also contain 13/51 and 15/51 incomplete raw connector
+  endpoint bindings. Which paths and endpoints are intended?
+- **HHT functional-assay conflicts.** The shared workbook proposes unqualified
+  `PS3; BS3_Supporting` for all five mRNA rows, including two entries not
+  described as splicing, and proposes BS3_Supporting for protein-expression
+  rows although the core excludes normal expression as benign evidence. It
+  also overlaps normal/abnormal tubulogenesis time bands and omits exactly
+  0.01% from its somatic frequency thresholds. Which artifact and boundaries
+  govern, and what conversion should be used when multiple Supporting assays
+  are concordant?
 - **RASopathy shared scoring conflicts.** The PDF bodies give BS2 Strong at
   -4 while the distributed image gives -3. The bodies give BP2/BP5 tiers
   `>=(-4)`/`>=(-2)`/`>=(-1)`, while the shared image gives -3/N/A/-1 with no
@@ -961,7 +1031,7 @@ Every remediation batch should end with:
 3. Registry/disk consistency — entry count, orphans, missing, and that every
    `guideline_file` matches `v{version}.md`.
 4. `check_vcep_spec.py <gene>` for every touched gene.
-5. Full test suite: `plugins/vcep-spec/skills/vcep-spec/tests` (26) and
+5. Full test suite: `plugins/vcep-spec/skills/vcep-spec/tests` (28) and
    `plugins/variant-classifier/skills/variant-classifier/tests` (17).
 6. **Sanity-check outputs against their own source folder** — after the ACADVL
    near-miss, confirm no guideline contains content its package does not have.
@@ -971,7 +1041,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–10 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–11 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -990,18 +1060,19 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–10 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–11 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
 (round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
-(round 8), `f298ac8` (round 9), and `983d931` (round 10). Rounds 5–10
+(round 8), `f298ac8` (round 9), `983d931` (round 10), and `efe4f3d`
+(round 11). Rounds 5–11
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–10 summary
+## 13. Rounds 2–11 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -1168,6 +1239,27 @@ the independent three-spec cross-panel scratch review passed; and
 `git diff --check` was clean. The only version/filename mismatch remains the
 pre-existing GN094 LZTR1 issue.
 
+**Round 11 — `efe4f3d`** — both Hereditary Hemorrhagic Telangiectasia specs:
+ACVRL1 (GN135) and ENG (GN136). The complete eight-artifact pair was
+preflighted and drafted source-first. Recurring defects were generic or
+invented PVS1 topology, changed strict comparators, incomplete phenotype and
+functional-attachment transcription, unsourced assay citations, compressed
+classification member lists, and missing DOI provenance. Full findings and
+unresolved source caveats are in §7g and §9.
+
+Round 11 final gate: both exact registry-to-guideline mappings passed;
+`check_updates.py` reported 0 new and 0 outdated released specifications;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 28/28;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17 plus
+8 subtests; all eight advertised source filenames appeared in the dated
+correction histories; the shared 39-instance workbook transcription matched
+both byte-identical source files; registry/disk consistency passed at 125
+entries and 125 files with no missing or orphaned guidelines; the registry
+SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+and `git diff --check` was clean. The only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1181,8 +1273,8 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- The user deliberately stopped after round 10. A future session should choose
-  the next panel from the 21-spec inventory in §6, then load only the artifact
+- A future session should choose the next panel from the 19-spec inventory in
+  §6, then load only the artifact
   skills its packages require. Use `documents:documents`,
   `presentations:Presentations`, and `spreadsheets:Spreadsheets` when DOCX,
   PPTX, or XLSX artifacts are present; inspect raw Office XML/media when
