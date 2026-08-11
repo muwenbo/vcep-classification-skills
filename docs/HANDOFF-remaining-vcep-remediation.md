@@ -1,6 +1,6 @@
-# Handoff — remediation of the 19 remaining VCEP guidelines
+# Handoff — remediation of the remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-11 after the HHT remediation round
+**Written:** 2026-08-07, revised 2026-08-11 after the HBOP Cancer remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
@@ -10,14 +10,15 @@
 **Round 9 remediation commit:** `f298ac8`
 **Round 10 remediation commit:** `983d931`
 **Round 11 remediation commit:** `efe4f3d`
-**Working tree:** Round 11 is complete and committed; this handoff revision follows it.
+**Round 12 remediation commit:** `71c56ff`
+**Working tree:** Round 12 is complete and committed; this handoff revision follows it.
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
 "decide remediation scope for the ~84 unaudited guidelines" is still the open
 question; what changed is that we now know **how not to do it**, and roughly
 what it costs to do it properly.
 
-**Revision note (rounds 2–11).** Ten batches have been completed since this
+**Revision note (rounds 2–12).** Eleven batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
@@ -25,10 +26,10 @@ source-first (§13). All seven Limb Girdle Muscular Dystrophy specs are now also
 remediated source-first (§7a, §13), as are all seven Congenital Myopathies
 specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
 Epilepsy Sodium Channel specs (§7d, §13), all three Monogenic Diabetes specs
-(§7e, §13), all three remaining Platelet Disorders specs (§7f, §13), and both
-Hereditary Hemorrhagic Telangiectasia specs (§7g, §13). Nineteen
-specifications remain for a future session.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g and §13 before
+(§7e, §13), all three remaining Platelet Disorders specs (§7f, §13), both
+Hereditary Hemorrhagic Telangiectasia specs (§7g, §13), and both HBOP Cancer
+specs (§7h, §13). Seventeen specifications remain for a future session.
+Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g, §7h and §13 before
 planning further work; the rest of the document stands.
 
 ---
@@ -84,16 +85,17 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 19 specs remain
+## 2. Scope: 17 specs remain
 
-122 unique spec IDs; 103 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; 105 covered so far (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
 round 8, the 3 Monogenic Diabetes specs of round 9, the 3 remaining
-Platelet Disorders specs of round 10, and the 2 HHT specs of round 11).
-**19 remain.**
+Platelet Disorders specs of round 10, the 2 HHT specs of round 11, and the 2
+HBOP Cancer specs of round 12).
+**17 remain.**
 Full list: run the snippet in §6.
 
 Grouped by VCEP, because panels share source conventions and defects tend to
@@ -101,7 +103,7 @@ repeat within a panel:
 
 | n | VCEP |
 |---|---|
-| 2 each | HBOP Cancer, Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
+| 2 each | Cerebral Creatine, von Willebrand, X-linked Retinal, Leber Congenital Amaurosis / early-onset Retinal Dystrophy |
 | 1 each | 9 further panels |
 
 **Batch by panel, not alphabetically.** The 2026-08-07 run put nine sibling
@@ -341,13 +343,14 @@ epilepsy_sodium = {"GN067","GN068","GN069","GN070","GN076"}  # round 8
 monogenic_diabetes = {"GN017","GN085","GN086"}  # round 9
 platelet_disorders = {"GN079","GN082","GN083"}  # round 10
 hht = {"GN135","GN136"}  # round 11
+hbop = {"GN020","GN077"}  # round 12
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
                                 | epilepsy_sodium | monogenic_diabetes
-                                | platelet_disorders | hht))
-print(len(remaining))  # 19
+                                | platelet_disorders | hht | hbop))
+print(len(remaining))  # 17
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -384,8 +387,10 @@ see §2a.
    (GN079), GP1BB (GN082), and GP9 (GN083); see §7f and §13.
 ~~10. Hereditary Hemorrhagic Telangiectasia (2)~~ — **done, round 11**
    (`efe4f3d`). ACVRL1 (GN135) and ENG (GN136); see §7g and §13.
+~~11. HBOP Cancer (2)~~ — **done, round 12** (`71c56ff`). ATM (GN020) and
+   PALB2 (GN077); see §7h and §13.
 
-A future session should choose the next panel from the 19-entry list produced
+A future session should choose the next panel from the 17-entry list produced
 by §6 rather than starting automatically.
 
 **Before dispatching any batch, run the §2a grep across the whole panel
@@ -807,7 +812,57 @@ provenance. No registry entry, version, or guideline filename changed.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 19
+## 7h. HBOP Cancer remediation — complete
+
+Round 12 (`71c56ff`) remediated ATM (GN020) and PALB2 (GN077). ATM's complete
+package comprised a 20-page core PDF, three decision/point-table PDFs and a
+two-sheet functional workbook; PALB2 comprised a 21-page core PDF and a
+30-page Word attachment with two nested operative tables and six embedded
+images. All 96 rendered source/workbook pages and all original embedded images
+were inspected source-first. PALB2's packaged document renderer lacked
+`pdf2image`, so the documented LibreOffice plus Poppler fallback was used and
+visually verified. Its XML contains 18 visible tracked insertions, no tracked
+deletions and no comment part.
+
+Recurring and high-impact findings:
+
+- ATM's local appendix summarized six dense PVS1 canonical-site lists but
+  omitted every row. The remediation restores Lists A-F, the explicit
+  non-coding and functional-GC N/A substitutions, last-exonic-G motif rule,
+  initiation/NMD/domain/deletion/duplication routes and small-indel PROVEAN
+  scores.
+- ATM's local Scott viability thresholds were reversed relative to the literal
+  workbook. They now preserve the source's counterintuitive proposed `<10`
+  normal / `>10` abnormal direction. All 149 populated cells across the six
+  kinase/radiosensitivity assay columns are represented, including blank Scott
+  approval cells, controls, replicate limitations, readouts and DOIs.
+- The ATM package conflicts on benign radiosensitivity: the core permits
+  BS3_Supporting when either ATM-specific function or radiosensitivity is
+  rescued, while the workbook says radiosensitivity alone receives no weight.
+  Both are reported. The core also contains a stray PALB2 name in ATM RNA
+  guidance; the ATM attachment supplies the applicable ATM wording.
+- PALB2 had no operative PVS1 tree locally. The remediation restores the
+  initiation, NMD/non-NMD C-terminal, deletion, duplication and splice routes,
+  Lists A-D, exon-map overhang semantics, YHYS branches and special exon 2/3/6
+  caveats. It also restores the complete PS1 splice matrix and the omitted PM3
+  and BS2 per-proband point tables.
+- PALB2's local domain appendix elevated a stray Word sentence about FATKIN
+  into a real PALB2 domain. FATKIN is absent from the supplied PALB2 map and
+  decision tree; the fabricated domain row is removed and the upstream
+  carry-over is explicitly recorded.
+- Further PALB2 source conflicts remain explicit: Ensembl transcript `.8`
+  versus `.9`, PS1 PMID 37352859 versus 36865205, a deletion box that says
+  `<10% (>356 nt)`, and incompatible core-versus-Word Very Strong + Supporting
+  combination-member lists.
+
+Regression tests lock both source DOIs, ATM Lists/GC exclusions and literal
+workbook thresholds, PALB2 PVS1/PS1/PM3/BS2 content, source discrepancies and
+removal of the PALB2 FATKIN domain. No registry entry, version or guideline
+filename changed.
+
+---
+
+## 8. Loose ends unrelated to the remaining 17
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -1041,7 +1096,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–11 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–12 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -1060,19 +1115,19 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–11 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–12 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
-`2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), and `78ad52b`
+`2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), `78ad52b`
 (round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
-(round 8), `f298ac8` (round 9), `983d931` (round 10), and `efe4f3d`
-(round 11). Rounds 5–11
+(round 8), `f298ac8` (round 9), `983d931` (round 10), `efe4f3d`
+(round 11), and `71c56ff` (round 12). Rounds 5–12
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–11 summary
+## 13. Rounds 2–12 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -1260,6 +1315,24 @@ SHA-256 remained
 and `git diff --check` was clean. The only version/filename mismatch remains
 the pre-existing GN094 LZTR1 issue.
 
+**Round 12 — `71c56ff`** — both HBOP Cancer specs: ATM (GN020) and PALB2
+(GN077). The complete seven-artifact pair was preflighted and drafted
+source-first, including ATM's image-only PVS1 lists and workbook, and PALB2's
+nested Word tables and six embedded figures. Recurring defects were omitted
+operative attachment tables, a reversed workbook threshold, compressed assay
+transcription, an attachment carry-over promoted into a false PALB2 FATKIN
+domain, missing DOI provenance and silently reconciled package conflicts. Full
+findings and unresolved source caveats are in §7h.
+
+Round 12 final gate: both exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 30/30;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry was byte-unchanged; `git diff --check`
+was clean; and the only version/filename mismatch remains the pre-existing
+GN094 LZTR1 issue. `check_updates.py` was deliberately skipped because this
+same-version correction did not touch the registry.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1273,7 +1346,7 @@ not "fix" a registry entry on the strength of a source folder name.
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- A future session should choose the next panel from the 19-spec inventory in
+- A future session should choose the next panel from the 17-spec inventory in
   §6, then load only the artifact
   skills its packages require. Use `documents:documents`,
   `presentations:Presentations`, and `spreadsheets:Spreadsheets` when DOCX,
