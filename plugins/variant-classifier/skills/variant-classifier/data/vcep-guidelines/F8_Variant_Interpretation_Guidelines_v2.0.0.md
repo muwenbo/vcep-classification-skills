@@ -830,4 +830,33 @@ For F8 variants where criteria codes for benign and pathogenic evidence apply, t
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_F8_v2.0.pdf`
+- `F8 Approved Functional Assays.xlsx`
+- `F8 Decision Tree for PVS1 Rule Code.pptx`
+- `F8_F9 Pilot Study Results.xlsx`
+- `Guidance for Combined De Novo Rule Code (PS2_PM6).docx`
+- `Guidance for Combining Pathogenic and Benign Rule Codes.docx`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file package source-first, including slide connectors and embedded decision-tree images, all workbook sheets/formulas, and both Word guidance documents.
+- Verified the combined PS2/PM6 matrix, including the low-specificity/high-heterogeneity cap, and retained its four exact evidence totals without interpolating unprinted bands.
+- Verified that the functional workbook and core restrict the approved assay strengths and that the pilot workbook is curation-validation data, not an additional rule table.
+- Kept the separate pathogenic/benign conflict guidance and its point-based endpoint distinct from the ordinary ACMG/AMP combining rules.
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.0.0 remediation | August 17, 2026 | Re-transcribed all six distributed artifacts, including PVS1 topology, functional and pilot workbooks, de novo guidance, and conflicting-code guidance. |
+| 2.0.0 | January 20, 2026 | ClinGen Coagulation Factor Deficiency VCEP version 2.0 release. |
+
+---
+
 *This document was compiled from ClinGen Coagulation Factor Deficiency VCEP specifications v2.0.0. For the most current version, please refer to the ClinGen website.*

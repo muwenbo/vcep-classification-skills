@@ -596,15 +596,43 @@ The following flowchart guides the application of PVS1 criteria for ABCA4 varian
 
 ---
 
-## Document Information
+## Distributed Source Package
 
-**Prepared by:** ClinGen ABCA4 Variant Curation Expert Panel
-**Version:** 1.0.0
-**Release Date:** November 14, 2025
-**Last Updated:** January 2026
-
-**Disclaimer:** These guidelines represent the expert consensus of the ClinGen ABCA4 VCEP and should be used in conjunction with clinical judgment. Variant interpretation should consider the totality of evidence and the specific clinical context.
+- `ClinGen_ACMG_Specifications_ABCA4_v1.0.pdf`
+- `ABCA4 Functional assay Guidance.xlsx`
+- `Functional assay Guidance.xlsx` — byte-identical duplicate of the preceding file
+- `ABCA4 PM3 Guidance.docx`
+- `ABCA4 PP4 Proband Scoring Table.pptx`
+- `ABCA4 PS2 Guidance.docx`
+- `ABCA4 PVS1 Flowchart.pdf`
+- `BS1 Exclusion Variants.docx`
 
 ---
 
-*For questions or updates regarding these guidelines, please contact the ClinGen ABCA4 VCEP through the ClinGen website.*
+## Document corrections (2026-08-17)
+
+- Re-checked the complete eight-artifact package source-first (nine physical files because the functional workbook is duplicated byte-for-byte), including nested Word tables, slide content, workbook formulas, and the image-based PVS1 flowchart.
+- Recorded the duplicate functional workbook as one evidence source rather than two and verified the separate expression, ATPase, combined, localization, and mouse-model assay boundaries.
+- Re-transcribed the PM3 and PS2 guidance footnotes, PP4 phenotype point list/cutoffs, BS1 exclusion list, and ABCA4-specific PVS1 routes.
+- Removed local authorship and update claims not made by the package: this file is a local transcription sourced from the ABCA4 VCEP, not a document prepared by that panel.
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed the complete package, documented the duplicate workbook, and removed fabricated local-document provenance. |
+| 1.0.0 | November 14, 2025 | Initial ClinGen ABCA4 VCEP release. |
+
+---
+
+## Document Information
+
+**Source panel:** ClinGen ABCA4 Variant Curation Expert Panel
+**Version:** 1.0.0
+**Release Date:** November 14, 2025
+
+---
+
+*This local transcription was compiled from the distributed ClinGen ABCA4 VCEP package. For the current authoritative specification, refer to ClinGen.*

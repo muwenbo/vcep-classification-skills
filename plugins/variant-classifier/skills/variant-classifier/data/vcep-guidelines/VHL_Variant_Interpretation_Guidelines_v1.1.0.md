@@ -604,10 +604,33 @@ The Danish Criteria (Binderup et al. 2022, PMID:35709961) provide updated diagno
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_VHL_v1.1.pdf`
+- `Denovo-Confirmed-and-Not-Confirmed.jpg`
+- `Functional Assay Documentation.xlsx`
+- `Germline and Somatic Hotspots.jpg`
+- `Meiosis.jpg`
+- `PS4 Cut-Offs.jpg`
+- `Proband Scoring.jpg`
+- `VHL PVS1 Decision Tree.jpg`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete eight-file package source-first, including all six image-only scoring/tree artifacts and every functional-workbook sheet.
+- Verified the de novo table's one-point cap for the high-genetic-heterogeneity row and the PS4 image's explicit 1 / 2–4 / 5–15 / 16+ cutoffs.
+- Re-transcribed the germline/somatic hotspot and meiosis images and retained their different evidence purposes rather than merging their numeric rules.
+- Verified all five approved functional-assay sheets and preserved the workbook's literal labels, including its recurring misspelling `degredation`, as source metadata rather than silently correcting provenance.
+
+---
+
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.1.0 remediation | August 17, 2026 | Re-transcribed all eight distributed artifacts, including six image-only decision/scoring tables and the five-sheet functional workbook. |
 | 1.1.0 | 1/10/2025 | Clarifications to PM2, BA1, BS1. Updated to gnomAD v4. Changed PM2_Supporting threshold. Disease entity and transcript added. |
 
 ---

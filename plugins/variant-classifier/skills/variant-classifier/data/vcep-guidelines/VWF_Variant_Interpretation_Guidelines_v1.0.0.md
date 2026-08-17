@@ -583,10 +583,32 @@ The following ACMG/AMP criteria are **not applicable** for VWD Type 2 variant cu
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_VWF_v1.0.pdf`
+- `Introduction to von Willebrand disease.docx`
+- `VWD 2A_2M_2N functional assays.xlsx`
+- `VWD Type 2 Rule Set Instructions for Use.docx`
+- `VWD type 2 List of Approved Functional Assays.xlsx`
+- `VWD type 2 PP4 rule guidance.docx`
+- `VWD type 2 PS2_PM6 rule guidance.docx`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete seven-file GN081 package source-first, including both functional workbooks, embedded images, and all Word tables.
+- Preserved the rule-set selection boundary: this document applies to types 2A, 2B, and 2M; type 2N uses its separate recessive rule set even though one shared workbook also contains 2N assay material.
+- Verified the de novo table's phenotype-row instructions and one-point cap, and retained the four exact 0.5/1/2/4 totals without interpolation.
+- Re-transcribed the PP4 2A/2B/2M laboratory requirements and the approved assay rows, including repeated PMIDs where the workbook records separate assay instances.
+
+---
+
 ## Version History
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all seven GN081 artifacts and enforced the 2A/2B/2M versus 2N rule-set boundary. |
 | 1.0.0 | 7/9/2024 | Initial release of VWD Type 2 (2A, 2B, 2M) rule specifications |
 
 ---

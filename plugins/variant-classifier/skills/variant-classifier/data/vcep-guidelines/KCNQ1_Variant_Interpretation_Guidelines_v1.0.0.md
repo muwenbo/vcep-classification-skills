@@ -656,10 +656,31 @@ The Potassium Channel Arrhythmia VCEP recommends using the **point system** for 
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_KCNQ1_v1.0.pdf`
+- `KCNQ1 PS3 BS3 strength overview.pptx`
+- `KCNQ1 PVS1 Decision Tree.pptx`
+- `KCNQ1 Rule Combination Guidance.docx`
+- `PS3 BS3 functional assays KCNQ1.xlsx`
+- `Updated results of KCNQ1 pilot curations.xlsx`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file package source-first, including slide connectors/media, every functional and pilot workbook sheet/formula, and the combination-guidance table.
+- Verified the codon/region-specific PVS1 levels and the de novo/PM3 footnotes, including the maximum contribution for the high-heterogeneity and VUS rows.
+- Re-transcribed the PS3/BS3 cross-assay strength matrices and kept their caveats about independent observations, same-paper evidence, and co-expression with wild type.
+- Treated `Updated results of KCNQ1 pilot curations.xlsx` as validation output, not as a normative list of preclassified variants; the attached rule-combination guidance remains the classification authority.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all six distributed artifacts and separated normative matrices from pilot-curation output. |
 | 1.0.0 | 6/25/2025 | Initial release |
 
 ---

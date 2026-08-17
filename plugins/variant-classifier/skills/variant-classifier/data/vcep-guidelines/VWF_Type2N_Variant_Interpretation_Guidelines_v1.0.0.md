@@ -122,10 +122,12 @@ See Table 1 (PS2/PM6 Point System) below.
 
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≥0.5 | Supporting |
-| ≥1.0 | Moderate |
-| ≥2.0 | Strong |
-| ≥4.0 | Very Strong |
+| 0.5 | Supporting |
+| 1.0 | Moderate |
+| 2.0 | Strong |
+| 4.0 | Very Strong |
+
+> **Source boundary:** The attached de novo guidance prints these as four required exact totals. It does not provide `≥` operators or map intermediate totals.
 
 #### PS2 Strength Levels
 
@@ -571,10 +573,31 @@ If the variant has not been previously associated with a specific type 2 diagnos
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_VWF_v1.0.pdf`
+- `Intro the VWD.docx`
+- `SVI Recommendations for PM3.docx`
+- `VWD 2N functional assays.xlsx`
+- `VWD Type 2 Rule Set Instructions for Use.docx`
+- `VWD type 2 PS2_PM6 rule guidance.docx`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file GN090 package source-first, including embedded table images and every functional-workbook sheet.
+- Removed invented `≥` operators from the de novo strength table: the attachment states required exact totals 0.5, 1, 2, and 4 and is silent on intermediate values.
+- Verified the PM3 attachment's low-point prerequisites and caps and kept PM3 separate from the shared de novo table.
+- Re-transcribed the type 2N FVIII-binding and animal-model assay records while preserving the rule-set instruction that unclear or previously unassigned type 2 diagnoses must not use this rule set.
+
+---
+
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all six GN090 artifacts and removed unsupported de novo threshold operators. |
 | 1.0.0 | 7/9/2024 | Initial release of VWD type 2N rule specifications |
 
 ---

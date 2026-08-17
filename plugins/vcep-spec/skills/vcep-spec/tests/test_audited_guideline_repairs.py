@@ -271,6 +271,120 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
         ):
             self.assertIn(source, text)
 
+    def test_round14_remaining_specs_record_every_distributed_source(self):
+        packages = {
+            "PAH_Variant_Interpretation_Guidelines_v2.0.0.md": (
+                "ClinGen_ACMG_Specifications_PAH_v2.0.pdf",
+                "PAH PP3 REVEL data explanation.docx",
+                "PAH PP3 REVEL data explanation (3).docx",
+                "PAH PS3 functional data.xlsx",
+                "PAH PVS1 decision tree.pdf",
+            ),
+            "MYOC_Variant_Interpretation_Guidelines_v2.1.0.md": (
+                "ClinGen_ACMG_Specifications_MYOC_v2.1.pdf", "Table 3.jpg",
+            ),
+            "DICER1_Variant_Interpretation_Guidelines_v1.4.0.md": (
+                "ClinGen_ACMG_Specifications_DICER1_v1.4.pdf",
+                "Evidence Criteria Combinations.jpg", "PP4 Flowchart and Second Hits.jpg",
+                "PVS1.pdf", "Phenotype Table.jpg", "Table for Tallying Proband Points.jpg",
+            ),
+            "F8_Variant_Interpretation_Guidelines_v2.0.0.md": (
+                "ClinGen_ACMG_Specifications_F8_v2.0.pdf", "F8 Approved Functional Assays.xlsx",
+                "F8 Decision Tree for PVS1 Rule Code.pptx", "F8_F9 Pilot Study Results.xlsx",
+                "Guidance for Combined De Novo Rule Code (PS2_PM6).docx",
+                "Guidance for Combining Pathogenic and Benign Rule Codes.docx",
+            ),
+            "VHL_Variant_Interpretation_Guidelines_v1.1.0.md": (
+                "ClinGen_ACMG_Specifications_VHL_v1.1.pdf", "Denovo-Confirmed-and-Not-Confirmed.jpg",
+                "Functional Assay Documentation.xlsx", "Germline and Somatic Hotspots.jpg",
+                "Meiosis.jpg", "PS4 Cut-Offs.jpg", "Proband Scoring.jpg", "VHL PVS1 Decision Tree.jpg",
+            ),
+            "VWF_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_VWF_v1.0.pdf", "Introduction to von Willebrand disease.docx",
+                "VWD 2A_2M_2N functional assays.xlsx", "VWD Type 2 Rule Set Instructions for Use.docx",
+                "VWD type 2 List of Approved Functional Assays.xlsx", "VWD type 2 PP4 rule guidance.docx",
+                "VWD type 2 PS2_PM6 rule guidance.docx",
+            ),
+            "VWF_Type2N_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_VWF_v1.0.pdf", "Intro the VWD.docx",
+                "SVI Recommendations for PM3.docx", "VWD 2N functional assays.xlsx",
+                "VWD Type 2 Rule Set Instructions for Use.docx", "VWD type 2 PS2_PM6 rule guidance.docx",
+            ),
+            "IDUA_Variant_Interpretation_Guidelines_v1.2.0.md": (
+                "ClinGen_ACMG_Specifications_IDUA_v1.2.pdf", "Appendix 1_PVS1 strength_IDUA.xlsx",
+                "Appendix 2_PVS1_Decision Tree_IDUA.pptx", "Appendix 3_Functional assays.xlsx",
+                "Appendix 4_PM3 points system_IDUA.pdf", "Appendix 5_PP1 guidance_IDUA.pdf",
+            ),
+            "RPGR_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_RPGR_v1.0.pdf",
+                "PS3 Functional Evidence - RPGR Specifications.xlsx", "PVS1 Decision Tree for RPGR.pptx",
+                "Phenotype Features - RPGR Specifications.docx", "RPGR PVS1 and PVS1 (RNA) Decision Tree.pdf",
+                "Standard Operating Procedure - RPGR- V.7.pdf", "c.730A-T Variant Report.pdf",
+            ),
+            "KCNQ1_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_KCNQ1_v1.0.pdf", "KCNQ1 PS3 BS3 strength overview.pptx",
+                "KCNQ1 PVS1 Decision Tree.pptx", "KCNQ1 Rule Combination Guidance.docx",
+                "PS3 BS3 functional assays KCNQ1.xlsx", "Updated results of KCNQ1 pilot curations.xlsx",
+            ),
+            "RPE65_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_RPE65_v1.0.pdf", "PM3 Tables.pdf",
+                "PP3 performance of multiple prediction models.pdf", "PS2 PM6 Tables.pdf",
+                "PS3 Approved functional assays.xlsx", "RPE65 Pilot Variants, Sept.11, 2023.xlsx",
+                "RPE65 Rule combination rules.pdf", "RPE65-specific PVS1 Decision Tree.pdf",
+            ),
+            "RS1_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_RS1_v1.0.pdf", "RS1 Functional Evidence Assays for PS3 _ BS3.xlsx",
+                "RS1 PS2_PM6 Tables.pdf", "RS1 PVS1 Decision Tree.pdf",
+            ),
+            "PIK3CD_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_PIK3CD_v1.0.pdf", "PIK3CD_pilot_results.xlsx",
+                "Phenotype scoring criteria per affected individual (PS4 and PP4).jpg",
+                "Points system to reach final classification.pdf",
+                "Recommendation for determining the appropriate PS4 evidence strength level based on the number of affected individuals meeting the phenotype criteria .jpg",
+                "Summary_of_PIK3CD_updates.docx", "Tables 1 & 2.jpg",
+            ),
+            "ABCA4_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_ABCA4_v1.0.pdf", "ABCA4 Functional assay Guidance.xlsx",
+                "Functional assay Guidance.xlsx", "ABCA4 PM3 Guidance.docx",
+                "ABCA4 PP4 Proband Scoring Table.pptx", "ABCA4 PS2 Guidance.docx",
+                "ABCA4 PVS1 Flowchart.pdf", "BS1 Exclusion Variants.docx",
+            ),
+            "AIPL1_Variant_Interpretation_Guidelines_v1.0.0.md": (
+                "ClinGen_ACMG_Specifications_AIPL1_v1.0.pdf", "AIPL1 Rule combination rules.pdf",
+                "AIPL1-specific PVS1 Decision Tree.pdf", "PM3 Tables.pdf", "PS2_PM6 Tables.pdf",
+                "PS3 Approved Functional assays.xlsx",
+            ),
+        }
+
+        self.assertEqual(len(packages), 15)
+        for filename, sources in packages.items():
+            text = guideline(filename)
+            self.assertIn("## Document corrections (2026-08-17)", text)
+            for source in sources:
+                self.assertIn(source, text, f"{filename} omits {source}")
+
+    def test_round14_preserves_exact_thresholds_conflicts_and_provenance(self):
+        rpe65 = guideline("RPE65_Variant_Interpretation_Guidelines_v1.0.0.md")
+        aipl1 = guideline("AIPL1_Variant_Interpretation_Guidelines_v1.0.0.md")
+        type2n = guideline("VWF_Type2N_Variant_Interpretation_Guidelines_v1.0.0.md")
+        pah = guideline("PAH_Variant_Interpretation_Guidelines_v2.0.0.md")
+        idua = guideline("IDUA_Variant_Interpretation_Guidelines_v1.2.0.md")
+        abca4 = guideline("ABCA4_Variant_Interpretation_Guidelines_v1.0.0.md")
+
+        for text in (rpe65, aipl1):
+            self.assertIn("prints only the four exact totals above", text)
+            self.assertNotIn("| 0.50 - 0.75 |", text)
+            self.assertNotIn("| 2.0 - 3.75 | PM3_Strong", text)
+        self.assertIn("does not provide `≥` operators", type2n)
+        self.assertNotIn("| ≥0.5 | Supporting |", type2n)
+        self.assertIn("core PDF defines PP3_Supporting as REVEL `0.644–0.733`", pah)
+        self.assertIn("explanation.docx` describe the 30-variant review bin as `0.644–0.773`", pah)
+        self.assertIn("| 36413997 | Pejaver et al |", idua)
+        self.assertNotIn("| 3641399 | Pejaver et al |", idua)
+        self.assertIn("**Source panel:** ClinGen ABCA4 Variant Curation Expert Panel", abca4)
+        self.assertNotIn("**Prepared by:** ClinGen ABCA4 Variant Curation Expert Panel", abca4)
+        self.assertNotIn("**Last Updated:** January 2026", abca4)
+
     def test_every_guideline_filename_uses_three_part_versions(self):
         """GN097's old filename was the corpus's only x.y violation, and it
         slipped through because verification checked the version field only."""

@@ -655,4 +655,34 @@ Enteropathy, hepatopathy, autoimmune hepatitis, inflammatory bowel disease, prim
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_PIK3CD_v1.0.pdf`
+- `PIK3CD_pilot_results.xlsx`
+- `Phenotype scoring criteria per affected individual (PS4 and PP4).jpg`
+- `Points system to reach final classification.pdf`
+- `Recommendation for determining the appropriate PS4 evidence strength level based on the number of affected individuals meeting the phenotype criteria .jpg`
+- `Summary_of_PIK3CD_updates.docx`
+- `Tables 1 & 2.jpg`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete seven-file package source-first, including every image-only scoring table, the pilot workbook, and the SVI-review/update Word document.
+- Verified the phenotype rubric and kept the different PS2/PP4 and PS4 roles of phenotype points distinct; the de novo table's low-specificity contribution remains capped at one point.
+- Treated `Summary_of_PIK3CD_updates.docx` as review history with panel responses, not as an independent replacement specification, and treated the pilot workbook as validation output.
+- Preserved the point-system endpoints and the package's gain-of-function scope exclusions without importing loss-of-function or recessive criteria.
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all seven distributed artifacts and separated final rules from SVI-review history and pilot output. |
+| 1.0.0 | December 16, 2025 | Initial ClinGen Antibody Deficiencies VCEP release for PIK3CD. |
+
+---
+
 *Document compiled from ClinGen Antibody Deficiencies VCEP specifications, pilot results, and SVI feedback. For official guidance, refer to the ClinGen website.*

@@ -780,10 +780,26 @@ Use **OddsPath** (Odds of Pathogenicity) as per SVI recommendations:
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_MYOC_v2.1.pdf`
+- `Table 3.jpg`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete two-file package source-first and verified the core criterion text, point-based classification system, and release notes.
+- Re-transcribed `Table 3.jpg` as the MYOC-specific de novo matrix: JOAG scores 1 confirmed/0.5 assumed, POAG scores 0.5 confirmed/0.25 assumed, and the attachment prints exact strength totals 0.5/1/2/4.
+- Corrected the physical source filename from the nonexistent `ClinGen_ACMG_Specifications_MYOC_v2.1.0.pdf` to the distributed `ClinGen_ACMG_Specifications_MYOC_v2.1.pdf`.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **2.1.0 remediation** | August 17, 2026 | Re-transcribed both distributed artifacts and corrected the source-package filename. |
 | **2.1.0** | 11/6/2025 | 1. Added additional combinations to reach PM5_Strong<br>2. Updated the Rules combining criteria to reflect the point system approved<br>3. Clarified that stability assays also included part of PS3/BS3 and uploaded functional data previously assessed |
 
 ---
@@ -791,4 +807,4 @@ Use **OddsPath** (Odds of Pathogenicity) as per SVI recommendations:
 *This document was compiled from ClinGen VCEP specifications. For the most current version and additional resources, please refer to the [ClinGen website](https://clinicalgenome.org/).*
 
 **Document generated:** February 6, 2026
-**Based on:** ClinGen_ACMG_Specifications_MYOC_v2.1.0.pdf
+**Based on:** `ClinGen_ACMG_Specifications_MYOC_v2.1.pdf`

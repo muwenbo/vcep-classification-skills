@@ -762,10 +762,29 @@ Refer to the RS1 PVS1 Decision Tree PDF (updated 1/24/2024) for the full visual 
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_RS1_v1.0.pdf`
+- `RS1 Functional Evidence Assays for PS3 _ BS3.xlsx`
+- `RS1 PS2_PM6 Tables.pdf`
+- `RS1 PVS1 Decision Tree.pdf`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete four-file package source-first, including every assay-workbook sheet and the image-based PVS1/PVS1(RNA) and de novo tables.
+- Preserved the RS1-specific exon map, NMD boundary, splice/RNA routes, and the separate handling of experiments that still produce protein.
+- Verified the exact 0.5/1/2/4 de novo totals and both phenotype-consistency rows without adding range operators.
+- Re-transcribed approved and non-approved assay instances, keeping workbook approval status and proposed strength separate from the mere presence of a publication.
+
+---
+
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all four distributed artifacts and preserved the RS1-specific PVS1/PVS1(RNA) and assay-approval boundaries. |
 | 1.0.0 | 5/16/2025 | Initial release of X-linked IRD VCEP specifications for RS1 |
 
 ---

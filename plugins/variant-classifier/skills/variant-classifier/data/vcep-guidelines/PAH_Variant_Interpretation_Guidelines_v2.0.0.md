@@ -342,6 +342,8 @@ There are 304 PAH variants submitted to ClinVar that have a REVEL score:
 - 30 variants have REVEL 0.644–0.773 (2 P, 12 LP, 16 VUS) — only 5 variants have PP3 applied
 - 30 variants have REVEL <0.644 (8 P, 7 LP, 14 VUS, 1 LB) — only 2 variants have PP3 applied, 5 VUS with BP4 applied
 
+> **Distributed-source conflict:** The core PDF defines PP3_Supporting as REVEL `0.644–0.733`, while both byte-identical copies of `PAH PP3 REVEL data explanation.docx` describe the 30-variant review bin as `0.644–0.773`. The package does not say whether scores above 0.733 through 0.773 qualify for PP3_Supporting. Do not silently extend the operative core threshold.
+
 ---
 
 ### PP4 - Phenotype Specificity
@@ -618,10 +620,30 @@ The PAH PVS1 decision tree provides gene-specific guidance for classifying null 
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_PAH_v2.0.pdf`
+- `PAH PP3 REVEL data explanation.docx`
+- `PAH PP3 REVEL data explanation (3).docx` — byte-identical duplicate of the preceding file
+- `PAH PS3 functional data.xlsx`
+- `PAH PVS1 decision tree.pdf`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete five-file package source-first, including all three functional-workbook sheets and the image-based PVS1 tree.
+- Preserved the core PDF's operative PP3_Supporting interval (`0.644–0.733`) and now discloses its conflict with the two identical REVEL explanation files (`0.644–0.773`) instead of harmonizing them.
+- Confirmed that the functional workbook is a mixture of assay-method sheets and variant-level curation working tables; its variant rows are supporting records, not universal activity cutoffs. The five approved tyrosine-assay instances and the core's control-count rules remain the operational summary.
+- Recorded both copies of the duplicated REVEL attachment rather than implying they are independent evidence sources.
+
+---
+
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 2.0.0 remediation | August 17, 2026 | Re-transcribed the complete distributed package; preserved the 0.733/0.773 source conflict and documented duplicate and working-data attachments. |
 | 2.0.0 | 7/16/2024 | Major update with many changes. Response to SVI comments in PM1 and PP3, with attachments for PVS1 and PS3. |
 | 1.0.0 | — | Initial VCEP specification (prior version). |
 

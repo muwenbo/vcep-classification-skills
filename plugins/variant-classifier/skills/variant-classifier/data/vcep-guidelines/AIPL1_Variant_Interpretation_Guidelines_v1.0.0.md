@@ -178,10 +178,12 @@ To determine the appropriate strength level:
 
 | Points | Strength Level | Default Points |
 |--------|----------------|---------------|
-| 0.50 - 0.75 | Supporting | 1 |
-| 1.00 - 1.75 | Moderate | 2 |
-| 2.00 - 3.75 | Strong | 4 |
-| ≥4.00 | Very Strong | 8 |
+| 0.5 | Supporting | 1 |
+| 1.0 | Moderate | 2 |
+| 2.0 | Strong | 4 |
+| 4.0 | Very Strong | 8 |
+
+> **Source boundary:** `PS2_PM6 Tables.pdf` prints only the four exact totals above. It does not assign intermediate totals or authorize ranges.
 
 ---
 
@@ -276,10 +278,12 @@ Use SVI recommendations for PM3 criterion.
 
 | Total Points | Strength Level | Default Points |
 |--------------|----------------|---------------|
-| 0.5 - 0.75 | PM3_Supporting | 1 |
-| 1.0 - 1.75 | PM3 (Moderate) | 2 |
-| 2.0 - 3.75 | PM3_Strong | 4 |
-| ≥4.0 | PM3_VeryStrong | 8 |
+| 0.5 | PM3_Supporting | 1 |
+| 1.0 | PM3 (Moderate) | 2 |
+| 2.0 | PM3_Strong | 4 |
+| 4.0 | PM3_VeryStrong | 8 |
+
+> **Source boundary:** `PM3 Tables.pdf` prints only the four exact totals above. It does not assign intermediate totals or authorize ranges.
 
 ---
 
@@ -826,10 +830,31 @@ One of the following is **required**:
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_AIPL1_v1.0.pdf`
+- `AIPL1 Rule combination rules.pdf`
+- `AIPL1-specific PVS1 Decision Tree.pdf`
+- `PM3 Tables.pdf`
+- `PS2_PM6 Tables.pdf`
+- `PS3 Approved Functional assays.xlsx`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file package source-first, including every image-only table/flowchart and all assay-workbook sheets and formulas.
+- Removed invented ranges and `≥` operators from PS2/PM6 and PM3: the distributed tables print only exact totals 0.5, 1, 2, and 4 and do not map intermediate sums.
+- Preserved the AIPL1-specific PVS1 exon/splice topology and the rule-combination instruction that point-based classification governs conflicting evidence.
+- Re-transcribed the approved functional assays and phenotype point lists without treating absent assay thresholds or unprinted classification bands as inferable.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all six distributed artifacts and removed unsupported PS2/PM6 and PM3 interpolation. |
 | 1.0.0 | 9/26/2025 | Initial release |
 
 ---
