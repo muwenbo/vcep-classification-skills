@@ -1,6 +1,6 @@
 # Handoff — remediation of the remaining VCEP guidelines
 
-**Written:** 2026-08-07, revised 2026-08-11 after the Cerebral Creatine remediation round
+**Written:** 2026-08-07, revised 2026-08-17 after the final remediation round
 **Branch:** `vcep-registry-refresh-2026-08` (branched from `main`, **not merged**)
 **Round 4 remediation commit:** `3b62aeb`
 **Round 5 remediation commit:** `78ad52b`
@@ -12,14 +12,15 @@
 **Round 11 remediation commit:** `efe4f3d`
 **Round 12 remediation commit:** `71c56ff`
 **Round 13 remediation commit:** `69a9d62`
-**Working tree:** Round 13 is complete and committed; this handoff revision follows it.
+**Round 14 remediation commit:** `07cb4af`
+**Working tree:** All remaining specifications are remediated and committed; this handoff revision follows round 14.
 
 This picks up where the 2026-08-06 session's handoff left off. That document's
-"decide remediation scope for the ~84 unaudited guidelines" is still the open
-question; what changed is that we now know **how not to do it**, and roughly
-what it costs to do it properly.
+"decide remediation scope for the ~84 unaudited guidelines" is now closed.
+The durable lesson is **how not to do it**, and what source-first remediation
+costs when done properly.
 
-**Revision note (rounds 2–13).** Twelve batches have been completed since this
+**Revision note (rounds 2–14).** Thirteen batches have been completed since this
 document was first written. The three "ranges" suspects turned out to be
 almost entirely false positives (§1), the zero-supplement premise turned out
 to be too broad (§2a), and all 16 RASopathy specs have now been remediated
@@ -29,10 +30,10 @@ specs (§7b, §13), all seven Cardiomyopathy specs (§7c, §13), and all five
 Epilepsy Sodium Channel specs (§7d, §13), all three Monogenic Diabetes specs
 (§7e, §13), all three remaining Platelet Disorders specs (§7f, §13), both
 Hereditary Hemorrhagic Telangiectasia specs (§7g, §13), both HBOP Cancer
-specs (§7h, §13), and both Cerebral Creatine specs (§7i, §13). Fifteen
-specifications remain for a future session.
-Read §1, §2a, §7, §7a, §7b, §7c, §7d, §7e, §7f, §7g, §7h, §7i and §13 before
-planning further work; the rest of the document stands.
+specs (§7h, §13), both Cerebral Creatine specs (§7i, §13), and the final
+15-spec cross-panel batch (§7j, §13). **No specifications remain in this
+remediation inventory.** The source-first method and warnings remain relevant
+for future releases.
 
 ---
 
@@ -87,21 +88,20 @@ honestly. Only source comparison works.
 
 ---
 
-## 2. Scope: 15 specs remain
+## 2. Scope: complete — 0 specs remain
 
-122 unique spec IDs; 107 covered so far (6 audited, 14 major bumps, 8 new specs,
+122 unique spec IDs; all 122 covered (6 audited, 14 major bumps, 8 new specs,
 13 minor bumps, BRCA2, the 3 range-suspects of round 2, the 8 zero-supplement
 specs of round 3, the 16 RASopathy specs of round 4, and the 7 Limb Girdle
 specs of round 5, the 7 Congenital Myopathies specs of round 6, the 7
 Cardiomyopathy specs of round 7, and the 5 Epilepsy Sodium Channel specs of
 round 8, the 3 Monogenic Diabetes specs of round 9, the 3 remaining
 Platelet Disorders specs of round 10, the 2 HHT specs of round 11, the 2 HBOP
-Cancer specs of round 12, and the 2 Cerebral Creatine specs of round 13).
-**15 remain.**
-Full list: run the snippet in §6.
+Cancer specs of round 12, the 2 Cerebral Creatine specs of round 13, and the
+final 15 specifications of round 14). **0 remain.**
 
-Grouped by VCEP, because panels share source conventions and defects tend to
-repeat within a panel:
+The final batch was grouped by VCEP because panels share source conventions and
+defects tend to repeat within a panel:
 
 | n | VCEP |
 |---|---|
@@ -293,6 +293,14 @@ is ephemeral (`/tmp`); re-download with
 `scratchpad/fetch_all.py`-style driver logic if it has been cleared, pacing
 8s + jitter between specs to stay under ClinGen's rate limits.
 
+For round 14 the older directory was empty and the final 15 packages were
+re-downloaded to `/tmp/vcep-remaining15-round14.YeYW6l/ClinGen/`. All metadata
+reported complete; disk and manifests matched; every PDF and Office archive
+passed structural checks; all 70 page/contact-sheet montages were visually
+reviewed. That directory is also ephemeral. Exact physical filenames are now
+durable in each guideline's 2026-08-17 correction history and in round-14
+regression tests.
+
 Three `download.py` bugs were found and fixed this session, all of which
 silently produced incomplete sources while reporting success:
 
@@ -347,14 +355,17 @@ platelet_disorders = {"GN079","GN082","GN083"}  # round 10
 hht = {"GN135","GN136"}  # round 11
 hbop = {"GN020","GN077"}  # round 12
 cerebral_creatine = {"GN025","GN026"}  # round 13
+final_round = {"GN006","GN019","GN024","GN071","GN078","GN081","GN090",
+               "GN091","GN106","GN112","GN120","GN126","GN141","GN164",
+               "GN208"}  # round 14
 
 remaining = sorted(set(byid) - (audited | major | new_specs | bumps | brca2
                                 | ranges | zero_supp | rasopathy | limb_girdle
                                 | congenital_myopathies | cardiomyopathy
                                 | epilepsy_sodium | monogenic_diabetes
                                 | platelet_disorders | hht | hbop
-                                | cerebral_creatine))
-print(len(remaining))  # 15
+                                | cerebral_creatine | final_round))
+print(len(remaining))  # 0
 ```
 
 To re-derive the zero-supplement set (it is a property of the download, not the
@@ -395,16 +406,15 @@ see §2a.
    PALB2 (GN077); see §7h and §13.
 ~~12. Cerebral Creatine (2)~~ — **done, round 13** (`69a9d62`). GATM (GN025)
    and GAMT (GN026); see §7i and §13.
+~~13. Final cross-panel inventory (15)~~ — **done, round 14** (`07cb4af`).
+PAH (GN006), MYOC (GN019), DICER1 (GN024), F8 (GN071), VHL (GN078), both VWF
+specifications (GN081/GN090), IDUA (GN091), RPGR (GN106), KCNQ1 (GN112),
+RPE65 (GN120), RS1 (GN126), PIK3CD (GN141), ABCA4 (GN164), and AIPL1 (GN208);
+see §7j and §13.
 
-The recommended next batch is the von Willebrand Disease pair: VWF GN081 and
-VWF GN090. They are two specifications for the same gene, so a panel-first
-source audit should make shared versus specification-specific material easier
-to distinguish. Otherwise choose one of the other two-spec panels from the
-15-entry list produced by §6 rather than working alphabetically.
-
-**Before dispatching any batch, run the §2a grep across the whole panel
-first.** It is cheap, it needs no agent, and it tells you which specs in the
-batch are likely to be the expensive ones.
+There is no next remediation batch in this inventory. For a future ClinGen
+release or newly added specification, retain the same panel-first preflight and
+run the §2a provenance grep before opening the superseded local body.
 
 ---
 
@@ -933,7 +943,53 @@ skipped because this same-version correction did not touch the registry.
 
 ---
 
-## 8. Loose ends unrelated to the remaining 15
+## 7j. Final 15-spec remediation — complete
+
+Round 14 (`07cb4af`) remediated PAH (GN006), MYOC (GN019), DICER1 (GN024),
+F8 (GN071), VHL (GN078), VWF type 2 (GN081), VWF type 2N (GN090), IDUA
+(GN091), RPGR (GN106), KCNQ1 (GN112), RPE65 (GN120), RS1 (GN126), PIK3CD
+(GN141), ABCA4 (GN164), and AIPL1 (GN208). The older shared `/tmp` source
+directory was empty, so all 15 packages were freshly downloaded with pacing.
+All 92 substantive physical files were present, non-empty, correctly typed,
+and readable. Two pairs are byte-identical duplicates: PAH's two REVEL Word
+files and ABCA4's two functional workbooks. The independent extraction produced
+795 audit images and 70 contact-sheet montages; every montage was visually
+reviewed before the local guideline bodies were compared.
+
+Material findings:
+
+- RPE65 and AIPL1 had expanded exact PS2/PM6 and PM3 attachment values
+  `0.5/1/2/4` into invented ranges and an outer `>=` operator. VWF type 2N had
+  likewise converted its four exact de novo totals to `>=` thresholds. The
+  source prints no mapping for intermediate values, so all three now retain
+  exact totals and state the gap.
+- PAH's core PDF defines PP3_Supporting as REVEL `0.644–0.733`, while both
+  byte-identical `PAH PP3 REVEL data explanation` files describe the relevant
+  review bin as `0.644–0.773`. The contradiction is now explicit; the core's
+  operative criterion is not silently extended.
+- IDUA's local bibliography truncated Pejaver PMID `36413997` to `3641399`.
+  MYOC named a nonexistent `..._v2.1.0.pdf` instead of the physical
+  `ClinGen_ACMG_Specifications_MYOC_v2.1.pdf`. Both provenance errors are
+  corrected.
+- ABCA4 claimed the local Markdown was "Prepared by" the VCEP and assigned it
+  a local January 2026 update date. Those unsupported authorship/update claims
+  were removed; the panel is identified as the source of the distributed
+  package, not the author of this transcription.
+- Pilot workbooks (F8, KCNQ1, RPE65, PIK3CD), working curation tables (PAH),
+  review-history documents (PIK3CD), SOPs and worked reports (RPGR) are now
+  explicitly separated from normative criterion tables. Duplicate files are
+  recorded as duplicates, not independent evidence.
+- Every physical source filename is recorded in a dated correction history.
+  The two VWF specifications preserve their shared artifacts but enforce the
+  2A/2B/2M versus 2N rule-set boundary.
+
+No registry entry, guideline filename, or ClinGen version changed. Round 14
+added regression coverage for all 15 package manifests and the concrete
+threshold/conflict/provenance repairs.
+
+---
+
+## 8. Loose ends unrelated to the completed remediation inventory
 
 - **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
   that the governing distributed specification and registry version are
@@ -960,6 +1016,12 @@ skipped because this same-version correction did not touch the registry.
 ## 9. Upstream queries for ClinGen (not our bugs)
 
 Accumulated across sessions; worth sending as a batch.
+
+- **PAH PP3_Supporting upper bound.** The v2.0 core criterion prints REVEL
+  `0.644–0.733`, but both distributed, byte-identical REVEL explanation Word
+  files describe the 30-variant review bin as `0.644–0.773`. Please clarify
+  whether `0.733` is intentional and how scores above 0.733 through 0.773
+  should be handled.
 
 - **PS3 proband gate, SCID VCEP.** The sentence *"at least one previously
   observed proband meeting PP4 is required to apply PS3 at any strength on the
@@ -1157,7 +1219,7 @@ Every remediation batch should end with:
 3. Registry/disk consistency — entry count, orphans, missing, and that every
    `guideline_file` matches `v{version}.md`.
 4. `check_vcep_spec.py <gene>` for every touched gene.
-5. Full test suite: `plugins/vcep-spec/skills/vcep-spec/tests` (28) and
+5. Full test suite: `plugins/vcep-spec/skills/vcep-spec/tests` (34) and
    `plugins/variant-classifier/skills/variant-classifier/tests` (17).
 6. **Sanity-check outputs against their own source folder** — after the ACADVL
    near-miss, confirm no guideline contains content its package does not have.
@@ -1167,7 +1229,7 @@ filenames normalised `x.y.z`, live registry in sync (0 new, 0 outdated).
 GN094 LZTR1 is the only `version`/`guideline_file` mismatch and is
 pre-existing (§8).
 
-**Corrections that do not change the ClinGen version** (rounds 2–13 were all of
+**Corrections that do not change the ClinGen version** (rounds 2–14 were all of
 this kind) **must not rename files or touch the registry.** Edit the guideline
 in place and record what changed in its Version History under a dated
 "Document corrections" block, stating which source file each finding was
@@ -1186,19 +1248,20 @@ why — are at **`/tmp/vcep-bumps-2026-08-07/`**. Ephemeral; copy anything worth
 keeping before `/tmp` is cleared. They are the best available worked examples
 of the method in §4.
 
-For rounds 2–13 the durable changelogs are **in the guidelines themselves**,
+For rounds 2–14 the durable changelogs are **in the guidelines themselves**,
 under dated "Document corrections" entries. The remediation commits are
 `2f9674b` (round 2), `4c91f2c` (round 3), `3b62aeb` (round 4), `78ad52b`
 (round 5), `0bad381` (round 6), `16212de` (round 7), `bb87729`
 (round 8), `f298ac8` (round 9), `983d931` (round 10), `efe4f3d`
-(round 11), `71c56ff` (round 12), and `69a9d62` (round 13). Rounds 5–13
+(round 11), `71c56ff` (round 12), `69a9d62` (round 13), and `07cb4af`
+(round 14). Rounds 5–14
 source-first scratch drafts live in isolated `/tmp` directories and are ephemeral. Prefer the in-guideline
 pattern going forward: a finding recorded only in `/tmp` is a finding you will
 lose.
 
 ---
 
-## 13. Rounds 2–13 summary
+## 13. Rounds 2–14 summary
 
 **Round 2 — `2f9674b`** — FBN1 (GN022), GUCY2D (GN167), SERPINC1 (GN084).
 Closed the `ranges` lead (§1). FBN1 turned out to carry two fabricated
@@ -1423,6 +1486,29 @@ was clean; and the only version/filename mismatch remains the pre-existing
 GN094 LZTR1 issue. `check_updates.py` was deliberately skipped because this
 same-version correction did not touch the registry.
 
+**Round 14 — `07cb4af`** — the final 15 specifications: PAH (GN006), MYOC
+(GN019), DICER1 (GN024), F8 (GN071), VHL (GN078), VWF type 2 (GN081), VWF
+type 2N (GN090), IDUA (GN091), RPGR (GN106), KCNQ1 (GN112), RPE65 (GN120),
+RS1 (GN126), PIK3CD (GN141), ABCA4 (GN164), and AIPL1 (GN208). All 92
+substantive physical artifacts were freshly downloaded, structurally checked,
+independently extracted, and visually audited before local comparison.
+Material repairs were unsupported exact-value interpolation in three specs, a
+PAH core/attachment REVEL conflict, an IDUA PMID truncation, a MYOC physical
+filename error, and fabricated ABCA4 local-document provenance. Every package
+manifest and source boundary is now durable in the guideline corrections and
+regression suite. Full findings are in §7j.
+
+Round 14 final gate: all 15 exact registry-to-guideline mappings passed;
+`plugins/vcep-spec/skills/vcep-spec/tests` passed 34/34;
+`plugins/variant-classifier/skills/variant-classifier/tests` passed 17/17;
+all 92 physical source filenames appeared in the dated correction histories;
+registry/disk consistency passed at 125 entries and 125 files with no missing
+or orphaned guidelines; the registry SHA-256 remained
+`491a29987395a72c76361d13091d6b5aefaeb7bd0c908550bfd7b6fa9342c8dc`;
+`git diff --check` was clean; and the only version/filename mismatch remains
+the pre-existing GN094 LZTR1 issue. `check_updates.py` was deliberately
+skipped because this same-version correction did not touch the registry.
+
 Incidental finding, harmless but confusing: the downloader mislabels the two
 Mitochondrial specs by gene — GN014's folder is `GN014-CDKL5` and GN015's is
 `GN015-UNKNOWN`. **The PDFs themselves are correct** (GN014's keywords list
@@ -1432,16 +1518,14 @@ not "fix" a registry entry on the strength of a source folder name.
 
 ---
 
-## 14. Suggested skills for the next session
+## 14. Suggested skills for future updates
 
 - Use `pdf:pdf` for complete page rendering and visual verification of every
   source PDF whose tables, strikeouts, footnotes, or arrow relationships matter.
-- A future session should choose the next panel from the 15-spec inventory in
-  §6, then load only the artifact
-  skills its packages require. Use `documents:documents`,
+- A future session handling new or bumped specifications should work panel-first
+  and load only the artifact skills its packages require. Use `documents:documents`,
   `presentations:Presentations`, and `spreadsheets:Spreadsheets` when DOCX,
   PPTX, or XLSX artifacts are present; inspect raw Office XML/media when
   renderers omit text, notes, or connector topology.
-- Use the handoff skill again only after the batch has passed all §11 gates and
-  the remediation commit exists; update this workspace handoff in place because
-  that is the project's durable continuation record.
+- Update this handoff only if a future release creates a new remediation batch;
+  the present inventory is complete.
