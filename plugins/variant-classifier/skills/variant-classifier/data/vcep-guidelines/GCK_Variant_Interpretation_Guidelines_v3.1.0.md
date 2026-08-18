@@ -4,6 +4,7 @@
 **Released:** 10/10/2025
 **Affiliation:** Monogenic Diabetes VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**DOI:** 10.5281/zenodo.21434075
 
 ---
 
@@ -98,6 +99,7 @@
 **Important Notes:**
 - Per recommendations from the SVI, when RNA analysis demonstrates abnormal splicing from non-canonical splice site variants, apply **PS3** instead of PVS1
 - Full gene deletion warrants pathogenic classification given GCK is a known haploinsufficient gene (in the absence of conflicting data)
+- The panel had reviewed only one initiation-codon variant, c.3G>A, classified as VUS with PVS1_Supporting + PM2_Supporting (one submitted case, `dx.53`, with no other information provided to the laboratory)
 
 ---
 
@@ -135,13 +137,13 @@
 
 **Exclusionary Evidence (autoimmune etiology or absolute/near-absolute insulin deficiency):**
 - One or more positive diabetes autoantibodies (IA-2A, ZnT8A+, GAD)
-- Very low or negative C-peptide, defined as either fasting or non-fasting random C-peptide (<200 pmol/L or 0.6 ng/mL) or urinary C-peptide/creatinine ratio <0.2 nmol/mmol
+- Very low or negative C-peptide, defined as either fasting or non-fasting random C-peptide (<200pmol/L or 0.6ng/mL) or urinary C-peptide/creatinine ratio <0.2 nmol/mmol
 - Presence of clinically significant diabetes complications in anyone with the variant is an exclusion
 
 **Determining Unaffected Status:**
 - We expect to see hyperglycemia at birth in an individual with GCK-MODY and therefore consider an individual unaffected if euglycemic in childhood or adulthood
 - Since individuals typically do not present with symptoms of diabetes, a statement that someone is "nondiabetic" is insufficient to consider a parent unaffected
-- Fasting glucose must be tested and found to be within normal limits (<100 mg/dl = 5.5 mmol/L) or HbA1c ≤5.5% (37 mmol/mol) since the GCK range was 5.6 - 7.6% (38-60 mmol/mol)
+- Fasting glucose must be tested and found to be within normal limits (<100 mg/dl = 5.5 mmol/L) or HbA1c <=5.5% (37 mmol/mol) since the GCK range was 5.6 - 7.6% (38-60 mmol/mol)
 
 **Do NOT apply PS2 if the proband has an affected parent with any of the following:**
 - Affected parent meets PP4 specifications
@@ -152,21 +154,22 @@
 
 See [Appendix B](#appendix-b-ps2pm6-de-novo-points-table) for the complete points table.
 
-**Table 1: Points awarded per de novo occurrence**
+**Table 1. Points\* awarded per *de novo* occurrence**
 
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed Parental Relationships |
-|------------------------|----------------------------------|-----------------------------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent with gene but not highly specific | 1 point | 0.5 points |
+| Phenotypic consistency | *de novo* with confirmed parental relationships | *de novo* with unconfirmed parental relationships |
+|------------------------|------------------------------------------------|--------------------------------------------------|
+| Phenotype highly specific for gene | 2 | 1 |
+| Phenotype consistent with gene but not highly specific | 1 | 0.5 |
 
-**Table 2: Evidence Strength Thresholds**
+\*Note that these points are not equivalent to the points used to classify a variant per the Tavtigian et al 2020 “Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines”
 
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | PS2_Supporting or PM6_Supporting |
-| 1.0 | PS2_Moderate or PM6 |
-| 2.0 | PS2 or PM6_Strong |
-| 4.0 | PS2_VeryStrong or PM6_VeryStrong |
+**Table 2. Recommendation for determining the appropriate ACMG/AMP evidence strength level for *de novo* occurrence(s)**
+
+| Supporting (PS2_Supporting or PM6_Supporting) | Moderate (PS2_Moderate or PM6) | Strong (PS2 or PM6_Strong) | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
+|-----------------------------------------------|--------------------------------|-----------------------------|------------------------------------------------|
+| 0.5 | 1 | 2 | 4 |
+
+*Table 2 prints exact bare values, not thresholds or ranges. PM6 remains Not Applicable for GCK as specified below.*
 
 ---
 
@@ -194,7 +197,7 @@ Use GCK PS3/BS3 decision tree (see [Appendix E](#appendix-e-ps3bs3-decision-tree
 |----------|----------|
 | **Strong** | Applicable to non-canonical splice site variants that have RNA and in silico evidence of aberrant splicing. |
 | **Moderate** | RAI ≤0.5 (see decision tree for details). |
-| **Supporting** | MT: Kcat/S0.5 / WT: Kcat/S0.5 < 0.5 OR RSI ≤0.5 with impact on GKRP and/or GKA interaction (see decision tree for details). |
+| **Supporting** | MT: Kcat/S0.5 / WT: Kcat/S0.5 < 0.5; OR RSI ≤0.5; OR RSI >0.5 with impact on GKRP and/or GKA interaction (see decision tree for exact topology). |
 
 #### Functional Study Parameters
 
@@ -210,10 +213,14 @@ RAI = Ia-MT / Ia-WT
 ```
 
 **Decision Points:**
-- Is the WT Km available and between 0.2-0.5? → If YES, calculate RAI
+- Is the WT Km available and between 0.2-0.5? → If YES, ask whether the activity index (Ia) was calculated with the printed equation; if not, recalculate, then calculate RAI
 - RAI ≤0.5 → **PS3_Moderate**
-- RSI ≤0.5 → Proceed to assess GKRP/GKA impact
-- Impact on GKRP and/or GKA interaction → **PS3_Supporting**
+- If RAI is not ≤0.5, or if the MT:WT Kcat/S0.5 ratio is not <0.5, continue to RSI
+- RSI unavailable → **Cannot Use PS3 or BS3**
+- RSI ≤0.5 → **PS3_Supporting**
+- RSI >0.5 and impact on GKRP and/or GKA interaction → **PS3_Supporting**
+- RSI >0.5 and no impact on GKRP and/or GKA interaction → **BS3_Supporting**
+- RSI >0.5 and GKRP/GKA interaction not assessed or determined → **Cannot Use PS3 or BS3**
 
 ---
 
@@ -232,13 +239,13 @@ RAI = Ia-MT / Ia-WT
 
 **Exclusionary Evidence:**
 - One or more positive diabetes autoantibodies (IA-2A, ZnT8A+, GAD)
-- Very low or negative C-peptide (<200 pmol/L or 0.6 ng/mL) or urinary C-peptide/creatinine ratio <0.2 nmol/mmol
+- Very low or negative C-peptide (<200pmol/L or 0.6ng/mL) or urinary C-peptide/creatinine ratio <0.2 nmol/mmol
 
 #### Strength Levels
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | ≥7 occurrences in unrelated individuals |
+| **Strong** | 7 or more occurrences in unrelated individuals = Strong. |
 | **Moderate** | 4-6 occurrences in unrelated individuals |
 
 ---
@@ -247,7 +254,7 @@ RAI = Ia-MT / Ia-WT
 
 **Original ACMG Summary:** Located in a mutational hot spot and/or critical and well-established functional domain (e.g. active site of an enzyme) without benign variation.
 
-**VCEP Specifications:** Applicable for glucose- and ATP-binding sites (see [Appendix D](#appendix-d-pm1-residues) for details).
+**VCEP Specifications:** The core says `See attached chart.` The physically supplied `GCK PM1 Residues.pdf` is summarized in [Appendix D](#appendix-d-pm1-residues); PM1 applies to its glucose- and ATP-binding sites.
 
 #### PM1 (Moderate) - Applicable Residues
 
@@ -365,7 +372,7 @@ RAI = Ia-MT / Ia-WT
 
 **Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
 
-**VCEP Specifications:** *Not Applicable* - Subsumed in PS2. Use the PS2/PM6 point-based system above.
+**VCEP Specifications:** *Not Applicable* - Subsumed in PS2.
 
 ---
 
@@ -380,7 +387,7 @@ RAI = Ia-MT / Ia-WT
 - The presence of type 1 and type 2 diabetes phenocopies and significance of variants in unaffected individuals as defined above will need to be considered
 - We expect to see hyperglycemia at birth in an individual with GCK-MODY and therefore consider an individual unaffected if euglycemic in childhood or adulthood
 - Since individuals typically do not present with symptoms of diabetes, a statement that someone is "nondiabetic" is insufficient to classify a family member as unaffected
-- Fasting glucose must be tested and found to be within normal limits (<100 mg/dl = 5.5 mmol/L) or HbA1c test ≤5.5% since the GCK range was 5.6 - 7.6%
+- Fasting glucose must be tested and found to be within normal limits (<100 mg/dl = 5.5 mmol/L) or HbA1c test <=5.5% since the GCK range was 5.6 - 7.6%
 - Presence of clinically significant diabetes complications in anyone with the variant is an exclusion
 
 #### PP1 Thresholds (Jarvik and Browning)
@@ -583,41 +590,47 @@ Applicable to family members without variant who meet PP4 criteria:
 
 ## Appendices
 
+**Appendix provenance:** Appendices A-E are source-derived editorial summaries, not complete transcriptions. Their controlling artifacts are, respectively, `GCK PVS1 Decision Tree.pdf`, `PS2 De Novo Points Table.pdf`, `GCK Points Table for PM3.pdf`, `GCK PM1 Residues.pdf`, and `GCK PS3_BS3 Decision tree.pdf`. Appendix F is a source-derived editorial convenience controlled by BA1, BS1, and PM2 in `ClinGen_ACMG_Specifications_GCK_v3.1.pdf`. Appendix G condenses that core PDF's References section; the core reference list controls. No appendix is an independent rule source.
+
 ### Appendix A: PVS1 Decision Tree
+
+The supplied diagram is titled **GCK PVS1 Decision Tree (Adapted from PMID: 30192042)**.
+
+*Source-derived editorial summary controlled by `GCK PVS1 Decision Tree.pdf`; it preserves the operative nodes, outcomes, markers, and connector topology but does not reproduce the diagram layout.*
 
 #### Nonsense or Frameshift Variants
 ```
 Nonsense or Frameshift
-├── Predicted to undergo NMD → PVS1
-└── Not predicted to undergo NMD
-    └── Truncated/altered region is critical to protein function → PVS1
+├── Predicted to undergo NMD (b) → PVS1
+└── Not predicted to undergo NMD (b)
+    └── Truncated/altered region is critical to protein function (c) → PVS1
 ```
 
-#### GT-AG 1,2 Splice Site Variants
+#### GT--AG 1,2 Splice Site Variants
 ```
-GT-AG 1,2 splice sites
+GT--AG 1,2 splice sites (a)
 ├── Exon skipping or use of cryptic splice site disrupts reading frame
-│   ├── Predicted to undergo NMD → PVS1
-│   └── NOT predicted to undergo NMD
-│       └── Truncated/altered region is critical to protein function → PVS1
+│   ├── Predicted to undergo NMD (b) → PVS1
+│   └── NOT predicted to undergo NMD (b)
+│       └── Truncated/altered region is critical to protein function (c) → PVS1
 └── Exon skipping or use of cryptic splice site preserves reading frame
     (exons 1, 4, 5, 8, 9, 10)
-    └── Truncated/altered region is critical to protein function → PVS1
+    └── Truncated/altered region is critical to protein function (c) → PVS1
 ```
 
 #### Deletion Variants
 ```
 Deletion (Single exon to full gene)
-├── Full gene deletion → PVS1*
+├── Full gene deletion → PVS1 (d)
 ├── Single to multi exon deletion
-│   ├── Disrupts reading frame and predicted to undergo NMD → PVS1
-│   ├── Disrupts reading frame and NOT predicted to undergo NMD
-│   │   └── Truncated/altered region is critical to protein function → PVS1
+│   ├── Disrupts reading frame and predicted to undergo NMD (b) → PVS1
+│   ├── Disrupts reading frame and NOT predicted to undergo NMD (b)
+│   │   └── Truncated/altered region is critical to protein function (c) → PVS1
 │   └── Preserves reading frame
-│       └── Truncated/altered region is critical to protein function → PVS1
+│       └── Truncated/altered region is critical to protein function (c) → PVS1
 ```
 
-*Given that GCK is a known haploinsufficient gene, a pathogenic classification is warranted for a full gene deletion (in the absence of conflicting data).
+**Marker (d) caveat:** Given that GCK is a known haploinsufficient gene, a pathogenic classification is warranted for a full gene deletion (in the absence of conflicting data), even though PVS1 alone would not reach a pathogenic classification using the combining rules in Richards et al. (2015).
 
 #### Duplication Variants
 ```
@@ -641,21 +654,24 @@ Initiation Codon
 - (a) This criterion should not be applied in combination with in silico splicing predictions (PP3). Additionally, splice site variants must have no detectable nearby (+/- 20 nts) strong consensus splice sequence that may reconstitute in-frame splicing.
 - (b) NMD prediction based on the premature termination codon not occurring in the 3'-most exon or the 3'-most 50 bp of the penultimate exon.
 - (c) Relevant domain indicated by experimental evidence proving a critical role of the domain and/or presence of non-truncating pathogenic variants in the region.
+- (d) Given that GCK is a known haploinsufficient gene, a pathogenic classification is warranted for a full gene deletion in the absence of conflicting data, even though PVS1 alone would not reach pathogenic under Richards et al. (2015).
 
 ---
 
 ### Appendix B: PS2/PM6 De Novo Points Table
 
-**Table 1: Points awarded per de novo occurrence**
+*Source-derived editorial summary controlled by `PS2 De Novo Points Table.pdf`. Both tables and the printed non-equivalence footnote are preserved below; the attachment's final `Source:` URL line is not repeated.*
 
-| Phenotypic Consistency | De novo with Confirmed Parental Relationships | De novo with Unconfirmed Parental Relationships |
-|------------------------|----------------------------------------------|------------------------------------------------|
+**Table 1. Points\* awarded per *de novo* occurrence**
+
+| Phenotypic consistency | *de novo* with confirmed parental relationships | *de novo* with unconfirmed parental relationships |
+|------------------------|------------------------------------------------|--------------------------------------------------|
 | Phenotype highly specific for gene | 2 | 1 |
 | Phenotype consistent with gene but not highly specific | 1 | 0.5 |
 
-*Note: These points are NOT equivalent to the points used to classify a variant per the Tavtigian et al 2020 "Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines"*
+\*Note that these points are not equivalent to the points used to classify a variant per the Tavtigian et al 2020 “Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines”
 
-**Table 2: Recommendation for determining the appropriate ACMG/AMP evidence strength level for de novo occurrence(s)**
+**Table 2. Recommendation for determining the appropriate ACMG/AMP evidence strength level for *de novo* occurrence(s)**
 
 | Supporting (PS2_Supporting or PM6_Supporting) | Moderate (PS2_Moderate or PM6) | Strong (PS2 or PM6_Strong) | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
 |----------------------------------------------|-------------------------------|---------------------------|-----------------------------------------------|
@@ -664,6 +680,8 @@ Initiation Codon
 ---
 
 ### Appendix C: PM3 Points Table
+
+*Source-derived editorial summary controlled by `GCK Points Table for PM3.pdf`. It preserves every operative cell, maximum, P/LP distinction, footnote meaning, and bare strength value, but does not reproduce the attachment's page title/version and layout.*
 
 **Table 1: Points awarded per in trans proband**
 
@@ -684,6 +702,8 @@ Initiation Codon
 ---
 
 ### Appendix D: PM1 Residues
+
+*Source-derived editorial summary controlled by `GCK PM1 Residues.pdf`. It preserves every residue/range, domain, and comment text used here, but omits inline citation markers and the attachment's nine-reference page; the supplied PDF controls those references.*
 
 #### Glucose Binding Site (22 residues)
 
@@ -715,6 +735,8 @@ Initiation Codon
 
 ### Appendix E: PS3/BS3 Decision Tree
 
+*Source-derived editorial summary controlled by `GCK PS3_BS3 Decision tree.pdf`. It preserves the operative labels, comparators, terminal outcomes, and connector topology but does not reproduce the diagram layout.*
+
 #### Functional Study Requirements
 
 **WT GCK kinetic parameters that must be met (including SEM):**
@@ -738,16 +760,18 @@ Are WT GCK kinetic parameters met?
 ├── NO → Cannot Use PS3 or BS3
 └── YES
     └── Is the WT Km available and between 0.2-0.5?
-        ├── YES → Calculate RAI
-        │   └── RAI ≤ 0.5?
-        │       ├── YES → PS3_Moderate
-        │       └── NO → Is RSI available?
-        │           ├── NO → Cannot Use PS3 or BS3
-        │           └── YES → RSI ≤ 0.5?
-        │               ├── YES → PS3_Supporting
-        │               └── NO → Does the variant impact interaction with GKRP and/or GKA?
+        ├── YES → Activity index (Ia) calculated using the printed equation?
+        │   └── If not, recalculate; then calculate RAI
+        │       └── RAI ≤ 0.5?
+        │           ├── YES → PS3_Moderate
+        │           └── NO → Is RSI available?
+        │               ├── NO → Cannot Use PS3 or BS3
+        │               └── YES → RSI ≤ 0.5?
         │                   ├── YES → PS3_Supporting
-        │                   └── NO → BS3_Supporting
+        │                   └── NO → Does the variant impact interaction with GKRP and/or GKA?
+        │                       ├── YES → PS3_Supporting
+        │                       ├── NO → BS3_Supporting
+        │                       └── Not assessed or determined → Cannot Use PS3 or BS3
         └── NO → MT: Kcat/S0.5 / WT: Kcat/S0.5 < 0.5?
             ├── YES → PS3_Supporting
             └── NO → Continue with RSI assessment (see above)
@@ -771,15 +795,19 @@ Are WT GCK kinetic parameters met?
 
 ### Appendix F: Population Frequency Thresholds Summary
 
+*Source-derived editorial convenience; not a distributed table. The controlling source text is in the core BA1, BS1, and PM2 sections.*
+
 | Criterion | Threshold | Strength |
 |-----------|-----------|----------|
-| BA1 | gnomAD Grpmax FAF ≥ 1:10,000 (≥0.01% or 0.0001) | Stand Alone |
-| BS1 | gnomAD Grpmax FAF ≥ 1:25,000 (≥0.004% or 0.00004) | Strong |
-| PM2 | gnomAD Grpmax FAF ≤ 1:333,000 (≤0.000003 or 0.0003%) | Supporting |
+| BA1 | gnomAD Grpmax FAF ≥ 1:10,000 (≥ 0.01% or 0.0001) | Stand Alone |
+| BS1 | gnomAD Grpmax FAF ≥ 1:25,000 (0.004% or 0.00004) | Strong |
+| PM2 | gnomAD Grpmax FAF ≤ 1:333,000 (≤ 0.000003 or 0.0003%) | Supporting |
 
 ---
 
 ### Appendix G: References
+
+*Condensed from the core PDF's References section; not a separately distributed artifact. The core reference list controls.*
 
 1. DiStefano MT, Hemphill SE, et al. *Curating Clinically Relevant Transcripts for the Interpretation of Sequence Variants.* J Mol Diagn (2018) 20(6):789-801. PMID: 30096381
 
@@ -829,4 +857,8 @@ Are WT GCK kinetic parameters met?
 
 ---
 
-*This document was compiled from ClinGen VCEP specifications and ClinGen SVI recommendations. For the most current version, please refer to the ClinGen website.*
+## Document Corrections
+
+| Date | Correction | Source files reviewed |
+|---|---|---|
+| 2026-08-10 | Source-first remediation: restored both exact PS2 table titles, bare cells, and printed non-equivalence footnote; corrected PS3/BS3 branch logic; restored literal PS4 and compact C-peptide/HbA1c forms; preserved PVS1 topology, explicit markers (a)-(d), comparators, transcript tension, and source wording; removed the instruction to apply a point system to Not Applicable PM6; verified the attached PM1 mapping; visually disambiguated superscript citation numbers from threshold decimals; labeled Appendices A-G as source-derived editorial summaries or conveniences with their controlling PDFs/core sections and disclosed omitted layout/reference material. | `ClinGen_ACMG_Specifications_GCK_v3.1.pdf`; `GCK PM1 Residues.pdf`; `GCK PS3_BS3 Decision tree.pdf`; `GCK PVS1 Decision Tree.pdf`; `GCK Points Table for PM3.pdf`; `PS2 De Novo Points Table.pdf` |

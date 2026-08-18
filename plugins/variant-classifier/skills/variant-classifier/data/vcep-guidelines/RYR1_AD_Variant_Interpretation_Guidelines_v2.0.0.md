@@ -3,6 +3,7 @@
 **Version:** 2.0.0
 **Released:** 12/12/2024
 **Affiliation:** Congenital Myopathies VCEP
+**DOI:** 10.5281/zenodo.21434756
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -115,41 +116,66 @@ Loss of function is not a mechanism of disease for autosomal dominant RYR1-relat
 
 #### Approved Assay Instances
 
+The workbook marks every populated assay entry **Yes** under `Approved assay (y/n)`. Every `Proposed strength (modified)` and `Variants evaluated` result cell is blank; the package therefore supplies no assay-instance variant list.
+
 ##### 1. Calcium Release (PS3_Moderate)
 
 | Attribute | Instance 1 (Kushnir et al. 2020) | Instance 2 (Tong et al. 1997) | Instance 3 (Lyfenko et al. 2007) |
 |-----------|-----------------------------------|-------------------------------|----------------------------------|
 | **PMID** | 32236737 | 9334205 | 16958053 |
+| **DOI** | 10.1007/s00401-020-02150-w | 10.1074/jbc.272.42.26332 | 10.1002/humu.20409 |
 | **Assay Description** | Microsomes containing variant and wild type RyR1 channels are stimulated to load calcium by ATP addition, inhibited by thapsigargin addition, and calcium leak is measured | HEK-293 cells transiently expressing wild type or variant RYR1 cDNA are loaded with a fluorescent calcium indicator and stimulated by caffeine or halothane before measuring intracellular calcium release | Whole-cell patch clamp to assess voltage-gated calcium release and L-type calcium current |
 | **Material** | Microsomes from skeletal muscle biopsies from 17 individuals with RYR1-related myopathies | HEK-293 cells transiently transfected with wild type or variant rabbit RYR1 cDNA | RyR1-null myotubes expressing variant RyR1 |
 | **Readout** | Quantitative: Fluo-4 signal as proxy for calcium leak | Quantitative: Peak heights in fluorescence ratio measuring calcium release | Quantitative: Voltage-gated calcium transients and L-type calcium currents |
+| **Biological replicates** | Not met | Not met | Not met |
+| **Technical replicates** | `3` (bare numeric workbook cell) | Included, exact number not reported | Met (19-22 myotubes) |
+| **Basic positive control** | Met (wild type RYR1 control) | Met (wild type RYR1 control) | Met (wild type RYR1) |
+| **Basic negative control** | Not met | Not met | Met (untransfected myotubes) |
+| **P/LP validation controls** | Not met | Not met | Not met |
+| **B/LB validation controls** | Not met | Not met | Not met |
+| **Statistical analysis** | Not reported | Unpaired Student's t test, p value threshold strictly `<0.05` | Not reported |
 | **Normal Threshold** | Wild type levels of calcium release | Wild type levels of calcium release in response to caffeine or halothane | Wild type levels of calcium release |
 | **Abnormal Threshold** | Increased calcium release (leak) | Increased sensitivity of calcium release in response to caffeine or halothane | Reduced voltage-gated calcium release |
-| **Strength** | Moderate | Moderate | Moderate |
+| **Approved / Proposed Strength** | Yes / Moderate | Yes / Moderate | Yes / Moderate |
+
+> **Unresolved source conflict:** The core criterion defines abnormal calcium release for PS3_Moderate as **increased** release compared with controls or WT RYR1. The approved PMID 16958053 workbook entry instead defines abnormality as **reduced** voltage-gated calcium release. The package does not reconcile the direction difference.
+
+The PMID 32236737 workbook entry additionally carries this red-font note: `This assay has also been performed in other patient cell types (Wehner et al., 2004, 2002; Girard et al., 2002; Brinkmeier et al., 1999, Yang et al., 2003; Girard et al., 2001; Censier et al., 1998)`.
 
 ##### 2. Single Channel Activity (PS3_Supporting)
 
 | Attribute | Instance 1 (Kushnir et al. 2020) |
 |-----------|-----------------------------------|
 | **PMID** | 32236737 |
+| **DOI** | 10.1007/s00401-020-02150-w |
 | **Assay Description** | Channel opening events measured in planar lipid bilayers containing variant RyR1 channels |
-| **Material** | Planar lipid bilayers containing RyR1 channels isolated from skeletal muscle biopsies or recombinant RyR1 expressing variants of interest |
+| **Material** | Planar lipid bilayers containing RyR1 channels isolated from skeletal muscle biopsies from 17 individuals with RYR1-related myopathies or recombinant RyR1 expressing variants of interest |
 | **Readout** | Quantitative: Opening probability (po) |
+| **Biological / technical replicates** | Not met / `3` (bare numeric workbook cell) |
+| **Basic positive / negative control** | Met (wild type RYR1 control) / Not met |
+| **P/LP / B/LB validation controls** | Not met / Not met |
+| **Statistical analysis** | Not reported |
 | **Normal Threshold** | Wild type like opening dynamics |
 | **Abnormal Threshold** | Increased opening probability at non-activating cytosolic calcium levels |
-| **Strength** | Supporting |
+| **Approved / Proposed Strength** | Yes / Supporting |
 
 ##### 3. Calstabin1/FKBP12 Binding (PS3_Supporting)
 
 | Attribute | Instance 1 (Avila et al. 2003) | Instance 2 (Kushnir et al. 2020) |
 |-----------|-------------------------------|-----------------------------------|
 | **PMID** | 12704193 | 32236737 |
+| **DOI** | 10.1074/jbc.M205866200 | 10.1007/s00401-020-02150-w |
 | **Assay Description** | Co-IP of endogenous FKBP12 and RyR1 measured in virally infected RyR1-null myotubes | RyR1 co-immunoprecipitated with RyR1-specific antibody and calstabin1 assessed with immunoblotting |
-| **Material** | RyR1-null (1B5) myotubes infected with virions encoding variant RyR1 | Skeletal muscle biopsy lysates from 17 individuals AND recombinant RyR1 channels |
+| **Material** | RyR1-null (1B5) myotubes infected with virions encoding variant RyR1 | Skeletal muscle biopsy lysates from 17 individuals with RYR1-related myopathies AND recombinant RyR1 channels expressing variants of interest |
 | **Readout** | Qualitative: Level of FKBP12 bound to RyR1 | Quantitative: Level of Calstabin1 binding |
+| **Biological / technical replicates** | Not met / Not met | Not met / Not met |
+| **Basic positive control** | Met (wild type RYR1 and junctional SR (JSR) isolated from rabbit skeletal muscle) | Wild type RyR1 control |
+| **Basic negative control** | Not met | Not met |
+| **P/LP / B/LB validation controls** | Not met / Not met | Not met / Not met |
+| **Statistical analysis** | Not reported | Not reported |
 | **Normal Threshold** | Levels of FKBP12 similar to wild type | Wild type levels of calstabin1 binding |
 | **Abnormal Threshold** | Reduced FKBP12 binding | Reduced calstabin1 binding |
-| **Strength** | Supporting | Supporting |
+| **Approved / Proposed Strength** | Yes / Supporting | Yes / Supporting |
 
 ---
 
@@ -161,11 +187,11 @@ Loss of function is not a mechanism of disease for autosomal dominant RYR1-relat
 
 RYR1 is associated with both autosomal recessive and autosomal dominant disease. If you are curating biallelic observations, please use the AR specifications. For case counting for AD disease, use the PS4 point-based chart below.
 
-| Strength | Points Required |
-|----------|----------------|
-| **Strong** | At least 1 point |
-| **Moderate** | 0.5 points |
-| **Supporting** | 0.25 points |
+| Strength | Core-PDF wording |
+|----------|------------------|
+| **Strong** | `at least 1 point` |
+| **Moderate** | `0.5 points` |
+| **Supporting** | `0.25 points` |
 
 #### PS4 Case Counting Chart (AD)
 
@@ -180,14 +206,16 @@ To meet PP4, a congenital myopathy testing panel should be performed without ide
 
 | Proband Phenotype | Specificity | Points per Proband |
 |-------------------|-------------|-------------------|
-| PP4 met (≥2 features) | Specific | 0.5 points |
+| PP4 Met | Specific | 0.5 points |
 | One PP4 feature | Suggestive | 0.25 points |
 
 | Strength Level | Points Threshold |
 |----------------|-----------------|
 | PS4_Supporting | 0.25 points |
 | PS4_Moderate | 0.5 points |
-| PS4_Strong | 1 point |
+| PS4_Strong | `1 points` |
+
+**Unresolved comparator difference:** The core PDF uses inclusive `at least 1 point` for Strong, while `PS4 specification for RYR1_AD.pdf` prints the bare, grammatically incorrect `1 points`. Moderate and Supporting are bare values in both files. The VCEP does not state ranges or assign other attainable totals such as 0.75 points; no comparator is inferred here.
 
 ---
 
@@ -200,6 +228,8 @@ To meet PP4, a congenital myopathy testing panel should be performed without ide
 | Strength | Criteria |
 |----------|----------|
 | **Moderate** | The pore/transmembrane region of RYR1 is critical for protein function and missense variants that fall within this region (**amino acids 4800-4950**) |
+
+The source gives the region only as `4800-4950`; it does not separately state endpoint comparator symbols.
 
 ---
 
@@ -214,6 +244,8 @@ To meet PP4, a congenital myopathy testing panel should be performed without ide
 | Strength | Criteria |
 |----------|----------|
 | **Supporting** | PM2_Supporting may be applied if the minor allele frequency in population databases of at least 2,000 alleles is **absent (1 allele allowed)** for autosomal dominant |
+
+**Unresolved source wording:** The same sentence says the frequency is `absent` and that `1 allele` is allowed. The VCEP does not reconcile those statements or provide a numerical frequency cutoff.
 
 ---
 
@@ -284,6 +316,8 @@ The segregation chart (adopted from Oza et al. 2018 PMID: 30311386) should be us
 | **Strong** | See segregation chart (Oza et al. 2018) |
 | **Moderate** | See segregation chart (Oza et al. 2018) |
 | **Supporting** | Co-segregation with disease in multiple affected family members; see segregation chart |
+
+> **Unavailable distributed source:** No segregation-chart artifact is present in the GN150 package or listed under the core PDF's Files & Images. The distributed specification therefore provides no PP1 thresholds or matrix. Do not substitute a generic Oza et al. grid.
 
 ---
 
@@ -357,6 +391,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 > If the mode of inheritance for the variant is unclear (this largely applies to missense variants as loss of function variants are suspected to cause AR disease), use the more conservative AR cutoff for BS1 and the AR specifications.
 
+> **Source typo:** The core PDF spells the final word `specifcations`; it is reproduced here only to document the source error, not as an alternate term.
+
 **VCEP Specification (Strong):**
 - The minor allele frequency using the filtering allele frequency of either exomes or genomes of continental populations in gnomAD is **≥ 0.00000486** for AD variants
 - All populations used should have at least 2,000 alleles and >1 observation
@@ -375,7 +411,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | Observed in a healthy adult individual for a dominant (heterozygous) disorder, with full penetrance expected at an early age |
+| **Strong** | Observed in a healthy adult individual for a recessive (homozygous), dominant (heterozygous), or X-linked (hemizygous) disorder, with full penetrance expected at an early age |
 | **Moderate** | No change - use as originally described |
 | **Supporting** | No change - use as originally described |
 
@@ -410,16 +446,20 @@ The VCEP has decided that lack of demonstrated effect in a functional assay shou
 | Criterion | Status | Specifications |
 |-----------|--------|----------------|
 | **BP1** | Not Applicable | Both missense and truncating variants in RYR1 are disease-causing |
-| **BP2** | Applicable | No change - use as originally described. **Strong**, **Moderate**, and **Supporting** levels: Observed in trans with a pathogenic variant for a fully penetrant dominant gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern |
+| **BP2** | Applicable | **Strong/Moderate:** `No change - use as originally described` with no separate definition. **Supporting:** observed in trans with a pathogenic variant for a fully penetrant dominant gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern. |
 | **BP3** | Not Applicable | There are no regions in RYR1 where BP3 would apply |
 | **BP4** | Applicable (Supporting) | BP4 is met if the **REVEL score ≤ 0.15** or if the variant is **not predicted to impact splicing using SpliceAI** |
-| **BP5** | Applicable | No change - use as originally described. Available at **Strong**, **Moderate**, and **Supporting** levels: Variant found in a case with an alternate molecular basis for disease |
+| **BP5** | Applicable | **Strong/Moderate:** `No change - use as originally described` with no separate definition. **Supporting:** variant found in a case with an alternate molecular basis for disease. |
 | **BP6** | Not Applicable | Not for use as recommended by ClinGen SVI VCEP Review Committee (PMID: 29543229) |
 | **BP7** | Applicable (Supporting) | A synonymous variant for which **SpliceAI** predicts no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved |
+
+**Unresolved source tension:** BP1 says both missense and truncating RYR1 variants are disease-causing; PVS1 says LoF is not a mechanism for AD RYR1 disease; and the general MOI note says LoF variants are almost always associated with AR disease. The source does not reconcile these statements, so truncation must not be equated automatically with an AD LoF mechanism.
 
 ---
 
 ## Rules for Combining Criteria
+
+**Source limitation:** The core combining table includes PVS1 and PM3 strengths although both criteria are Not Applicable under the AD specification; PP4 strengths although PP4 is Not Applicable separately; `PS3_Very Strong` and `PS4_Very Strong` although neither criterion defines Very Strong; PP3 at Strong/Moderate although only Supporting is defined; and `BP7_Strong` although BP7 is defined only at Supporting. These source conflicts and missing definitions are not reconciled here.
 
 ### Pathogenic Classification
 
@@ -479,7 +519,7 @@ The VCEP has decided that lack of demonstrated effect in a functional assay shou
 | PM4 | No change | Strong | Use as originally described; if LOF, use AR specs |
 | PM5 | No change | Strong | Use as originally described |
 | PM6 | No change | Strong | Use as originally described |
-| PP1 | General recommendation | Strong | Segregation chart from Oza et al. 2018 |
+| PP1 | General recommendation | Strong | Refers to an Oza et al. 2018 segregation chart that is not distributed with GN150 |
 | PP2 | Not Applicable | — | RYR1 not constrained for missense variation |
 | PP3 | General recommendation | Supporting | REVEL ≥ 0.7 or SpliceAI ≥ 0.5 |
 | PP4 | Not Applicable (standalone) | — | Factored into PS4 case counting |
@@ -518,16 +558,16 @@ The VCEP has decided that lack of demonstrated effect in a functional assay shou
 
 ### Appendix D: Reference PMIDs
 
-| PMID | Authors | Title | Year |
-|------|---------|-------|------|
-| 30311386 | Oza AM, DiStefano MT, et al. | Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss | 2018 |
-| 31060725 | Saade DN, Neuhaus SB, et al. | The Use of Muscle Ultrasound in the Diagnosis and Differential Diagnosis of Congenital Disorders of Muscle | 2019 |
-| 32236737 | Kushnir A, Todd JJ, et al. | Intracellular calcium leak as a therapeutic target for RYR1-related myopathies | 2020 |
-| 9334205 | Tong J, Oyamada H, et al. | Caffeine and halothane sensitivity of intracellular Ca2+ release is altered by 15 calcium release channel mutations | 1997 |
-| 16958053 | Lyfenko AD, Ducreux S, et al. | Two central core disease deletions in the C-terminal region of RYR1 alter muscle excitation-contraction coupling | 2007 |
-| 12704193 | Avila G, Lee EH, et al. | FKBP12 binding to RyR1 modulates excitation-contraction coupling in mouse skeletal myotubes | 2003 |
-| 16940308 | Zhou H, Yamaguchi N, et al. | Characterization of recessive RYR1 mutations in core myopathies | 2006 |
-| 29543229 | Biesecker LG, Harrison SM, et al. | ClinGen SVI recommendation on PP5/BP6 | 2018 |
+| PMID | Authors | Title | Year | DOI |
+|------|---------|-------|------|-----|
+| 30311386 | Oza AM, DiStefano MT, et al. | Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss | 2018 | 10.1002/humu.23630 |
+| 31060725 | Saade DN, Neuhaus SB, et al. | The Use of Muscle Ultrasound in the Diagnosis and Differential Diagnosis of Congenital Disorders of Muscle in the Age of Next Generation Genetics | 2019 | 10.1016/j.spen.2019.01.001 |
+| 32236737 | Kushnir A, Todd JJ, et al. | Intracellular calcium leak as a therapeutic target for RYR1-related myopathies | 2020 | 10.1007/s00401-020-02150-w |
+| 9334205 | Tong J, Oyamada H, et al. | Caffeine and halothane sensitivity of intracellular Ca2+ release is altered by 15 calcium release channel (ryanodine receptor) mutations associated with malignant hyperthermia and/or central core disease | 1997 | 10.1074/jbc.272.42.26332 |
+| 16958053 | Lyfenko AD, Ducreux S, et al. | Two central core disease (CCD) deletions in the C-terminal region of RYR1 alter muscle excitation-contraction (EC) coupling by distinct mechanisms | 2007 | 10.1002/humu.20409 |
+| 12704193 | Avila G, Lee EH, et al. | FKBP12 binding to RyR1 modulates excitation-contraction coupling in mouse skeletal myotubes | 2003 | 10.1074/jbc.M205866200 |
+| 16940308 | Zhou H, Yamaguchi N, et al. | Characterization of recessive RYR1 mutations in core myopathies | 2006 | 10.1093/hmg/ddl221 |
+| 29543229 | Not supplied | The PP5 and BP6 blocks supply the PMID only; the prior author/title/year expansion was not in the distributed package and has been removed. | Not supplied | Not supplied |
 
 ---
 
@@ -535,6 +575,7 @@ The VCEP has decided that lack of demonstrated effect in a functional assay shou
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 2.0.0 | 2026-08-09 | **Document corrections.** Verified the governing criteria, multiple-MOI note, release note, metadata, DOI, PP1 source gap, source conflicts, exact comparator wording, exclusions and seven full references against `ClinGen_ACMG_Specifications_RYR1_v2.0.pdf`; restored the core DOI, full BS2 Strong text and reference titles/DOIs, documented the source's `specifcations` typo, and removed the package-unsupplied PMID 29543229 expansion. Verified every phenotype, case-count cell and bare PS4 threshold against `PS4 specification for RYR1_AD.pdf`; preserved its `1 points` typo and reported its difference from the core's inclusive Strong wording without resolving unmapped totals. Verified all 181 populated cells and raw OOXML in `RYR1 approved functional assays.xlsx`; restored assay DOIs, complete material descriptions, replication, controls, statistics, approval/proposed-strength status and the red-font patient-cell note; documented blank modified-strength/variant fields and the approved reduced-release assay's conflict with the core increased-release rule. No generic segregation chart was substituted for the unavailable artifact. |
 | 2.0.0 | 12/12/2024 | Previously missing PP4 phenotypes were added back to the PS4 case counting chart that is attached to clarify the weight that should be applied to count affected cases |
 
 ---

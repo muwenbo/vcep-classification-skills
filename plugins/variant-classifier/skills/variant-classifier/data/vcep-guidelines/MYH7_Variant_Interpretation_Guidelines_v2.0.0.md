@@ -122,23 +122,11 @@ Non-specific clinical features (e.g., palpitations, syncope, borderline/inconclu
 
 **Important:** Generally, this criterion is only applicable in the ABSENCE of any other possible disease-causing variants. If other pathogenic or likely pathogenic variants are present, consider decreasing points assigned or overall weight.
 
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
+GN002 does not reproduce a de novo scoring matrix or a points-to-strength
+conversion. It directs curators to current ClinGen SVI guidance for the number
+and combination of cases required based on phenotype specificity. Do not infer
+PS2_Moderate, PS2_Supporting, or PS2_VeryStrong from this VCEP document; GN002
+defines PS2 at **Strong only**.
 
 **Modification Type:** Disease-specific
 
@@ -395,7 +383,7 @@ The values used to calculate the PM2 thresholds were derived from studies in Nor
 **Guidance:**
 - For most cardiomyopathies, it is recommended to default to "phenotype consistent with gene but not highly specific"
 - Clinical judgment is required for shifting to a higher or lower phenotypic consistency
-- See PS2 for additional considerations and point system
+- See PS2 for additional considerations. GN002 does not specify a point system.
 
 **Modification Type:** Disease-specific
 
@@ -682,7 +670,7 @@ Families may have more than one pathogenic variant contributing to an autosomal 
 |-----------|-------------|-------------|---------------------|
 | PVS1 | Not Applicable | - | LOF not a disease mechanism |
 | PS1 | Applicable | Strong | No modification |
-| PS2 | Applicable | Strong/Moderate/Supporting | Point-based system; default "phenotype consistent but not highly specific" |
+| PS2 | Applicable | Strong only | Refer to SVI guidance; no point system is specified by GN002 |
 | PS3 | Applicable | Strong/Moderate/Supporting | Splicing assays (Strong), animal models (Moderate), in vitro assays (Supporting) |
 | PS4 | Applicable | Strong/Moderate/Supporting | OR lower 95% CI: ≥20 (Strong), ≥10 (Moderate), ≥5 (Supporting) |
 | PM1 | Applicable | Moderate | Codons 167-931 (HCM only); cannot combine with PM5 |
@@ -690,7 +678,7 @@ Families may have more than one pathogenic variant contributing to an autosomal 
 | PM3 | Not Applicable | - | Dominant inheritance |
 | PM4 | Applicable | Moderate/Supporting | Consider impact, size, location |
 | PM5 | Applicable | Moderate/Supporting | Based on P/LP at same codon; cannot combine with PM1 |
-| PM6 | Applicable | Moderate | Use PS2 point system |
+| PM6 | Applicable | Moderate only | Refer to SVI guidance; no point system is specified by GN002 |
 | PP1 | Applicable | Strong/Moderate/Supporting | ≥7/≥5/≥3 segregations |
 | PP2 | Not Applicable | - | Regional enrichment addressed via PM1 |
 | PP3 | Applicable | Supporting | REVEL ≥0.70 |

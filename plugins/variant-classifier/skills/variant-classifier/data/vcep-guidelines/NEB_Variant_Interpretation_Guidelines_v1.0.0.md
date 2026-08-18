@@ -3,7 +3,8 @@
 **Version:** 1.0.0
 **Released:** 8/7/2024
 **Affiliation:** Congenital Myopathies VCEP
-**Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**Source DOI:** 10.5281/zenodo.21434739
+**Distributed source files verified:** `ClinGen_ACMG_Specifications_NEB_v1.0.pdf`; `NEB approved functional assays.xlsx`; `PVS1 decision tree for NEB.pptx`; `Segregation chart.pdf`
 
 ---
 
@@ -16,6 +17,8 @@
 | **Transcripts** | NM_001164507.1, NM_001164508.2 |
 | **Disease** | Nemaline myopathy (MONDO:0018958) |
 | **Inheritance** | Autosomal recessive inheritance |
+
+> **Source transcript conflict:** The core specification lists NM_001164507.1 and NM_001164508.2, while the distributed PVS1 flowchart lists NM_001164507.2 and NM_001164508.2. The distributed package does not reconcile NM_001164507.1 versus NM_001164507.2.
 
 ---
 
@@ -67,58 +70,67 @@ Caveats:
 **Gene-Specific Notes:**
 - In-frame deletions due to the repetitive nature of NEB, particularly in exon 55, are deleterious and pathogenic (Anderson 2004 PMID:15221447, Lehtokari 2009 PMID:19232495).
 - Exons 161-183 are critical functional regions (Pelin 1999 PMID:10051637).
-- NMD boundary: c.25354, p.8452.
+- The flowchart prints `(c.25354, p.8452)` beneath “Predicted to undergo NMD” with an undefined superscript `b`; it does not state a comparison operator or direction.
 - In-frame exons: 3-180, 182.
 - Biologically-relevant transcripts: NM_001164508.2, NM_001164507.2.
+
+> **Unresolved source conflict:** The core PDF places the same statement about deleterious in-frame NEB deletions, particularly exon 55, in both the PVS1 Very Strong and PVS1 Strong blocks. The flowchart routes critical regions (exons 55 and 161-183) to unmodified PVS1, while PM4 says to use either PVS1_Strong or PM4_Strong for in-frame deletions. These readings are reported without selecting one.
 
 #### Strength Levels
 
 | Strength | Criteria |
 |----------|----------|
-| **Very Strong** | Null variant predicted to undergo NMD in biologically-relevant transcript(s); OR truncated/altered region is critical to protein function (exons 55, 161-183); OR full gene deletion. See PVS1 flowchart for complete decision tree. |
-| **Strong** | In-frame deletions due to the repetitive nature of NEB, particularly in exon 55 (Anderson 2004, Lehtokari 2009). The majority of NEB exons are in frame (exons 3-180, 182); thus, skipping of in-frame exons should be scored at PVS1_Strong. Also applies when variant removes >10% of protein and LoF variants in the exon are not frequent in the general population. |
-| **Moderate** | See PVS1 flowchart. Applies when role of region in protein function is unknown and variant removes <10% of protein, or other scenarios per flowchart. |
-| **Supporting** | See PVS1 flowchart. Applies to initiation codon variants with no pathogenic variant(s) upstream of closest potential in-frame start codon. |
+| **Very Strong** | Core PDF: the generic null-variant description, plus specified critical regions including deleterious in-frame deletions (particularly exon 55) and exons 161-183. Flowchart: NMD-producing null variants only when the exon is present in a biologically relevant transcript; critical altered regions (exons 55, 161-183); and full-gene deletions. See the unresolved conflict above. |
+| **Strong** | Core PDF: in-frame deletions due to NEB's repetitive nature, particularly exon 55; most NEB exons are in frame (3-180, 182), so skipping an in-frame exon is PVS1_Strong. Flowchart non-NMD/noncritical path: role unknown, LoF variants not frequent, exon present, and strictly >10% of protein removed. See the unresolved conflict above. |
+| **Moderate** | Flowchart non-NMD/noncritical path: role unknown, LoF variants not frequent, exon present, and strictly <10% of protein removed. Initiation-codon variants may also reach PVS1_Moderate as described below. |
+| **Supporting** | The core PDF says only “See PVS1 flowchart.” The initiation-codon flowchart's lower outcome is printed literally as `PVS1_Supp`; the package does not define or expand that abbreviation. |
+
+> **Unresolved flowchart gaps:** Footnote markers `a`, `b`, `c`, and `d` are not defined in the slide or its speaker notes. Every protein-removal branch uses strict `>10%` and `<10%`; exactly 10% has no path.
 
 #### PVS1 Decision Tree Summary
 
 **Nonsense or Frameshift:**
-- Predicted to undergo NMD (before c.25354) AND exon present in biologically-relevant transcript(s) → **PVS1**
+- Predicted to undergo NMD (flowchart prints `(c.25354, p.8452)` with undefined marker `b`) AND exon present in biologically-relevant transcript(s) → **PVS1**
+- Predicted to undergo NMD AND exon absent from biologically-relevant transcript(s) → **N/A**
 - Not predicted to undergo NMD:
   - Truncated region critical (exons 55, 161-183) → **PVS1**
-  - Region unknown + removes >10% protein → **PVS1_Strong**
-  - Region unknown + removes <10% protein → **PVS1_Moderate**
-  - LoF variants frequent in exon / exon absent from biologically-relevant transcripts → **N/A**
+  - Region unknown + LoF variants frequent in the general population and/or exon absent from biologically-relevant transcripts → **N/A**
+  - Region unknown + LoF variants not frequent AND exon present + removes >10% protein → **PVS1_Strong**
+  - Region unknown + LoF variants not frequent AND exon present + removes <10% protein → **PVS1_Moderate**
 
-**Canonical Splice Variants (GT-AG, +/-1,2):**
-- Exon skipping disrupts reading frame + predicted NMD → **PVS1**
+**Canonical Splice Variants (source text: `GT--AG 1,2 splice sites` with undefined marker `a`):**
+- Exon skipping or cryptic splice-site use disrupts reading frame + predicted NMD + exon present in biologically-relevant transcript(s) → **PVS1**
+- The same NMD-producing consequence + exon absent from biologically-relevant transcript(s) → **N/A**
 - Exon skipping preserves reading frame (in-frame exons: 3-180, 182):
   - Truncated region critical (exons 55, 161-183) → **PVS1**
-  - Region unknown + removes >10% protein → **PVS1_Strong**
-  - Region unknown + removes <10% protein → **PVS1_Moderate**
-  - LoF variants frequent / exon absent → **N/A**
-- Exon skipping disrupts frame + NOT predicted NMD: same logic as above for critical regions and protein removal percentage
+  - Region unknown + LoF variants frequent and/or exon absent → **N/A**
+  - Region unknown + LoF variants not frequent AND exon present + removes >10% protein → **PVS1_Strong**
+  - Region unknown + LoF variants not frequent AND exon present + removes <10% protein → **PVS1_Moderate**
+- Exon skipping or cryptic splice-site use disrupts the frame + is NOT predicted to undergo NMD: the same complete critical-region, frequency, exon-presence, and strict-percentage logic applies
 
 **Deletions (single exon to full gene):**
-- Full gene deletion → **PVS1**
-- Disrupts reading frame + NMD predicted → **PVS1**
+- Full gene deletion → **PVS1** with undefined marker `d`
+- Disrupts reading frame + NMD predicted + exon present in biologically-relevant transcript(s) → **PVS1**
+- The same NMD-producing deletion + exon absent from biologically-relevant transcript(s) → **N/A**
 - Preserves reading frame:
   - Truncated region critical (exons 55, 161-183) → **PVS1**
-  - Region unknown + removes >10% protein → **PVS1_Strong**
-  - Region unknown + removes <10% protein → **PVS1_Moderate**
-- Disrupts frame + NOT predicted NMD: same logic as above
+  - Region unknown + LoF variants frequent and/or exon absent → **N/A**
+  - Region unknown + LoF variants not frequent AND exon present + removes >10% protein → **PVS1_Strong**
+  - Region unknown + LoF variants not frequent AND exon present + removes <10% protein → **PVS1_Moderate**
+- Disrupts frame + NOT predicted NMD: the same complete critical-region, frequency, exon-presence, and strict-percentage logic applies
 
 **Duplications (>=1 exon, completely within gene):**
 - Proven in tandem + reading frame disrupted + NMD predicted → **PVS1**
-- Proven in tandem + no/unknown impact on reading frame → **N/A**
+- Proven in tandem + no or unknown impact on reading frame and NMD → **N/A**
 - Presumed in tandem + reading frame presumed disrupted + NMD predicted → **PVS1_Strong**
+- Presumed in tandem + no or unknown impact on reading frame and NMD → **N/A**
 - Proven not in tandem → **N/A**
 
 **Initiation Codon:**
 - Different functional transcript uses alternative start codon → **N/A**
 - No known alternative start codon:
   - >=1 pathogenic variant(s) upstream of closest potential in-frame start codon → **PVS1_Moderate**
-  - No pathogenic variant(s) upstream → **PVS1_Supporting**
+  - No pathogenic variant(s) upstream → **`PVS1_Supp`** (literal, undefined flowchart abbreviation)
 
 ---
 
@@ -140,31 +152,13 @@ Caveats:
 
 **Original ACMG Summary:** De novo (both maternity and paternity confirmed) in a patient with the disease and no family history. Note: Confirmation of paternity only is insufficient. Egg donation, surrogate motherhood, errors in embryo transfer, etc. can contribute to non-maternity.
 
-**VCEP Specifications:** No change from original ACMG guidelines. Use the SVI-recommended point-based system.
+**VCEP Specifications:** No change from original ACMG guidelines.
 
 | Strength | Criteria |
 |----------|----------|
 | **Strong** | De novo (both maternity and paternity confirmed) in a patient with the disease and no family history. |
 | **Moderate** | No change - use as originally described |
 | **Supporting** | No change - use as originally described |
-
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
 
 ---
 
@@ -192,12 +186,19 @@ Caveats:
 | **Description** | The in vitro motility of single fibers derived from patient and control muscle in the presence of rhodamine-phalloidin-labeled actin filaments was measured. |
 | **Material** | Single muscle fiber preparations from biopsies from nemaline myopathy patient and healthy subjects |
 | **Readout** | Quantitative - in vitro motility speed |
+| **Biological replicates** | Not met (0) |
+| **Technical replicates** | 9-17 single fibers per group; 20 actin filaments measured per single fiber preparation |
+| **Basic positive control** | Met (muscle fibers from 7 healthy control subjects) |
+| **Basic negative control** | Not met |
+| **Validation controls** | P/LP: 0; B/LB: 0 |
+| **Statistical analysis** | Means +/- standard error; unpaired Student's t test; if normality was not met (P<0.05, Kolmogorov-Smirnov), nonparametric Mann-Whitney rank-sum tests; otherwise regressions, with relationships considered “significant different” [sic] from 0 at P < 0.05 |
 | **Normal threshold** | No statistically significant difference in speed compared to wild type |
 | **Abnormal threshold** | Statistically significant difference in speed compared to wild type |
 | **Approved** | Yes |
 | **Proposed strength** | Supporting |
+| **Proposed strength (modified)** | Not populated in workbook |
 | **Variants evaluated** | c.36+2dupT; c.2106+3A>C |
-| **Notes** | Patient-derived muscle fibers; compound heterozygous splice variants associated with reduced levels of intact nebulin (~30% reduction vs controls) |
+| **Notes** | Patient-derived muscle fibers used in this assay; compound heterozygous splice variants associated with reduced levels of intact nebulin (reduced by ~30% compared to controls) |
 
 **Assay 2: Thin Filament Structure (Instance 1 - Patient Biopsies)**
 
@@ -209,12 +210,19 @@ Caveats:
 | **Description** | The X-ray diffraction pattern of arrays of ~30 single fibers derived from patient and control muscle were recorded in two buffer conditions (preactivating and activating with pCa 4.5). |
 | **Material** | Single muscle fiber preparations from biopsies from nemaline myopathy patient and healthy subjects |
 | **Readout** | Quantitative - reflection intensities at the second, sixth, and seventh actin layer lines (ALLs) normalized to total intensity of sixth ALL in absence of calcium |
+| **Biological replicates** | Not met (0) |
+| **Technical replicates** | 20-30 diffraction patterns recorded for each array of ~30 fibers |
+| **Basic positive control** | Met (muscle fibers from 7 healthy control subjects) |
+| **Basic negative control** | Not met |
+| **Validation controls** | P/LP: 0; B/LB: 0 |
+| **Statistical analysis** | Means +/- standard error; unpaired Student's t test; if normality was not met (P<0.05, Kolmogorov-Smirnov), nonparametric Mann-Whitney rank-sum tests; otherwise regressions, with relationships considered “significant different” [sic] from 0 at P < 0.05 |
 | **Normal threshold** | No statistically significant difference in intensity reflections compared to wild type |
 | **Abnormal threshold** | Statistically significant difference in intensity reflections compared to wild type |
 | **Approved** | Yes |
 | **Proposed strength** | Supporting |
+| **Proposed strength (modified)** | Not populated in workbook |
 | **Variants evaluated** | c.36+2dupT; c.2106+3A>C |
-| **Notes** | Patient-derived muscle fibers; compound heterozygous splice variants associated with reduced levels of intact nebulin (~30% reduction vs controls) |
+| **Notes** | Patient-derived muscle fibers used in this assay; compound heterozygous splice variants associated with reduced levels of intact nebulin (reduced by ~30% compared to controls) |
 
 **Assay 3: Thin Filament Structure (Instance 2 - Mouse Model)**
 
@@ -222,15 +230,25 @@ Caveats:
 |-----------|---------|
 | **PMID** | 32483185 |
 | **Author** | Lindqvist...Granzier (2020) |
-| **DOI** | 10.1038/s41467-020-16526-9 |
-| **Description** | The X-ray diffraction pattern of intact extensor digitorum longus muscles derived from wild type mice and the compound heterozygous variant mouse model were recorded at rest and after activation. |
-| **Material** | Intact muscle fibers isolated from wild type mice and the compound heterozygous NebS6366I/DeltaExon55 mouse model |
-| **Readout** | Quantitative - spacing of 27A meridional reflection (thin filament stiffness), sixth and seventh ALLs spacing, actin radius, second ALL intensity, meridional third-order troponin intensity ratio, thin-thick filament spacing |
+| **DOI** | Workbook cell is written literally as `DOI: 10.1038/s41467-020-16526-9` |
+| **Description** | The X-ray diffraction pattern of intact extensor digitorum longus muscles derived from wild type mice and the compound heterozygous variant mouse model and were recorded at rest and after activation via biphasic current stimulator. |
+| **Material** | Intact muscle fibers isolated from wild type mice and the compound heterozygous NebS6366I/ΔExon55 mouse model. |
+| **Readout** | Quantitative - spacing of the 27 Å meridional reflection (thin filament stiffness), sixth and seventh actin layer line (ALL) spacing, actin radius, second ALL intensity, meridional third-order troponin intensity ratio, and thin-thick filament spacing |
+| **Biological replicates** | Not met (0) |
+| **Technical replicates** | 14-18 muscles from 11-15 mice depending on group |
+| **Basic positive control** | Met (wild type mice) |
+| **Basic negative control** | Not met |
+| **Validation controls** | P/LP: 0; B/LB: 0 |
+| **Statistical analysis** | Unpaired two-tailed T-tests for 27 Å spacing, thin-filament stiffness, sixth/seventh ALL spacing, actin radius, second ALL intensity, and third-order troponin intensity ratio; two-way ANOVA for thick-thin filament spacing |
 | **Normal threshold** | No statistically significant difference in intensity reflections compared to wild type |
 | **Abnormal threshold** | Statistically significant difference in reflection measurements compared to wild type |
 | **Approved** | Yes |
 | **Proposed strength** | Supporting |
-| **Variants evaluated** | c.19097G>T (p.Ser6366Ile) (homozygous or compound heterozygous with exon 55 deletion) |
+| **Proposed strength (modified)** | Not populated in workbook |
+| **Variants evaluated** | Not populated in workbook |
+| **Notes** | c.19097G>T (p.Ser6366Ile), homozygous or in compound heterozygosity with exon 55 deletion (c.7431+1916_7536+372del; p.Arg2478_Asp2512del) |
+
+> **Source-level assay caveats:** The core PDF permits PS3_Strong only for variant-specific mouse models, but the distributed workbook explicitly proposes Supporting for the mouse-model instance above; do not promote it. The workbook's exon-55 deletion coordinates in the assay note (`c.7431+1916_7536+372del`) differ from the core PDF's BA1 exclusion (`NM_001271208.2:c.7431+1919_7536+374del`); the package does not reconcile them.
 
 ---
 
@@ -274,16 +292,9 @@ Caveats:
 
 **Original ACMG Summary:** For recessive disorders, detected in trans with a pathogenic variant. Note: This requires testing of parents (or offspring) to determine phase.
 
-**VCEP Specifications:** Please use the SVI-recommended PM3 chart to count observations. Points for each proband should be summed to get to a final PM3 strength. In order to count case counts for your variant of interest, it should be rare enough to not meet BS1.
+**VCEP Specifications:** Please use the SVI-recommended PM3 chart to count observations. Points for each proband should be summed to get to a final PM3 strength. The core PDF says, with a preserved duplication, “In order to count to count case counts for your variant of interest, it should be rare enough to not meet BS1.”
 
-#### PM3 Point System (Per Proband)
-
-| Classification/Zygosity of Other Variant | Confirmed in Trans | Phase Unknown |
-|------------------------------------------|-------------------|---------------|
-| Pathogenic or Likely pathogenic variant | 1.0 | 0.5 (P) / 0.25 (LP) |
-| Homozygous (non-consanguineous) | 1.0 | 1.0 |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 | 0.5 |
-| VUS (max 0.5 total) | 0.25 | 0.0 |
+> **Distributed-package limitation:** The core PDF links to an external SVI PM3 recommendation but does not reproduce the per-proband chart, and no PM3 chart is distributed with GN146. Per-proband values are therefore not specified by the distributed VCEP package. Do not substitute a generic table.
 
 #### PM3 Evidence Strength Thresholds
 
@@ -293,6 +304,8 @@ Caveats:
 | 1.0 | PM3 (Moderate) |
 | 2.0 | PM3_Strong |
 | 4.0 | PM3_VeryStrong |
+
+The source states these as four bare exact point values, not `>=` thresholds, and does not state how intermediate totals should be handled.
 
 *(Modification: Disease-specific)*
 
@@ -332,7 +345,7 @@ Caveats:
 
 **Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
 
-**VCEP Specifications:** No change from original ACMG guidelines. Use the same PS2/PM6 point-based system described above.
+**VCEP Specifications:** No change from original ACMG guidelines.
 
 | Strength | Criteria |
 |----------|----------|
@@ -357,6 +370,8 @@ Caveats:
 | **Autosomal dominant threshold** | 2 affected segregations | 4 affected segregations | 5 affected segregations |
 | **Autosomal recessive threshold** | See Table 5 | See Table 5 | See Table 5 |
 
+> **Distributed-package limitation:** `Segregation chart.pdf` does not contain Table 5, and no Table 5 is otherwise distributed with GN146. The autosomal-recessive threshold row is therefore unresolved. The legend gives bare LOD values (0.6, 1.2, 1.5) without comparison operators.
+
 #### Segregation Table for Autosomal Recessive (LOD Scores)
 
 *General recommendations (phenocopy not an issue). Rows = affected segregations, Columns = unaffected recessive segregations.*
@@ -375,7 +390,7 @@ Caveats:
 | **9** | 5.42 | 5.54 | 5.67 | 5.79 | 5.92 | 6.04 | 6.17 | 6.29 | 6.42 | 6.54 | 6.67 |
 | **10** | 6.02 | 6.15 | 6.27 | 6.4 | 6.52 | 6.65 | 6.77 | 6.9 | 7.02 | 7.15 | 7.27 |
 
-*Color coding: LOD <0.6 = not met; 0.6-<1.2 = Supporting (PP1); 1.2-<1.5 = Moderate (PP1_Moderate); >=1.5 = Strong (PP1_Strong)*
+*The source raster color-codes the grid into Supporting, Moderate, and Strong bands, but does not print inclusive/strict comparison operators. No operators are inferred here.*
 
 ---
 
@@ -488,7 +503,7 @@ PP4 is met with the presence of any of these features:
 | Strength | Criteria |
 |----------|----------|
 | **Moderate** | The two assays from BS3_Supporting may be stacked to reach Moderate strength. *(Modification: Gene-specific)* |
-| **Supporting** | Two specific assays are currently suggested to be applied at Supporting: (1) **Thin filament structure** - a normal readout consists of no significant difference in intensity reflections of X-ray diffraction patterns generated by muscle fibers from patient biopsies compared to WT; (2) **In vitro motility** - a normal readout consists of no significant difference in speed of single fibers derived from patient muscle compared to WT. *(Modification: Gene-specific)* |
+| **Supporting** | Two specific assays are currently suggested to be applied at Supporting: (1) **Thin filament structure** - a normal readout consists of no significant difference in intensity reflections of X-ray diffraction patterns generated by muscle fibers from patient biopsies compared to WT; (2) **In vitro motility** - the source says a normal readout consists of “no a significant difference” [sic] in speed of single fibers derived from patient muscle compared to WT. *(Modification: Gene-specific)* |
 
 ---
 
@@ -570,9 +585,12 @@ PP4 is met with the presence of any of these features:
 The PVS1 decision tree for NEB follows the ClinGen SVI PVS1 flowchart framework with the following NEB-specific annotations:
 
 - **Biologically-relevant transcripts:** NM_001164508.2, NM_001164507.2
-- **NMD boundary:** c.25354 (p.8452)
+- **NMD label:** the source prints `(c.25354, p.8452)` with undefined marker `b`, without a comparator or direction
 - **In-frame exons:** 3-180, 182
 - **Critical functional regions:** Exons 55, 161-183
+- **Undefined source markers:** `a`, `b`, `c`, and `d` have no definitions in the slide or speaker notes
+- **Percentage gap:** strict `>10%` and `<10%` branches leave exactly 10% unassigned
+- **Literal source text retained:** `GT--AG 1,2 splice sites` and initiation output `PVS1_Supp`
 - **Key references:**
   - Anderson 2004 (PMID:15221447) - Exon 55 deletion
   - Lehtokari 2009 (PMID:19232495) - Exon 55 deletion worldwide
@@ -582,15 +600,15 @@ See the separate PVS1 decision tree document for the full flowchart.
 
 ### Appendix B: Reference PMIDs
 
-| PMID | Reference |
-|------|-----------|
+| PMID | Distributed-package provenance |
+|------|--------------------------------|
 | 15221447 | Anderson SL, Ekstein J et al. *Nemaline myopathy in the Ashkenazi Jewish population is caused by a deletion in the nebulin gene.* **Hum Genet** (2004) 115(3):185-90. DOI: 10.1007/s00439-004-1140-8 |
 | 19232495 | Lehtokari VL, Greenleaf RS et al. *The exon 55 deletion in the nebulin gene--one single founder mutation with world-wide occurrence.* **Neuromuscul Disord** (2009) 19(3):179-81. DOI: 10.1016/j.nmd.2008.12.001 |
 | 10051637 | Pelin K, Hilpela P et al. *Mutations in the nebulin gene associated with autosomal recessive nemaline myopathy.* **Proc Natl Acad Sci U S A** (1999) 96(5):2305-10. DOI: 10.1073/pnas.96.5.2305 |
 | 30311386 | Oza AM, DiStefano MT et al. *Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss.* **Hum Mutat** (2018) 39(11):1593-1613. DOI: 10.1002/humu.23630 |
-| 29543229 | Biesecker LG, Harrison SM et al. *ClinGen Sequence Variant Interpretation Working Group recommendations for ACMG/AMP guideline criteria PP5 and BP6.* (2018) |
-| 21350120 | Ochala J...Larsson L. *Thin filament structure functional assay.* **FASEB J** (2011). DOI: 10.1096/fj.10-176727 |
-| 32483185 | Lindqvist J...Granzier H. *Thin filament X-ray diffraction in compound heterozygous mouse model.* **Nat Commun** (2020). DOI: 10.1038/s41467-020-16526-9 |
+| 29543229 | Bare PMID link supplied by the core PDF for the PP5/BP6 recommendation; no bibliographic expansion is supplied. |
+| 21350120 | Functional workbook supplies `Ochala...Larsson`, 2011, and DOI 10.1096/fj.10-176727; it supplies no article title or journal. |
+| 32483185 | Functional workbook supplies `Lindqvist...Granzier`, 2020, and the literal cell `DOI: 10.1038/s41467-020-16526-9`; it supplies no article title or journal. |
 
 ### Appendix C: Population Frequency Thresholds Summary
 
@@ -640,6 +658,7 @@ See the separate PVS1 decision tree document for the full flowchart.
 | Version | Date | Description |
 |---------|------|-------------|
 | 1.0.0 | 8/7/2024 | Initial release of NEB-specific ACMG/AMP criteria specifications by the Congenital Myopathies VCEP |
+| 1.0.0 | 2026-08-09 | **Document corrections.** Verified all criteria, combination rules, metadata, DOI, transcript list, frequency comparators, references, and the external-only PM3-chart limitation against `ClinGen_ACMG_Specifications_NEB_v1.0.pdf`; removed the package-absent generic PS2/PM6 point system and PM3 per-proband table, and removed unsupplied bibliographic expansions. Verified every shape, connector, branch and speaker note in `PVS1 decision tree for NEB.pptx`; restored omitted exon-presence gates, full frequency/exon gates, strict percentage logic and deletion/duplication/splice routes, and documented the transcript conflict, undefined `a`-`d` markers, exact-10% gap, literal `GT--AG`/`PVS1_Supp` text, and the unresolved PVS1 strength conflict. Verified every populated cell in both worksheets of `NEB approved functional assays.xlsx`; restored replication, control, validation, statistics, threshold, genotype and assay-method fields, corrected the mouse-model `Variants evaluated` field to blank, and documented its proposed-strength and exon-55-coordinate conflicts. Verified all 121 LOD cells and the legend in `Segregation chart.pdf`; removed invented comparison operators and documented the missing Table 5. No change to the underlying ClinGen specification version. |
 
 ---
 

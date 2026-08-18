@@ -76,8 +76,8 @@
 | **Moderate** | Initiation codon variant with 1 or more pathogenic variant(s) upstream of closest potential in-frame start codon. |
 
 **Notes on NMD prediction:**
-- NMD is predicted to occur when a stop codon is integrated in the FBN1 sequence except for stop codons in the last exon or the last 55 nucleotides of the penultimate exon.
-- Critical region: Use the same regions defined for the PM1 and PM1_strong arguments.
+- Per the strength definitions above, NMD is treated as escaped for stop codons in the last exon or the last 55 nucleotides of the penultimate exon.
+- The VCEP identifies only the **C-terminal region** as proven critical to protein function (multiple LP/P variants identified in this region). It does **not** define critical regions by reference to PM1, and it does not make any PVS1 strength conditional on region criticality.
 
 ---
 
@@ -117,21 +117,29 @@
 
 #### PS2/PM6 Point System
 
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
+| Phenotypic Consistency | Confirmed de novo | Assumed de novo |
+|------------------------|-------------------|-----------------|
 | Phenotype highly specific for gene | 2 points | 1 point |
 | Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
+| Phenotype consistent with gene but not highly specific and high genetic heterogeneity\* | 0.5 points | 0.25 points |
+| Phenotype not consistent with gene | 0 points | 0 points |
+
+\* **Maximum allowable value of 1 may contribute to overall score** (footnote on Table 1 of the SVI de novo recommendation).
+
+> **Source note:** the FBN1 specification says only "Use the SVI WG point-based system" and links to the ClinGen SVI working-group page; it does **not** reproduce this matrix, and the FBN1 package distributes no supplementary files. The values above are those of the ClinGen SVI de novo recommendation incorporated by that reference, not content published by the FBN1 VCEP.
 
 #### Evidence Strength Thresholds
+
+These four values **are** stated by the FBN1 VCEP directly:
 
 | Points | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0-3.0 | Strong |
-| 4.0 | Very Strong |
+| 1 | Moderate |
+| Two-three points | Strong |
+| Four points | Very Strong |
+
+> **Comparator not specified.** The VCEP states these as bare values; whether bounds are inclusive or strict is not stated. Note the Strong band is given as "two-three points", which does not cover intermediate totals such as 3.5 — the VCEP is silent on those.
 
 ---
 
@@ -189,7 +197,7 @@
 | **Strong** | Cysteine residues in cbEGF-like domains. **Caveat:** PM5/PS1 should not be used when this argument applies. |
 | **Moderate** | Cys in EGF-like domain, Cys in TB domain, Cys in hybrid domain, (D/N)-X-(D/N)-(E/Q)-Xm-(D/N)-Xn-(Y/F) substitution in cbEGF-like domain, invariant calcium-binding or hydroxylation residue in cbEGF-like domain, critical Gly between Cys2-Cys3 in cbEGF-like domain, Gly between Cys3-Cys4 if there is an upstream cbEGF domain, Cys-creating variants. **Caveat:** N to S substitution in the second N of the consensus sequence and G to A might be tolerated; PM1 should not be used in these cases. |
 
-> **Note:** A detailed table with the specific residues for which PM1_strong and PM1 could be considered is provided in the supplemental material (see Appendix B).
+> **Note:** The criteria above are the complete published statement of PM1. The FBN1 VCEP package distributes **no supplementary files**, so no per-residue table is available (see Appendix B).
 
 ---
 
@@ -472,88 +480,31 @@
 
 ### Appendix A: PVS1 Flowchart
 
-The FBN1 VCEP has simplified the PVS1 flowchart based on those arguments which only apply to FBN1. The biological relevant FBN1 transcript is **NM_000138**.
+> **Source status:** The FBN1 VCEP specification instructs users to "follow the adapted flowchart", but **the FBN1 VCEP package distributes no supplementary files at all** — the adapted flowchart is referenced and never published. No flowchart is reproduced here.
+>
+> The VCEP's PVS1 strength assignments as actually published are given in the [PVS1 strength table](#pvs1---null-variant) in the body of this document, which is the complete and authoritative statement of the criterion. Note that those assignments are **unconditional per variant class** — for example, a nonsense/frameshift variant predicted to escape NMD is PVS1_Strong, with no further branching on region criticality or on the fraction of protein removed.
 
-#### Nonsense or Frameshift Variants
-
-```
-Predicted to undergo NMD --> PVS1
-Not predicted to undergo NMD:
-  |-- Truncated/altered region is critical to protein function --> PVS1_strong
-  |-- Role of region in protein is unknown:
-       |-- Removes >10% protein --> PVS1_strong
-       |-- Removes <10% protein --> PVS1_moderate
-```
-
-#### 1,2 Splice Site Variants (GT->AG)
-
-```
-Disrupts reading frame and predicted to undergo NMD --> PVS1
-Full gene deletion --> PVS1
-Disrupts reading frame and NOT predicted to undergo NMD:
-  |-- Truncated/altered region is critical to protein function --> PVS1_strong
-  |-- Role of region in protein is unknown:
-       |-- Removes >10% protein --> PVS1_strong
-       |-- Removes <10% protein --> PVS1_moderate
-Preserves reading frame:
-  |-- Truncated/altered region is critical to protein function --> PVS1_strong
-```
-
-#### Deletions (Single Exon to Full Gene)
-
-```
-Disrupts reading frame and predicted to undergo NMD --> PVS1
-Disrupts reading frame and NOT predicted to undergo NMD:
-  |-- Truncated/altered region is critical to protein function --> PVS1_strong
-  |-- Role of region in protein is unknown:
-       |-- Removes >10% protein --> PVS1_strong
-       |-- Removes <10% protein --> PVS1_moderate
-Preserves reading frame:
-  |-- Truncated/altered region is critical to protein function --> PVS1_strong
-```
-
-#### Duplications (>=1 Exon, Completely Contained Within Gene)
-
-```
-Proven in tandem:
-  |-- Disrupts reading frame and predicted to undergo NMD --> PVS1
-  |-- Unknown impact on reading frame and NMD --> N/A
-Presumed in tandem:
-  |-- Disrupts reading frame and NOT predicted to undergo NMD --> PVS1_strong
-Proven NOT in tandem --> N/A
-```
-
-#### Initiation Codon Variants
-
-```
-Initiation codon variant --> PVS1_moderate
-(with 1 or more pathogenic variant(s) upstream of closest potential in-frame start codon)
-```
+The biological relevant FBN1 transcript is **NM_000138**.
 
 ---
 
 ### Appendix B: PM1 Domain Residues Summary
 
-The FBN1 VCEP provided detailed lists of residues for PM1_strong and PM1 consideration. Residue tables are available in the supplemental material of the ClinGen specification document.
+> **Source status:** The FBN1 VCEP package distributes **no supplementary files**, so no per-residue lists are available. The criterion is reproduced below exactly as stated in the specification.
 
-#### PM1_Strong Residues (Cysteine Residues in cbEGF-like Domains)
+#### PM1_Strong
 
-Substitution of cysteine residues in cbEGF-like domains is considered very likely to be pathogenic given literature-based evidence. These include 258 cysteine residues across cbEGF1 through cbEGF43 (exons 7-64), all involved in disulfide bonds with potential impact of folding defect.
+Cys residues in cbEGF-like domains.
 
-**Domains covered:** cbEGF1-cbEGF43 (6 Cys residues per domain)
+**Caveat (per VCEP):** PM5/PS1 should not be used when this argument applies.
 
-#### PM1 (Moderate) Residues
+#### PM1 (Moderate)
 
-The following domain types and residue categories qualify for PM1 at moderate strength:
+Cys in EGF-like domain, Cys in TB domain, Cys in hybrid domain, (D/N)-X-(D/N)-(E/Q)-Xm-(D/N)-Xn-(Y/F) substitution in cbEGF-like domain, invariant calcium-binding or hydroxylation residue in cbEGF-like domain, critical Gly between Cys2-Cys3 in cbEGF-like domain, Gly between Cys3-Cys4 if there is an upstream cbEGF domain, Cys-creating variants.
 
-| Domain Type | Residues | Structure Analysis |
-|------------|----------|-------------------|
-| **EGF-like domains** (EGF1-EGF3) | Cysteine residues (exons 2-5) | Disulfide bond / folding defect |
-| **Hybrid domains** (Hyb1, Hyb2) | Cysteine residues (exons 5-6, 21-22) | Disulfide bond / folding defect |
-| **TB domains** (TB1-TB7) | Cysteine residues (exons 9-10, 16-17, 24, 37-38, 41-42, 50-51, 57) | Disulfide bond / folding defect |
-| **cbEGF-like domains** | Critical Gly between Cys2-Cys3 and Gly between Cys3-Cys4 (if upstream cbEGF domain exists) | Interdomain packaging / folding defect |
-| **cbEGF-like domains** | (D/N)-X-(D/N)-(E/Q)-Xm-(D/N)-Xn-(Y/F) consensus residues | Calcium binding / folding defect |
-| **Any domain** | Cys-creating variants | Disulfide bond / folding defect |
+**Caveat (per VCEP):** N to S substitution in the second N of the consensus sequence and G to A might be tolerated; PM1 should not be used in these cases.
+
+*Domain-to-exon mappings and residue counts are **not specified by the VCEP**.*
 
 ---
 
@@ -594,14 +545,14 @@ The following domain types and residue categories qualify for PM1 at moderate st
 
 ### Appendix F: Criteria Not Applicable for FBN1
 
-| Criterion | Reason |
-|-----------|--------|
-| PM3 | Marfan syndrome is autosomal dominant; in trans testing not applicable |
-| BS2 | Not applicable for FBN1 |
-| BP1 | FBN1 is not a gene where only LOF causes disease |
-| BP3 | Not applicable for FBN1 |
-| PP5 | Not for use per ClinGen SVI recommendation (PMID: 29543229) |
-| BP6 | Not for use per ClinGen SVI recommendation (PMID: 29543229) |
+| Criterion | Reason given by VCEP |
+|-----------|----------------------|
+| PM3 | *No reason stated by VCEP* — marked "Not Applicable" without comment |
+| BS2 | *No reason stated by VCEP* — marked "Not Applicable" without comment |
+| BP1 | *No reason stated by VCEP* — marked "Not Applicable" without comment |
+| BP3 | *No reason stated by VCEP* — marked "Not Applicable" without comment |
+| PP5 | "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee." (PMID: 29543229) |
+| BP6 | "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee." (PMID: 29543229) |
 
 ---
 
@@ -618,6 +569,14 @@ The following domain types and residue categories qualify for PM1 at moderate st
 | Version | Date | Description |
 |---------|------|-------------|
 | 1.0.0 | January 4, 2022 | Initial release of FBN1 VCEP specifications |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_FBN1_v1.0.pdf` (the only file the FBN1 package distributes). No change to the underlying ClinGen specification version.**
+
+- **Appendix A (PVS1 flowchart) — removed as fabricated.** The previous text presented a generic SVI-style decision tree with branches ("role of region unknown", "removes >10% protein" → PVS1_strong, "removes <10% protein" → PVS1_moderate) that appear **nowhere** in the FBN1 source and that **contradicted** this document's own PVS1 strength table. Under the removed tree, a nonsense/frameshift variant escaping NMD and removing <10% of the protein would be called PVS1_Moderate; the FBN1 VCEP assigns PVS1_Strong unconditionally. The specification references an "adapted flowchart" that ClinGen does not publish.
+- **Appendix B (PM1 residues) — removed as fabricated.** Per-domain exon mappings, a "Structure Analysis" column, and the claim of "258 cysteine residues across cbEGF1 through cbEGF43 (exons 7-64)" have no source. The provenance claim that residue tables are "available in the supplemental material" was false: the package ships no supplements. Replaced with the criterion text verbatim.
+- **Appendix F** — invented rationales for PM3/BS2/BP1 removed; the VCEP marks these "Not Applicable" without comment.
+- **PVS1 note** — the unsourced claim that critical regions are defined by reference to PM1 was removed.
+- **PS2/PM6** — point matrix labelled as SVI content incorporated by reference rather than FBN1 VCEP content; the SVI heterogeneity-row cap footnote restored; threshold band restored to the source wording ("two-three points") and comparators marked unstated.
 
 ---
 

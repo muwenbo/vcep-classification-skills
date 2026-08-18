@@ -109,6 +109,8 @@
 | 2.0 | Strong (PS2 or PM6_Strong) |
 | 4.0 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
 
+> **Source discrepancy (unresolved):** `PS2_PM6 Scoring.jpg` names PS2_Supporting and PM6_VeryStrong, but the specification PDF does not define either strength. The PDF defines PS2 at Moderate, Strong, and Very Strong and PM6 at Supporting, Moderate, and Strong. The image prints exact point values without threshold comparators; the PDF body also prints point values without comparators. Both source presentations are retained here without extending the criteria that the PDF defines.
+
 ---
 
 ### PS3 - Functional Studies
@@ -122,14 +124,14 @@
 | **Moderate** | Two or more different approved assays | Disease-specific, Gene-specific, Strength |
 | **Supporting** | One approved assay | Disease-specific, Gene-specific, Strength |
 
-> **Note:** Prior to evaluation of an assay for a variant, all assays are expected to be validated by the performing laboratory in accordance with standard procedures with all appropriate control inclusions (PMID: 31892348). As most of these assays are semi-quantitative in nature, abnormal results should be compared relative to the known status of the controls included in the assay. Assays not listed below are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting. Animal models and variant-specific assays (i.e. myristoylation assays) have been excluded.
+> **Note:** Prior to evaluation of an assay for a variant, all assays are expected to be validated by the performing laboratory in accordance with standard procedures with all appropriate control inclusions (PMID: 31892348). As most of these assays are semi-quantitative in nature, abnormal results should be compared relative to the known status of the controls included in the assay. The workbook says assays not listed below may only be sufficient for PS3_Supporting or BS3_Supporting; however, all approved NRAS assay columns explicitly state BS3_NA. Animal models and variant-specific assays (i.e. myristoylation assays) have been excluded.
 
 #### Approved Assay Instances for NRAS
 
 | Assay | General Description | Assay Specificity | Approved Strength | Key NRAS PMIDs |
 |-------|--------------------|--------------------|-------------------|----------------|
 | **RAS Activation Assay** | Measures bound RAS protein immunoprecipitated with RAF1 or RBD (synthetic) | Pathway Specific (upstream from RAS and RAS proteins) | PS3_Supporting; BS3_NA | 19966803, 28594414, 21263000 |
-| **MEK Activation Assay** | Measures ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | PS3_Supporting; BS3_NA | 19966803, 28594414 |
+| **MEK Activation Assay** | Measures ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | PS3_Supporting; BS3_NA | 19966803, 28594414, 21263000 |
 | **ERK Activation Assay** | Measures ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation | Pathway Specific | PS3_Supporting; BS3_NA | 19966803, 28594414 |
 
 > **Note:** Multiple assays are pathway-specific, meaning they evaluate the effect of a variant on the Ras/MAPK pathway; controls from any gene may be used. Gene-specific assays (SHP-2 Phosphatase Activity, BRAF Kinase Activity, RAF1 Kinase Activity, LZTR1 Stability/Localization) are not applicable to NRAS. The AKT Phosphorylation Assay is **not currently approved** as a standalone assay for RASopathy-associated variants.
@@ -139,6 +141,36 @@
 - **RAS Activation Assay:** Increased RAS/RBD complexes compared with positive control range in assay
 - **MEK Activation Assay:** Abnormal pattern indicating constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation
 - **ERK Activation Assay:** Constitutively active, increased phosphorylation protein, and/or prolonged phosphorylation
+
+#### NRAS Assay Validation Details
+
+**RAS Activation Assay**
+
+- Sources: Cirstea (2010), Altmüller (2017), and Runtuwene (2011); DOI 10.1038/ng.497, 10.1038/ejhg.2017.65, and 10.1242/dmm.007112.
+- Material/readout: COS-7 cells transiently transfected with WT or variants and HEK293T cells transfected with RNA encoding NRAS (WT or variant) with RAF1 RBD; semi-quantitative/qualitative measurement of bound RAS protein immunoprecipitated with RAF1 or synthetic RBD.
+- Replication and controls: biological replicates not met; technical replicates met (data representative of three independent experiments); WT positive control met; negative control met; no statistical analysis.
+- P/LP validation controls: G12V (P/LP), I24N (P), T58I (P/LP), and G60E (P).
+- Normal readout: normal WT pattern.
+
+**MEK Activation Assay**
+
+- Sources: Cirstea (2010), Altmüller (2017), and Runtuwene (2011); DOI 10.1038/ng.497, 10.1038/ejhg.2017.65, and 10.1242/dmm.007112.
+- Material/readout: COS-7 and HEK293T cells transfected with WT or variant; semi-quantitative/qualitative pMEK/MEK ratio measured basally and/or after RTK stimulation.
+- Replication and controls: biological replicates not met; technical replicates met (data representative of three independent experiments); WT positive control met; negative control met; no statistical analysis.
+- P/LP validation controls: I24N (P), G12V (P/LP), T50I (P), and G60E (P). No B/LB validation controls are listed.
+- Normal readout: normal WT pattern.
+
+**ERK Activation Assay**
+
+- Sources: Cirstea (2010) and Altmüller (2017); DOI 10.1038/ng.497 and 10.1038/ejhg.2017.65.
+- Material/readout: COS-7 cells transiently transfected with WT or variant; HEK293T cells at 70–80% confluence transfected with each NRAS construct using Fugene6; and 293T cells transfected with RNA encoding N-Ras (WT or variant); semi-quantitative/qualitative pERK/ERK ratio measured basally and after stimulation.
+- Replication and controls: biological replicates not met; technical replicates met (data representative of three independent experiments); WT positive control met; negative control met; no statistical analysis.
+- P/LP validation controls: G12V (P/LP), T50I (P), T58I (P/LP), and G60E (P). No B/LB validation controls are listed.
+- Normal readout: normal WT pattern.
+
+> **Source data note:** In the NRAS column of the workbook's `RAS Activation Assay` sheet, T50I is labelled pathogenic (`P`) but is placed in the `Validation controls B/LB` row. This internal workbook inconsistency is reported without reassigning the control.
+
+> **Workbook scope note:** The hidden `AKT Phosphorylation Assay` sheet explicitly says the assay is not currently approved and supplies no strength. The hidden `Cell survival assay (Example)` contains dummy example data (PMID 1234567, Jones, 1985) and is not NRAS evidence. The workbook also excludes its hidden animal-model and myristoylation-assay material from the approved assay set.
 
 ---
 
@@ -167,6 +199,8 @@
 | ≥1.0 | Supporting (PS4_Supporting) |
 | ≥3.0 | Moderate (PS4_Moderate) |
 | ≥5.0 | Strong (PS4) |
+
+> **Comparator note:** The inclusive `≥` thresholds above are stated in `ClinGen_ACMG_Specifications_NRAS_v2.3.pdf`. `PS4 Scoring.jpg` instead prints the exact values 1.0, 3.0, and 5.0 without comparators. The attachment's omission is reported rather than used to change the PDF criteria.
 
 ---
 
@@ -233,8 +267,10 @@
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon | Analogous Gene, Disease-specific |
+
+> **Source wording note:** The source grammar `residues changes` is preserved verbatim. The v2.3 release note removed `Observed in ≥5 probands` only from PM5 at Moderate strength; the qualifier remains in the PDF's Strong row.
 
 ---
 
@@ -355,11 +391,22 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+`ClinGen_ACMG_Specifications_NRAS_v2.3.pdf` defines:
+
 | Points | Strength Level |
 |--------|----------------|
-| ≤ -1 | Supporting (BS2_Supporting) |
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
+| -4 points (operator unstated) | Strong (BS2) |
+
+`BS2 Scoring.jpg` defines:
+
+| Points | Strength Level |
+|--------|----------------|
+| -1 point (operator unstated) | Supporting (BS2_Supporting) |
 | N/A | Moderate (not applicable) |
-| ≤ -3.0 | Strong (BS2) |
+| -3.0 points (operator unstated) | Strong (BS2) |
+
+> **Source contradiction (unresolved):** BS2 Strong is -4 points in the specification PDF but -3.0 points in the attached scoring image. Neither source prints an inclusive or strict comparator. The prior `≤` interpretation was not source-supported and has been removed.
 
 ---
 
@@ -394,6 +441,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
 | **Supporting** | This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi exon deletion) in genes without established LOF correlation to disease. See supplemental material regarding dosage sensitivity information for each individual gene and potential association to disorders associated with LOF variants. | Disease-specific |
+
+> **Unavailable referenced material:** The specification PDF refers to supplemental dosage-sensitivity information, but no dosage-sensitivity document is present in the distributed NRAS package. No gene-specific dosage content is inferred here.
 
 ---
 
@@ -433,6 +482,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 |----------|----------|-------------------|
 | **Supporting** | For missense variants: REVEL ≤0.3 | Disease-specific |
 
+> **Source presentation note:** The PDF's VCEP summary includes both the missense rule and the splicing rule (`predicted outcome is negligible or does not match disease mechanism`), while its Supporting-strength row repeats only the missense rule. Both statements are retained without silently treating the shorter row as a retraction.
+
 ---
 
 ### BP5 - Alternate Molecular Basis
@@ -459,6 +510,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Supporting (BP5/BP2) | Moderate (N/A) | Strong (BP5_Strong / BP2_Strong) |
 |:--------------------:|:--------------:|:-------------------------------:|
 | -1 points | N/A | -3.0 points |
+
+> **Source contradiction (unresolved):** `ClinGen_ACMG_Specifications_NRAS_v2.3.pdf` defines BP2 and BP5 as Supporting at ≥(-1), Moderate at ≥(-2), and Strong at ≥(-4). `BP5_BP2 Scoring.jpg` instead defines Supporting at -1, Moderate as N/A, and Strong at -3.0, without comparators. The two source presentations are reported separately and are not harmonized.
 
 ---
 
@@ -543,7 +596,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PM2 | Specified | Supporting | Absent from gnomAD |
 | PM3 | Not Applicable | — | AD inheritance |
 | PM4 | Specified | Moderate | No repetitive areas; use as described |
-| PM5 | Specified | Strong | Analogous gene positions; ≥2 different P/LP changes for Strong |
+| PM5 | Specified | Strong | Analogous gene positions; ≥2 different P/LP changes at the same codon observed in ≥5 probands for Strong |
 | PM6 | Specified | Strong (2 pts) | Point-based scoring with PS2 |
 | PP1 | Specified | Strong (≥7 meioses) | Segregation in >1 family recommended |
 | PP2 | Not Applicable | — | Missense z score <3.09 |
@@ -552,14 +605,14 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PP5 | Not Applicable | — | Not recommended (PMID: 29543229) |
 | BA1 | Specified | Stand Alone | gnomAD FAF ≥0.05% |
 | BS1 | Specified | Strong | gnomAD FAF ≥0.025% |
-| BS2 | Specified | Strong (≤-3 pts) | Point-based scoring with phenotypic specifications |
+| BS2 | Specified | Source conflict: -4 pts in PDF; -3 pts in image (operators unstated) | Point-based scoring with phenotypic specifications |
 | BS3 | Not Applicable | — | No approved BS3 assays for NRAS |
 | BS4 | Specified | Strong | 1 informative meiosis sufficient |
 | BP1 | Specified | Supporting | Inverted: truncating variants in GOF gene |
-| BP2 | Specified | Strong (≥-4 pts) | Point-based with BP5 for alternative molecular cause |
+| BP2 | Specified | Source conflict: ≥(-4) in PDF; -3 in image | Point-based with BP5 for alternative molecular cause |
 | BP3 | Not Applicable | — | No benign repetitive areas |
 | BP4 | Specified | Supporting | REVEL ≤0.3 for missense |
-| BP5 | Specified | Strong (≥-4 pts) | Point-based with BP2 for alternative molecular cause |
+| BP5 | Specified | Source conflict: ≥(-4) in PDF; -3 in image | Point-based with BP2 for alternative molecular cause |
 | BP6 | Not Applicable | — | Not recommended (PMID: 29543229) |
 | BP7 | Specified | Supporting | Also applicable to intronic/non-coding; use with BP4 |
 
@@ -612,6 +665,7 @@ The following genes are used for analogous residue comparisons in PS1 and PM5: *
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 2.3.0 | 2026-08-07 | **Document corrections.** Restored the PM5_Strong `observed in ≥5 probands` qualifier and source typo from `ClinGen_ACMG_Specifications_NRAS_v2.3.pdf`; restored PMID 21263000 and transcribed the NRAS assay validation details, excluded hidden sheets, and T50I control-row inconsistency from `Approved Functional Studies.xlsx`; removed invented BS2 `≤` comparators and reported the unresolved PDF/image strength conflicts verified against `ClinGen_ACMG_Specifications_NRAS_v2.3.pdf`, `BS2 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `PS2_PM6 Scoring.jpg`, and `PS4 Scoring.jpg`; documented the missing BP1 dosage-sensitivity attachment after checking the complete distributed package; confirmed domain/accession content against both pages of `Analogous Residues.pdf`. |
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
 
 ---

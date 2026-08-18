@@ -3,7 +3,7 @@
 **Version:** {VERSION}
 **Released:** {RELEASE_DATE}
 **Affiliation:** {VCEP_AFFILIATION}
-**Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**Source basis:** {SOURCE_BASIS_AS_STATED_BY_VCEP}
 
 ---
 
@@ -90,23 +90,7 @@
 
 **VCEP Specifications:** {PS2_SPECIFICATIONS}
 
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
+{PS2_PM6_POINT_SYSTEM_IF_SPECIFIED}
 
 ---
 
@@ -148,9 +132,7 @@
 
 **Original ACMG Summary:** Absent from controls (or at extremely low frequency if recessive) in population databases.
 
-**VCEP Specification (Supporting only):**
-- gnomAD popmax filtering allele frequency **<{PM2_THRESHOLD}**
-- {PM2_ADDITIONAL_REQUIREMENTS}
+**VCEP Specifications:** {PM2_SPECIFICATIONS}
 
 ---
 
@@ -160,23 +142,7 @@
 
 **VCEP Specifications:** {PM3_SPECIFICATIONS}
 
-#### PM3 Point System (Per Proband)
-
-| Classification/Zygosity of Other Variant | Confirmed in Trans | Phase Unknown |
-|------------------------------------------|-------------------|---------------|
-| Pathogenic or Likely pathogenic variant | 1.0 | 0.5 (P) / 0.25 (LP) |
-| Homozygous (non-consanguineous) | 1.0 | 1.0 |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 | 0.5 |
-| VUS (max 0.5 total) | 0.25 | 0.0 |
-
-#### PM3 Evidence Strength Thresholds
-
-| Total Points | Strength Level |
-|--------------|----------------|
-| 0.5 | PM3_Supporting |
-| 1.0 | PM3 (Moderate) |
-| 2.0 | PM3_Strong |
-| 4.0 | PM3_VeryStrong |
+{PM3_POINT_SYSTEM_IF_SPECIFIED}
 
 ---
 
@@ -205,7 +171,7 @@
 
 **Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
 
-**VCEP Specifications:** Same as PS2 - use point-based system above.
+**VCEP Specifications:** {PM6_SPECIFICATIONS}
 
 ---
 
@@ -215,13 +181,7 @@
 
 **VCEP Specifications:** {PP1_SPECIFICATIONS}
 
-#### PP1 Thresholds
-
-| Strength | Likelihood | LOD Score |
-|----------|------------|-----------|
-| Supporting | 4:1 | 0.6 |
-| Moderate | 16:1 | 1.2 |
-| Strong | 32:1 | 1.5 |
+{PP1_THRESHOLDS_IF_SPECIFIED}
 
 ---
 
@@ -247,18 +207,7 @@
 
 **VCEP Specifications:** {PP4_SPECIFICATIONS}
 
-#### PP4 Strength Thresholds
-
-| Total Points | Strength |
-|--------------|----------|
-| <1 | PP4 not met |
-| 1 to <2 | PP4 (Supporting) |
-| 2 to <6 | PP4_Moderate |
-| ≥6 | PP4_Strong |
-
-#### PP4 Point System
-
-{PP4_POINT_TABLE}
+{PP4_POINT_SYSTEM_IF_SPECIFIED}
 
 ---
 
@@ -276,8 +225,7 @@
 
 **Original ACMG Summary:** Allele frequency is above 5% in population databases.
 
-**VCEP Specification (Stand Alone):**
-- gnomAD popmax filtering allele frequency **>{BA1_THRESHOLD}**
+**VCEP Specifications:** {BA1_SPECIFICATIONS}
 
 ---
 
@@ -285,8 +233,7 @@
 
 **Original ACMG Summary:** Allele frequency is greater than expected for disorder.
 
-**VCEP Specification (Strong):**
-- gnomAD popmax filtering allele frequency **>{BS1_THRESHOLD}**
+**VCEP Specifications:** {BS1_SPECIFICATIONS}
 
 ---
 
@@ -330,61 +277,13 @@
 
 ## Rules for Combining Criteria
 
-### Pathogenic Classification
-
-| Criteria Combination |
-|---------------------|
-| 1 Very Strong **AND** ≥1 Strong |
-| 1 Very Strong **AND** ≥2 Moderate |
-| 1 Very Strong **AND** 1 Moderate **AND** 1 Supporting |
-| 1 Very Strong **AND** ≥2 Supporting |
-| ≥2 Strong |
-| 1 Strong **AND** ≥3 Moderate |
-| 1 Strong **AND** 2 Moderate **AND** ≥2 Supporting |
-| 1 Strong **AND** 1 Moderate **AND** ≥4 Supporting |
-
-### Likely Pathogenic Classification
-
-| Criteria Combination |
-|---------------------|
-| 1 Very Strong **AND** 1 Moderate |
-| 1 Strong **AND** 1 Moderate |
-| 1 Strong **AND** ≥2 Supporting |
-| ≥3 Moderate |
-| 2 Moderate **AND** ≥2 Supporting |
-| 1 Moderate **AND** ≥4 Supporting |
-| 1 Strong **AND** 2 Moderate |
-
-### Benign Classification
-
-| Criteria Combination |
-|---------------------|
-| ≥2 Strong |
-| 1 Stand Alone (BA1) |
-
-### Likely Benign Classification
-
-{LIKELY_BENIGN_RULES}
+{COMBINING_RULES_IF_SPECIFIED}
 
 ---
 
 ## Appendices
 
-### Appendix A: PVS1 Flowchart
-
-{PVS1_FLOWCHART}
-
-### Appendix B: Reference PMIDs
-
-{REFERENCE_PMIDS}
-
-### Appendix C: Population Frequency Thresholds Summary
-
-| Criterion | Threshold | Strength |
-|-----------|-----------|----------|
-| BA1 | >{BA1_THRESHOLD} | Stand Alone |
-| BS1 | >{BS1_THRESHOLD} | Strong |
-| PM2 | <{PM2_THRESHOLD} | Supporting |
+{SOURCE_BACKED_APPENDICES}
 
 ---
 
@@ -394,4 +293,4 @@
 
 ---
 
-*This document was compiled from ClinGen VCEP specifications and ClinGen SVI recommendations. For the most current version, please refer to the ClinGen website.*
+*This document was compiled from the ClinGen VCEP specification and its distributed supplementary files. For the most current version, please refer to the ClinGen website.*

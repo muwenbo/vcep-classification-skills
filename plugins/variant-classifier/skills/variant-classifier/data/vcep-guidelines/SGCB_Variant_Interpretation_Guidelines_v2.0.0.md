@@ -2,6 +2,7 @@
 
 **Version:** 2.0.0
 **Released:** 7/9/2025
+**DOI:** 10.5281/zenodo.21434812
 **Affiliation:** Limb Girdle Muscular Dystrophy VCEP
 **Based on:** Tavtigian et al., 2020 - Bayesian adaptation of Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -86,33 +87,29 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 #### PVS1 Decision Tree Summary for SGCB
 
 **Nonsense or Frameshift:**
-- **Predicted to undergo NMD** (premature truncation in codons 35-233): **PVS1**
+- **Predicted to undergo NMD** (premature truncation in codons 35-233): exon present in NM_000232.5 -> **PVS1**; exon absent from NM_000232.5 -> **N/A**
 - **Premature truncation within first 100 bp** (codons 1-34; PMID: 27618451): **PVS1_Moderate**
 - **Not predicted to undergo NMD:**
-  - Exon present in biologically relevant transcript (NM_000232.5):
-    - Truncated/altered region critical to protein function (none specified): **PVS1_Strong**
-    - Role of region unknown:
-      - LoF variants in exon frequent in general population / exon absent from biologically relevant transcripts: **N/A**
-      - LoF variants not frequent AND exon present:
-        - Variant removes >10% of protein: **PVS1_Strong**
-        - Variant removes <10% of protein: **PVS1_Moderate**
+  - Role of region unknown:
+    - LoF variants in exon frequent in general population / exon absent from biologically relevant transcripts: **N/A**
+    - LoF variants not frequent AND exon present in NM_000232.5:
+      - Variant removes >10% of protein: **PVS1_Strong**
+      - Variant removes <10% of protein: **PVS1_Moderate**
 
 **Canonical GT-AG +/-1,2 Splice Sites:**
 - Use SpliceAI prediction of the most likely splice effect, then determine expected protein consequence
-- **Exon skipping/cryptic splice site disrupts reading frame AND predicted to undergo NMD:** **PVS1**
+- **Exon skipping/cryptic splice site disrupts reading frame AND predicted to undergo NMD:** exon present in NM_000232.5 -> **PVS1**; exon absent -> **N/A**
 - **Exon skipping/cryptic splice site preserves reading frame:**
   - In-frame exons for which exon skipping is not expected to result in NMD: **exons 1, 2, 3, 4, 5, 6**
-  - Exon present in biologically relevant transcript:
-    - Truncated/altered region critical to protein function (none specified): **PVS1_Strong**
-    - Role unknown:
-      - LoF variants frequent / exon absent from biologically relevant transcripts: **N/A**
-      - LoF variants not frequent AND exon present:
-        - Variant removes >10% of protein: **PVS1_Strong**
-        - Variant removes <10% of protein: **PVS1_Moderate**
+  - Role unknown:
+    - LoF variants frequent / exon absent from biologically relevant transcripts: **N/A**
+    - LoF variants not frequent AND exon present in NM_000232.5:
+      - Variant removes >10% of protein: **PVS1_Strong**
+      - Variant removes <10% of protein: **PVS1_Moderate**
 - **Exon skipping/cryptic splice site disrupts reading frame, NOT predicted to undergo NMD:** Same logic as above for protein impact assessment
 
 **Deletion (Single exon to full gene):**
-- **Single/multi-exon deletion disrupting reading frame AND predicted to undergo NMD:** **PVS1**
+- **Single/multi-exon deletion disrupting reading frame AND predicted to undergo NMD:** exon present in NM_000232.5 -> **PVS1**; exon absent -> **N/A**
 - **Full gene deletion:** **PVS1**
 - **Single/multi-exon deletion preserving reading frame:** Apply same logic as splice site variants for protein impact
 - **Single/multi-exon deletion disrupting reading frame, NOT predicted to undergo NMD:** Apply same logic for protein impact
@@ -124,10 +121,10 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 - **Proven not in tandem:** **N/A**
 
 **Initiation Codon:**
-- Different functional transcript uses alternative start codon: **PVS1_Supporting**
-- No known alternative start codon:
-  - ≥1 pathogenic variant upstream of closest potential in-frame start codon: **PVS1_Moderate**
-  - No pathogenic variants upstream: **N/A**
+- No known alternative start codon and no pathogenic variant upstream of the closest potential in-frame start codon: **PVS1_Supporting**
+- The flowchart visibly strikes through the alternative-functional-transcript -> N/A path and the ≥1-upstream-pathogenic-variant -> PVS1_Moderate path. They are not operative specifications.
+
+> **Distributed-source limitations:** The `PVS1 flowchart SGCB.pptx` percentage branches are strict `>10%` and `<10%`, so exactly 10% is unassigned. Its critical-region -> PVS1_Strong branches are visibly struck through and state that no critical region is specified. Superscripts `a`, `b`, `c`, and `d` have no definitions in the slide or speaker notes; `d` appears on full-gene-deletion PVS1.
 
 ---
 
@@ -166,7 +163,7 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 |----------|---------------|----------|
 | **Supporting** | 1 | Apply for confirmed *de novo* occurrence in a proband meeting the criteria for PP4 (Supporting). Maternity and paternity should be confirmed by trio WES/WGS or other testing. |
 
-> **Note:** This is a reduced strength from the default ACMG PS2 (Strong), reflecting the autosomal recessive inheritance pattern. Only Supporting level is applicable for SGCB.
+> **Note:** The SGCB VCEP specification provides PS2 only at Supporting strength.
 
 ---
 
@@ -191,6 +188,7 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 | Assay | Instance 1 (Soheili et al. 2012) | Instance 2 (Li et al. 2023) |
 |-------|----------------------------------|----------------------------|
 | **PMID** | 22095924 | 37317968 |
+| **DOI** | 10.1002/humu.21659 | 10.1172/JCI168156 |
 | **General Description** | Membrane localization of sarcoglycan complex | Membrane localization of sarcoglycan complex |
 | **Material** | Vectors expressing SGCB variant transfected into HER-911 cells expressing the three other sarcoglycans | Lentiviral vectors expressing SGCB variant transduced into HEK293 cells stably expressing the three other sarcoglycans |
 | **Readout** | Qualitative - confocal immunofluorescence of nonpermeabilized cells | Quantitative - functional scores ranging from -2.9 to 1.46 |
@@ -200,9 +198,12 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 | **Negative Control** | Expression of α-sarcoglycan alone | Expression of SGCB fusion protein alone |
 | **P/LP Validation Controls** | 7 (2 validated by VCEP) | 15 (3 validated by VCEP) |
 | **B/LB Validation Controls** | 0 | 3 + 318 synonymous variants (9 validated by VCEP) |
+| **Statistical Analysis** | N/A | N/A |
 | **Normal Threshold** | Membrane localized | Functional score ≥-0.5 |
 | **Abnormal Threshold** | Absent at membrane | Functional score <-0.5 |
 | **Approved Strength** | PS3_Supporting; BS3 not applied | PS3_Moderate; BS3 not applied |
+
+> The workbook also retains an otherwise blank template worksheet with only PMID 37317968 populated; it provides no additional assay fields and is not treated as a separate approved assay.
 
 ---
 
@@ -282,7 +283,7 @@ Please see the SGCB PVS1 flowchart (Appendix A). In addition, for any variant wi
 | ≥0.5 but <1.0 | PM3_Supporting | 1 |
 | ≥1.0 but <2.0 | PM3 (Moderate) | 2 |
 | ≥2.0 but <4.0 | PM3_Strong | 4 |
-| ≥4.0 | PM3_VeryStrong | 8 |
+| ≥4.0 | PM3_Very Strong | 8 |
 
 #### PM3 Co-Application Rules
 
@@ -322,7 +323,7 @@ Apply only for missense variants for which the amino acid change is the expected
 - The REVEL score for the missense variant under curation should be >0.7
 - Missense changes at the same residue must be classified according to LGMD VCEP specifications
 - No benign missense variation should be present at the residue
-- Do not apply for missense variants encoded by the first or last 3 nucleotides of an exon unless a splice effect has been ruled out
+- Do not apply for missense variants encoded by the first or last 3 nucleotides of an exon unless a splice effect has been ruled out for the variant under curation and the comparator variant(s)
 
 PM5 can potentially be applied to multiple amino acid changes at the same residue as long as the variant classification that determines the strength level does not depend on PM5 application.
 
@@ -529,13 +530,15 @@ This VCEP uses a **Bayesian point-based classification framework** (Tavtigian et
 
 | Category | Point Range |
 |----------|-------------|
-| **Pathogenic** | ≥10 |
+| **Pathogenic** | 10 (operator not stated) |
 | **Likely Pathogenic** | 6 to 9 |
 | **Uncertain Significance** | 0 to 5 |
 | **Likely Benign** | -6 to -1 |
-| **Benign** | ≤-7 |
+| **Benign** | -7 (operator not stated) |
 
 > **Additional Note:** A Benign classification can also be assigned when BA1 applies.
+
+> The distributed criteria PDF prints the bare values `10` and `-7`; it does not state `≥` or `≤` for totals beyond them.
 
 ### Default Bayesian Point Values
 
@@ -596,19 +599,21 @@ The PVS1 decision tree covers the following variant types on transcript NM_00023
 VARIANT TYPE                    DECISION PATH                                        STRENGTH
 ─────────────────────────────────────────────────────────────────────────────────────────────────
 Nonsense/Frameshift
-  ├─ Predicted NMD (codons 35-233)                                               → PVS1
+  ├─ Predicted NMD (codons 35-233)
+  │   ├─ Exon present in NM_000232.5                                        → PVS1
+  │   └─ Exon absent from NM_000232.5                                         → N/A
   ├─ Premature truncation codons 1-34 (PMID: 27618451)                           → PVS1_Moderate
   └─ Not predicted NMD
-      └─ Exon present in NM_000232.5
-          ├─ Critical region (none specified)                                     → PVS1_Strong
-          └─ Role unknown
-              ├─ LoF frequent / exon absent                                      → N/A
-              └─ LoF not frequent, exon present
-                  ├─ Removes >10% protein                                        → PVS1_Strong
-                  └─ Removes <10% protein                                        → PVS1_Moderate
+      └─ Role unknown
+          ├─ LoF frequent / exon absent                                          → N/A
+          └─ LoF not frequent, exon present
+              ├─ Removes >10% protein                                            → PVS1_Strong
+              └─ Removes <10% protein                                            → PVS1_Moderate
 
 Canonical ±1,2 Splice Sites (use SpliceAI for predicted effect)
-  ├─ Exon skipping/cryptic → disrupts frame + NMD                                → PVS1
+  ├─ Exon skipping/cryptic → disrupts frame + NMD
+  │   ├─ Exon present in NM_000232.5                                        → PVS1
+  │   └─ Exon absent from NM_000232.5                                         → N/A
   ├─ Exon skipping/cryptic → preserves frame
   │   (In-frame exons: 1, 2, 3, 4, 5, 6)
   │   └─ [Same logic as nonsense/frameshift for protein impact]
@@ -616,7 +621,9 @@ Canonical ±1,2 Splice Sites (use SpliceAI for predicted effect)
       └─ [Same logic as nonsense/frameshift for protein impact]
 
 Deletion (single exon to full gene)
-  ├─ Disrupts frame + NMD                                                        → PVS1
+  ├─ Disrupts frame + NMD
+  │   ├─ Exon present in NM_000232.5                                        → PVS1
+  │   └─ Exon absent from NM_000232.5                                         → N/A
   ├─ Full gene deletion                                                          → PVS1
   ├─ Preserves frame → [same logic for protein impact]
   └─ Disrupts frame, NOT NMD → [same logic for protein impact]
@@ -628,49 +635,24 @@ Duplication (≥1 exon, contained within gene)
   └─ Proven not in tandem                                                        → N/A
 
 Initiation Codon
-  ├─ Alternative start codon in other transcript                                 → PVS1_Supporting
-  └─ No alternative start codon
-      ├─ ≥1 P variant upstream of closest in-frame start                         → PVS1_Moderate
-      └─ No P variants upstream                                                  → N/A
+  └─ No known alternative start codon + no P variant upstream                    → PVS1_Supporting
 ```
+
+The slide visibly strikes through the critical-region/PVS1_Strong paths and the two other initiation-codon paths; they are not operative. Exact 10% has no branch, and footnotes `a`–`d` are undefined.
 
 ---
 
 ### Appendix B: Experimental Splice Data Decision Tree
 
-For variants with RNA/splicing data, follow the SVI Working Group's recommendations (Walker et al. 2023; PMID: 37352859):
+For variants with RNA/splicing data, follow the distributed `experimental splice data.png`:
 
-```
-RNA/Splicing Data Available
-│
-├─ Silent / Intronic variant
-│   ├─ No variant-specific observed impact → BP7_S (RNA) applied
-│   │   └─ Consider splicing predictive data
-│   │       ├─ Can protein impact be ruled out? → YES → BP7_S (RNA) + prediction (PP3/BP4)
-│   │       └─ NO → BP7_S (RNA) + prediction (PP3/BP4)
-│   │           Note: Document as "BP7_S (RNA) Not Met" to indicate data was present and reviewed
-│   └─ Variant-specific impact observed (compared to controls)
-│       └─ Follow PVS1 flowchart for OBSERVED RNA impact for your gene
-│           └─ PVS1_Strength assigned to at least 1 transcript
-│               └─ Proportion of alternative transcripts produced by variant allele:
-│                   ├─ Complete → Keep strength level
-│                   ├─ Near complete → Reduce strength by 1 level
-│                   └─ Incomplete → Do not apply codes
-│
-├─ Other variants
-│   ├─ No variant-specific observed impact
-│   │   └─ Assess pathogenicity using protein pathway
-│   └─ Variant-specific impact observed
-│       └─ Follow PVS1 flowchart for OBSERVED RNA impact
-│           └─ [Same proportion logic as above]
-│
-└─ If background rate considered at low-moderate levels suggestive of being biased,
-    consider reducing PVS1 (RNA) codes by an additional level
-```
+- Categorization must consider assay/technique, RNA source, and gene-specific knowledge.
+- **No variant-specific observed impact:**
+  - Silent/intronic variant -> apply BP7_S (RNA), then consider splicing-prediction data; the image shows `BP7_S (RNA) + prediction (PP3/BP4)`.
+  - Other variant -> assess pathogenicity through the protein pathway. If the protein impact can be ruled out from functional and/or clinical data, apply BP7_S (RNA) plus prediction (PP3/BP4); otherwise document `BP7_S (RNA) Not Met` to record that the data were reviewed.
+- **Variant-specific impact compared with controls:** Follow the gene PVS1 flowchart for observed RNA impact. Once a PVS1 strength is assigned for at least one transcript, evaluate the proportion of alternative transcript(s) inferred to be produced by the variant allele: complete -> keep strength; near complete -> reduce by one level; incomplete -> do not apply codes. If the background rate is at low-moderate levels suggestive of being tolerated, consider a further one-level reduction. Determine the PVS1 (RNA) weight from the combined analysis; PP3/BP4 are not applicable. If PVS1 (RNA) or BP7_S (RNA) is not applicable, reconsider the PVS1 decision tree as appropriate.
 
-**Combined analysis:**
-- Determine PVS1 (RNA) weight from combined analysis (PP3/BP4 not applicable)
-- If PVS1 (RNA) or BP7_S (RNA) not applicable → reconsider PVS1 decision tree as appropriate
+> **Distributed-image limitations:** Footnote markers `(d)` and `(e)` are not defined. The image is clipped at its left boundary and begins with a partial incoming arrow, but no visible criterion text is missing.
 
 ---
 
@@ -701,7 +683,7 @@ RNA/Splicing Data Available
 
 ### Appendix D: Benign Frequency Exceptions
 
-The following variants are defined as exceptions to the benign frequency rules (BA1/BS1). These variants exceed the population frequency thresholds but are known pathogenic variants:
+The distributed workbook defines the following variants as exceptions to the benign frequency rules (BA1/BS1):
 
 | Variant | Status | Comment |
 |---------|--------|---------|
@@ -738,7 +720,7 @@ The following variants are defined as exceptions to the benign frequency rules (
 | 31892348 | Brnich et al. 2020 | SVI recommendations for PS3/BS3 functional evidence evaluation |
 | 37317968 | Li et al. 2023 | Sarcoglycan complex cell surface localization assay (PS3_Moderate for SGCB) |
 | 22095924 | Soheili et al. 2012 | Membrane localization assay (PS3_Supporting for SGCB) |
-| 29543229 | Biesecker et al. 2018 | ClinGen SVI recommendation against use of PP5/BP6 |
+| 29543229 | Not specified in the distributed package | ClinGen SVI recommendation against use of PP5/BP6 |
 | 27618451 | — | Reference for premature truncation within first 100 bp (PVS1 flowchart) |
 
 ---
@@ -748,6 +730,14 @@ The following variants are defined as exceptions to the benign frequency rules (
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.0.0 | 7/9/2025 | Bayesian adaptation; correction to in-frame exons in PVS1 flowchart; clarification on experimental RNA/splice data (PVS1, PP3, BP4, BP7); clarification on gnomAD population frequency data (PM2, BA1, BS1); reduced weighting of de novo observation (PS2, PM6); updated PM5 guidance |
+
+**Document corrections (2026-08-09), source-verified against `ClinGen_ACMG_Specifications_SGCB_v2.0.pdf`, `PVS1 flowchart SGCB.pptx`, `PP4 table SGCB.pptx`, `PS3 assays SGCB.xlsx`, `PM3 table.pptx`, `PM3 co-application examples.docx`, `PS1 splicing.png`, `experimental splice data.png`, and `benign frequency exceptions.xlsx`. No change to the underlying ClinGen specification version.**
+
+- Restored exon-presence conditions omitted from the PVS1 NMD paths; removed visibly struck-through critical-region and initiation-codon branches from the operative rules; corrected the initiation-codon result; and recorded the exact-10% gap and undefined `a`–`d` footnotes.
+- Replaced the source-contradicting experimental-splice decision tree with the image's actual silent/intronic versus other-variant paths, transcript-proportion rules, and exact background-rate wording; recorded its undefined `(d)`/`(e)` markers and left-boundary clipping.
+- Removed invented `≥`/`≤` comparators from the PDF's bare Pathogenic `10` and Benign `-7` values, qualified the benign-exception table without elevating every row to a known pathogenic variant, and removed unverified PMID 29543229 authorship.
+- Completed the PS3 workbook transcription with both DOIs, statistical-analysis fields, and the otherwise blank PMID-only template sheet; restored the shared PM3 table's `PM3_Very Strong` label; and clarified that PM5 splice effects must be ruled out for both the variant under curation and its comparator(s).
+- Restored the core criteria PDF's DOI.
 
 ---
 

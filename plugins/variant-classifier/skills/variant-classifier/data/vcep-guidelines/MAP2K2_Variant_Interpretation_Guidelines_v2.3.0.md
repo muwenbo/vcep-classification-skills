@@ -109,6 +109,8 @@
 
 #### Evidence Strength Thresholds
 
+The MAP2K2 PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared ladder are not stated.
+
 | Points | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -137,15 +139,14 @@
 
 #### Approved Assay Instances for MAP2K2
 
-The following functional assays are approved for PS3 application in MAP2K2:
+The workbook approves two MAP2K2 assays. Its `Cell survival assay (Example)` sheet is a generic template populated with dummy data and is **not** a MAP2K2 assay.
 
-| Assay | Description | Readout | PS3 Strength |
-|-------|-------------|---------|--------------|
-| **MEK Activation Assay** | Measures MEK activity and phosphorylation of downstream targets | MEK/ERK phosphorylation levels | Supporting per assay |
-| **ERK Activation Assay** | Measures ERK phosphorylation as downstream readout of MAPK pathway activation | ERK phosphorylation levels | Supporting per assay |
-| **Cell Survival Assay** | In vitro expression of cDNA constructs in cell line, survival assay to assess functional capacity of variants | Cell proliferation/survival | Supporting per assay |
+| Assay | PMIDs / DOIs | Material and readout | Validation / controls | Workbook strength |
+|-------|---------------|----------------------|-----------------------|-------------------|
+| **MEK Activation Assay** | 20358587, 16439621, 18060073 / 10.1002/ajmg.a.33342; 10.1126/science.1124642; 10.1371/journal.pone.0001279 | HEK293 cells; semi-quantitative pMEK/MEK ratio basally and/or after stimulation; abnormal = constitutive/increased/prolonged phosphorylation | Biological and technical replication not met; WT and vector controls met. P/LP-labeled row: F57C - P, P128Q - P, Y130C - NA, (S222D);(S226D) trans. B/LB-labeled row: kinase-inactive K101M - NA | PS3_Supporting; BS3_NA |
+| **ERK Activation Assay** | 20358587, 16439621, 18060073 / same three DOIs | HEK293 cells; semi-quantitative pERK/ERK ratio | Biological and technical replication not met; WT and vector controls met. P/LP-labeled row: F57C - P, P128Q - P, (S222D);(S226D) trans. B/LB-labeled row: kinase-inactive K101M - NA | PS3_Supporting; BS3_NA |
 
-**Note:** Abnormal readout = increased phosphorylation or activation consistent with gain-of-function mechanism.
+> **Workbook strength conflict — do not resolve silently:** The ERK abnormal-readout cell says intermediate phosphorylation responses can support Moderate evidence and says P128Q was assigned Strong because of extensive clinical association. The same column's proposed strength is `PS3_Supporting; BS3_NA`, and the PDF assigns Supporting to one approved assay and Moderate to two or more different approved assays. All statements are preserved without selecting one.
 
 ---
 
@@ -192,14 +193,14 @@ The following functional assays are approved for PS3 application in MAP2K2:
 
 | Strength | Criteria |
 |----------|----------|
-| **Moderate** | Applicable only to critical and well-established functional domains available in the supplementary table. Not applicable to specific amino acid residues (see PM5). |
+| **Moderate** | Applicable only at **AA 47-65** and **AA 128-138**. Not applicable to specific amino acid residues (see PM5). |
 
 #### Critical Functional Domains for MAP2K2
 
-| Domain | Amino Acid Range |
-|--------|------------------|
-| Critical Domain 1 | AA 47-65 |
-| Critical Domain 2 | AA 128-138 |
+| Source-defined range |
+|----------------------|
+| AA 47-65 |
+| AA 128-138 |
 
 **Modification Type:** Gene-specific
 
@@ -261,12 +262,14 @@ The following functional assays are approved for PS3 application in MAP2K2:
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon |
 
 **Modification Type:** Analogous Gene, Disease-specific, Strength
 
 **Note:** Analogous residue positions between MAP2K1 and MAP2K2 are documented in the supplemental materials.
+
+> **Source wording:** “residues changes” is preserved from the PDF and appears to be a grammatical typo.
 
 ---
 
@@ -285,6 +288,8 @@ The following functional assays are approved for PS3 application in MAP2K2:
 **Modification Type:** Strength
 
 See [PS2/PM6 Point System](#ps2pm6-point-system) above for detailed scoring.
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement.
 
 ---
 
@@ -401,11 +406,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**, with no comparator symbols. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is unavailable. The image states exact values without operators.
+
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≤-1 | Supporting (BS2_Supporting) |
+| -1 (operator not stated) | Supporting (BS2_Supporting) |
 | N/A | Moderate (not applicable) |
-| ≤-3 | Strong (BS2) |
+| -3 (operator not stated) | Strong (BS2) |
 
 **Modification Type:** Strength
 
@@ -449,6 +456,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Applicable | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
 
+> **Missing distributed content:** BP1 cites supplemental dosage-sensitivity information, but the MAP2K2 package contains no dosage-sensitivity file. The analogous-residue workbook, functional workbook, and four scoring images do not supply it.
+
 #### BP5/BP2 Point System
 
 | Phenotypic Consistency | Points per Individual |
@@ -458,11 +467,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BP5/BP2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The image states exact values without comparator symbols.
+
 | Total Points | Strength Level |
 |--------------|----------------|
-| ≤-1 | Supporting (BP5/BP2) |
+| -1 (operator not stated) | Supporting (BP5/BP2) |
 | N/A | Moderate (not applicable) |
-| ≤-3 | Strong (BP5_Strong/BP2_Strong) |
+| -3 (operator not stated) | Strong (BP5_Strong/BP2_Strong) |
 
 ---
 
@@ -526,7 +537,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PM3 | Moderate | Not Applicable | AD inheritance |
 | PM4 | Moderate | Applicable | In-frame indels, stop-loss |
 | PM5 | Strong/Moderate | Applicable | Analogous positions in MAP2K1/MAP2K2 |
-| PM6 | Point-based | Applicable | Assumed de novo; use with PS2 scoring |
+| PM6 | Point-based | Applicable | Assumed de novo; supplement adds Very Strong at 4 points |
 | PP1 | Strong/Moderate/Supporting | Applicable | ≥7/≥5/≥3 informative meioses |
 | PP2 | Supporting | Not Applicable | Missense z score <3.09 |
 | PP3 | Supporting | Applicable | REVEL ≥0.7 for missense |
@@ -534,14 +545,14 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PP5 | Supporting | Not Applicable | Per SVI recommendations |
 | BA1 | Stand Alone | Applicable | gnomAD FAF ≥0.05% |
 | BS1 | Strong | Applicable | gnomAD FAF ≥0.025% |
-| BS2 | Strong/Supporting | Applicable | Point-based healthy individual scoring |
+| BS2 | Strong/Supporting | Applicable | PDF and image publish conflicting Strong values |
 | BS3 | Strong | Not Applicable | See supplemental materials |
 | BS4 | Strong | Applicable | 1 informative meiosis |
 | BP1 | Supporting | Applicable | Truncating variants (GOF mechanism) |
-| BP2 | Point-based | Applicable | Alternative molecular cause (same gene) |
+| BP2 | Point-based | Applicable | PDF and image publish conflicting point tiers |
 | BP3 | Supporting | Not Applicable | No benign repetitive regions |
 | BP4 | Supporting | Applicable | REVEL ≤0.3 for missense |
-| BP5 | Point-based | Applicable | Alternative molecular cause (different gene) |
+| BP5 | Point-based | Applicable | PDF and image publish conflicting point tiers |
 | BP6 | Supporting | Not Applicable | Per SVI recommendations |
 | BP7 | Supporting | Applicable | Synonymous, no splice impact |
 
@@ -555,10 +566,10 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 ### Appendix C: Critical Functional Domains
 
-| Gene | Domain | Amino Acid Range | Application |
-|------|--------|------------------|-------------|
-| MAP2K2 | Kinase domain region 1 | AA 47-65 | PM1_Moderate |
-| MAP2K2 | Kinase domain region 2 | AA 128-138 | PM1_Moderate |
+| Gene | Source-defined range | Application |
+|------|----------------------|-------------|
+| MAP2K2 | AA 47-65 | PM1_Moderate |
+| MAP2K2 | AA 128-138 | PM1_Moderate |
 
 ### Appendix D: Analogous Residues
 
@@ -568,6 +579,8 @@ MAP2K1 and MAP2K2 share analogous residue positions that can be used for PS1 and
 |------|-------------------|
 | MAP2K1 | NP_002746.1 |
 | MAP2K2 | NP_109587.1 |
+
+> **Supplement structure:** The relevant workbook sheet supplies these accessions and two embedded image alignments, not a discrete residue-lookup table. Two additional sheets named `SOS variants from HGMD` and `SOS variants case counts` are unrelated copied SOS1/SOS2 working data and are not MAP2K evidence.
 
 ### Appendix E: Reference PMIDs
 
@@ -584,6 +597,16 @@ MAP2K1 and MAP2K2 share analogous residue positions that can be used for PS1 and
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants attached in LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_MAP2K2_v2.3.pdf`, `Analogous Residues.xlsx`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, and `BS2 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- **Fabricated assay removed:** the generic `Cell survival assay (Example)` worksheet, populated with dummy Jones/1985/PMID 1234567 data, had been presented as an approved MAP2K2 assay. The workbook approves only MEK and ERK activation for MAP2K2.
+- **Functional evidence re-transcribed:** both approved assays now carry their actual PMIDs, DOIs, materials, replication failures, controls, validation statuses, and strengths. The ERK column's claim that intermediate results can be Moderate and P128Q was selected at Strong is reported alongside—without reconciliation—the same column's `PS3_Supporting` designation and the PDF's assay-count framework.
+- **Scoring contradictions restored:** BS2 is -4 in the PDF body versus -3 in its image; BP2/BP5 use PDF tiers ≥(-4)/≥(-2)/≥(-1) versus image tiers -3/N/A/-1. Invented `≤` comparators were removed from image-derived tables.
+- **PM1 invention removed:** the source provides only AA 47-65 and AA 128-138; “Critical Domain 1/2” and “kinase domain region 1/2” labels were not source terms and have been removed.
+- **Supplement provenance qualified:** the analogous workbook contains two MAP2K alignment images plus unrelated copied SOS working sheets, not a discrete residue map. Only the relevant alignment is represented.
+- **Supplement-only strengths and source wording identified:** the scoring image adds PS2_Supporting and PM6_VeryStrong to criterion blocks that omit them; the PDF's “residues changes” typo is preserved and flagged.
+- **Missing BP1 content recorded:** no dosage-sensitivity supplement is distributed for MAP2K2.
 
 ---
 

@@ -104,6 +104,8 @@
 
 #### PS2/PM6 Evidence Strength Thresholds
 
+The SOS2 PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared point ladder are not stated.
+
 | Points | Strength Level |
 |:------:|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -113,9 +115,9 @@
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Very Strong** | ≥4 Points | Strength |
-| **Strong** | ≥2 Points | None |
-| **Moderate** | ≥1 Point | Strength |
+| **Very Strong** | 4 Points (operator not stated) | Strength |
+| **Strong** | 2 Points (operator not stated) | None |
+| **Moderate** | 1 Point (operator not stated) | Strength |
 
 ---
 
@@ -283,13 +285,15 @@ All approved assays are from Cordeddu et al., 2015 (PMID: 26173643; DOI: 10.1002
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon | Analogous Gene, Disease-specific |
 
 > **Notes:**
 > - The analogous gene extension allows consideration of pathogenic variants at analogous residues in SOS1 when evaluating SOS2 variants.
 > - PM1 and PM5 may be used together at moderate levels, but PM1 may **not** be applied when PM5_Strong is used.
 > - Known SOS2 residues with PM5_Strong designation: **AA 264** and **AA 267** (based on case count data).
+
+> **Source wording and supplement status:** “residues changes” is preserved from the PDF and appears to be a grammatical typo. `Analogous Residues.xlsx` is an unfinished working workbook rather than a clean residue-lookup table: the same sheet that labels positions 264 and 267 `PM5_Strong` also says “Need to add SOS2 from literature, and cases from NSEuro net.” Treat those two labels as provisional workbook content and apply the published PM5 rule above rather than treating them as independently validated classifications.
 
 ---
 
@@ -301,11 +305,11 @@ All approved assays are from Cordeddu et al., 2015 (PMID: 26173643; DOI: 10.1002
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 Points | Strength |
-| **Moderate** | ≥1 Point | None |
-| **Supporting** | ≥0.5 Points | Strength |
+| **Strong** | 2 Points (operator not stated) | Strength |
+| **Moderate** | 1 Point (operator not stated) | None |
+| **Supporting** | 0.5 Points (operator not stated) | Strength |
 
-> **Note:** Uses the same point-based scoring system as PS2. See [PS2/PM6 Point System](#ps2pm6-point-system-per-proband) above.
+> **Note:** Uses the same point-based scoring system as PS2. The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**; that strength is absent from the PM6 rows in the PDF body. See [PS2/PM6 Point System](#ps2pm6-point-system-per-proband) above.
 
 ---
 
@@ -410,18 +414,18 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**, with no comparator symbols. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is unavailable. The image also states exact values without operators.
+
 | Points | Strength Level |
 |:------:|----------------|
-| ≤ -1 | Supporting (BS2_Supporting) |
+| -1 (operator not stated) | Supporting (BS2_Supporting) |
 | N/A | Moderate — not available |
-| ≤ -3 | Strong (BS2) |
-
-> **Note:** Points are negative (benign direction). The threshold is met when total points reach or exceed the negative value shown (e.g., -4 points meets BS2 Strong at -3).
+| -3 (operator not stated) | Strong (BS2) |
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≤ -4 Points | Strength |
-| **Supporting** | ≤ -1 Point | Strength |
+| **Strong** | -4 Points (operator not stated; PDF body) | Strength |
+| **Supporting** | -1 Point (operator not stated; PDF body) | Strength |
 
 ---
 
@@ -476,11 +480,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BP2/BP5 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The image states exact values without comparator symbols; its direction must not be inferred from the PDF-body operators.
+
 | Points | Strength Level |
 |:------:|----------------|
-| ≤ -1 | Supporting (BP5/BP2) |
+| -1 (operator not stated) | Supporting (BP5/BP2) |
 | N/A | Moderate — not available |
-| ≤ -3 | Strong (BP5_Strong/BP2_Strong) |
+| -3 (operator not stated) | Strong (BP5_Strong/BP2_Strong) |
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
@@ -620,15 +626,19 @@ SOS2 specifications use analogous residue positions between SOS1 (NP_005624.2, 1
 
 > **Note:** Due to a 2-residue gap in SOS2 at approximately position 177–178 in the DH domain, SOS2 numbering falls ~2 residues behind SOS1 for positions after residue 239. The C-terminal SH3-binding domain shows more divergence with multiple insertions/deletions.
 
-### Appendix B: Known SOS2 Variant Hotspot Residues
+> **Provenance:** The gap and divergence description above is an inference from visual inspection of the protein alignment embedded in `Analogous Residues.xlsx`; it is not stated as a separate VCEP rule.
 
-Based on HGMD and clinical case count data, the following analogous residue positions have documented SOS2 missense variants:
+### Appendix B: Analogous-Residue Working-Sheet Excerpts
+
+> **Caution:** `Analogous Residues.xlsx` is visibly unfinished and requests additional SOS2 literature/NSEuroNet data. This table transcribes selected non-empty rows as a working aid; it does not turn them into VCEP-designated hotspots or independently validated PM5 classifications.
+
+The following analogous positions have non-empty SOS2 fields in its HGMD or GeneDx case-count columns:
 
 | Amino Acid | SOS2 Variants (HGMD) | Clinical Case Counts (GeneDx SOS2) | PM5 Strength | Notes |
 |:----------:|:---------------------:|:-----------------------------------:|:------------:|-------|
-| 264 | — | 3 | PM5_Strong | Validation P/LP variant: T264K |
+| 264 | — | 3 | PM5_Strong (provisional workbook label) | Validation P/LP variant: T264K; an additional unlabeled count field contains 5 |
 | 266 | 1 | — | — | Also 1 SOS1 variant at this position |
-| 267 | — | 6 | PM5_Strong | Validation P/LP variant: M267R |
+| 267 | — | 6 | PM5_Strong (provisional workbook label) | Validation P/LP variant: M267R; an additional unlabeled count field contains 15 |
 | 269 | 2 | — | — | Also 2 SOS1 variants |
 | 376 | — | 3 | — | Validation P variant: T376S |
 | 378 | 2 | — | — | Also 1 SOS1 variant |
@@ -664,7 +674,7 @@ Based on HGMD and clinical case count data, the following analogous residue posi
 | PM3 | Not Applicable | — | Autosomal dominant |
 | PM4 | Applicable | Moderate | No repetitive regions |
 | PM5 | Applicable | Strong | Includes analogous SOS1 residues |
-| PM6 | Applicable | Strong | Point-based with PS2 |
+| PM6 | Applicable | Very Strong | Supplement adds Very Strong; PDF body lists through Strong |
 | PP1 | Applicable | Strong | ≥7 informative meioses |
 | PP2 | Not Applicable | — | Missense z score <3.09 |
 | PP3 | Applicable | Supporting | REVEL ≥0.7 |
@@ -686,8 +696,9 @@ Based on HGMD and clinical case count data, the following analogous residue posi
 ### Appendix F: References
 
 1. ClinGen SVI Proposal for De Novo Criteria v1.1: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
-2. Cordeddu V, et al. (2015) Functional characterization of SOS2 variants. *Hum Mutat*. PMID: 26173643; DOI: 10.1002/humu.22834
-3. Brnich SE, et al. (2018) Recommendations for application of the functional evidence PS3/BS3 criterion. PMID: 29543229
+2. Cordeddu (2015), PMID: 26173643; DOI: 10.1002/humu.22834 — cited by the functional-study workbook for all three approved SOS2 assays
+3. PMID: 29543229 — cited by the specification for the recommendation not to use PP5/BP6
+4. PMID: 31892348 — cited by the functional-study workbook for PS3/BS3 assay-validation guidance
 
 ---
 
@@ -696,6 +707,14 @@ Based on HGMD and clinical case count data, the following analogous residue posi
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_SOS2_v2.3.pdf`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, `Approved Functional Studies.xlsx`, and `Analogous Residues.xlsx`. No change to the underlying ClinGen specification version.**
+
+- **Source contradictions restored instead of reconciled:** the PDF body sets BS2 Strong at -4 while its image sets it at -3; the body gives BP2/BP5 Strong ≥(-4), Moderate ≥(-2), and Supporting ≥(-1), while the image gives -3, N/A, and -1. Invented `≤` operators and the previous direction-reconciliation note were removed from the image-derived tables.
+- **Comparator fabrication removed:** the PS2 and PM6 body rows print bare point values, not `≥` thresholds. They are now marked operator-not-stated. The scoring image's supplement-only PS2_Supporting and PM6_VeryStrong levels are identified explicitly, and Appendix E now reflects PM6's supplement-defined maximum.
+- **Analogous-residue workbook qualified:** the prior “Known SOS2 Variant Hotspot Residues” appendix elevated an unfinished case-count worksheet into an authoritative hotspot table. It is now presented as a provisional worksheet excerpt, including the otherwise omitted unlabeled counts alongside positions 264 and 267.
+- **Fabricated provenance corrected:** PMID 29543229 was misattributed to Brnich functional-evidence recommendations. It is cited by this specification for PP5/BP6; the functional workbook cites PMID 31892348 for PS3/BS3 guidance. An unsourced Cordeddu article title was replaced with the citation data the workbook actually supplies.
+- **Source typo preserved:** the PDF's PM5 phrase “residues changes” is retained and flagged rather than silently corrected.
 
 ---
 

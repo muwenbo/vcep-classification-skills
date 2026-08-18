@@ -2,6 +2,7 @@
 
 **Version:** 1.0.0
 **Released:** 4/22/2024
+**DOI:** 10.5281/zenodo.21434347
 **Affiliation:** Cardiomyopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
@@ -107,25 +108,7 @@ Examples of non-suspicious family history may include non-specific clinical feat
 
 Generally, this criterion is only applicable in the **ABSENCE** of any other possible disease-causing variants. If other pathogenic or likely pathogenic variants are present, consider decreasing points assigned or overall weight.
 
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| **Phenotype consistent but not highly specific** | **1 point** | **0.5 points** |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-> **Note:** For most cardiomyopathies, default to "Phenotype consistent with gene but not highly specific" (bolded row above).
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
+> **Distributed-source limitation:** The specification refers readers to SVI guidance for the number/combination of cases and mentions decreasing assigned points, but the distributed TNNT2 package does not include the SVI de novo point matrix or its point-to-strength mapping. No numeric mapping is supplied here.
 
 **Modification Type:** Disease-specific
 
@@ -227,9 +210,19 @@ HCM and DCM have distinct mechanisms of disease and therefore pathogenetic varia
 
 See supplementary document: *CM-VCEP PS4 Example Scenarios* for three worked examples:
 
-- **Variant A (General Example):** Detected in clinical lab (22/7,437 HCM cases) and literature (13/9,162 HCM cases) vs. gnomAD (1/241,182 alleles). Both analyses yield lower 95% CI ≥20 → **PS4 Strong**.
-- **Variant B (Selecting Control Cohort):** Detected in clinical lab (12/5,792) and literature (15/7,873 European cohorts) vs. gnomAD Total and European subpopulation. gnomAD Total analyses → Strong; gnomAD European analyses → Moderate. Since variant is predominantly European, conservative approach uses European data → **PS4 Moderate**.
-- **Variant C (Comparing Cohorts):** Detected in two clinical labs (4/2,481 and 8/5,953 DCM cases) and literature (6/5,154 DCM cases) vs. gnomAD (0/~232,380 alleles). Lab A → Strong, Lab B → Moderate, Literature → Moderate. Given absent from gnomAD, consistent phenotype across cohorts, and enrichment in 3 non-overlapping cohorts → **PS4 Strong** (or Moderate with conservative approach).
+| Scenario and comparison | OR [95% CI] | Attachment result |
+|---|---:|---|
+| Variant A: clinical lab 22/7,437 vs gnomAD Total 1/120,591 | 358 [**48**-2,655] | Strong |
+| Variant A: literature 13/9,162 vs gnomAD Total 1/120,591 | 171 [**22**-1,310] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD Total 1/119,295 | 248 [**32**-1,905] | Strong |
+| Variant B: literature 15/7,873 vs gnomAD Total 1/119,295 | 227 [**30**-1,724] | Strong |
+| Variant B: clinical lab 12/5,792 vs gnomAD European 1/61,865 | 128 [**17**-988] | Moderate |
+| Variant B: literature 15/7,873 vs gnomAD European 1/61,865 | 118 [**16**-894] | Moderate |
+| Variant C: clinical lab A 4/2,481 vs gnomAD Total 0/116,190 | 422 [**23**-7,841] | Strong |
+| Variant C: clinical lab B 8/5,953 vs gnomAD Total 0/116,190 | 332 [**19**-5,757] | Moderate |
+| Variant C: literature 6/5,154 vs gnomAD Total 0/116,190 | 293 [**16**-5,208] | Moderate |
+
+Variant B is assigned Moderate because ancestry-matched European controls are the more appropriate conservative comparison. For Variant C, the attachment accepts Strong while explicitly allowing Moderate if a more conservative clinical judgment is preferred. Its narrative contains the literal source typo `gnomAF`.
 
 ---
 
@@ -310,9 +303,10 @@ This is equivalent to:
 | Strength | Criteria |
 |----------|----------|
 | **Moderate** | Default strength. Strength of rule should be carefully considered and may require downgrading to SUPPORTING based on the predicted impact of the variant, including the size of the deletion/insertion, its location, and conservation of the region. |
-| **Supporting** | May be appropriate based on predicted impact considerations (see above). |
 
 For genes where PVS1 is not applicable (i.e., where there is no evidence that pLOF variants cause disease), consider using this rule at **MODERATE** or **SUPPORTING** strength for truncating variants that do **NOT** undergo nonsense mediated decay (NMD).
+
+> **Source limitation:** The specification permits downgrading to Supporting but does not provide a separate positive Supporting condition or numeric thresholds for size, location, or conservation.
 
 **Modification Type:** General recommendation
 
@@ -347,7 +341,7 @@ Refer to SVI guidance on number/combination of cases required based on phenotype
 
 For most cardiomyopathies, it is recommended to default to "phenotype consistent with gene but not highly specific". Clinical judgment is required for shifting to a higher or lower phenotypic consistency.
 
-See [PS2](#ps2---de-novo-confirmed) for the point-based system and additional considerations.
+See [PS2](#ps2---de-novo-confirmed) for the source-supplied phenotype and family-history considerations. The external SVI numeric mapping is not distributed with this package.
 
 **Modification Type:** Disease-specific
 
@@ -538,6 +532,8 @@ Careful consideration of the above points is required when using this data as co
 | **BP6** | *Not Applicable* | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Supporting | Also applicable to **intronic variants outside the splice consensus sequence (-4 and +7 outward)** for which splicing prediction algorithms predict no impact to the splice consensus sequence NOR the creation of a new splice site AND the nucleotide is not highly conserved. Rule can be combined with BP4 to make a variant likely benign per Richards et al. 2015. |
 
+> **Source contradiction:** PVS1 says loss of function is not currently an established TNNT2 disease mechanism, while the source's BP1 comment says "the current genes" have null variants as a known mechanism. Both statements are retained without harmonization; BP1 remains N/A as printed.
+
 ---
 
 ## Rules for Combining Criteria
@@ -586,7 +582,7 @@ Careful consideration of the above points is required when using this data as co
 |-----------|-----------|--------------|-------------------|
 | PVS1 | No | N/A | N/A (see PM4 for truncating variants) |
 | PS1 | Yes | Strong | No change |
-| PS2 | Yes | Very Strong | Disease-specific |
+| PS2 | Yes | Source section: Strong; SVI case-combination guidance referenced but not distributed | Disease-specific |
 | PS3 | Yes | Strong | Disease-specific |
 | PS4 | Yes | Strong | Disease-specific |
 | PM1 | Yes | Supporting | Disease-specific, Gene-specific |
@@ -594,7 +590,7 @@ Careful consideration of the above points is required when using this data as co
 | PM3 | No | N/A | N/A |
 | PM4 | Yes | Moderate | General recommendation |
 | PM5 | Yes | Moderate | General recommendation |
-| PM6 | Yes | Moderate (via PS2 point system) | Disease-specific |
+| PM6 | Yes | Source section: Moderate; SVI case-combination guidance referenced but not distributed | Disease-specific |
 | PP1 | Yes | Strong | Disease-specific |
 | PP2 | No | N/A | N/A |
 | PP3 | Yes | Supporting | Disease-specific |
@@ -665,6 +661,14 @@ Careful consideration of the above points is required when using this data as co
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.0.0 | 4/22/2024 | Initial release. PS4 calculator link added. |
+
+---
+
+## Document corrections
+
+- **2026-08-09 source verification:** Checked every page of `ClinGen_ACMG_Specifications_TNNT2_v1.0.pdf` and `CM-VCEP PS4 Example Scenarios.pdf`, including every worked table.
+- Restored the core DOI and all nine PS4 comparisons. Removed an undistributed PS2/PM6 numeric matrix and its derived point-based applicability claims; the core only refers to external SVI guidance. Preserved PM1 at Supporting, both HCM and DCM scope, the PM4 Supporting-condition gap, and the PS4 attachment's literal `gnomAF` typo.
+- Source-supplied reference DOIs: `10.1038/gim.2015.30`, `10.1002/humu.23626`, `10.1186/s13073-019-0690-2`, `10.1038/gim.2016.90`, `10.1016/j.cjca.2017.01.017`, `10.1016/j.cjca.2017.04.003`, `10.1161/CIRCGENETICS.117.001968`, `10.1093/eurheartj/ehz317`, `10.1186/s13073-019-0616-z`, `10.1038/gim.2017.218`, `10.1016/j.ajhg.2016.04.003`, `10.1016/j.ajhg.2016.08.016`, `10.1016/j.cell.2018.12.015`, `10.1038/gim.2017.210`, `10.1002/humu.24088`, and `10.1038/gim.2014.205`.
 
 ---
 

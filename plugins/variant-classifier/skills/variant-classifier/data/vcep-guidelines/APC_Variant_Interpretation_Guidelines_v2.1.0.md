@@ -78,43 +78,43 @@
 
 APC is a gene where LOF is the predominant mechanism of disease. Based on published transcript analyses using leukocyte RNA, truncated alleles do not completely undergo nonsense mediated decay (NMD) since truncated alleles are detectable without NMD blockade. Nevertheless, truncating variants throughout the gene are well described, especially in the last exon 16 (which comprises 77% of the gene).
 
-#### Gene Boundaries for PVS1 Application
+#### APC-Specific PVS1 Decision Tree (Figure 1A)
 
-| Boundary | Variant | Codon |
-|----------|---------|-------|
-| **5' boundary** | c.147_150del p.(Lys49Asnfs*20) | Codon 49 |
-| **3' boundary** | c.7932_7935del p.(Tyr2645Lysfs*14) | Codon 2645 |
+| Variant class | Condition | Code |
+|---------------|-----------|------|
+| Nonsense or frameshift | Frameshift or premature termination codon from codon 49 through codon 2645, inclusive | **PVS1** |
+| Nonsense or frameshift | Upstream of codon 49 or downstream of codon 2645 | **N/A** |
+| Full-gene deletion | Full-gene deletion | **PVS1** |
+| Reading-frame-disrupting deletion | Exons 3, 4, 5, 10, 12, 15, and 16 of NM_000038.6 | **PVS1** |
+| Reading-frame-preserving deletion | Exons 13 or 14 | **PVS1** |
+| Reading-frame-preserving deletion | Exons 6, 7, 8, 9, or 11 | **PVS1_Moderate** |
+| Reading-frame-preserving deletion | Exon 2 | **N/A** unless promoters 1A and 1B are also deleted |
+| Duplication | Proven in tandem and reading frame disrupted | **PVS1** |
+| Duplication | Presumed in tandem and reading frame presumed disrupted | **PVS1_Strong** |
+| Duplication | No or unknown impact on reading frame, or proven not in tandem | **N/A** |
+| Initiation-codon variant | NM_001127511.3 has an alternative first coding exon 5′ of the first coding exon of NM_000038.6; no patient variants are reported | **N/A** |
 
-#### PVS1 Strength Levels
+For a full-gene deletion of a known haploinsufficient gene, Figure 1 states that
+PVS1 alone warrants a Pathogenic classification when there is no conflicting
+evidence.
 
-| Strength | Criteria |
-|----------|----------|
-| **Very Strong (PVS1)** | Null variant as per modified decision tree (Figure 1) - List A variants |
-| **Strong (PVS1_Strong)** | As per modified decision tree (Figure 1) - List B variants |
-| **Moderate (PVS1_Moderate)** | As per modified decision tree (Figure 1) - List C variants |
-| **Supporting (PVS1_Supporting)** | As per modified decision tree (Figure 1) - List D variants |
+#### Splice Variant Classification (Figure 1A/1B)
 
-#### Splice Variant Classification Lists
+Lists A–E apply **only** to the listed GT–AG ±1,2 splice variants and G-to-non-G
+last-nucleotide changes. They do not gate nonsense, frameshift, deletion, or
+duplication variants. PVS1 variable strength may be used only for a variant
+explicitly listed below. A splice variant must have no detectable nearby (±20
+nt) strong consensus splice sequence that may reconstitute in-frame splicing.
+G-to-non-G last-nucleotide changes and weakly predicted +2T>C changes are
+downgraded as specified in Figure 1A.
 
-**List A (PVS1):**
-- Canonical splice sites where exon skipping or cryptic splice site use disrupts reading frame affecting biologically relevant transcripts
-- Canonical splice sites where exon skipping preserves reading frame AND existing clinical data supports causative role
-
-**List B (PVS1_Strong):**
-- c.1548+2T>C (weak native site splice prediction with SpliceAI - downgraded one level)
-- G to non-G last nucleotide changes with consistently deleterious splicing consequences as canonical ±1,2 splice variants
-
-**List C (PVS1_Moderate):**
-- Canonical splice sites where exon skipping preserves reading frame AND existing clinical data is insufficient to support causative role
-
-**List D (PVS1_Supporting):**
-- c.729+2T>C (weak native site splice prediction with SpliceAI)
-- c.933G>A,C,T (causes in-frame exon skipping)
-
-**List E (N/A - Not Applicable):**
-- Canonical splice sites affecting exon 2 (alternative transcript exists)
-- Canonical splice sites where cryptic splice site use preserves reading frame leading to small in-frame indel
-- c.645+2T>C (native splice site not predicted by SpliceAI)
+| List | Code | Variants from Figure 1B |
+|------|------|-------------------------|
+| A | **PVS1** | c.136-1G>A,C,T; c.136-2A>C,G,T; c.220+1G>A,C,T; c.220+2T>A,C,G; c.221-1G>A,C,T; c.221-2A>C,G,T; c.422+1G>A,C,T; c.422+2T>A,C,G; c.423-1G>A,C,T; c.423-2A>C,G,T; c.531+1G>A,C,T; c.531+2T>A,C,G; c.532-1G>A,C,T; c.532-2A>C,G,T; c.646-1G>A,C,T; c.646-2A>C,G,T; c.730-1G>A,C,T; c.834+1G>A,C,T; c.834+2T>A,C,G; c.835-1G>A; c.933+1G>A,C,T; c.933+2T>A,C,G; c.1312+1G>A,C,T; c.1312+2T>A,C,G; c.1409-1G>A,C,T; c.1409-2A>C,G,T; c.1548+1G>A,C,T; c.1548+2T>A,G; c.1549-1G>A,C,T; c.1549-2A>C,G,T; c.1626+1G>A,C,T; c.1626+2T>A,C,G; c.1627-1G>A,C,T; c.1627-2A>C,G,T; c.1743+1G>A,C,T; c.1743+2T>A,C,G; c.1744-1G>A,C,T; c.1744-2A>C,G,T; c.1958+1G>A,C,T; c.1958+2T>A,C,G; c.1959-1G>A |
+| B | **PVS1_Strong** | c.220G>A,C,T; c.422G>A,C,T; c.834G>A,C,T; c.1548G>A,C,T; c.1548+2T>C; c.1626G>A,C,T; c.1743G>A,C,T; c.1958G>A,C,T |
+| C | **PVS1_Moderate** | c.645+1G>A,C,T; c.645+2T>A,G; c.729+1G>A,C,T; c.729+2T>A,G; c.730-2A>C,G,T; c.835-1G>C,T; c.835-2A>C,G,T; c.1408+1G>A,C,T; c.1408+2T>A,C,G |
+| D | **PVS1_Supporting** | c.729+2T>C; c.933G>A,C,T |
+| E | **N/A** | c.-18-1G>A,C,T; c.-18-2A>C,G,T; c.135G>A,C,T; c.135+1G>A,C,T; c.135+2T>A,C,G; c.645G>A,T,C; c.645+2T>C; c.729G>A,T,C; c.934-1G>A,C,T; c.934-2A>C,G,T; c.1313-1G>A,C,T; c.1313-2A>C,G,T; c.1408G>A,C,T; c.1959-1G>C,T; c.1959-2A>C,G,T |
 
 ---
 
@@ -588,33 +588,39 @@ Based on Lee et al. 2018 (PMID: 30311375).
 
 ### Appendix A: Phenotype Point System (Table 1)
 
-The phenotype point system is used for criteria: PS2, PS4, PM6, PP1, and BS4.
+The phenotype point system is used for PS2, PS4, PM6, PP1, and BS4, with a
+**maximum 1 phenotype point per proband**. Findings in different rows are not
+additive.
 
-| Phenotype | Points |
-|-----------|--------|
-| Classic FAP (≥100 colorectal adenomas) | 1 point |
-| Attenuated FAP (10-99 colorectal adenomas) | 0.5 points |
-| ≥10 or "multiple" colorectal adenomas (for relatives in PP1) | 0.5 points |
-| Colorectal cancer with polyposis | Additional points based on context |
-| Desmoid tumor | Additional points |
-| CHRPE (Congenital Hypertrophy of the Retinal Pigment Epithelium) | Additional points |
-| Osteomas | Additional points |
-| Other extracolonic manifestations | Additional points |
+| Phenotype | 1 point: highly specific for APC | 0.5 points: consistent with APC but not highly specific |
+|-----------|----------------------------------|--------------------------------------------------------|
+| Polyposis | 20–99 colorectal adenomas at age ≤20 years; **or** ≥100 colorectal adenomas at age ≤30 years; **or** ≥1000 colorectal adenomas at any age; **or** another accepted descriptor of colorectal adenomas at any age | ≥20 colorectal adenomas at age 20–70 years; **or** documented FAP/AFAP; **or** ≥100 colorectal polyps (or an accepted descriptor) without histologic confirmation |
+| Desmoid(s) | Without a somatic CTNNB1 variant | CTNNB1 status unknown |
+| Medulloblastoma | WNT subtype without a somatic CTNNB1 variant | Subtype and/or CTNNB1 status unknown |
+| Hepatoblastoma | Without a somatic CTNNB1 variant | CTNNB1 status unknown |
+| CHRPE | — | Multifocal or bilateral |
+| Multiple gastric adenomas | — | ≥2 gastric adenomas |
+| Multiple duodenal adenomas | — | ≥2 duodenal adenomas |
+| Osteoma(s) | — | Present |
+| Family history | — | Typical FAP family history with a dominant pedigree pattern |
 
-*Refer to the full Table 1 in the supplementary material for complete point assignments.*
+Histologically confirmed adenomas are required; a description of colorectal
+polyps without histologic confirmation is not acceptable in the adenoma rows.
+Accepted descriptors are *uncountable*, *innumerable*, *countless*, and
+*carpeting* of the entire colon with distinct polyps; a single laterally
+spreading lesion is not acceptable. Family-history points are excluded from
+PS2/PM6, cannot be used if PP1 is already applied, and require at least one
+variant carrier plus one additional relative who each meet at least 0.5 point.
 
 ### Appendix B: De Novo Score Curation (Table 2)
 
-De novo scores are calculated based on:
-1. Phenotype points of the proband
-2. Parental confirmation status (maternity and paternity confirmed vs. assumed)
+| Phenotype point per proband | De novo with confirmed parental relationships | De novo with unconfirmed parental relationships |
+|-----------------------------|------------------------------------------------|--------------------------------------------------|
+| ≥1 | 2 | 1 |
+| 0.5 | 1 | 0.5 |
 
-| Phenotype Score | Confirmed Parental Testing | Assumed (Not Confirmed) |
-|-----------------|---------------------------|------------------------|
-| High phenotype specificity | Higher de novo score | Lower de novo score |
-| Moderate phenotype specificity | Moderate de novo score | Lower de novo score |
-
-*Refer to the full Table 2 in the supplementary material for complete scoring matrix.*
+The de novo score is distinct from the phenotype point and is not equivalent to
+the Tavtigian classification points (PMID: 32720330).
 
 ### Appendix C: Exon Numbering Conversion Table
 

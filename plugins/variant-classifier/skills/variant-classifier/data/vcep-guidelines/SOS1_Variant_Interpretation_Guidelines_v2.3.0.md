@@ -98,6 +98,8 @@
 
 #### PS2/PM6 Evidence Strength Thresholds
 
+The SOS1 PDF body explicitly lists PS2 at Very Strong (4), Strong (2), and Moderate (1), and PM6 at Strong (2), Moderate (1), and Supporting (0.5). The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong:
+
 | Points | Strength Level |
 |:------:|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -125,7 +127,7 @@
 | Assay | Description | Specificity | Approved Strength | PMIDs |
 |-------|-------------|-------------|-------------------|-------|
 | **RAS Activation Assay** | Measures the bound RAS protein that immunoprecipitated with RAF1 or RBD (synthetic). Increased RAS/RBD complexes compared with positive control range indicates abnormal. | Pathway Specific | PS3_Supporting; BS3_NA | 17143282, 17143285 |
-| **MEK Activation Assay** | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation. Increased pMEK/MEK ratio compared with positive control range indicates abnormal. | Pathway Specific | PS3_Supporting; BS3_NA | 17143282 |
+| **MEK Activation Assay** | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation. Increased pMEK/MEK ratio compared with positive control range indicates abnormal. | Pathway Specific | PS3_Supporting; BS3_NA | 17143282, 17143285 |
 | **ERK Activation Assay** | Measures the ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation. Increased pERK/ERK ratio compared with positive control range indicates abnormal. | Pathway Specific | PS3_Supporting; BS3_NA | 17143282, 17143285 |
 
 > **General Guidance:** All assays are expected to be validated by the performing laboratory in accordance with standard procedures with all appropriate control inclusions (PMID: 31892348). As most of these assays are semi-quantitative, abnormal results should be compared relative to the known status of the controls included in the assay. Multiple assays are pathway-specific, meaning controls from any RASopathy gene may be used to support abnormal pathway function. Assays not listed are presumed to lack sufficient historical evidence and may only be sufficient for PS3_Supporting or BS3_Supporting. Animal models and variant-specific assays (e.g., myristoylation) have been excluded.
@@ -233,10 +235,14 @@
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands. | Analogous Gene, Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Analogous Gene, Disease-specific |
 
 > **Note:** Analogous residue positions between SOS1 and SOS2 can be used for PM5 application.
+
+> **Source wording:** “residues changes” is preserved from the PDF and appears to be a grammatical typo.
+
+> **Supplement status:** `Analogous Residues.xlsx` contains the full SOS1 (NP_005624.2) / SOS2 (NP_008870.2) protein alignment rather than an exhaustive discrete residue-lookup table. Its working case-count sheet labels aligned positions 264 and 267 `PM5_Strong`, but also contains the unfinished instruction “Need to add SOS2 from literature, and cases from NSEuro net.” Treat those two labels as provisional workbook content and apply the published PM5 rule above rather than treating them as independently validated classifications.
 
 ---
 
@@ -253,6 +259,8 @@ Uses the same point-based system as PS2 — see [PS2/PM6 Point System](#ps2---de
 | **Strong** | 2 Points | Strength |
 | **Moderate** | 1 Point | None |
 | **Supporting** | 0.5 Points | Strength |
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement; see the shared PS2/PM6 table above.
 
 ---
 
@@ -365,6 +373,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+> **Source contradiction — do not resolve silently:** The PDF body assigns **BS2 Strong at -4 points** and **BS2 Supporting at -1 point**. The VCEP-distributed `BS2 Scoring.jpg` instead assigns **BS2 Strong at -3 points**, Supporting at -1, and says Moderate is not available. The per-individual and threshold tables below reproduce the supplied image; the body wording remains authoritative-looking but conflicts with it.
+
+| PDF body strength | Points |
+|-------------------|:------:|
+| Strong | -4 |
+| Supporting | -1 |
+
 | Points | Strength Level |
 |:------:|----------------|
 | -1 point | Supporting (BS2_Supporting) |
@@ -417,6 +432,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Phenotype inconsistent with a RASopathy and no causative variant identified/reported | 0 |
 
 #### BP5/BP2 Evidence Strength Thresholds
+
+> **Source contradiction — do not resolve silently:** The PDF body assigns Strong at **≥(-4)**, Moderate at **≥(-2)**, and Supporting at **≥(-1)** for both BP2 and BP5. The VCEP-distributed `BP5_BP2 Scoring.jpg` instead assigns Strong at **-3**, says Moderate is **N/A**, and assigns Supporting at **-1**. The criterion summary above preserves the PDF-body values, while the table below reproduces the supplied image. The image states exact values without comparator symbols.
 
 | Points | Strength Level |
 |:------:|----------------|
@@ -486,7 +503,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PM3 | Not Applicable | — |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable | Strong |
-| PM6 | Applicable (point-based) | Strong |
+| PM6 | Applicable (point-based) | Very Strong (supplement; PDF body lists through Strong) |
 | PP1 | Applicable | Strong |
 | PP2 | Not Applicable | — |
 | PP3 | Applicable | Supporting |
@@ -530,7 +547,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Assay | Applicable Genes | Specificity | PS3 Strength | BS3 Strength | Key PMIDs |
 |-------|-------------------|-------------|:------------:|:------------:|-----------|
 | RAS Activation Assay | SOS1, SOS2, HRAS, KRAS, NRAS, MRAS, RRAS2, LZTR1, RIT1 | Pathway Specific | Supporting | N/A | 17143282, 17143285 |
-| MEK Activation Assay | SOS1, SOS2, and other RASopathy genes | Pathway Specific | Supporting | N/A | 17143282 |
+| MEK Activation Assay | SOS1, SOS2, and other RASopathy genes | Pathway Specific | Supporting | N/A | 17143282, 17143285 |
 | ERK Activation Assay | SOS1, SOS2, and other RASopathy genes | Pathway Specific | Supporting | N/A | 17143282, 17143285 |
 
 > **Upgrade Rule:** Two or more unique assay types (e.g., RAS activation assay AND MEK activation assay) for a given variant provides sufficient evidence to upgrade PS3 to **Moderate** strength.
@@ -543,10 +560,10 @@ SOS1 variants may use analogous residue positions from **SOS2** for the applicat
 
 | Reference | Description |
 |-----------|-------------|
-| 17143282 (Tartaglia et al., 2007) | SOS1 gain-of-function variants in Noonan syndrome |
-| 17143285 (Roberts et al., 2007) | SOS1 germline mutations in Noonan syndrome |
-| 29543229 | ClinGen SVI recommendation deprecating PP5/BP6 |
-| 31892348 | ClinGen PS3/BS3 functional evidence framework |
+| 17143282 (Tartaglia, 2007; DOI 10.1038/ng1939) | Cited for the approved SOS1 RAS, MEK, and ERK activation assays |
+| 17143285 (Roberts, 2007; DOI 10.1038/ng1926) | Cited for the approved SOS1 RAS, MEK, and ERK activation assays |
+| 29543229 | Cited by the specification for the recommendation not to use PP5/BP6 |
+| 31892348 | Cited by the functional-study workbook for assay validation guidance |
 | SVI de novo criteria | https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf |
 
 ---
@@ -556,6 +573,13 @@ SOS1 variants may use analogous residue positions from **SOS2** for the applicat
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_SOS1_v2.3.pdf`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, `Approved Functional Studies.xlsx`, and `Analogous Residues.xlsx`. No change to the underlying ClinGen specification version.**
+
+- **Source contradictions restored instead of silently reconciled:** the PDF body sets BS2 Strong at -4 while the supplied image sets it at -3; the PDF body gives BP2/BP5 Strong ≥(-4), Moderate ≥(-2), and Supporting ≥(-1), while the image gives -3, N/A, and -1. Both source readings are now shown with their provenance and comparator status.
+- **PS2/PM6 supplement-only strengths identified:** the scoring image adds PS2_Supporting and PM6_VeryStrong to body sections that do not list those strengths. PM6's maximum strength in Appendix A was corrected from Strong to the supplement-defined Very Strong, without implying that it appears in the PDF-body PM6 rows.
+- **Functional evidence corrected:** PMID 17143285 was restored to the MEK activation assay; source-backed DOI/provenance wording replaced paper-title-style descriptions not supplied by the package.
+- **Analogous-residue limitations recorded:** the workbook supplies a full alignment and an unfinished case-count worksheet, not a clean exhaustive lookup table. Its provisional PM5_Strong labels at aligned positions 264 and 267 are now explicitly identified as such; the PDF's “residues changes” typo is preserved and flagged.
 
 ---
 

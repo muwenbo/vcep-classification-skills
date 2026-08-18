@@ -694,9 +694,29 @@ The PVS1 decision tree for IDUA includes IDUA-specific modifications from the SV
 | 15300847 | Yogalingam et al, 2004 | Functional assay |
 | 12559846 | Matte et al, 2003 | Functional assay |
 | 34746235 | - | In silico predictor validation for IDUA |
-| 3641399 | Pejaver et al | REVEL thresholds |
+| 36413997 | Pejaver et al | REVEL thresholds |
 | 29543229 | - | PP5/BP6 not recommended |
 | 29300386 | Tavtigian et al, 2018 | Bayesian points system |
+
+---
+
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_IDUA_v1.2.pdf`
+- `Appendix 1_PVS1 strength_IDUA.xlsx`
+- `Appendix 2_PVS1_Decision Tree_IDUA.pptx`
+- `Appendix 3_Functional assays.xlsx`
+- `Appendix 4_PM3 points system_IDUA.pdf`
+- `Appendix 5_PP1 guidance_IDUA.pdf`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file package source-first, including the exon-level PVS1 workbook, slide connector topology, all functional-assay sheets, and both image/table PDFs.
+- Verified the exon-specific PVS1 strengths and preserved the decision tree's branch conditions rather than substituting a generic percentage-only tree.
+- Re-transcribed the PM3 exact values and PP1 segregation table, including their caps and counting exclusions.
+- Corrected the truncated Pejaver PMID `3641399` to the source's `36413997`; retained the functional workbook's assay-specific cutoffs and its distinctions between activity and accompanying protein evidence.
 
 ---
 
@@ -704,6 +724,7 @@ The PVS1 decision tree for IDUA includes IDUA-specific modifications from the SV
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.2.0 remediation | August 17, 2026 | Re-transcribed all six distributed artifacts and corrected the truncated Pejaver PMID. |
 | 1.2.0 | January 23, 2026 | PP3: Updated MutPred-InDel website. PP4: Added dermatan sulfate as a biomarker. PP4: Updated to remove requirement for detailed clinical features for individuals part of large MPS I cohort from experienced groups. BS2: Minor wording update. |
 | 1.1.0 | - | Previous version |
 | 1.0.0 | - | Initial release |

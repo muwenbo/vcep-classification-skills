@@ -616,10 +616,31 @@ The DICER1-specific PVS1 decision tree follows the Tayoun et al. 2018 framework 
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_DICER1_v1.4.pdf`
+- `Evidence Criteria Combinations.jpg`
+- `PP4 Flowchart and Second Hits.jpg`
+- `PVS1.pdf`
+- `Phenotype Table.jpg`
+- `Table for Tallying Proband Points.jpg`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete six-file package source-first, including every image-only phenotype, point, combination, and second-hit table and the PVS1 flowchart.
+- Verified the unusual point-system endpoint exactly as distributed: a total of -1 is uncertain by default but may be overridden to Likely Benign only when at least two benign codes apply and PM2_Supporting is the sole pathogenic code.
+- Restored the table footnotes that cap low-specificity de novo contributions and prevent double counting family history between PP1 and phenotype scoring.
+- Preserved the package's distinction between classical two-hit DICER1 tumors and tumors whose additional somatic findings indicate a likely sporadic event.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.4.0 remediation | August 17, 2026 | Re-transcribed all six distributed artifacts and verified the image-only combination, phenotype, second-hit, proband, and PVS1 rules. |
 | 1.4.0 | 7/8/2025 | 1. Updated C Spec specifications type to Tavtigian points based system as allowed in the latest C Spec release in order to appropriately reflect the classification schema the VCEP has used from the start and to remove the irrelevant criteria combinations at the bottom of the page.<br>2. PP3/BP4: Changed REVEL cutoffs to 3 decimal points to avoid ambiguity regarding rounding. |
 | 1.3.0 | Previous | 1. BA1/BS1/PM2 Clarification: In light of the recent release of gnomAD v4.0.0 without a (non-cancer) filter, removed the (non-cancer) text and added the following clarifying instruction: "In general, the most recent/most comprehensive gnomAD version should be used."<br>2. Criteria Combination Clarification: Added a general comment to the C Spec asking users to disregard the "Rules for Combining Criteria" section and instead use the "Evidence Criteria Combinations" table. |
 

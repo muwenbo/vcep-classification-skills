@@ -3,6 +3,7 @@
 **Version:** 2.0.0
 **Released:** 12/12/2024
 **Affiliation:** Congenital Myopathies VCEP
+**DOI:** 10.5281/zenodo.21434795
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -74,7 +75,7 @@ RYR1 is associated with both dominant and recessive myopathy. Loss of function i
 
 | Strength | Criteria |
 |----------|----------|
-| **Very Strong (PVS1)** | Null variant (nonsense, frameshift, canonical +/-1 or 2 splice sites, initiation codon, single or multi-exon deletion) where LOF is a known mechanism — apply per PVS1 flowchart. NMD predicted (up to c.14971, p.4991). |
+| **Very Strong (PVS1)** | Null variant (nonsense, frameshift, canonical +/-1 or 2 splice sites, initiation codon, single or multi-exon deletion) where LOF is a known mechanism — apply per the distributed PVS1 flowchart. |
 | **Strong (PVS1_Strong)** | In-frame deletions or in-frame exon-skipping variants in the pore/transmembrane region of RYR1 (amino acids 4800-4950, exons 100-103). Also applies to other scenarios per the PVS1 flowchart. |
 | **Moderate (PVS1_Moderate)** | See PVS1 flowchart (Appendix A). |
 | **Supporting (PVS1_Supporting)** | See PVS1 flowchart (Appendix A). |
@@ -105,23 +106,7 @@ RYR1 is associated with both dominant and recessive myopathy. Loss of function i
 
 **VCEP Specifications:** No change — use as originally described at all strength levels (Very Strong, Strong, Moderate, Supporting).
 
-#### PS2/PM6 Point System
-
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
-
-#### Evidence Strength Thresholds
-
-| Points | Strength Level |
-|--------|----------------|
-| 0.5 | Supporting |
-| 1.0 | Moderate |
-| 2.0 | Strong |
-| 4.0 | Very Strong |
+The GN179 package supplies no PS2/PM6 point-system attachment or thresholds. No point system is inferred from generic SVI material.
 
 > **Modification Type:** No change
 
@@ -163,7 +148,9 @@ Specified assays are only provided for the AD specifications, which are listed s
 
 | Strength | Criteria |
 |----------|----------|
-| **Moderate** | The pore/transmembrane region of RYR1 is critical for protein function and missense variants that fall within this region (**amino acids 4800-4950**) may apply PM1. |
+| **Moderate** | The pore/transmembrane region of RYR1 is critical for protein function and missense variants that fall within this region (**amino acids 4800-4950**). |
+
+The source gives only the range notation `4800-4950`; endpoint comparator symbols are not stated separately.
 
 > **Modification Type:** Disease-specific, Gene-specific
 
@@ -192,12 +179,14 @@ If the mode of inheritance for the variant is unclear (largely with missense var
 
 Use the SVI-recommended PM3 chart to count observations. Points for each proband should be summed to get to a final PM3 strength. In order to count case counts for your variant of interest, it should be **rare enough to not meet BS1**.
 
+> **Source typo:** The core PDF begins the last instruction `In order to count to count case counts`; the duplicated words have no alternate operational meaning.
+
 #### PM3 Point System (Per Proband)
 
-| Classification/Zygosity of Other Variant | Confirmed in Trans | Phase Unknown |
+| Classification/Zygosity of Other Variant | Known in Trans | Phase unknown |
 |------------------------------------------|-------------------|---------------|
 | Likely Pathogenic / Pathogenic | 1.0 | 0.5 |
-| Homozygous occurrence (max 1.0 point) or Rare VUS on other allele | 0.5 | N/A |
+| Homozygous occurrence (`max point 1.0`) or Rare VUS on other allele | 0.5 | N/A |
 
 #### PM3 Evidence Strength Thresholds
 
@@ -207,6 +196,8 @@ Use the SVI-recommended PM3 chart to count observations. Points for each proband
 | 1.0 | PM3 (Moderate) |
 | 2.0 | PM3_Strong |
 | 4.0 | PM3_VeryStrong |
+
+The core PDF and `PM3 chart.docx` print these as bare point values, not `>=` thresholds or ranges. The package does not specify how intermediate totals or totals above 4.0 map to strength.
 
 > **Modification Type:** Disease-specific, Gene-specific
 
@@ -223,7 +214,7 @@ Either **PVS1_Strong** or **PM4_Strong**, but not both, should be used for in-fr
 | Strength | Criteria |
 |----------|----------|
 | **Strong** | No change — use as originally described. |
-| **Moderate** | No change — use as originally described. |
+| **Moderate** | Protein length changes due to in-frame deletions/insertions in a non-repeat region or stop-loss variants. |
 | **Supporting** | No change — use as originally described. |
 
 > **Note:** For in-frame deletions in the pore/transmembrane region (AAs 4800-4950), choose either PVS1_Strong or PM4_Strong, not both.
@@ -252,7 +243,7 @@ Either **PVS1_Strong** or **PM4_Strong**, but not both, should be used for in-fr
 
 **Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
 
-**VCEP Specifications:** No change — use as originally described. Same point-based system as PS2 (see PS2/PM6 Point System above).
+**VCEP Specifications:** No change — use as originally described. The GN179 package supplies no PM6 point system.
 
 | Strength | Criteria |
 |----------|----------|
@@ -278,13 +269,7 @@ The segregation chart (adopted from Oza et al 2018, PMID:30311386) should be use
 | **Moderate** | See segregation chart |
 | **Supporting** | See segregation chart |
 
-#### PP1 Thresholds (General SVI Recommendation)
-
-| Strength | Likelihood | LOD Score |
-|----------|------------|-----------|
-| Supporting | 4:1 | 0.6 |
-| Moderate | 16:1 | 1.2 |
-| Strong | 32:1 | 1.5 |
+> **Unavailable distributed source:** No segregation-chart artifact is present in the GN179 package or listed under the core PDF's Files & Images. The distributed specification therefore supplies no PP1 thresholds or matrix. Do not substitute a generic Oza et al. grid.
 
 > **Modification Type:** General recommendation
 
@@ -422,10 +407,10 @@ If the mode of inheritance for the variant is unclear (this largely applies to m
 | Criterion | Status | Comment |
 |-----------|--------|---------|
 | **BP1** | **Not Applicable** | Both missense and truncating variants in RYR1 are disease-causing. |
-| **BP2** | Applicable (no change) | Observed in trans with a pathogenic variant for a fully penetrant dominant gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern. Available at Supporting, Moderate, and Strong. |
+| **BP2** | Applicable (no change) | Strong/Moderate: `No change - use as originally described`, with no separate definition. Supporting: observed in trans with a pathogenic variant for a fully penetrant dominant gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern. |
 | **BP3** | **Not Applicable** | There are no regions in RYR1 where BP3 would apply. |
 | **BP4** | Applicable (modified) | BP4 is met if **REVEL score ≤ 0.15** or if the variant is **not predicted to impact splicing using SpliceAI**. |
-| **BP5** | Applicable (no change) | Variant found in a case with an alternate molecular basis for disease. Available at Supporting, Moderate, and Strong. |
+| **BP5** | Applicable (no change) | Strong/Moderate: `No change - use as originally described`, with no separate definition. Supporting: variant found in a case with an alternate molecular basis for disease. |
 | **BP6** | **Not Applicable** | This criterion is not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID:29543229). |
 | **BP7** | Applicable (modified) | A synonymous variant for which **SpliceAI** predicts no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. |
 
@@ -480,15 +465,21 @@ If the mode of inheritance for the variant is unclear (this largely applies to m
 
 The following flowchart describes PVS1 strength assignment for different variant types in RYR1:
 
+**Source caveats:** Footnote markers `a`, `b`, `c` and `d` are printed but never defined in the slide or speaker notes. Every protein-removal decision uses strict `>10%` and `<10%`, leaving exactly 10% unassigned. The slide spells the initiation-codon Supporting outcome `PVS1_Supp`; that label is preserved rather than expanded by inference. Speaker notes contain only the template instructions `PLEASE NOTE – highlighted areas are where the VCEP should provide guidance for each gene under specification.` and `Weights may be adjusted if appropriate (e.g start codon)`.
+
+**Raw-OOXML caveat:** The slide contains 86 text shapes and 83 connectors. Connector 181 has a start binding but no end binding, while connectors 218 and 219 have end bindings but no start bindings. The rendered deletion arrows are nevertheless visually continuous from `Role of region in protein function is unknown` to the two LoF-frequency boxes. The topology below follows the visible rendered arrows while preserving this raw connector defect.
+
 #### Nonsense or Frameshift Variants
 
 ```
 Nonsense or Frameshift
-├── Predicted to undergo NMD (up to c.14971, p.4991)
-│   └── PVS1
+├── Predicted to undergo NMD b (up to c.14971, p.4991)
+│   ├── Exon is present in biologically-relevant transcript(s)
+│   │   (NM_000540.3) → PVS1
+│   └── Exon is absent from biologically-relevant transcript(s) → N/A
 │
-└── NOT predicted to undergo NMD
-    ├── Truncated/altered region is critical to protein function
+└── Not predicted to undergo NMD b
+    ├── Truncated/altered region is critical to protein function c
     │   (AAs 4800-4950, Exons 100-103)
     │   └── PVS1_Strong
     │
@@ -503,17 +494,18 @@ Nonsense or Frameshift
             └── Variant removes <10% of protein → PVS1_Moderate
 ```
 
-#### Canonical Splice Site Variants (GT-AG, +/-1,2)
+#### `GT--AG 1,2 splice sites a`
 
 ```
-Splice Site (GT-AG, ±1,2)
+GT--AG 1,2 splice sites a
 ├── Exon skipping or cryptic splice site DISRUPTS reading frame
-│   AND predicted to undergo NMD
-│   └── PVS1
+│   AND predicted to undergo NMD b
+│   ├── Exon is present in biologically-relevant transcript(s) → PVS1
+│   └── Exon is absent from biologically-relevant transcript(s) → N/A
 │
 ├── Exon skipping or cryptic splice site DISRUPTS reading frame
-│   AND NOT predicted to undergo NMD
-│   ├── Truncated/altered region critical (AAs 4800-4950, Exons 100-103)
+│   AND NOT predicted to undergo NMD b (up to c.14971, p.4991)
+│   ├── Truncated/altered region critical c (AAs 4800-4950, Exons 100-103)
 │   │   └── PVS1_Strong
 │   └── Role of region unknown
 │       ├── LoF variants frequent / exon absent → N/A
@@ -524,27 +516,27 @@ Splice Site (GT-AG, ±1,2)
 └── Exon skipping or cryptic splice site PRESERVES reading frame
     In-frame exons: 1-4, 9, 11, 15, 23, 32, 36, 38, 50, 53, 54, 66,
                     70-73, 78, 83, 84, 86, 87, 90, 91, 94, 95, 100, 101, 106
-    ├── Exon present in biologically-relevant transcript(s)
-    │   ├── Truncated/altered region critical (AAs 4800-4950, Exons 100-103)
-    │   │   └── PVS1_Strong
-    │   └── Role of region unknown
-    │       ├── LoF variants frequent / exon absent → N/A
-    │       └── LoF variants not frequent / exon present
-    │           ├── Removes >10% of protein → PVS1_Strong
-    │           └── Removes <10% of protein → PVS1_Moderate
-    └── Exon absent from biologically-relevant transcript(s)
-        └── N/A
+    ├── Truncated/altered region critical c (AAs 4800-4950, Exons 100-103)
+    │   └── PVS1_Strong
+    └── Role of region unknown
+        ├── LoF variants frequent / exon absent → N/A
+        └── LoF variants not frequent / exon present
+            ├── Removes >10% of protein → PVS1_Strong
+            └── Removes <10% of protein → PVS1_Moderate
 ```
 
 #### Deletion Variants (Single Exon to Full Gene)
 
 ```
 Deletion
-├── Single to multi exon – DISRUPTS reading frame, predicted NMD
-│   └── PVS1
+├── Full gene deletion → PVS1 d
 │
-├── Single to multi exon – DISRUPTS reading frame, NOT predicted NMD
-│   ├── Truncated/altered region critical → PVS1_Strong
+├── Single to multi exon – DISRUPTS reading frame, predicted NMD b
+│   ├── Exon is present in biologically-relevant transcript(s) → PVS1
+│   └── Exon is absent from biologically-relevant transcript(s) → N/A
+│
+├── Single to multi exon – DISRUPTS reading frame, NOT predicted NMD b
+│   ├── Truncated/altered region critical c → PVS1_Strong
 │   └── Role of region unknown
 │       ├── LoF variants frequent / exon absent → N/A
 │       └── LoF variants not frequent / exon present
@@ -552,17 +544,16 @@ Deletion
 │           └── Removes <10% of protein → PVS1_Moderate
 │
 ├── Single to multi exon – PRESERVES reading frame
-│   ├── Truncated/altered region critical (AAs 4800-4950, Exons 100-103)
+│   ├── Truncated/altered region critical c (AAs 4800-4950, Exons 100-103)
 │   │   └── PVS1_Strong
 │   └── Role of region unknown
 │       ├── LoF variants frequent / exon absent → N/A
 │       └── LoF variants not frequent / exon present
 │           ├── Removes >10% of protein → PVS1_Strong
 │           └── Removes <10% of protein → PVS1_Moderate
-│
-└── Full gene deletion
-    └── PVS1
 ```
+
+On the frame-disrupted/not-predicted-NMD deletion branch, the critical-region box carries marker `c` but omits the `(AAs 4800-4950, exons 100-103)` parenthetical printed on the frame-preserving branch. It is not supplied by inference in that box.
 
 #### Duplication Variants (≥1 Exon, Completely Contained Within Gene)
 
@@ -573,7 +564,8 @@ Duplication (≥1 exon)
 │   └── No or unknown impact on reading frame and NMD → N/A
 │
 ├── Presumed in tandem
-│   └── Reading frame presumed disrupted and NMD predicted → PVS1_Strong
+│   ├── Reading frame presumed disrupted and NMD predicted → PVS1_Strong
+│   └── No or unknown impact on reading frame and NMD → N/A
 │
 └── Proven not in tandem → N/A
 ```
@@ -590,7 +582,7 @@ Initiation Codon
     │   in-frame start codon → PVS1_Moderate
     │
     └── No pathogenic variant(s) upstream of closest potential
-        in-frame start codon → PVS1_Supporting
+        in-frame start codon → PVS1_Supp
 ```
 
 ---
@@ -601,7 +593,7 @@ Initiation Codon
 |-----------|---------------|------------------|
 | PVS1 | Applicable (AR only) | LOF only for AR; use flowchart for strength |
 | PS1 | Applicable | No change |
-| PS2 | Applicable | No change; use SVI point system |
+| PS2 | Applicable | No change; no point system distributed with GN179 |
 | PS3 | Applicable (limited) | Strong: variant-specific mouse models only; Supporting: validated assays with conditions |
 | PS4 | **Not Applicable** | Use PM3 for case counting (AR) |
 | PM1 | Applicable | Pore/transmembrane region AAs 4800-4950 |
@@ -609,8 +601,8 @@ Initiation Codon
 | PM3 | Applicable | Point-based system; variant must not meet BS1 |
 | PM4 | Applicable | Pore region: use either PVS1_Strong or PM4_Strong, not both |
 | PM5 | Applicable | No change |
-| PM6 | Applicable | No change; use PS2/PM6 point system |
-| PP1 | Applicable | Segregation chart (Oza et al 2018) |
+| PM6 | Applicable | No change; no point system distributed with GN179 |
+| PP1 | Applicable | Refers to an Oza et al. 2018 segregation chart that is not distributed with GN179 |
 | PP2 | **Not Applicable** | RYR1 not constrained for missense |
 | PP3 | Supporting only | REVEL ≥0.7 or SpliceAI ≥0.5 |
 | PP4 | Supporting only | Myopathy panel negative + ≥2 specific features |
@@ -648,14 +640,14 @@ Initiation Codon
 
 | PMID | Reference |
 |------|-----------|
-| 30311386 | Oza AM, DiStefano MT et al. Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss. *Hum Mutat* (2018) 39(11):1593-1613. |
-| 31060725 | Saade DN, Neuhaus SB et al. The Use of Muscle Ultrasound in the Diagnosis and Differential Diagnosis of Congenital Disorders of Muscle in the Age of Next Generation Genetics. *Semin Pediatr Neurol* (2019) 29:44-54. |
-| 9334205 | Tong J, Oyamada H et al. Caffeine and halothane sensitivity of intracellular Ca2+ release is altered by 15 calcium release channel (ryanodine receptor) mutations associated with malignant hyperthermia and/or central core disease. *J Biol Chem* (1997) 272(42):26332-9. |
-| 32236737 | Kushnir A, Todd JJ et al. Intracellular calcium leak as a therapeutic target for RYR1-related myopathies. *Acta Neuropathol* (2020) 139(6):1089-1104. |
-| 16958053 | Lyfenko AD, Ducreux S et al. Two central core disease (CCD) deletions in the C-terminal region of RYR1 alter muscle excitation-contraction (EC) coupling by distinct mechanisms. *Hum Mutat* (2007) 28(1):61-8. |
-| 12704193 | Avila G, Lee EH et al. FKBP12 binding to RyR1 modulates excitation-contraction coupling in mouse skeletal myotubes. *J Biol Chem* (2003) 278(25):22600-8. |
-| 16940308 | Zhou H, Yamaguchi N et al. Characterization of recessive RYR1 mutations in core myopathies. *Hum Mol Genet* (2006) 15(18):2791-803. |
-| 29543229 | Biesecker LG, Harrison SM et al. ClinGen Sequence Variant Interpretation Working Group recommendations for ACMG/AMP guideline criteria PP5 and BP6. (2018) |
+| 30311386 | Oza AM, DiStefano MT et al. Expert specification of the ACMG/AMP variant interpretation guidelines for genetic hearing loss. *Hum Mutat* (2018) 39(11):1593-1613. DOI: 10.1002/humu.23630. |
+| 31060725 | Saade DN, Neuhaus SB et al. The Use of Muscle Ultrasound in the Diagnosis and Differential Diagnosis of Congenital Disorders of Muscle in the Age of Next Generation Genetics. *Semin Pediatr Neurol* (2019) 29:44-54. DOI: 10.1016/j.spen.2019.01.001. |
+| 9334205 | Tong J, Oyamada H et al. Caffeine and halothane sensitivity of intracellular Ca2+ release is altered by 15 calcium release channel (ryanodine receptor) mutations associated with malignant hyperthermia and/or central core disease. *J Biol Chem* (1997) 272(42):26332-9. DOI: 10.1074/jbc.272.42.26332. |
+| 32236737 | Kushnir A, Todd JJ et al. Intracellular calcium leak as a therapeutic target for RYR1-related myopathies. *Acta Neuropathol* (2020) 139(6):1089-1104. DOI: 10.1007/s00401-020-02150-w. |
+| 16958053 | Lyfenko AD, Ducreux S et al. Two central core disease (CCD) deletions in the C-terminal region of RYR1 alter muscle excitation-contraction (EC) coupling by distinct mechanisms. *Hum Mutat* (2007) 28(1):61-8. DOI: 10.1002/humu.20409. |
+| 12704193 | Avila G, Lee EH et al. FKBP12 binding to RyR1 modulates excitation-contraction coupling in mouse skeletal myotubes. *J Biol Chem* (2003) 278(25):22600-8. DOI: 10.1074/jbc.M205866200. |
+| 16940308 | Zhou H, Yamaguchi N et al. Characterization of recessive RYR1 mutations in core myopathies. *Hum Mol Genet* (2006) 15(18):2791-803. DOI: 10.1093/hmg/ddl221. |
+| 29543229 | Not supplied. PP5/BP6 supply PMID only; prior author/title/year expansion removed. |
 
 ---
 
@@ -663,7 +655,8 @@ Initiation Codon
 
 | Version | Date | Notes |
 |---------|------|-------|
-| 2.0.0 | 12/12/2024 | Corrected BS1 threshold for AR variant curation. |
+| 2.0.0 | 2026-08-09 | **Document corrections.** Rechecked `ClinGen_ACMG_Specifications_RYR1_v2.0.pdf`, `PM3 chart.docx`, and `PVS1 decision tree for RYR1.pptx`; restored the core DOI, removed the unsupported generic PS2/PM6 point system and PP1 thresholds, restored PM3 source wording and bare point values, restored PVS1 transcript gates and rendered topology, preserved undefined footnote markers, exact-comparator gaps, source spelling, speaker notes, raw connector defects, missing-chart status, and source typos, and corrected the source reference/DOI record. |
+| 2.0.0 | 12/12/2024 | The approved BS1 threshold for AR variant curation was listed incorrectly and has been corrected in this release. |
 
 ---
 

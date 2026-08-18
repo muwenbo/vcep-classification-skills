@@ -122,12 +122,16 @@
 
 #### PS2/PM6 Point System (Per Proband)
 
-| Phenotypic Consistency | Confirmed Parental Relationships | Unconfirmed |
-|------------------------|----------------------------------|-------------|
+| Phenotypic Consistency | Confirmed de novo | Assumed de novo |
+|------------------------|-------------------|-----------------|
 | Phenotype highly specific for gene | 2 points | 1 point |
 | Phenotype consistent but not highly specific | 1 point | 0.5 points |
-| Phenotype consistent + high genetic heterogeneity | 0.5 points | 0.25 points |
-| Phenotype not consistent | 0 points | 0 points |
+| Phenotype consistent with gene but not highly specific and high genetic heterogeneity\* | 0.5 points | 0.25 points |
+| Phenotype not consistent with gene | 0 points | 0 points |
+
+\* **Maximum allowable value of 1 may contribute to overall score** (footnote on Table 1 of the SVI de novo recommendation).
+
+> **Source note:** the GUCY2D specification cites this table as "PS2/PM6 file — Table 1, file attached", but **no such file is present in the distributed GUCY2D package** (which ships only the main PDF, Rule Combination Rules, PM3 Tables, the PVS1 decision tree, and the PS3 assay list). The values above are those of the referenced ClinGen SVI *Recommendation for De Novo Criteria (PS2 & PM6) v1.1*, which the specification incorporates by name; they are not independently verifiable from this package.
 
 #### Evidence Strength Thresholds
 
@@ -241,11 +245,13 @@
 
 #### PM3 Point System (Per Proband)
 
-| Classification/Zygosity of Other Variant | Confirmed in Trans | Phase Unknown |
+| Classification/Zygosity of Other Variant¹ | Confirmed in Trans | Phase Unknown |
 |------------------------------------------|-------------------|---------------|
 | Pathogenic or Likely pathogenic variant | 1.0 | 0.5 (P) / 0.25 (LP) |
 | Homozygous occurrence (max point 1.0) | 0.5 | N/A |
 | Uncertain significance variant on other allele (max point 0.5) | 0.25 | 0.0 |
+
+¹ **All variants should be sufficiently rare (meet PM2 specification).** (Footnote on Table 1 of the attached "PM3 Tables" file.)
 
 #### PM3 Evidence Strength Thresholds
 
@@ -733,6 +739,13 @@ For variants located **outside** donor/acceptor ±1,2 dinucleotide positions:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | 1/22/2025 | Initial release |
+
+**Document corrections (2026-08-07), source-verified against the distributed GUCY2D package (main PDF, Rule Combination Rules, PM3 Tables, PVS1 decision tree, PS3 assay list). No change to the underlying ClinGen specification version.**
+
+- Both threshold tables (PS2/PM6 and PM3) were **checked and confirmed correct** — the ranges `0.50-0.75 / 1.00-1.75 / 2.00-3.75 / ≥4` are stated verbatim in the specification, not interpolated.
+- **PM3 Table 1 footnote restored:** "All variants should be sufficiently rare (meet PM2 specification)" — previously dropped.
+- **SVI de novo heterogeneity-row cap restored** ("maximum allowable value of 1 may contribute to overall score") — previously dropped.
+- Source note added recording that the "PS2/PM6 file" the specification cites as attached is **not present** in the distributed package.
 
 ---
 

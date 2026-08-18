@@ -198,10 +198,12 @@ All probands being considered for any pathogenic phenotype codes (PP1, PP4, PM3,
 
 | Total Points | Strength Level |
 |--------------|----------------|
-| 0.50 - 0.75 | Supporting (PS2_Supporting / PM6_Supporting) |
-| 1.00 - 1.75 | Moderate (PS2_Moderate / PM6) |
-| 2.00 - 3.75 | Strong (PS2 / PM6_Strong) |
-| >= 4.00 | Very Strong (PS2_VeryStrong / PM6_VeryStrong) |
+| 0.5 | Supporting (PS2_Supporting / PM6_Supporting) |
+| 1.0 | Moderate (PS2_Moderate / PM6) |
+| 2.0 | Strong (PS2 / PM6_Strong) |
+| 4.0 | Very Strong (PS2_VeryStrong / PM6_VeryStrong) |
+
+> **Source boundary:** `PS2 PM6 Tables.pdf` prints only the four exact totals above. It does not assign intermediate totals or authorize ranges.
 
 ---
 
@@ -288,10 +290,12 @@ All variants should be sufficiently rare (meet PM2 specification).
 
 | Total Points | Strength Level |
 |--------------|----------------|
-| 0.5 - 0.75 | PM3_Supporting |
-| 1.0 - 1.75 | PM3 (Moderate) |
-| 2.0 - 3.75 | PM3_Strong |
-| >= 4.0 | PM3_VeryStrong |
+| 0.5 | PM3_Supporting |
+| 1.0 | PM3 (Moderate) |
+| 2.0 | PM3_Strong |
+| 4.0 | PM3_VeryStrong |
+
+> **Source boundary:** `PM3 Tables.pdf` prints only the four exact totals above. It does not assign intermediate totals or authorize ranges.
 
 ---
 
@@ -684,10 +688,33 @@ The RPE65-specific PVS1 Decision Tree is based on:
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_RPE65_v1.0.pdf`
+- `PM3 Tables.pdf`
+- `PP3 performance of multiple prediction models.pdf`
+- `PS2 PM6 Tables.pdf`
+- `PS3 Approved functional assays.xlsx`
+- `RPE65 Pilot Variants, Sept.11, 2023.xlsx`
+- `RPE65 Rule combination rules.pdf`
+- `RPE65-specific PVS1 Decision Tree.pdf`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete eight-file package source-first, including all image-only tables/flowcharts and every sheet/formula in both workbooks.
+- Removed invented ranges and `>=` operators from PS2/PM6 and PM3: the distributed tables print only exact totals 0.5, 1, 2, and 4 and do not map intermediate sums.
+- Verified the predictor-performance artifact and functional workbook without promoting pilot-curation classifications into general rules.
+- Preserved the PVS1 branch topology and the rule-combination instruction that a point-system result controls when it conflicts with the VCI result.
+
+---
+
 ## Version History
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all eight distributed artifacts and removed unsupported PS2/PM6 and PM3 interpolation. |
 | 1.0.0 | 10/24/2023 | Initial release of LCA/eoRD Expert Panel Specifications for RPE65 |
 
 ---

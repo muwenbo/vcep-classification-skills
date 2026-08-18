@@ -24,17 +24,35 @@ BASE_URL = "https://cspec.genome.network"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
 }
+MAX_DOWNLOAD_ATTEMPTS = 3
 
 
-def fetch_page(url):
-    """Fetch a page and return the content"""
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=30)
-        response.raise_for_status()
-        return response.text
-    except Exception as e:
-        print(f"✗ Error fetching page: {e}")
-        return None
+def fetch_page(url, max_attempts=MAX_DOWNLOAD_ATTEMPTS):
+    """Fetch a page and return the content.
+
+    Retries transient network failures the same way download_file does. The
+    ClinGen host intermittently drops TLS connections (SSL UNEXPECTED_EOF); a
+    single attempt here aborts the whole specification before any file is
+    considered, which is how GN141 failed a full-corpus run.
+    """
+    last_error = None
+
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=30)
+            response.raise_for_status()
+            return response.text
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            if attempt < max_attempts:
+                time.sleep(2 ** (attempt - 1))
+                continue
+        except Exception as e:
+            print(f"✗ Error fetching page: {e}")
+            return None
+
+    print(f"✗ Error fetching page: {last_error} (after {max_attempts} attempts)")
+    return None
 
 
 def extract_metadata(html_content):
@@ -314,8 +332,8 @@ def detect_file_extension(content):
     if magic_bytes[:2] in (b'\xff\xd8', ):
         return '.jpg'
 
-    # GIF
-    if magic_bytes[:4] in (b'GIF87a', b'GIF89a'):
+    # GIF (the signature is 6 bytes, so it cannot be matched against 4)
+    if content[:6] in (b'GIF87a', b'GIF89a'):
         return '.gif'
 
     # Office Open XML formats (docx, xlsx, pptx) - all start with PK (ZIP)
@@ -334,42 +352,84 @@ def detect_file_extension(content):
             # Still a ZIP, but unknown Office format or plain ZIP
             return '.zip'
 
-    # Old Office formats (OLE2/CFB)
+    # Old Office formats (OLE2/CFB). The container is shared by .doc/.xls/.ppt,
+    # so look for the stream name the application writes into the directory.
     if magic_bytes[:8] == b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1':
-        # Could be .doc, .xls, or .ppt - default to .doc
+        head = content[:8192]
+        if b'W\x00o\x00r\x00k\x00b\x00o\x00o\x00k' in head or b'B\x00o\x00o\x00k' in head:
+            return '.xls'
+        if b'P\x00o\x00w\x00e\x00r\x00P\x00o\x00i\x00n\x00t' in head:
+            return '.ppt'
         return '.doc'
 
     return ''
 
 
-def download_file(url, output_path, description="file"):
+# Suffixes that are genuinely file extensions, as opposed to the trailing part
+# of a version string. ClinGen names supplements like "Specifications_Table4_V1.2",
+# where os.path.splitext reports ".2" — treating that as an extension leaves the
+# file unreadable by openpyxl, python-docx and read_word.py.
+KNOWN_EXTENSIONS = {
+    '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.zip', '.csv', '.txt',
+    '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.json', '.xml', '.html',
+}
+
+
+def has_real_extension(filename):
+    """True when the filename already ends in a recognised file extension."""
+    ext = os.path.splitext(filename)[1].lower()
+    return ext in KNOWN_EXTENSIONS
+
+
+def strip_real_extension(filename):
+    """Drop a recognised file extension, leaving version suffixes intact.
+
+    os.path.splitext would turn "Table4_V1.2" into "Table4_V1"; comparing that
+    against the saved "Table4_V1.2.xlsx" makes an existing file look missing.
+    """
+    base, ext = os.path.splitext(filename)
+    return base if ext.lower() in KNOWN_EXTENSIONS else filename
+
+
+def download_file(url, output_path, description="file", max_attempts=MAX_DOWNLOAD_ATTEMPTS):
     """Download a file with proper extension detection"""
-    try:
-        response = requests.get(url, headers=HEADERS, timeout=120, allow_redirects=True)
-        response.raise_for_status()
+    last_error = None
 
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=120, allow_redirects=True)
+            response.raise_for_status()
 
-        # Determine file extension from file content if needed
-        base_path, ext = os.path.splitext(output_path)
-        # Only use existing extension if it looks like a valid file extension (2-5 chars)
-        has_valid_ext = ext and len(ext) >= 2 and len(ext) <= 6 and ext[1:].isalnum()
+            if not response.content:
+                raise requests.exceptions.ContentDecodingError("empty response body")
 
-        if not has_valid_ext:
-            # Try to detect from file content (magic bytes)
-            detected_ext = detect_file_extension(response.content)
-            if detected_ext:
-                output_path = base_path + detected_ext
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        # Write file
-        with open(output_path, 'wb') as f:
-            f.write(response.content)
+            # Determine file extension from content when the name lacks one.
+            # Append rather than replace: "Specifications_Table4_V1.2" must
+            # become "...V1.2.xlsx", not "...V1.xlsx", or the version is lost.
+            if not has_real_extension(output_path):
+                detected_ext = detect_file_extension(response.content)
+                if detected_ext:
+                    output_path = output_path + detected_ext
 
-        file_size = os.path.getsize(output_path)
-        return True, file_size, output_path
+            # Write only after a complete, non-empty response was received.
+            with open(output_path, 'wb') as f:
+                f.write(response.content)
 
-    except Exception as e:
-        return False, str(e), output_path
+            file_size = os.path.getsize(output_path)
+            return True, file_size, output_path
+
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            if attempt < max_attempts:
+                time.sleep(2 ** (attempt - 1))
+                continue
+            break
+        except Exception as e:
+            return False, str(e), output_path
+
+    return False, f"{last_error} (after {max_attempts} attempts)", output_path
 
 
 def download_pdf(metadata, output_dir):
@@ -407,26 +467,47 @@ def download_supplementary_files(files, output_dir):
     """Download all supplementary files"""
     if not files:
         print(f"  No supplementary files found")
-        return []
+        return [], []
 
     print(f"  Found {len(files)} supplementary file(s)")
     downloaded = []
+    failures = []
+
+    claimed = {}  # output filename -> source url, for collisions within this run
 
     for i, file_info in enumerate(files, 1):
         filename = file_info['filename']
         file_url = file_info['url']
         output_path = os.path.join(output_dir, filename)
 
-        # Check if file already exists (with or without extension)
-        base_name = os.path.splitext(filename)[0]
-        existing_files = [f for f in os.listdir(output_dir) if f.startswith(base_name)]
+        # Match an existing file by exact name, ignoring only a real extension.
+        # A prefix match would treat the supplement advertised as "PM3" as
+        # already satisfied by "PM3 Criterion.pdf" and silently skip it, which
+        # is how GN123 lost a file while still reporting complete.
+        wanted = strip_real_extension(filename)
+
+        # Two advertised supplements can carry the same name but different
+        # URLs. Claim the name for the first, and give later ones a distinct
+        # path so the second does not overwrite or short-circuit against the
+        # first. GN123 lost a file exactly this way.
+        if wanted in claimed and claimed[wanted] != file_url:
+            filename = f"{wanted} ({i})"
+            output_path = os.path.join(output_dir, filename)
+            wanted = filename
+        claimed.setdefault(wanted, file_url)
+
+        existing_files = [
+            f for f in os.listdir(output_dir) if strip_real_extension(f) == wanted
+        ]
 
         if existing_files:
             existing_path = os.path.join(output_dir, existing_files[0])
             size = os.path.getsize(existing_path)
-            print(f"  [{i}/{len(files)}] ✓ {existing_files[0]} ({format_size(size)}) - already exists")
-            downloaded.append(existing_files[0])
-            continue
+            if size > 0:
+                print(f"  [{i}/{len(files)}] ✓ {existing_files[0]} ({format_size(size)}) - already exists")
+                downloaded.append(existing_files[0])
+                continue
+            print(f"  [{i}/{len(files)}] ⚠ {existing_files[0]} is empty; re-downloading")
 
         print(f"  [{i}/{len(files)}] Downloading {filename}...", end=' ')
         success, result, actual_path = download_file(file_url, output_path, filename)
@@ -438,19 +519,26 @@ def download_supplementary_files(files, output_dir):
             downloaded.append(actual_filename)
         else:
             print(f"✗ Error: {result}")
+            failures.append({
+                'filename': filename,
+                'url': file_url,
+                'error': str(result),
+            })
 
         time.sleep(0.5)  # Be nice to the server
 
-    return downloaded
+    return downloaded, failures
 
 
-def save_metadata(metadata, output_dir, downloaded_files):
+def save_metadata(metadata, output_dir, downloaded_files, expected_files=None, failed_files=None):
     """Save metadata JSON file"""
     gn_id = metadata.get('gn_id', 'UNKNOWN')
     gene_name = metadata.get('geneName', 'UNKNOWN')
     version = metadata.get('currentVersion', '0.0.0')
     title = metadata.get('title', '')
     panel = metadata.get('panel', 'Unknown')
+    expected_files = expected_files or []
+    failed_files = failed_files or []
 
     metadata_json = {
         "id": gn_id,
@@ -460,7 +548,16 @@ def save_metadata(metadata, output_dir, downloaded_files):
         "panel": panel,
         "files_downloaded": len(downloaded_files),
         "download_date": time.strftime("%Y-%m-%d"),
-        "files": downloaded_files
+        "files": downloaded_files,
+        "expected_files": expected_files,
+        "failed_files": failed_files,
+        # A repeated entry means two advertised supplements resolved to one
+        # file, so one of them is not on disk. Counting alone misses this:
+        # GN123 reported 9 files, listed "PM3 Criterion.pdf" twice, and had 8.
+        "duplicate_files": sorted(
+            {f for f in downloaded_files if downloaded_files.count(f) > 1}
+        ),
+        "complete": not failed_files and len(set(downloaded_files)) == len(downloaded_files),
     }
 
     json_path = os.path.join(output_dir, f"{gn_id}_data.json")
@@ -586,7 +683,7 @@ def verify_specification(vcep_id, output_root):
         expected_files.append({
             'name': base_name,
             'type': supp['type'],
-            'required': False  # Supplementary files are optional but recommended
+            'required': True
         })
 
     # Expected metadata JSON
@@ -650,8 +747,8 @@ def verify_specification(vcep_id, output_root):
                 matched_file = actual
                 break
             # Match base name (file might have extension added)
-            base_expected = os.path.splitext(expected_name)[0]
-            base_actual = os.path.splitext(actual)[0]
+            base_expected = strip_real_extension(expected_name)
+            base_actual = strip_real_extension(actual)
             if base_expected == base_actual:
                 found = True
                 matched_file = actual
@@ -660,6 +757,13 @@ def verify_specification(vcep_id, output_root):
         if found:
             file_path = os.path.join(output_dir, matched_file)
             size = os.path.getsize(file_path)
+            if size == 0:
+                print(f"  ✗ INVALID (empty): {matched_file} [{file_type}]")
+                if required:
+                    missing_required.append(expected_name)
+                else:
+                    missing_optional.append(expected_name)
+                continue
             size_str = format_size(size)
             print(f"  ✓ {matched_file} ({size_str}) [{file_type}]")
             found_files.append(matched_file)
@@ -829,33 +933,60 @@ def download_specification(vcep_id, output_root, skip_pdf=False, skip_supplement
     print(f"  Output: {folder_name}/\n")
 
     downloaded_files = []
+    expected_files = []
+    failed_files = []
 
     # Download PDF
     if not skip_pdf:
+        gene_suffix = determine_gene_suffix(metadata)
+        version = metadata.get('currentVersion', '0.0.0')
+        expected_pdf = f"ClinGen_ACMG_Specifications_{gene_suffix}_v{version}.pdf"
+        expected_files.append(expected_pdf)
         pdf_file = download_pdf(metadata, output_dir)
         if pdf_file:
             downloaded_files.append(pdf_file)
+        else:
+            failed_files.append({
+                'filename': expected_pdf,
+                'url': f"{BASE_URL}/cspec/ui/svi/pdf",
+                'error': 'PDF download failed',
+            })
         print()
 
     # Download supplementary files
     if not skip_supplementary:
         files = find_supplementary_files(html_content, metadata.get('gn_id'))
-        supp_files = download_supplementary_files(files, output_dir)
+        expected_files.extend(file_info['filename'] for file_info in files)
+        supp_files, supp_failures = download_supplementary_files(files, output_dir)
         downloaded_files.extend(supp_files)
+        failed_files.extend(supp_failures)
         print()
 
     # Save metadata
     print("Creating metadata...")
-    save_metadata(metadata, output_dir, downloaded_files)
+    save_metadata(
+        metadata,
+        output_dir,
+        downloaded_files,
+        expected_files=expected_files,
+        failed_files=failed_files,
+    )
 
     print(f"\n{'='*80}")
-    print(f"✓ DOWNLOAD COMPLETE")
+    if failed_files:
+        print(f"✗ DOWNLOAD INCOMPLETE")
+    else:
+        print(f"✓ DOWNLOAD COMPLETE")
     print(f"{'='*80}")
     print(f"\nFolder: {folder_name}/")
     print(f"Files downloaded: {len(downloaded_files)}")
+    if failed_files:
+        print(f"Files failed: {len(failed_files)}")
+        for failure in failed_files:
+            print(f"  ✗ {failure['filename']}: {failure['error']}")
     print(f"Location: {output_dir}\n")
 
-    return True
+    return not failed_files
 
 
 def main():

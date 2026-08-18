@@ -3,6 +3,8 @@
 **Version:** 1.2.0
 **Released:** 7/14/2025
 **Affiliation:** Hereditary Breast, Ovarian and Pancreatic Cancer VCEP
+**Expert Panel Page:** https://www.clinicalgenome.org/affiliation/50039
+**Source DOI:** 10.5281/zenodo.21433968
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 
 ---
@@ -18,6 +20,8 @@
 | **Inheritance (AD)** | Autosomal dominant inheritance |
 | **Disease (AR)** | Fanconi anemia complementation group N (MONDO:0012565) |
 | **Inheritance (AR)** | Autosomal recessive inheritance |
+
+> **Distributed-source discrepancy:** The core PDF and PVS1 narrative use Ensembl `ENST00000261584.8`; the Word attachment's summary table uses `ENST00000261584.9`. The core's `.8` transcript remains the stated decision-tree reference; `.9` is reported here rather than silently harmonized.
 
 ---
 
@@ -118,7 +122,18 @@ PVS1_Variable(RNA) shall be used for observed splice defects, whether from canon
 **VCEP Specifications:**
 
 - **Missense:** Do not use. Missense changes are not yet confirmed as a mechanism of disease for PALB2.
-- **Splicing:** Use PALB2 PS1 Splicing Table for splicing variants with similar predictions or observations of splice defect (PMID: 37352859 / 36865205).
+- **Splicing:** Use PALB2 PS1 Splicing Table for splicing variants with similar predictions or observations of splice defect. The core PDF cites PMID **37352859** while the Word attachment cites **36865205**; the source discrepancy is unresolved.
+
+| VUA location | Baseline code | Reference position | P reference | LP reference |
+|---|---|---|---|---|
+| Outside ±1,2 dinucleotide | PP3 | Same nucleotide | PS1 | PS1_Moderate |
+| Outside ±1,2 dinucleotide | PP3 | Same donor/acceptor motif, including ±1,2 | PS1_Moderate | PS1_Supporting |
+| At ±1,2 dinucleotide | PVS1 | Same donor/acceptor dinucleotide | PS1_Supporting | N/A |
+| At ±1,2 dinucleotide | PVS1 | Same motif but outside dinucleotide | PS1_Supporting | PS1_Supporting |
+| At ±1,2 dinucleotide | PVS1_Strong, PVS1_Moderate, or PVS1_Supporting | Same donor/acceptor dinucleotide | PS1 | N/A |
+| At ±1,2 dinucleotide | PVS1_Strong, PVS1_Moderate, or PVS1_Supporting | Same motif but outside dinucleotide | PS1_Moderate | PS1_Supporting |
+
+**Prerequisites:** the VUA and reference must predict precisely the same splice event; the VUA prediction must be of similar or greater strength; the reference classification must use VCEP specifications; and any exonic missense effect must also be considered. For GT-AG introns, the donor motif is the last 3 exonic bases plus 6 adjacent intronic bases, and the acceptor motif is the first exonic base plus 20 upstream bases. Data for a pathogenic reference outside ±1,2 may update the PVS1 tree for a dinucleotide variant.
 
 | Strength | Criteria |
 |----------|----------|
@@ -251,6 +266,14 @@ Fanconi Anemia (FA) of any subtype is generally considered an exceedingly rare, 
 - Wilms Tumor
 
 Specifications are adapted from definitions from GeneReviews (last revision June 3, 2021).
+
+#### PM3 Points per Unrelated PALB2-Related FA Proband
+
+| Phenotype / other-variant status | Confirmed in trans or homozygote | Phase unknown |
+|---|---:|---:|
+| Phenotype consistent with PALB2-related FA | 2.0 | 1.0 |
+
+The VUA must be sufficiently rare not to meet a benign population code, and other panel findings must be considered. The co-occurring P/LP variant must be classified under VCEP specifications. Trans is established by parental genotyping or may be assumed after the VUA is observed with at least two different P/LP variants; with multiple unknown-phase occurrences, at least one stays unknown-phase to allow for a cis occurrence. In a homozygous FA-affected person, trans may also be inferred from consanguinity or cancer-consistent histories in both maternal and paternal lineages. A maximum of two homozygous individuals contributes.
 
 #### PM3 Evidence Strength Thresholds
 
@@ -454,6 +477,15 @@ See **Fanconi Anemia BS2 tables** for approach to assign points per proband, and
 - VUA (Variant Under Assessment) should not be bioinformatically predicted (or experimentally proven) to have a clinically important effect on protein or mRNA splicing. Co-occurrent P or LP variant should be assigned classification using VCEP specifications.
 - Consider multiple instances of co-occurrence with the same variant are more likely to be in cis in unrelated individuals when assessing BS2 application
 
+#### BS2 Points per Phenotyped Proband
+
+| Age/cancer status | VUA confirmed in trans with P/LP | Homozygote | Phase unknown with P/LP |
+|---|---:|---:|---:|
+| First cancer onset >50 years, or cancer-unaffected at last follow-up >50 years | 4.0 | 2.0 | 1.0 |
+| First cancer onset 40-50 years, or unaffected at last follow-up 40-50 years | 2.0 | 1.0 | 0.5 |
+
+Apply these observations only to phenotyped clinical or research participants, not population-frequency cohorts. Do not use observations in cis. The co-occurring P/LP variant must be classified under VCEP specifications; the PM3 trans-inference provisions also apply.
+
 #### BS2 Evidence Strength Thresholds
 
 | Total Points | Strength Level |
@@ -579,6 +611,8 @@ Informative instances of co-segregation in FANCN families are too rare to be con
 | ≥2 Supporting (BP1-BP7, BP7_Supporting[RNA]) |
 | 1 Strong (BS1, BS2, BS4, BP7_Strong) |
 
+> **Distributed-source discrepancy:** The published core PDF's extra Likely Pathogenic route is `1 Very Strong (PVS1) AND 1 Supporting` from `PVS1_Supporting, PS1_Supporting, PM2_Supporting, PM3_Supporting, PM5_Supporting, PP1, PP3`, as transcribed above. The Word attachment labels Very Strong more broadly (`PVS1`, `PVS1_Variable[RNA]`, `PM3_VeryStrong`) but its corresponding explicit supporting row names only `PM2_Supporting` and `PM5_Supporting`. The core rule controls here; the attachment conflict is not harmonized.
+
 ---
 
 ## Appendices
@@ -593,15 +627,67 @@ The PALB2 PVS1/PVS1_Variable(RNA) Guide is adapted from PMID: 30192042 (Tayoun e
 
 3. No potential rescue transcripts are known (Lopez-Perolio et al., 2019).
 
-4. Two clinically relevant domains: (i) **Coiled-coil (CC) domain** spanning residues 10-40 (Song et al., 2018) and (ii) **WD40 domain** spanning residues 856-1186 (Oliver et al., 2009).
+4. Two clinically relevant domains: (i) **Coiled-coil (CC) domain** spanning residues 10-40 in the narrative (the embedded domain map labels 9-44) and (ii) **WD40 domain** spanning residues 856-1186 in the narrative (map labels 854-1186).
 
 5. In-frame alterations targeting the CC and WD40 domains are considered PVS1 (with exception noted below).
 
-6. In-frame alterations targeting FATKIN are considered PVS1, the only exception being very small in-frame alterations with PROVEAN score suggesting pathogenic, which are considered PVS1_Supporting.
+6. The Word attachment next says “in-frame alterations targeting FATKIN,” but PALB2 has no FATKIN domain in the supplied map or decision tree. This is a source carry-over and is not an operative PALB2 rule.
 
 7. p.Tyr1183Ter is the last PTC variant known to be pathogenic (Reid et al., 2007).
 
 8. p.Tyr1183Ter pathogenicity suggests the last four residues (YHYS) are critical for PALB2 function, supported by structural considerations (Oliver et al., 2009).
+
+#### PVS1 Decision Tree Transcription
+
+**Initiation codon**
+
+- The nearest in-frame alternative start is p.Met296 in exon 4 and loses the critical coiled-coil domain. Clinical FA-N observations of p.Val132fs and p.Leu253fs support **PVS1**, upgraded from PVS1_Moderate.
+
+**Nonsense or frameshift**
+
+- NMD predicted, p.Asp2-Leu1101 (upstream of c.3301) → **PVS1**.
+- NMD not predicted, p.Ser1102-Ser1186:
+  - Stop gain upstream of His1184, including p.Tyr1183Ter → **PVS1**, upgraded from PVS1_Strong.
+  - Stop at His1184, Tyr1185, or Ser1186 → **PVS1_Moderate**.
+  - Frameshift affecting Tyr1183 and producing an alternative C terminus → **PVS1_Strong**.
+  - Frameshift not affecting Tyr1183 and producing an alternative C terminus → **PVS1_Supporting**, downgraded from PVS1_Moderate.
+
+**Deletion**
+
+- Full-gene deletion → **PVS1_StandAlone**.
+- Out-of-frame deletion predicted to undergo NMD → **PVS1**.
+- In-frame deletion involving exon 2 coiled-coil and/or WD40 exons 6-13 → **PVS1**, upgraded from PVS1_Strong, subject to footnotes E-G.
+- In-frame deletion outside those critical domains removing >10% of protein (>356 nt) → **PVS1_Strong**.
+- The adjacent source box says “removes <10% (>356 nt) → PVS1_N/A.” Its comparator and parenthetical conflict; the attachment supplies no reconciled rule for that branch.
+
+**Duplication of one or more exons wholly within PALB2**
+
+- Reading frame disrupted and NMD predicted → **PVS1** if proven tandem; **PVS1_Strong** if presumed tandem.
+- Reading frame preserved with both breakpoints in WD40 → **PVS1_Strong** if proven tandem; **PVS1_Moderate** if presumed tandem.
+- Reading frame preserved but duplication not wholly within WD40 → **PVS1_Supporting** if proven tandem; **PVS1_N/A** if presumed tandem.
+- Proven non-tandem → **PVS1_N/A**.
+
+**GT-AG ±1,2 sites and last-exonic-G substitutions**
+
+- An indicated last-exonic-G substitution whose adjacent intronic sequence is not `gtgrgt` may take the same result as the corresponding ±1,2 splice outcome, down one strength.
+- No coding consequence → **PVS1_N/A**.
+- NMD-prone outcome → **PVS1** (List A).
+- NMD-escaping frameshift with stop upstream of His1184 → **PVS1** (List B), upgraded from PVS1_Strong.
+- NMD-escaping in-frame outcome affecting a critical domain → **PVS1** (List C).
+- NMD-escaping in-frame outcome of unknown function removing ≥10% → **PVS1_Strong** (List D).
+- Unknown-function loss <10% → **PVS1_Moderate** for `c.49-2A>C/T` and `c.49-1G>A/C/T`.
+- Insertion <10% → **PVS1_Supporting** for `c.211+1G>A/C/T` and `c.211+2T>A/C/G`.
+- Functional GC donor predicted, `c.108+2T>C` → **PVS1_N/A**. Native GC improved to GT, `c.3350+2C>T` → **PVS1_N/A**.
+
+**List A — NMD-prone → PVS1:** `c.48+1G>A/C/T`; `c.48+2T>A/C/G`; `c.49-2A>G`; `c.109-2A>C/G/T`; `c.109-1G>A/C/T`; `c.1685-1G>A`; `c.2514+1G>A/C/T`; `c.2514+2T>A/C/G`; `c.2587-2A>C/G/T`; `c.2587-1G>A/C/T`; `c.2749-2A>C/G/T`; `c.2749-1G>A/C/T`; `c.2834+1G>A/C/T`; `c.2834+2T>A/C/G`; `c.2835-1G>A`; `c.2997-2A>C`; `c.2997-1G>A/C/T`; `c.3114-2A>C/G/T`; `c.3114-1G>A/C/T`; `c.3201+1G>A/C/T`; `c.3201+2T>A/C/G`.
+
+**List B — NMD-escaping frameshift → PVS1:** `c.3202-2A>C/G/T`; `c.3202-1G>A/C/T`; `c.3350+1G>A/C/T`; `c.3350+2C>A/G`; `c.3351-2A>C/G/T`; `c.3351-1G>A/C/T`.
+
+**List C — NMD-escaping, in-frame, function-critical → PVS1:** `c.108+1G>A/C/T`; `c.108+2T>A/G`; `c.2515-2A>C/G/T`; `c.2515-1G>A/C/T`; `c.2586+1G>A/C/T`; `c.2586+2T>A/C/G`; `c.2748+1G>A/C/T`; `c.2748+2T>A/C/G`; `c.2835-2A>C/G/T`; `c.2835-1G>C/T`; `c.2996+2T>A/C/G`; `c.2996+1G>A/C/T`; `c.2997-2A>G/T`; `c.3113+1G>A/C/T`; `c.3113+2T>A/C/G`.
+
+**List D — NMD-escaping, in-frame, unknown function ≥10% → PVS1_Strong:** `c.212-2A>C/G/T`; `c.212-1G>A/C/T`; `c.1684+1G>A/C/T`; `c.1684+2T>A/C/G`; `c.1685-2A>C/G/T`; `c.1685-1G>C/T`.
+
+Red underlining in the source marks variants with experimental splice data. Asterisks on exon 6 variants flag the possible hypomorphic deletion of WD40 strand 7D. Double asterisks flag challenging/conflicting exon 4 and exon 5 splice analyses; the source assigns Strong using the lowest applicable scenario and >10% coding-sequence loss.
 
 #### PVS1 Decision Tree Footnotes
 
@@ -614,16 +700,36 @@ The PALB2 PVS1/PVS1_Variable(RNA) Guide is adapted from PMID: 30192042 (Tayoun e
 | **E** | Exon 6 codes for WD40 beta-strand 7D critical for WD40 toroidal folding, but exon 6 deletion might be hypomorphic (Byrd et al., 2016). |
 | **F** | Predicted damaging to CC (exon 2) or WD40 (exons 6-13) domains if ≥1 coding exon skipped. |
 | **G** | Exon 2 acceptor site: predicted/observed outcome delta(E2p6) skips p.(Leu17_Lys18del). p.Lys18Arg has no HR impact; p.Leu17Pro shows >50% reduced HR but not considered formal proof of criticality. |
-| **H** | Exon 3 donor site: predicted/observed outcome introduces 17 novel residues. Supporting strength based on PROVEAN score -15.84. |
+| **H** | Exon 3 donor site: predicted/observed outcome `▼(E3q48)` gives `p.Glu71delinsGKSRPFTYACFIIHFPE`, introducing 17 novel residues. Supporting strength is based on PROVEAN -15.84. |
 
 ### Appendix B: PALB2 Key Domains
 
 | Domain | Residues | Functional Significance |
 |--------|----------|------------------------|
-| **Coiled-coil (CC)** | 10-40 | BRCA1 binding domain |
-| **FATKIN** | (between CC and WD40) | Intermediate region |
-| **WD40 beta propeller** | 856-1186 | BRCA2 and RAD51 binding domain |
+| **Coiled-coil (CC)** | Narrative: 10-40; embedded map: 9-44 | BRCA1 binding domain |
+| **Disordered intervening region** | Between CC and WD40 | The distributed map does not name a FATKIN domain |
+| **WD40 beta propeller** | Narrative: 856-1186; embedded map: 854-1186 | BRCA2 and RAD51 binding domain |
 | **C-terminal YHYS** | 1183-1186 (Y1183, H1184, Y1185, S1186) | Critical for WD40 toroidal sealing (molecular Velcro) |
+
+#### PALB2 Exon Map
+
+| Total exon | Encoded amino-acid length shown in map |
+|---:|---:|
+| 1 | 16 |
+| 2 | 20 |
+| 3 | 34.3 |
+| 4 | 491 |
+| 5 | 276.7 |
+| 6 | 24 |
+| 7 | 54 |
+| 8 | 28.7 |
+| 9 | 54 |
+| 10 | 39 |
+| 11 | 29.3 |
+| 12 | 49.7 |
+| 13 | 69.3 |
+
+The map uses a straight vertical edge for no overhang, a sloped top edge for a two-nucleotide overhang, and a sloped bottom edge for a one-nucleotide overhang. Parallel deletion endpoints are in-frame; anti-parallel endpoints frameshift.
 
 ### Appendix C: Population Frequency Thresholds Summary
 
@@ -657,6 +763,13 @@ The PALB2 PVS1/PVS1_Variable(RNA) Guide is adapted from PMID: 30192042 (Tayoun e
 | Version | Date | Notes |
 |---------|------|-------|
 | 1.2.0 | 7/14/2025 | Provided % for PM2 and clarified use of gnomAD v4. Clarified when to assume in trans for PM3. Provided PP1 guidance for AR condition. Added SpliceAI thresholds for PP3 and BP4. Clarified use of PP3/BP4 in the presence of RNA data. Updated MONDO from hereditary breast carcinoma and familial pancreatic carcinoma to PALB2-related cancer predisposition. PVS1 clarification for last nucleotide of exon. Minor formatting adjustments. |
+
+### Document corrections (2026-08-11)
+
+- Verified both advertised artifacts source-first: `ClinGen_ACMG_Specifications_PALB2_v1.2.pdf` and `ClinGen HBOP ACMG Specifications PALB2 version 1.2.docx`, including every embedded image and nested table.
+- Added the source DOI, complete PS1 splice matrix, PVS1 initiation/nonsense/deletion/duplication/splice branches and Lists A-D, and the omitted PM3 and BS2 per-proband point tables.
+- Removed the local PALB2 FATKIN domain claim. It originated in one contradictory sentence in the Word attachment and is absent from the supplied PALB2 domain map and decision tree.
+- Preserved unresolved source discrepancies for Ensembl `.8` versus `.9`, the two PS1 PMIDs, the contradictory deletion percentage box, and the core-versus-Word combination rule.
 
 ---
 

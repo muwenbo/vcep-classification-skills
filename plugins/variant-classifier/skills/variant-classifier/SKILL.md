@@ -75,7 +75,18 @@ Run VEP annotation to get basic variant information:
 
 ```bash
 python scripts/vep_annotate.py "<VARIANT>" --json -o $OUTDIR/vep_annotation.json
+
+# For GRCh37/hg19 input coordinates (routed to GeneBe, lifted over to GRCh38):
+python scripts/vep_annotate.py "<VARIANT>" --assembly hg19 --json -o $OUTDIR/vep_annotation.json
 ```
+
+The script queries Ensembl VEP and automatically falls back to the GeneBe public
+API if Ensembl is unavailable. Check `annotation_source` in the output
+(`ensembl_vep` or `genebe`) — the GeneBe fallback returns a reduced field set:
+no SIFT/PolyPhen/CADD/EVE/LOFTEE/LOEUF, no PMIDs, and SpliceAI as a max delta
+score only (no DS_AG/DS_AL/DS_DG/DS_DL components). It adds BayesDel, phyloP100way,
+and dbscSNV instead. If annotation came from GeneBe, run `splice_predictor.py`
+for full SpliceAI components and `gnomad_query.py` for detailed frequencies.
 
 Extract key information from the annotation:
 - Gene symbol
@@ -84,6 +95,13 @@ Extract key information from the annotation:
 - Population frequencies from gnomAD
 - SIFT/PolyPhen predictions
 - Associated PMIDs
+
+**`external_acmg` (GeneBe fallback only):** GeneBe returns its own automated ACMG
+verdict. This is advisory context for cross-checking your own work — it is a
+generic auto-classification, NOT a VCEP call. Never adopt it as the
+classification, and never let it substitute for evaluating criteria against the
+VCEP specification in the steps below. If your final call disagrees with it, that
+is expected and requires no comment in the report.
 
 ### Step 2: Check for VCEP Specification
 
@@ -179,6 +197,25 @@ python scripts/classify_variant.py \
   -o $OUTDIR/classification_report.md
 ```
 
+**Frequency thresholds must state their comparator.** VCEPs differ on whether a
+threshold is inclusive — GALT states BA1/BS1/PM2 as `>=` / `<=`, and SLC6A8
+v2.1 explicitly flipped strict to inclusive — so a variant sitting exactly on
+the boundary depends on it. In `vcep_spec.json`, write the operator alongside
+the value whenever the source spec is inclusive:
+
+```json
+{
+  "BA1_threshold": {"threshold": 0.05, "op": ">="},
+  "BS1_threshold": {"threshold": 0.01, "op": ">="},
+  "PM2_threshold": {"threshold": 0.0001, "op": "<="}
+}
+```
+
+A bare number (`"BA1_threshold": 0.05`) is still accepted and keeps the ACMG
+default comparator — `>` for BA1/BS1, `<` for PM2. Only omit `op` when the
+source spec really is strict; the applied rule is echoed in the report's
+evidence column, so check it there.
+
 ### Step 8: Present Results
 
 Present the classification report to the user:
@@ -249,7 +286,7 @@ All scripts in `scripts/` directory. For detailed CLI docs, see `references/scri
 
 | Script | Purpose | Key flags |
 |--------|---------|-----------|
-| vep_annotate.py | Ensembl VEP annotation | `-j`, `-o`, `--pmids-only` |
+| vep_annotate.py | Ensembl VEP annotation (GeneBe fallback) | `-j`, `-o`, `--pmids-only`, `--source`, `--assembly` |
 | gnomad_query.py | gnomAD population frequencies | `-o` (no `-j` flag!) |
 | check_vcep_spec.py | VCEP registry lookup | `-j`, `-o`, `--list-all` |
 | splice_predictor.py | SpliceAI/Pangolin predictions | `-j`, `-o`, `--spliceai-only` |

@@ -97,6 +97,8 @@
 
 #### PS2/PM6 Evidence Strength Thresholds
 
+The PPP1CB PDF body gives exact point values without comparator symbols: PS2 Very Strong 4, Strong 2, and Moderate 1; PM6 Strong 2, Moderate 1, and Supporting 0.5. The supplied `PS2_PM6 Scoring.jpg` extends the shared scale to all four strengths for either criterion, including PS2_Supporting and PM6_VeryStrong. Comparator semantics for this shared ladder are not stated.
+
 | Points | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
@@ -218,8 +220,10 @@ The following assays are approved by the RASopathy VCEP for other genes in the p
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | >=2 different [likely] pathogenic residue changes at the same codon observed in >=5 probands. | Strength |
+| **Strong** | ≥2 different [likely] pathogenic “residues changes” at the same codon observed in ≥5 probands. | Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Disease-specific |
+
+> **Source contradictions / missing definition — do not resolve silently:** The PDF calls this applicable to analogous positions “in PPP1CB” but names no analogous gene, and the package distributes no analogous-residue mapping. It also says PM1 and PM5 can be combined at Moderate and bars PM1 with PM5_Strong, while PM1 is explicitly Not Applicable for PPP1CB. “residues changes” is preserved from the PDF and appears to be a grammatical typo.
 
 ---
 
@@ -236,6 +240,8 @@ Uses the same point-based system as PS2 - see [PS2/PM6 Point System](#ps2pm6-poi
 | **Strong** | 2 Points | Strength |
 | **Moderate** | 1 Point | None |
 | **Supporting** | 0.5 Points | Strength |
+
+The supplied scoring image additionally shows **PM6_VeryStrong at 4 points**. This strength is absent from the PM6 rows in the PDF body but present in the VCEP-distributed supplement.
 
 ---
 
@@ -344,6 +350,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 #### BS2 Evidence Strength Thresholds
 
+The PDF body lists Strong at -4 points and Supporting at -1 point, with no comparator symbols. The supplied `BS2 Scoring.jpg` instead lists Strong at -3 points, Moderate as N/A, and Supporting at -1 point, also without comparator symbols. This unresolved source conflict is retained below rather than reconciled.
+
+| Source | Strong | Moderate | Supporting |
+|--------|--------|----------|------------|
+| PDF body | -4 | Not listed | -1 |
+| `BS2 Scoring.jpg` | -3 | N/A | -1 |
+
 | Total Points | Strength Level |
 |--------------|----------------|
 | -1 points | Supporting (BS2_Supporting) |
@@ -387,6 +400,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | **BP5** | Applicable (Modified) | Supporting / Moderate / Strong | Points are awarded for an alternative molecular cause of a RASopathy in a different gene (and/or in conjunction with BP2) and the phenotype is consistent with expected severity of the RASopathy. Points are also awarded for phenotypes inconsistent with a RASopathy and fully explained by a different causative variant (e.g. WES testing). See [BP5/BP2 scoring](#appendix-b-bp5bp2-scoring) below. |
 | **BP6** | Not Applicable | N/A | Not for use as recommended by the ClinGen SVI VCEP Review Committee (PMID: 29543229). |
 | **BP7** | Applicable (Modified) | Supporting | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. Also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
+
+> **Missing source material:** BP1 directs the reader to supplemental dosage-sensitivity information, but no dosage-sensitivity table or other BP1-specific supplement is distributed in the PPP1CB source package.
 
 ---
 
@@ -450,7 +465,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PM3 | Not Applicable | - |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable | Strong |
-| PM6 | Applicable (Point-based) | Strong |
+| PM6 | Applicable (Point-based) | Very Strong (supplement; PDF body lists through Strong) |
 | PP1 | Applicable | Strong |
 | PP2 | Applicable | Supporting |
 | PP3 | Applicable | Supporting |
@@ -481,6 +496,13 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 **Note:** BP2 applies when the alternative molecular cause is in the **same gene**. BP5 applies when the alternative molecular cause is in a **different gene**. BP2 and BP5 may be used in conjunction.
 
 #### BP5/BP2 Evidence Strength Thresholds
+
+The PDF body uses inclusive `>=` thresholds: Strong `>=(-4)`, Moderate `>=(-2)`, and Supporting `>=(-1)`. The supplied `BP5_BP2 Scoring.jpg` instead lists Strong -3, Moderate N/A, and Supporting -1, without comparator symbols. Because those two supplied sources conflict, both are shown and neither is silently normalized.
+
+| Source | Strong | Moderate | Supporting |
+|--------|--------|----------|------------|
+| PDF body | >=(-4) | >=(-2) | >=(-1) |
+| `BP5_BP2 Scoring.jpg` | -3 | N/A | -1 |
 
 | Total Points | Strength Level |
 |--------------|----------------|
@@ -522,6 +544,16 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 |---------|------|-------|
 | 1.3.0 | 12/3/2024 | "Observed in >=5 probands" removed from PM5 at Moderate strength. Pilot variants included in the LZTR1 submission. |
 | 1.0.0 | Prior | Initial release of PPP1CB VCEP specifications. |
+
+---
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_PPP1CB_v1.3.pdf`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BP5_BP2 Scoring.jpg`, `BS2 Scoring.jpg`, and `Approved Functional Studies.xlsx`. No change to the underlying ClinGen specification version.**
+
+- **PS3/BS3 scope corrected:** the workbook has no approved PPP1CB assay column and states that MAPK and MEK/ERK effects need elucidation; it does not recommend PS3 at any level for PPP1CB or SHOC2. Other-gene assay descriptions are retained only as explicitly labeled general reference material.
+- **Shared scoring contradictions restored:** BS2 is -4 in the PDF body versus -3 in its image; BP2/BP5 use PDF tiers `>=(-4)`/`>=(-2)`/`>=(-1)` versus image tiers -3/N/A/-1. Image comparator operators are unstated.
+- **Supplement-only strengths identified:** the shared scoring image adds PS2_Supporting and PM6_VeryStrong to criterion blocks that omit them. PM6's summary maximum now reflects the supplement-defined Very Strong level.
+- **PM5 source problems recorded:** the PDF refers to analogous positions “in PPP1CB” without naming an analogous gene or supplying a mapping, permits a PM1-plus-PM5 combination despite declaring PM1 Not Applicable, and contains the phrase “residues changes.” These readings are reported without repair.
+- **Missing BP1 content recorded:** no dosage-sensitivity supplement is distributed for PPP1CB.
 
 ---
 

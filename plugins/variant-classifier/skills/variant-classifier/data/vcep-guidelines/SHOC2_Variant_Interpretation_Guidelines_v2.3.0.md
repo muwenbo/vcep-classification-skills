@@ -4,6 +4,7 @@
 **Released:** 12/3/2024
 **Affiliation:** RASopathy VCEP
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**Source package reviewed:** `ClinGen_ACMG_Specifications_SHOC2_v2.3.pdf`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BS2 Scoring.jpg`, and `BP5_BP2 Scoring.jpg`
 
 **Release Notes:** Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength.
 
@@ -66,7 +67,7 @@ Caveats:
 
 **VCEP Specification:** *Not Applicable*
 
-**Comments:** Not applicable. Loss of function is not a known mechanism for SHOC2-related RASopathy. The disease mechanism is gain-of-function.
+**Comments:** Not applicable. The VCEP does not give a SHOC2-specific rationale in the PVS1 row. Its BP1 specification describes the RASopathy mechanism as gain-of-function and directs BP1 use for truncating variants in genes without an established loss-of-function disease correlation.
 
 ---
 
@@ -99,22 +100,26 @@ Caveats:
 \*Exclusive of prenatal cases
 \*\*Applicable to prenatal cases, cases with a clinical order of a RASopathy panel without clinical information, and cases with limited clinical information in other global tests (such as WES). Phenotypes for prenatal cases include hypertrophic cardiomyopathy, increased nuchal translucency, cystic hygroma, or hydrops.
 
-#### PS2/PM6 Evidence Strength Thresholds
+#### PS2/PM6 Evidence Strength Ladder in `PS2_PM6 Scoring.jpg`
+
+The attachment prints the following exact point totals without inequality comparators:
 
 | Points | Strength Level |
 |--------|----------------|
-| 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
-| 1.0 | Moderate (PS2_Moderate or PM6) |
-| 2.0 | Strong (PS2 or PM6_Strong) |
-| 4.0 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
+| 0.5 | Supporting (`PS2_Supporting` or `PM6_Supporting`) |
+| 1.0 | Moderate (`PS2_Moderate` or `PM6`) |
+| 2.0 | Strong (`PS2` or `PM6_Strong`) |
+| 4.0 | Very Strong (`PS2_VeryStrong` or `PM6_VeryStrong`) |
 
-#### Strength Levels
+#### PS2 Strength Levels in the Main PDF
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
 | **Very Strong** | 4 Points. | Strength |
 | **Strong** | 2 Points. | None |
 | **Moderate** | 1 Point. | Strength |
+
+> **SOURCE CONTRADICTION / OMISSION — do not silently resolve:** `PS2_PM6 Scoring.jpg` defines `PS2_Supporting` at 0.5 point and `PM6_VeryStrong` at 4 points, but those strengths are absent from the main PDF's PS2 and PM6 strength rows. Conversely, the main PDF labels PS2 at 4/2/1 and PM6 at 2/1/0.5 only. The attachment's strength totals use no comparator; do not infer `>=`.
 
 ---
 
@@ -128,7 +133,7 @@ Caveats:
 
 **Note from VCEP Functional Studies Review:** Effect on MAPK and MEK/ERK phosphorylation needs elucidation for both PPP1CB and SHOC2. Of note, SHOC2 has a unique myristoylation assay which only applies to a unique founder variant. The VCEP does not recommend application of PS3 at any level for SHOC2 due to uncertainty of the impact on approved RASopathy functional studies.
 
-#### Myristoylation Assay (Evaluated but Not Approved)
+#### Myristoylation Assay Workbook Entry (N/A; Approval Blank)
 
 | Attribute | Details |
 |-----------|---------|
@@ -146,7 +151,7 @@ Caveats:
 | **Validation Controls B/LB** | Disease unrelated S2A |
 | **Threshold for Normal** | No incorporation of [3H]-myristic acid |
 | **Threshold for Abnormal** | Incorporation of [3H]-myristic acid |
-| **Approved** | Not approved |
+| **Approved** | Approval and strength cells are blank; the hidden sheet is labelled `TAG AS N/A` |
 
 ---
 
@@ -168,7 +173,9 @@ Caveats:
 \*Applicable to prenatal cases, cases with a clinical order of a RASopathy panel without clinical information, and cases with limited clinical information in other global tests (such as WES). Phenotypes for prenatal cases include hypertrophic cardiomyopathy, increased nuchal translucency, cystic hygroma, or hydrops.
 \*\*Negative points for PS4 represent proband affected with a non-RASopathy congenital disorder rather than a healthy individual (BS2). This typically applies to probands tested by exome analysis with multiple other clinical features supporting a distinct syndromic disorder. (e.g. CHARGE, CdLS)
 
-#### PS4 Evidence Strength Thresholds
+#### PS4 Main-PDF Strength Thresholds
+
+The main PDF explicitly uses inclusive `>=` comparators. The image's summary row prints the exact totals 1.0, 3.0, and 5.0 without operators.
 
 | Points | Strength Level |
 |--------|----------------|
@@ -181,6 +188,8 @@ Caveats:
 | **Strong** | ≥5 points. | Disease-specific |
 | **Moderate** | ≥3 points. | Strength |
 | **Supporting** | ≥1 points. | Strength |
+
+**Source typo preserved:** the main PDF prints “≥1 points.”
 
 ---
 
@@ -237,8 +246,10 @@ Caveats:
 
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
-| **Strong** | ≥2 different [likely] pathogenic residue changes at the same codon observed in ≥5 probands. | Strength |
+| **Strong** | ≥2 different [likely] pathogenic residues changes at the same codon observed in ≥5 probands. | Strength |
 | **Moderate** | 1 [likely] pathogenic residue change at the same codon. | Disease-specific |
+
+**Source typo preserved:** the Strong row prints “residues changes.” The PM5 text says PM1 may co-apply at Moderate strength even though the SHOC2 PM1 row is marked Not Applicable; this internal applicability tension is not resolved here.
 
 ---
 
@@ -255,6 +266,8 @@ Same point-based system as PS2 - see [PS2/PM6 Point System](#ps2pm6-point-system
 | **Strong** | 2 Points. | Strength |
 | **Moderate** | 1 Point. | None |
 | **Supporting** | 0.5 Points. | Strength |
+
+`PS2_PM6 Scoring.jpg` additionally publishes `PM6_VeryStrong` at exactly 4 points, but the main PDF has no PM6 Very Strong row. See the source warning under PS2.
 
 ---
 
@@ -359,7 +372,9 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 \*Typically applicable to parental or sibling samples during clinical family evaluations.
 
-#### BS2 Evidence Strength Thresholds
+#### BS2 Strength Ladder in `BS2 Scoring.jpg`
+
+The image prints exact point totals without inequality comparators:
 
 | Points | Strength Level |
 |--------|----------------|
@@ -367,10 +382,14 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | N/A | Moderate (not applicable) |
 | -3.0 points | Strong (BS2) |
 
+#### BS2 Strength Levels in the Main PDF
+
 | Strength | Criteria | Modification Type |
 |----------|----------|-------------------|
 | **Strong** | -4 Points. | Strength |
 | **Supporting** | -1 Point. | Strength |
+
+> **SOURCE CONTRADICTION — do not silently resolve:** the main PDF assigns BS2 Strong at **-4 points**, while `BS2 Scoring.jpg` assigns BS2 Strong at **-3.0 points**. Both give BS2 Supporting at -1 point. Neither presentation states an inequality comparator. The two Strong thresholds are reported as published; no single operative threshold can be selected from the distributed package.
 
 ---
 
@@ -380,7 +399,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 **VCEP Specification:** *Not Applicable*
 
-**Comments:** Approved functional studies are available for each individual gene in the supplemental material. Additional functional studies can be submitted to the expert panel for approval. BS3 is not applicable for SHOC2 at this time (same rationale as PS3).
+**Comments:** The main PDF marks BS3 Not Applicable, then gives generic comments that approved functional studies are available in supplemental material and that additional studies can be submitted. The workbook contains no approved SHOC2 assay; its SHOC2-specific recommendation explicitly addresses PS3, not BS3. No additional BS3 rationale is supplied.
 
 ---
 
@@ -400,13 +419,17 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 
 | Criterion | Status | Specifications |
 |-----------|--------|----------------|
-| **BP1** | Applicable (modified) | Truncating, LOF variant in a gene for which primarily missense, GOF variants are known to cause disease. This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi-exon deletion) in genes without established LOF correlation to disease. See supplemental material for dosage sensitivity information. |
+| **BP1** | Applicable (modified) | Truncating, LOF variant in a gene for which primarily missense, GOF variants are known to cause disease. This rule has contraindications for use with RASopathies. Given the disease mechanism is gain-of-function, BP1 should be used for any truncating variant (nonsense, frameshift, affects canonical splice sites, initiation codon, entire gene or multi-exon deletion) in genes without established LOF correlation to disease. The source says to consult supplemental material for dosage sensitivity and possible loss-of-function-associated disorders, but that information is not present in the distributed SHOC2 package. |
 | **BP2** | Applicable (point-based) | Points are awarded for an alternative molecular cause of a RASopathy in the same gene (and/or in conjunction with BP5) and the phenotype is consistent with expected severity of the RASopathy. See [BP2/BP5 Point System](#bp2bp5-point-system) below. |
 | **BP3** | Not Applicable | No known benign repetitive areas in RASopathy genes. |
 | **BP4** | Applicable (modified) | For missense variants: REVEL ≤0.3. For splicing variants: predicted outcome is negligible or does not match disease mechanism. |
 | **BP5** | Applicable (point-based) | Points are awarded for an alternative molecular cause of a RASopathy in a different gene (and/or in conjunction with BP2) and the phenotype is consistent with expected severity of the RASopathy. Points are also awarded for phenotypes inconsistent with a RASopathy and fully explained by a different causative variant (e.g. WES testing). See [BP2/BP5 Point System](#bp2bp5-point-system) below. |
 | **BP6** | Not Applicable | This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee. (PMID: 29543229) |
 | **BP7** | Applicable (general recommendation) | A synonymous (silent) variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved. This rule is also applicable for intronic positions (except canonical splice sites) or non-coding variants and should be used in conjunction with BP4. |
+
+> **MISSING DISTRIBUTED MATERIAL:** the BP1 source row explicitly refers to supplemental dosage-sensitivity information for each gene and potential disorders associated with loss-of-function variants. `Approved Functional Studies.xlsx` contains assay guidance, not SHOC2 dosage-sensitivity information, and none of the four image attachments supplies it. Do not infer or substitute the missing gene-specific content.
+
+**BP4 source wording note:** the VCEP summary covers both missense (`REVEL <=0.3`, inclusive) and splicing (negligible predicted effect or outcome not matching disease mechanism), but the strength-specific Supporting row repeats only the missense rule. Both published statements are retained; the omission is not interpreted as withdrawal of the splicing rule.
 
 #### BP2 Strength Levels
 
@@ -431,13 +454,17 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | Phenotype inconsistent with a RASopathy and causative variant has been identified, -or- Molecular cause of a RASopathy is identified in a different RASopathy gene, -or- Molecular cause of a RASopathy is identified in *trans* or *cis* with the variant being classified | -1 |
 | Phenotype inconsistent with a RASopathy and no causative variant identified/reported | 0 |
 
-#### BP2/BP5 Evidence Strength Thresholds
+#### BP2/BP5 Strength Ladder in `BP5_BP2 Scoring.jpg`
+
+The attachment prints exact point totals without inequality comparators:
 
 | Points | Strength Level |
 |--------|----------------|
 | -1 points | Supporting (BP5/BP2) |
 | N/A | Moderate (not applicable) |
 | -3.0 points | Strong (BP5_Strong / BP2_Strong) |
+
+> **SOURCE CONTRADICTION — do not silently resolve:** the main PDF publishes BP2 and BP5 as Strong at `>= (-4)`, Moderate at `>= (-2)`, and Supporting at `>= (-1)`. `BP5_BP2 Scoring.jpg` instead publishes Strong at exactly -3.0, Moderate as N/A, and Supporting at exactly -1. The PDF's printed `>=` direction on a negative-point scale would also allow less-negative totals to satisfy stronger thresholds. These presentations cannot be reconciled from the distributed sources, so both are reported verbatim and no operative threshold is selected here.
 
 ---
 
@@ -483,6 +510,8 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | 1 Strong *(BS1, BS2, BS4, BP2_Strong, BP5_Strong)* |
 | 1 Strong *(BS1)* |
 
+**Published-rule tensions:** the combination tables include `PS3_Supporting` even though SHOC2 PS3 is Not Applicable. They list BP2/BP5 at Supporting and Strong but not Moderate, although the main BP2/BP5 rows publish Moderate and the scoring image marks Moderate N/A. The rules above are reproduced as published; these conflicts are not harmonized.
+
 ---
 
 ## Appendices
@@ -493,7 +522,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 |-----------|--------|---------------------|
 | PVS1 | Not Applicable | - |
 | PS1 | Applicable | Strong |
-| PS2 | Applicable (point-based) | Supporting, Moderate, Strong, Very Strong |
+| PS2 | Applicable (point-based) | Main PDF: Moderate, Strong, Very Strong; scoring image additionally lists Supporting |
 | PS3 | Not Applicable | - |
 | PS4 | Applicable (point-based) | Supporting, Moderate, Strong |
 | PM1 | Not Applicable | - |
@@ -501,7 +530,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PM3 | Not Applicable | - |
 | PM4 | Applicable | Moderate |
 | PM5 | Applicable (modified) | Moderate, Strong |
-| PM6 | Applicable (point-based) | Supporting, Moderate, Strong |
+| PM6 | Applicable (point-based) | Main PDF: Supporting, Moderate, Strong; scoring image additionally lists Very Strong |
 | PP1 | Applicable (modified) | Supporting, Moderate, Strong |
 | PP2 | Not Applicable | - |
 | PP3 | Applicable (modified) | Supporting |
@@ -509,14 +538,14 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | PP5 | Not Applicable | - |
 | BA1 | Applicable (modified threshold) | Stand Alone |
 | BS1 | Applicable (modified threshold) | Strong |
-| BS2 | Applicable (point-based) | Supporting, Strong |
+| BS2 | Applicable (point-based) | Supporting, Strong (Strong is -4 in the main PDF but -3 in the scoring image) |
 | BS3 | Not Applicable | - |
 | BS4 | Applicable | Strong |
 | BP1 | Applicable (modified) | Supporting |
-| BP2 | Applicable (point-based) | Supporting, Moderate, Strong |
+| BP2 | Applicable (point-based) | Main PDF: Supporting, Moderate, Strong; scoring image: Supporting and Strong, Moderate N/A |
 | BP3 | Not Applicable | - |
 | BP4 | Applicable (modified) | Supporting |
-| BP5 | Applicable (point-based) | Supporting, Moderate, Strong |
+| BP5 | Applicable (point-based) | Main PDF: Supporting, Moderate, Strong; scoring image: Supporting and Strong, Moderate N/A |
 | BP6 | Not Applicable | - |
 | BP7 | Applicable | Supporting |
 
@@ -528,7 +557,7 @@ This criterion is not for use as recommended by the ClinGen Sequence Variant Int
 | BS1 | ≥0.025% (gnomAD FAF) | Strong |
 | PM2 | Absent from gnomAD | Supporting |
 
-### Appendix C: Approved Functional Studies Summary
+### Appendix C: Functional Studies Workbook Summary
 
 The following general assay classes have been evaluated by the RASopathy VCEP for PS3/BS3:
 
@@ -537,14 +566,14 @@ The following general assay classes have been evaluated by the RASopathy VCEP fo
 | RAS Activation Assay | Measures the bound RAS protein that immunoprecipitated with RAF1 or RBD (synthetic) | Pathway Specific | Not recommended |
 | MEK Activation Assay | Measures the ratio of phosphorylated MEK to unphosphorylated MEK, basally and following RTK stimulation | Pathway Specific | Not recommended |
 | ERK Activation Assay | Measures the ratio of phosphorylated ERK to unphosphorylated ERK, basally and following stimulation | Pathway Specific | Not recommended |
-| Myristoylation Assay | Evaluate N-myristoylation by [3H]myristic acid incorporation | Gene Specific (SHOC2) | Evaluated, not approved |
+| Myristoylation Assay | Evaluate N-myristoylation by [3H]myristic acid incorporation | Variant-specific (SHOC2 p.S2G) | Approval/strength fields blank; hidden sheet labelled N/A |
 
 **Note:** PS3/BS3 is not applicable for SHOC2 at this time. Effect on MAPK and MEK/ERK phosphorylation needs elucidation. The myristoylation assay only applies to a unique founder variant and does not meet validation requirements.
 
 ### Appendix D: References
 
 1. SVI Proposal for De Novo Criteria v1.1: https://clinicalgenome.org/site/assets/files/3461/svi_proposal_for_de_novo_criteria_v1_1.pdf
-2. ClinGen SVI Recommendation for PP5/BP6 (PMID: 29543229)
+2. PMID 29543229 (cited by the source for PP5/BP6 non-use)
 3. ClinGen SVI Recommendations for PS3/BS3 Functional Evidence (PMID: 31892348)
 
 ---
@@ -554,6 +583,15 @@ The following general assay classes have been evaluated by the RASopathy VCEP fo
 | Version | Date | Notes |
 |---------|------|-------|
 | 2.3.0 | 12/3/2024 | Submitting Pilot Rules. All pilot variants are attached in the LZTR1 submission. "Observed in ≥5 probands" removed from PM5 at Moderate strength. |
+
+**Document corrections (2026-08-07), source-verified against `ClinGen_ACMG_Specifications_SHOC2_v2.3.pdf`, `Approved Functional Studies.xlsx`, `PS2_PM6 Scoring.jpg`, `PS4 Scoring.jpg`, `BS2 Scoring.jpg`, and `BP5_BP2 Scoring.jpg`. No change to the underlying ClinGen specification version.**
+
+- **PS2/PM6 source mismatch made explicit:** the image-only PS2 Supporting and PM6 Very Strong tiers are no longer presented as though they also occur in the main PDF. Bare point totals are recorded with comparator unstated.
+- **BS2 contradiction exposed:** the main PDF's -4-point Strong threshold and the scoring image's -3-point Strong threshold are both retained and flagged; the prior document printed both without warning.
+- **BP2/BP5 contradiction exposed:** the main PDF's `>= (-4) / >= (-2) / >= (-1)` tiers and the image's exact `-3 / N/A / -1` tiers are both retained and flagged, including the anomalous printed comparator direction. No threshold was silently selected.
+- **Missing BP1 support documented:** the PDF refers to supplemental SHOC2 dosage-sensitivity/LoF-disorder information that is absent from every distributed supplement; no generic ACMG/AMP substitute was added.
+- **Functional workbook provenance tightened:** the SHOC2 myristoylation assay's blank approval/strength fields and hidden `TAG AS N/A` label are now reported exactly; BS3 no longer borrows an unstated rationale from the PS3-only workbook note.
+- **Other source tensions preserved:** PM1/PM5 applicability, BP4 splicing wording, PS3 in combining rules, and BP2/BP5 Moderate in combining rules are identified rather than harmonized. The source's PM5 grammatical typo and PS4 “≥1 points” typo are preserved and flagged.
 
 ---
 

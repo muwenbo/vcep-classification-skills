@@ -788,10 +788,32 @@ The following criteria are **Not Applicable** for RPGR and should not be used:
 
 ---
 
+## Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_RPGR_v1.0.pdf`
+- `PS3 Functional Evidence - RPGR Specifications.xlsx`
+- `PVS1 Decision Tree for RPGR.pptx`
+- `Phenotype Features - RPGR Specifications.docx`
+- `RPGR PVS1 and PVS1 (RNA) Decision Tree.pdf`
+- `Standard Operating Procedure - RPGR- V.7.pdf`
+- `c.730A-T Variant Report.pdf`
+
+---
+
+## Document corrections (2026-08-17)
+
+- Re-checked the complete seven-file package source-first, including both PVS1 artifacts, the assay workbook, phenotype Word table, the full SOP, and the worked c.730A>T report.
+- Preserved RPGR's separate nonsense/frameshift, splice, deletion, and RNA-evidence routes and the transcript/exon-map gates; no generic PVS1 topology was substituted.
+- Verified the phenotype point list against `Phenotype Features - RPGR Specifications.docx` and treated the c.730A>T report as a worked example rather than a new general rule.
+- Verified that the functional workbook records assay-specific approval decisions and that the SOP supplies operational curation procedure; neither artifact is represented as an exhaustive variant lookup table.
+
+---
+
 ## Version History
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.0.0 remediation | August 17, 2026 | Re-transcribed all seven distributed artifacts, preserving PVS1/PVS1(RNA) topology and separating normative rules from SOP and worked-example material. |
 | 1.0.0 | 5/16/2025 | Initial release. Pilot Rules Submitted as of 01/22/2024. |
 
 ---

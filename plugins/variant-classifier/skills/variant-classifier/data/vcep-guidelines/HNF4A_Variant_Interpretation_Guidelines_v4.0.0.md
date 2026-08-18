@@ -89,25 +89,25 @@ Per recommendations from the SVI, when RNA analysis demonstrates abnormal splici
 
 | Location | Strength |
 |----------|----------|
-| Exons 1-9 (5' of c.1162) because NMD is expected | **PVS1** |
+| Exons 1-9 (5' of c.1162) because NMD<sup>b</sup> is expected | **PVS1** |
 | Last 55 base pairs of exon 9 (c.1162–c.1216) and first 41 base pairs of exon 10 (c.1217–c.1257) because known MODY nonsense/frameshift variants occur at and 5' of corresponding aa Ser419 | **PVS1** |
 | Exon 10 3' of c.1257 (Gly420) | **PVS1_Supporting** |
 
-**Note:** Variants generating PTCs in exon 10 and last 55 nucleotides of exon 9 (c.1162-1216) are not expected to cause NMD. The most 3' nonsense or frameshift variant is c.1256C>G, p.S419X in the last exon, classified as Pathogenic by the MDEP. The collective evidence supports applying PVS1 for variants at codon 419 (c.1257) and 5' and PVS1_Supporting for variants at c.1258 (G)/p.Gly420 and 3'.
+**Note:** Variants generating PTCs in exon 10 and last 55 nucleotides of exon 9 (c.1162-1216) are not expected to cause NMD. The most 3' nonsense or frameshift variant is c.1256C>G, p.S419X in the last exon, classified as Pathogenic by the MDEP. There are six other nonsense and frameshift variants in exon 10, none of which have case information and all of which are currently classified as VUS. The collective evidence supports applying PVS1 for variants at codon 419 (c.1257) and 5' and PVS1_Supporting for variants at c.1258 (G)/p.Gly420 and 3'.
 
-##### GT-AG 1,2 Splice Sites
+##### GT--AG 1,2 Splice Sites<sup>a</sup>
 
 | Predicted Outcome | Strength |
 |-------------------|----------|
 | Skipping of exon 1, 2, 3, 4, or 6 or use of a cryptic splice site results in frameshift that causes PTC 5' of c.1257/Ser419 | **PVS1** |
 | Skipping of exon 5, 7, 8, or 9 (preserves reading frame but removes >10% of protein) | **PVS1_Strong** |
-| Skipping of or stop loss in exon 10 (removes transactivation domain) | **PVS1_Strong** |
+| Skipping of or stop loss in exon 10 (removes transactivation domain)<sup>c</sup> | **PVS1_Strong** |
 
 ##### Deletions (Single Exon to Full Gene)
 
 | Type | Strength |
 |------|----------|
-| Full gene deletion | **PVS1** |
+| Full gene deletion<sup>d</sup> | **PVS1** |
 | Single to multi-exon deletion – exons 1, 2, 3, 4, or 6 | **PVS1** |
 | Single exon deletion: exon 5, 7, 8, 9, or 10 | **PVS1_Strong** |
 
@@ -122,8 +122,11 @@ Per recommendations from the SVI, when RNA analysis demonstrates abnormal splici
 |---------------|----------------------|----------|
 | Proven in tandem | Reading frame disrupted and NMD predicted to occur | **PVS1** |
 | Proven in tandem | No or unknown impact on reading frame and NMD | **N/A** |
+| Presumed in tandem | No or unknown impact on reading frame and NMD | **N/A** |
 | Presumed in tandem | Reading frame presumed disrupted and NMD predicted to occur | **PVS1_Strong** |
 | Proven not in tandem | — | **N/A** |
+
+**Unresolved source markers:** The supplied decision tree prints markers <sup>a</sup>, <sup>b</sup>, <sup>c</sup>, and <sup>d</sup> beside the splice-sites, NMD, transactivation-domain, and full-gene-deletion labels, respectively, but supplies no marker definitions.
 
 ##### Initiation Codon Variants
 
@@ -131,7 +134,7 @@ Per recommendations from the SVI, when RNA analysis demonstrates abnormal splici
 |--------------|----------|
 | Initiation codon variants | **PVS1_Strong** |
 
-**Note:** Apply PVS1_Strong to initiation codon variants. MDEP has classified two start codon variants as likely pathogenic (c.3G>A and c.1delA) and there are multiple P/LP variants before the next methionine, p.Met71.
+**Note:** Apply PVS1_Strong to initiation codon variants. MDEP has classified two start codon variants as likely pathogenic (`c.3G>A: PM2_Supporting + PP4_Moderate + PP1_Strong + PVS1_Moderate (c.1delA); c.1delA: PM2_Supporting + PP1 + PP4_Moderate + PVS1_Moderate`) and there are multiple P/LP variants before the next methionine, p.Met71. The embedded `(c.1delA)` in the c.3G>A evidence string is preserved from the source [sic].
 
 ---
 
@@ -147,9 +150,9 @@ Per recommendations from the SVI, when RNA analysis demonstrates abnormal splici
 
 | Strength | Criteria |
 |----------|----------|
-| **Strong** | Applicable for a same amino acid change if the previously established variant is classified as **pathogenic** by ClinGen MDEP specifications. PS1 can also be applied for canonical and non-canonical splicing variants that have a SpliceAI score within 10% of the original variant, or a greater predicted deleterious impact than the comparison (likely) pathogenic variant. See Table 2 from PMID: 37352859 for determining strength. |
-| **Moderate** | Applicable for a same amino acid change if the previously established variant is classified as **likely pathogenic** by ClinGen MDEP specifications. PS1 can also be applied for canonical and non-canonical splicing variants per PMID: 37352859. |
-| **Supporting** | PS1 can be applied for canonical and non-canonical splicing variants per PMID: 37352859 guidelines. |
+| **Strong** | Applicable for a same amino acid change if the previously established variant is classified as **pathogenic** by ClinGen MDEP specifications. PS1 can also be applied for canonical and `non-canoncial` [sic] splicing variants that have a SpliceAI score within 10% of the original variant, or a greater predicted deleterious impact than the `comparision` [sic] (likely) pathogenic variant. See Table 2 from PMID: 37352859 for determining when PS1 should be applied at the Strong, Moderate, or Supporting level. |
+| **Moderate** | Applicable for a same amino acid change if the previously established variant is classified as **likely pathogenic** by ClinGen MDEP specifications. PS1 can also be applied for canonical and `non-canoncial` [sic] splicing variants that have a SpliceAI score within 10% of the original variant, or a greater predicted deleterious impact than the `comparision` [sic] (likely) pathogenic variant. See Table 2 from PMID: 37352859 for determining when PS1 should be applied at the Strong, Moderate, or Supporting level. |
+| **Supporting** | PS1 can also be applied for canonical and `non-canoncial` [sic] splicing variants that have a SpliceAI score within 10% of the original variant, or a greater predicted deleterious impact than the `comparision` [sic] (likely) pathogenic variant. See Table 2 from PMID: 37352859 for determining when PS1 should be applied at the Strong, Moderate, or Supporting level. |
 
 ---
 
@@ -179,23 +182,23 @@ Probands (and/or family members when assessing segregation for PP1) with evidenc
 
 #### PS2 Point System
 
-**Table 1: Points Awarded Per De Novo Occurrence**
+**Table 1. Points\* awarded per *de novo* occurrence**
 
-| Phenotypic Consistency | De Novo with Confirmed Parental Relationships | De Novo with Unconfirmed Parental Relationships |
+| Phenotypic consistency | *de novo* with confirmed parental relationships | *de novo* with unconfirmed parental relationships |
 |------------------------|-----------------------------------------------|------------------------------------------------|
-| Phenotype highly specific for gene | 2 points | 1 point |
-| Phenotype consistent with gene but not highly specific | 1 point | 0.5 points |
+| Phenotype highly specific for gene | 2 | 1 |
+| Phenotype consistent with gene but not highly specific | 1 | 0.5 |
 
-*Note: These points are not equivalent to the points used to classify a variant per the Tavtigian et al 2020 "Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines"*
+\*Note that these points are *not equivalent* to the points used to classify a variant per the Tavtigian et al 2020 “Fitting a naturally scaled point system to the ACMG/AMP variant classification guidelines”
 
-**Table 2: Evidence Strength Thresholds**
+**Table 2. Recommendation for determining the appropriate ACMG/AMP evidence strength level for *de novo* occurrence(s)**
 
 | Points | Strength Level |
 |--------|----------------|
 | 0.5 | Supporting (PS2_Supporting or PM6_Supporting) |
-| 1.0 | Moderate (PS2_Moderate or PM6) |
-| 2.0 | Strong (PS2 or PM6_Strong) |
-| 4.0 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
+| 1 | Moderate (PS2_Moderate or PM6) |
+| 2 | Strong (PS2 or PM6_Strong) |
+| 4 | Very Strong (PS2_VeryStrong or PM6_VeryStrong) |
 
 ---
 
@@ -220,7 +223,7 @@ Probands (and/or family members when assessing segregation for PP1) with evidenc
 
 **2. Luciferase Assays for Transactivation**
 - "Decreased function" is defined as activity less than 60% of wildtype
-- **Note:** This threshold is not 100% specific for transactivation (TA) activity and is complicated by the fact that TA activity will vary depending on many factors, for instance cell line that is used (HeLa, INS, MIN6 etc.)
+- **Note:** This threshold is not 100% specific for transactivation (TA) activity and is complicated by the fact that TA activity will `vary depend` [sic] on many factors, for instance cell line that is used (HeLa, INS, MIN6 etc.)
 
 **3. Western Blotting and Indirect Immunofluorescence for Protein Expression**
 - Specifically for levels and nuclear/cytoplasmic localization
@@ -269,7 +272,7 @@ The phenotype of the patient must include diabetes, with evidence of an autoimmu
 #### PM1_Moderate - Critical Residues
 
 **Directly Bind DNA:**
-Asp43, His49, Tyr50, Gly51, Asp56, Gly57, Lys59, Arg63, Arg64, Arg67, His70, Tyr72, Arg87, Asn88, Arg91, Arg94, Gln109, Arg112
+Asp43, His49, Tyr 50 [sic], Gly51, Asp56, Gly57, Lys59, Arg63, Arg64, Arg67, His70, Tyr72, Arg87, Asn88, Arg91, Arg94, Gln109, Arg112
 
 **Homodimer Formation:**
 Arg75, Gln89, Glu111, Asp113
@@ -326,7 +329,7 @@ Recommend using as supporting level of evidence (PM2_Supporting) per ClinGen gui
 
 **Note:** This requires testing of parents (or offspring) to determine phase.
 
-**VCEP Specifications:** ***Not Applicable*** - HNF4A-related monogenic diabetes is autosomal dominant.
+**VCEP Specifications:** ***Not Applicable***
 
 ---
 
@@ -365,7 +368,9 @@ Recommend using as supporting level of evidence (PM2_Supporting) per ClinGen gui
 
 **Original ACMG Summary:** Assumed de novo, but without confirmation of paternity and maternity.
 
-**VCEP Specifications:** ***Not Applicable*** - Subsumed by PS2. Use PS2 point-based system (see PS2 section above).
+**VCEP Specifications:** ***Not Applicable***
+
+**Comments:** Subsumed by PS2.
 
 ---
 
@@ -393,7 +398,7 @@ Unaffected family members without the variant under assessment can also be used 
 |----------|---------------|-----------|
 | **Strong** | ≤ 1/32 (5 meioses) | ≤ 1/16 (4 meioses) |
 | **Moderate** | ≤ 1/16 (4 meioses) | ≤ 1/8 (3 meioses) |
-| **Supporting** | ≤ 1/8 (3 meioses) | ≤ 1/4 (2 meioses) |
+| **Supporting** | ≤ 1/8 (3 meioses) | ≤ ¼ (2 meioses) |
 
 ---
 
@@ -443,7 +448,7 @@ MODY probability calculator result of ≥50% chance of testing positive (https:/
 
 | Strength | Criteria |
 |----------|----------|
-| **Moderate** | MODY Probability Calculator result ≥50% chance of testing positive AND negative HNF1A testing AND presence of at least one additional feature characteristic of HNF4A-MODY (see list below) |
+| **Moderate** | MODY Probability Calculator result ≥50% chance of testing positive AND negative HNF1A testing AND presence of at least one additional feature characteristic of `_HNF4A_-MODY` [sic] (see list below) |
 | **Supporting** | MODY Probability Calculator (MPC) result ≥50% chance of testing positive AND negative HNF1A testing |
 
 #### Features Characteristic of HNF4A-MODY (for PP4_Moderate)
@@ -451,7 +456,7 @@ MODY probability calculator result of ≥50% chance of testing positive (https:/
 - Antibody negative and/or persistent C-peptide after five years following T1DM diagnosis
 - Personal or family history of persistent neonatal hypoglycemia
 - Personal or family history of large for gestational age (LGA) infants or macrosomia in the absence of sufficient maternal hyperglycemia
-- Response to low-dose SU (extreme response - hypoglycemia)
+- Response to low-dose SU (extreme response- hypoglycemia)
 - Biochemical/Molecular phenotypic evidence from patient cell lines
 - Fanconi phenotype in conjunction with c.187C>T p.R63W
 
@@ -528,12 +533,12 @@ To use BS3, functional study must have been performed on a transfected variant. 
 
 **2. Luciferase Assays for Transactivation**
 - "No functional impact" is defined as ≥75% activity of wildtype
-- **Note:** This threshold is not 100% specific for transactivation (TA) activity and is complicated by the fact that TA activity will vary depending on many factors, for instance cell line that is used (HeLa, INS, MIN6 etc.)
+- **Note:** This threshold is not 100% specific for transactivation (TA) activity and is complicated by the fact that TA activity will `vary depend` [sic] on many factors, for instance cell line that is used (HeLa, INS, MIN6 etc.)
 - Assays should include controls for WT, T2DM and known MODY variants
 
 **3. Western Blotting and Indirect Immunofluorescence for Protein Expression**
 - Specifically for levels and nuclear/cytoplasmic localization
-- Determining appropriate thresholds for protein expression is more difficult due to variability in results
+- Determining appropriate thresholds for protein expression is more difficult due to variability in results due to the complexity of the technique. Sample preparations, gel loading, transfer efficiency, specificity of the antibody, choice of internal control and inaccurate detection and quantification are some of the factors that can contribute to varying and inconsistent results.
 - If a difference in protein expression compared to WT is seen by immunoblotting, then further testing by qPCR is recommended to measure the mRNA level and assess whether the difference in amount of protein is due to a reduced mRNA level
 
 ---
@@ -611,32 +616,37 @@ To use BS3, functional study must have been performed on a transfected variant. 
 
 ## Appendices
 
+> **Source-derived editorial summaries.** Appendices A–C reorganize content from the three distributed PDFs for quick reference; the criterion sections and supplied artifacts remain controlling.
+
 ### Appendix A: PVS1 Decision Tree Flowchart
 
 ```
 VARIANT TYPE                    OUTCOME                                          STRENGTH
 ─────────────────────────────────────────────────────────────────────────────────────────
 
-Nonsense or        ──▶ Exons 1-9 (5' of c.1162) - NMD expected         ──▶ PVS1
+Nonsense or        ──▶ Exons 1-9 (5' of c.1162) - NMDᵇ expected        ──▶ PVS1
 Frameshift         ──▶ Last 55 bp exon 9 + first 41 bp exon 10         ──▶ PVS1
                    ──▶ Exon 10 3' of c.1257 (Gly420)                   ──▶ PVS1_Supporting
 
-GT-AG 1,2          ──▶ Skip exon 1,2,3,4,6 → frameshift → PTC          ──▶ PVS1
-Splice Sites       ──▶ Skip exon 5,7,8,9 → in-frame, >10% removed      ──▶ PVS1_Strong
-                   ──▶ Skip/stop loss exon 10                          ──▶ PVS1_Strong
+GT--AG 1,2         ──▶ Skip exon 1,2,3,4,6 → frameshift → PTC          ──▶ PVS1
+Splice Sitesᵃ      ──▶ Skip exon 5,7,8,9 → in-frame, >10% removed      ──▶ PVS1_Strong
+                   ──▶ Skip/stop loss exon 10 (transactivation domain)ᶜ ──▶ PVS1_Strong
 
-Deletion           ──▶ Full gene deletion                              ──▶ PVS1
+Deletion           ──▶ Full gene deletionᵈ                             ──▶ PVS1
 (single to full    ──▶ Exons 1,2,3,4,6 deletion                        ──▶ PVS1
 gene)              ──▶ Single exon: 5,7,8,9,10 deletion                ──▶ PVS1_Strong
 
 Duplication        ──▶ Proven in tandem + frameshift + NMD             ──▶ PVS1
 (≥1 exon,          ──▶ Proven in tandem + no/unknown impact            ──▶ N/A
 within gene)       ──▶ Presumed in tandem + frameshift + NMD           ──▶ PVS1_Strong
+                   ──▶ Presumed in tandem + no/unknown impact          ──▶ N/A
                    ──▶ Proven not in tandem                            ──▶ N/A
 
 Initiation         ──▶ Any initiation codon variant                    ──▶ PVS1_Strong
 Codon
 ```
+
+Markers `a`, `b`, `c`, and `d` are reproduced from the supplied tree; the distributed artifact contains no definitions for them.
 
 ### Appendix B: Population Frequency Thresholds Summary
 
@@ -652,7 +662,7 @@ Codon
 |------------|---------------------------|----------------------------|
 | EMSA (DNA binding) | <60% of wildtype | ≥75% of wildtype |
 | Luciferase (Transactivation) | <60% of wildtype | ≥75% of wildtype |
-| Western blot/Immunofluorescence | Variable - requires qPCR confirmation | Variable - requires qPCR confirmation |
+| Western blot/Immunofluorescence | Variable; qPCR follow-up is recommended when reduced protein expression is seen | Variable; qPCR follow-up is recommended when a difference from WT is seen |
 
 ### Appendix D: References
 
@@ -680,7 +690,13 @@ Codon
 | Version | Date | Notes |
 |---------|------|-------|
 | 4.0.0 | 10/10/2025 | Updated PS2 to clarify family history exclusions; Changed PM1 for HNF1A/HNF1B and PDX1 binding sites in promoter |
-| 1.0.0 | — | Initial release |
+
+### Document corrections (2026-08-10)
+
+- Verified the core criteria, printed spelling/typography, and combination rules against `ClinGen_ACMG_Specifications_HNF4A_v4.0.pdf`; restored omitted exon-10 PVS1 rationale, the exact initiation-codon evidence string, full PS1 splice wording, `TA activity will vary depend on many factors` [sic], `extreme response- hypoglycemia`, and the detailed BS3 assay caveat; removed the unsupported PM3 inheritance rationale and generic PM6 instruction.
+- Verified PVS1 branch connectivity against `HNF4A PVS1 Decision Tree.pdf`; restored the missing Presumed-in-tandem → No or unknown reading-frame/NMD impact → N/A branch in both decision-tree representations, preserved `GT--AG`, and reproduced unresolved markers `a`–`d` with their absent definitions disclosed.
+- Verified both de novo tables against `PS2 De Novo Points Table.pdf`; restored the exact Table 1 and Table 2 titles, bare numeric cells, PS2/PM6 labels, and the printed Tavtigian et al. 2020 non-equivalence footnote.
+- Labeled Appendices A–C as source-derived editorial summaries and corrected Appendix C so qPCR follow-up is described as recommended, not required. Removed the unsupported `1.0.0` history row.
 
 ---
 

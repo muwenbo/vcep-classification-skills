@@ -4,6 +4,7 @@
 **Released:** December 3, 2024
 **Affiliation:** Cerebral Creatine Deficiency Syndromes Variant Curation Expert Panel (CCDS VCEP)
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
+**Specification DOI:** 10.5281/zenodo.21421625
 
 ---
 
@@ -17,6 +18,10 @@
 | **Protein** | NP_001473 (423 amino acids) |
 | **Disease** | AGAT deficiency (MONDO:0012996) |
 | **Inheritance** | Autosomal recessive |
+
+---
+
+> **Source fidelity note:** This transcription uses the distributed v2.0 core PDF and all four distributed GATM appendices. Source contradictions and apparent source typos are retained and identified instead of silently reconciled.
 
 ---
 
@@ -80,7 +85,7 @@ For all splice site variants (+1, +2, -1, -2), follow the guidance from the Clin
 |----------|----------|
 | **Very Strong** | Nonsense-mediated decay predicted |
 | **Strong** | In-frame loss of >10% of the protein |
-| **Moderate** | Single exon or larger deletion resulting in loss of <10% of the protein, and initiator codon variants |
+| **Moderate** | Single-exon or larger deletion resulting in loss of <10% of the protein; the core PDF also assigns all initiator-codon variants Moderate |
 
 #### Nonsense and Frameshift Variants
 
@@ -109,11 +114,11 @@ In those cases, refer to the PVS1 flowchart (Appendix A) for guidance on PVS1 we
 
 #### Duplications
 
-To assess the impact of duplications, see Appendix A (PVS1 flowchart) and Appendix B (predicted impact of exon loss).
+To assess the impact of duplications, see Appendix A. The distributed flowchart distinguishes proven tandem, presumed tandem, proven non-tandem, and no/unknown reading-frame impact.
 
 #### Initiator Codon Variants
 
-All initiator codon variants will meet PVS1_Moderate. The next in-frame methionine is at amino acid position 130 (based on NP_001473).
+The core PDF says all initiator-codon variants meet **PVS1_Moderate** and identifies the next in-frame methionine at amino acid 130 (NP_001473). The distributed PVS1 flowchart is more conditional: an alternative functional transcript gives N/A; otherwise loss of the mitochondrial transit peptide gives Moderate; otherwise the route to the closest potential in-frame start gives Supporting when no pathogenic variant is known upstream. The package does not reconcile these instructions; see Appendix A.
 
 ---
 
@@ -168,7 +173,7 @@ All initiator codon variants will meet PVS1_Moderate. The next in-frame methioni
 | **Reference** | DesRoches et al, 2016 (PMID: 27233232) |
 | **Assay Description** | In vitro expression of cDNA constructs in HeLa cells followed by assay of AGAT activity |
 | **Material** | Missense variants introduced into pTracer-GATM plasmid by site-directed mutagenesis, expressed in HeLa cells |
-| **Readout** | % of recombinant wild-type AGAT activity |
+| **Readout** | Text categories `<10%`, `15-50%`, and `>50%`; graph reports pg/hr/ng protein. The workbook labels the readout `% of recombinant wild-type GAMT activity`, an apparent wrong-gene carry-over in this AGAT worksheet. |
 | **Controls** | Wild type pTracer-GATM (positive); pTracer empty vector and untransfected cells (negative) |
 | **Validation** | 1 LP variant, 2 benign variants (meet BA1) |
 | **PS3_Supporting Threshold** | AGAT activity ≤15% of normal |
@@ -228,24 +233,7 @@ All initiator codon variants will meet PVS1_Moderate. The next in-frame methioni
 
 Parental testing, or another appropriate molecular method (such as cloning each allele separately followed by sequencing), must have been performed in order to confirm that the variants are in trans if the patient is compound heterozygous.
 
-#### PM3 Point System
-
-| Classification of Other Allele | Points (Confirmed in Trans) | Points (Phase Unknown) |
-|--------------------------------|----------------------------|------------------------|
-| Pathogenic variant | 1.0 | 0.5 |
-| Likely pathogenic variant | 1.0 | 0.25 |
-| Homozygous (non-consanguineous) | 1.0 | 1.0 |
-| Homozygous (consanguineous, max 0.5/family) | 0.5 | 0.5 |
-| VUS (max 0.5 total) | 0.25 | 0.0 |
-
-#### PM3 Evidence Strength Thresholds
-
-| Total Points | Strength Level |
-|--------------|----------------|
-| 0.5 | PM3_Supporting |
-| 1.0 | PM3 (Moderate) |
-| 2.0 | PM3_Strong |
-| 4.0 | PM3_VeryStrong |
+The VCEP permits PM3 at Supporting, Moderate, Strong, and Very Strong, but the distributed package does **not** contain the external SVI point table or its point-to-strength thresholds. Consult the linked SVI PM3 guidance rather than treating an undistributed numeric matrix as part of this package.
 
 ---
 
@@ -503,52 +491,34 @@ Use the current version recommended by SVI; version number will be stated in cla
 
 ### Appendix A: PVS1 Decision Tree Summary
 
-The PVS1 decision tree for GATM follows the ClinGen SVI recommendations (Abou Tayoun et al, 2018, PMID: 30192042) with gene-specific modifications.
+The following transcribes the distributed GATM PVS1 PowerPoint. Its highlighted areas are described as VCEP fill-in guidance, and its note says weights may be adjusted.
 
-#### Nonsense/Frameshift Pathway
+| Variant/path | Gate | Result |
+|---|---|---|
+| Nonsense/frameshift | NMD predicted and exon present in biologically relevant `NM_001482.3` | PVS1 |
+| Nonsense/frameshift | NMD predicted but exon absent from that transcript | N/A |
+| Nonsense/frameshift, no NMD | Cys407 is removed | PVS1_Strong |
+| Nonsense/frameshift, no NMD; region role unknown | LoF variant is frequent in general population, or exon is absent | N/A |
+| Same, with no frequent LoF and exon present | >10% of protein removed | PVS1_Strong |
+| Same, with no frequent LoF and exon present | <10% of protein removed | PVS1_Moderate |
+| Canonical splice; disrupted frame with NMD | Exon 2, 3, 4, or 7 present | PVS1; absent => N/A |
+| Canonical splice; disrupted frame without NMD | Cys407 removed | PVS1_Strong |
+| Canonical splice; preserved frame | Active residues Asp254 or His303 in exons 5 or 6 removed | PVS1_Strong |
+| Either splice route with region role unknown | Frequent LoF/exon-absence gates, then >10% Strong / <10% Moderate as above | Conditional |
+| Full-gene deletion | — | PVS1 |
+| Frame-disrupting deletion with NMD | Exon present | PVS1; absent => N/A |
+| Frame-disrupting deletion without NMD, or frame-preserving deletion | Active-site exon 5, 6, or 9 removed | PVS1_Strong |
+| Same, with region role unknown | Frequent LoF/exon-absence gates, then >10% Strong / <10% Moderate as above | Conditional |
+| Proven tandem duplication | Reading frame disrupted and NMD predicted | PVS1 |
+| Proven tandem duplication | No/unknown impact on frame and NMD | N/A |
+| Presumed tandem duplication | Frame presumed disrupted and NMD predicted | PVS1_Strong |
+| Presumed tandem duplication | No/unknown impact on frame and NMD | N/A |
+| Proven non-tandem duplication | — | N/A |
+| Initiation codon | Different functional transcript uses an alternative start | N/A |
+| Initiation codon; no known alternative start | Mitochondrial transit peptide included | PVS1_Moderate |
+| Initiation codon; no known alternative start | No pathogenic variant upstream of closest potential in-frame start | PVS1_Supporting |
 
-```
-Nonsense or Frameshift
-    |
-    +-- Predicted to undergo NMD (nucleotide is 5' of c.1109)
-    |       --> PVS1
-    |
-    +-- Not predicted to undergo NMD (last exon or last 50bp of exon 8)
-            |
-            +-- Truncated region includes Cys407 (critical active site)
-            |       --> PVS1_Strong
-            |
-            +-- Role of truncated region unknown
-                    --> PVS1_Moderate
-```
-
-#### Splice Site Pathway
-
-```
-Canonical Splice Site (+1, +2, -1, -2)
-    |
-    +-- Exon skipping disrupts reading frame + NMD predicted
-    |       --> PVS1
-    |
-    +-- Exon skipping preserves reading frame
-    |       |
-    |       +-- Removes >10% protein OR includes active site residue
-    |       |       --> PVS1_Strong
-    |       |
-    |       +-- Removes <10% protein, no critical residues
-    |               --> PVS1_Moderate
-    |
-    +-- Exon skipping disrupts reading frame, no NMD
-            --> See flowchart for specific guidance
-```
-
-#### Critical Residues by Exon
-
-| Exon | Critical Residues | Notes |
-|------|-------------------|-------|
-| 5 | Asp254 | Active site, hydrogen bonded to His303 |
-| 6 | His303, Asp305, Met302, Arg322 | Active site and substrate binding |
-| 9 | Cys407, Gly402 | Active site (Cys407) and substrate binding |
+The initiation branch conflicts with the core PDF's unconditional Moderate assignment. The flowchart also uses strict `>10%` and `<10%`; exactly 10% is not assigned. One flowchart label spells `predicted` as `precited`; the operational table above uses the intended word but records the source typo here.
 
 ---
 
@@ -558,15 +528,17 @@ Canonical Splice Site (+1, +2, -1, -2)
 |------|------------------|-----------------|-------------------|------------------------------|---------------|-------------------|
 | 1 | -91 | 69 | 69 | In-frame, deletes 23 aa (5.4%) | Strong | Mitochondrial transit peptide (aa 1-37) |
 | 2 | 70 | 288 | 219 | Out-of-frame → NMD | Very Strong | - |
-| 3 | 289 | 484 | 196 | Out-of-frame → NMD | Very Strong | Asn98 (water binding) |
-| 4 | 485 | 675 | 191 | Out-of-frame → NMD | Very Strong | Asp170 (substrate binding), Tyr203 |
+| 3 | 289 | 484 | 196 | Out-of-frame → NMD | Very Strong | Asn98 (water molecule bound to ornithine/arginine) |
+| 4 | 485 | 675 | 191 | Out-of-frame → NMD | Very Strong | Asp170 (substrate binding); Tyr203Ser is listed as pathogenic for AGAT-D; workbook also notes four Fanconi-syndrome missense changes |
 | 5 | 676 | 813 | 138 | In-frame, deletes 46 aa (10.9%) | Strong | **Asp254** (active site) |
 | 6 | 814 | 978 | 165 | In-frame, deletes 55 aa (13.0%) | Strong | **His303** (active site), Met302, Asp305, Arg322 |
 | 7 | 979 | 1042 | 64 | Out-of-frame → NMD | Very Strong | - |
 | 8 | 1043 | 1159 | 117 | In-frame, deletes 39 aa (9.2%) | Moderate | Ser354, Ser355 (substrate binding) |
-| 9 | 1160 | 1272 (stop) | 113 | Missing last 36 aa + stop | Moderate (Strong if Cys407 missing) | **Cys407** (active site), Gly402 |
+| 9 | 1160 | `*985` [sic]; workbook also says 1272 is the last stop nucleotide | 113 | Missing last 36 aa + stop | Moderate (Strong if Cys407 missing) | **Cys407** (active site), Gly402 |
 
 **Total:** 1272 nucleotides (including stop codon), 423 amino acids
+
+Additional workbook details: exon 1 contains the first 37-amino-acid mitochondrial transit peptide and phosphoserine modifications at residues 46 and 49. Exon 4's source cell literally says `p.Asn170Asn abolishes AGAT activity` after discussing the p.Asp170Asn structure, an apparent typo. Exon 5 notes >2,000-fold reduced activity for p.Asp254Asn. Exon 6 says p.His303Val and p.Asp305Ala abolish activity and p.Arg322Glu reduces it >400-fold. Exon 8 says p.Ser355Ala reduces activity >400-fold and notes N6-acetyllysine at residue 385. Exon 9 says p.Cys407Ser abolishes activity in a construct also containing p.Glu233Lys, which was not expected to affect activity.
 
 ---
 
@@ -581,7 +553,7 @@ Canonical Splice Site (+1, +2, -1, -2)
 | **Method** | In vitro expression of cDNA constructs in HeLa cells followed by assay of AGAT activity |
 | **Material** | Missense variants introduced into pTracer-GATM plasmid by site-directed mutagenesis |
 | **Readout** | % of recombinant wild-type AGAT activity (quantitative) |
-| **Replicates** | Biological: Yes (duplicate transfections); Technical: Limited |
+| **Replicates** | Workbook row 11 says duplicate transfections; row 17 says mean of biological triplicates; technical replicates are literally `not met?` |
 | **Positive Control** | Wild type pTracer-GATM; GFP signal indicates successful transfection |
 | **Negative Control** | (1) pTracer empty vector, (2) untransfected cells |
 | **Validation** | 1 LP variant, 2 benign variants (meet BA1) |
@@ -591,8 +563,9 @@ Canonical Splice Site (+1, +2, -1, -2)
 | Classification | AGAT Activity Threshold |
 |----------------|------------------------|
 | PS3_Supporting (Abnormal) | ≤15% of normal |
-| Indeterminate | 16-29% of normal |
 | BS3_Supporting (Normal) | ≥30% of normal |
+
+The core PDF supplies these classification cutoffs, but the functional workbook says both its normal and abnormal thresholds were `Not provided`. Values strictly above 15% and below 30% are not assigned a category by the distributed package.
 
 ---
 
@@ -606,6 +579,23 @@ Canonical Splice Site (+1, +2, -1, -2)
 
 **Note:** Use gnomAD GrpMax (lower bound 95th percentile). Version will be stated in classification summary.
 
+The distributed MAF deck also records the assumptions behind these values: seven pathogenic missense variants among 6,503 EVS individuals gave an estimated carrier frequency of 0.11% (CI 0.03%-0.19%) and incidence of 1 in 3,450,000; penetrance is shown as `100%?`; maximum allelic contribution is shown as 6/26 (0.23) per case or 2/16 (0.125) per family. Its calculator explores 100%, 25%, and 6% maximum allelic contributions, yielding 0.0005, 0.0001, and 0.00003 respectively. The core adopts the first two as BA1 and BS1 and uses the observed approximately 0.000055 LoF frequency for PM2.
+
+#### Suspected pathogenic variants shown in the MAF deck
+
+| Variant | Highest gnomAD MAF shown |
+|---|---:|
+| c.484+1G>T | 0.00005437 (East Asian) |
+| p.Arg169Ter | 0.00005013 (East Asian) |
+| p.Glu181Lys | 0.000008794 (European non-Finnish) |
+| p.Arg189Cys | 0.00006155 (African); slide labels it `VUS in ClinVar` |
+| p.Ala208Thr | 0.00005437 (East Asian) |
+| p.Arg282His | 0.00002892 (Latino) |
+| p.Leu329Val | 0.00001759 (European non-Finnish) |
+| p.Pro346Leu | 0.000008795 (European non-Finnish) |
+
+The deck separately lists p.Trp149Ter, c.1111_1112insA, p.Trp203Ser, p.Arg413Gln, p.Arg413Trp, p.Trp210Ter, p.Ala185Pro, and p.Pro105Leu as not listed in gnomAD. It prints LoF frequencies `0.00006156`, `0.00005013`, `0.00006164`, `0.00005437`, `0.0006410*`, `0.000008858`, `0.000008814`, and `0.000008967`; the asterisk says 1/1560 East Asian alleles and therefore below the 2,000-allele requirement. The slide does not visibly map those eight frequencies row-by-row to the eight not-listed variants, so no mapping is inferred here.
+
 ---
 
 ### Appendix E: Reference PMIDs
@@ -618,9 +608,27 @@ Canonical Splice Site (+1, +2, -1, -2)
 | 30311383 | Whiffin et al, 2018 | Allele frequency threshold calculations |
 | 36413997 | Pejaver et al, 2022 | REVEL thresholds for PP3/BP4 |
 | 37352859 | Walker et al, 2023 | SVI Splicing Subgroup guidance |
-| 9148748 | Humm et al, 1997 | AGAT active site identification |
-| 9218780 | Humm et al, 1997 | AGAT crystal structure |
-| 9266688 | Fritsche et al, 1997 | AGAT substrate binding and catalysis |
+
+---
+
+### Distributed Source Package
+
+- `ClinGen_ACMG_Specifications_GATM_v2.0.pdf`
+- `Appendix 1_GATM (AGAT) _ PVS1 decision tree.pptx`
+- `Appendix 2_GATM (AGAT) _ exons.xlsx`
+- `Appendix 3_GATM (AGAT) _ functional studies.xlsx`
+- `Appendix 4_GATM (AGAT) _ MAFs.pptx`
+
+---
+
+### Document corrections (2026-08-11)
+
+- Verified the metadata and criterion text against `ClinGen_ACMG_Specifications_GATM_v2.0.pdf`; restored the DOI and retained strict versus inclusive threshold wording exactly.
+- Re-transcribed `Appendix 1_GATM (AGAT) _ PVS1 decision tree.pptx`; restored transcript-presence, population-frequency, deletion, duplication, and conditional initiation routes. The core/flowchart initiation conflict and exact-10% gap are now explicit.
+- Re-transcribed `Appendix 2_GATM (AGAT) _ exons.xlsx`; restored critical-residue details and the literal `*985` coordinate conflict.
+- Re-transcribed `Appendix 3_GATM (AGAT) _ functional studies.xlsx`; removed the invented 16%-29% indeterminate band and disclosed the workbook's wrong-gene readout label, replicate contradiction, and absent assay thresholds.
+- Re-transcribed `Appendix 4_GATM (AGAT) _ MAFs.pptx`; restored its prevalence assumptions, variant frequencies, calculator values, and unmapped LoF list.
+- Removed the numeric PM3 point matrix because the distributed package only refers to external SVI guidance and does not ship that matrix.
 
 ---
 
@@ -629,6 +637,7 @@ Canonical Splice Site (+1, +2, -1, -2)
 | Version | Date | Changes |
 |---------|------|---------|
 | 2.0.0 | December 3, 2024 | Updated to include SVI guidance on splicing variants (Walker et al, 2023, PMID: 37352859) and in silico data (Pejaver et al, 2022, PMID: 36413997), as well as new gnomAD version. Added PS1_Moderate, PS1_Supporting for splicing variants. Removed splicing assays from PS3 (now under PVS1). Added PP3_Moderate. Updated BP4 and BP7 with new SpliceAI cutoffs. Added additional Likely Pathogenic combinations including PVS1 + PM2_Supporting. |
+| 2.0.0 remediation | August 11, 2026 | Re-transcribed the complete distributed package source-first. Removed the undistributed numeric PM3 graft and invented functional indeterminate band; restored PVS1 transcript/frequency gates and duplication/initiation branches; preserved source typos and disclosed core/appendix contradictions. |
 | 1.0.0 | Initial release | Original VCEP specifications |
 
 ---
