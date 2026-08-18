@@ -1,6 +1,7 @@
 # Track only marketplace files, plugins, and READMEs
 *
 !.gitignore
+!LICENSE
 !README.md
 !README.zh.md
 !.claude-plugin/
