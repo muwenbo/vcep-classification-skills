@@ -991,25 +991,39 @@ threshold/conflict/provenance repairs.
 
 ## 8. Loose ends unrelated to the completed remediation inventory
 
-- **GN094 LZTR1 registry inconsistency**: source-first remediation confirmed
-  that the governing distributed specification and registry version are
-  `1.3.0`, while `guideline_file` remains `LZTR1_..._v2.0.0.md`. The mismatch
-  predates round 4 and was deliberately not folded into a same-version content
-  correction. Resolve the filename separately if desired; do not change the
-  registry version to 2.0.0. Also 17 title/version mismatches remain, mostly
-  benign mtDNA suffixes.
-- **`read_word.py` cannot reach images embedded inside `.docx`.** Agents worked
-  around it by unzipping the archive manually. Worth fixing properly; several
-  tables exist only as embedded PNGs.
-- **`read_ppt.py` silently drops text.** The F9 agent found most of slide 2
-  missing and had to read raw `slide2.xml`. Same class of bug.
-- **PP1 co-segregation LOD grids** are damaged in at least five specs — ADA and
-  DCLRE1C truncated 11×11 → 6×6, IL7R omitted entirely, ACADVL truncated with
-  an admission, JAK3 5 of 10 rows, Hearing Loss fabricated. For AR genes this
-  grid is the operative lookup. A corpus-wide grep for this was attempted and
-  **produced a false result** (the regex stem `truncat` matches the ACMG BP1
-  boilerplate "**Truncating** variants…", which appears ~460 times). Detecting
-  it properly needs source comparison.
+- **GN094 LZTR1 registry inconsistency** — **RESOLVED 2026-08-18.** The
+  guideline file and registry `guideline_file` were renamed from
+  `LZTR1_..._v2.0.0.md` to `..._v1.3.0.md` to match the registry `1.3.0`
+  entry; the registry `version` field was already `1.3.0` and is unchanged.
+  Registry/disk consistency now reports **zero** `version`/`guideline_file`
+  mismatches (was 1). The remaining ~13 title/version rows are benign: they are
+  the abbreviated ClinGen version strings inside the official spec titles
+  (e.g. "Version 1" vs `1.0.0`, mtDNA suffixes) and must not be altered, since
+  the title text is copied verbatim from the source.
+- **`read_word.py` cannot reach images embedded inside `.docx`** — **FIXED
+  2026-08-18.** `extract_media()` now lists every `word/media/` image in the
+  output (JSON `images` key and a markdown "Embedded images" section) and
+  `--extract-media DIR` saves them to disk. Regression tests in
+  `tests/test_office_readers.py`.
+- **`read_ppt.py` silently drops text** — **FIXED 2026-08-18.** The reader now
+  recurses into group shapes via `collect_shapes()`; text inside grouped (and
+  nested-group) textboxes — how ClinGen PVS1 decision trees are built — is no
+  longer dropped. Regression test in `tests/test_office_readers.py`.
+- **PP1 co-segregation LOD grids** — **AUDITED AND CLOSED 2026-08-18.** All six
+  originally-damaged specs (ADA, DCLRE1C, IL7R, JAK3 truncations; ACADVL
+  truncation; Hearing Loss) were already remediated in their respective rounds:
+  ADA/DCLRE1C/IL7R/IL2RG/JAK3 and ACADVL now carry the complete 0-10 × 0-10
+  Oza Table 4b grid, and the Hearing Loss specs correctly use a direct
+  affected-count rule with no LOD grid. The open question — *are there other
+  specs with a silently truncated grid the naive grep missed?* — was answered
+  with a **structural** sweep (`scripts/audit_pp1_grids.py`): of 25 guidelines
+  that invoke the segregation grid, every one either carries the complete 11×11
+  grid or legitimately uses a different framework (Biesecker points chart:
+  ACTA1-AD/AR, IDUA; direct rule: PAH, PIK3R1, GN005; LOD formula + Table 4a:
+  FOXN1, DNM2; or explicitly records that its package ships no grid: RYR1-AD,
+  RYR1-AR). **No silent truncation remains.** The complete grids and the RYR1
+  no-substitution guards are locked by `PP1SegregationGridTests` in
+  `tests/test_audited_guideline_repairs.py`.
 
 ---
 

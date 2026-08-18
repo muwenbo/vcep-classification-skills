@@ -6,7 +6,7 @@
 **Based on:** Richards et al., 2015 ACMG/AMP Guidelines
 **DOI:** 10.5281/zenodo.21434326
 
-> **Known repository version mismatch:** The governing ClinGen PDF and GN094 package metadata identify this specification as **version 1.3**. The existing repository filename remains `LZTR1_Variant_Interpretation_Guidelines_v2.0.0.md`, and the registry remains at its pre-existing `1.3.0` entry. This source-fidelity correction does not rename the file or alter the registry.
+> **Repository version reconciled (2026-08-18):** The governing ClinGen PDF and GN094 package metadata identify this specification as **version 1.3**. The guideline file and registry `guideline_file` were previously carried as `v2.0.0`; both have been renamed to `LZTR1_Variant_Interpretation_Guidelines_v1.3.0.md` to match the registry `1.3.0` entry. The registry `version` field was already `1.3.0` and is unchanged.
 
 ---
 

@@ -1,3 +1,4 @@
+import re
 import unittest
 from pathlib import Path
 
@@ -411,6 +412,72 @@ class AuditedGuidelineRepairTests(unittest.TestCase):
         self.assertNotIn("**Based on:** Richards et al.", template)
         self.assertIn("Never fill a source gap with generic ACMG/AMP", skill)
         self.assertIn("placeholders are not evidence", skill)
+
+
+def _has_complete_oza_grid(text: str) -> bool:
+    """True if text contains a complete 0-10 x 0-10 Oza recessive LOD grid:
+    a header row 0..10 followed by 11 data rows labelled 0..10."""
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if not line.strip().startswith("|"):
+            continue
+        cells = [c.strip().strip("*") for c in line.strip().strip("|").split("|")]
+        nums = [c for c in cells if re.fullmatch(r"\d+", c)]
+        if nums[:11] != [str(n) for n in range(11)]:
+            continue
+        labels = []
+        j = i + 1
+        while j < len(lines) and lines[j].strip().startswith("|"):
+            rcells = [c.strip().strip("*") for c in lines[j].strip().strip("|").split("|")]
+            if set("".join(rcells)) <= set("-: "):
+                j += 1
+                continue
+            if re.fullmatch(r"\d+", rcells[0]):
+                labels.append(rcells[0])
+            else:
+                break
+            j += 1
+        if labels == [str(n) for n in range(11)]:
+            return True
+    return False
+
+
+class PP1SegregationGridTests(unittest.TestCase):
+    """The PP1 co-segregation LOD grids were silently truncated in several
+    specs before the 2026-08 remediation (handoff §8). These lock the fixes:
+    specs that reproduce the recessive Oza 4b grid must carry the complete
+    11x11 lookup, and the congenital-myopathy specs whose packages ship no
+    grid must keep their explicit no-substitution guard."""
+
+    COMPLETE_GRID_SPECS = (
+        "ADA_Variant_Interpretation_Guidelines_v2.2.0.md",
+        "DCLRE1C_Variant_Interpretation_Guidelines_v2.2.0.md",
+        "IL7R_Variant_Interpretation_Guidelines_v2.2.0.md",
+        "IL2RG_Variant_Interpretation_Guidelines_v2.2.0.md",
+        "JAK3_Variant_Interpretation_Guidelines_v2.3.0.md",
+        "ACADVL_Variant_Interpretation_Guidelines_v2.2.0.md",
+    )
+
+    def test_recessive_oza_grid_is_complete_11x11(self):
+        for name in self.COMPLETE_GRID_SPECS:
+            with self.subTest(guideline=name):
+                self.assertTrue(
+                    _has_complete_oza_grid(guideline(name)),
+                    f"{name}: PP1 recessive LOD grid is truncated or missing",
+                )
+
+    def test_ryr1_specs_refuse_generic_oza_grid_substitution(self):
+        for name in (
+            "RYR1_AR_Variant_Interpretation_Guidelines_v2.0.0.md",
+            "RYR1_AD_Variant_Interpretation_Guidelines_v2.0.0.md",
+        ):
+            with self.subTest(guideline=name):
+                text = guideline(name)
+                self.assertIn("Do not substitute a generic Oza et al. grid", text)
+                self.assertFalse(
+                    _has_complete_oza_grid(text),
+                    f"{name}: carries an Oza grid its package does not distribute",
+                )
 
 
 if __name__ == "__main__":

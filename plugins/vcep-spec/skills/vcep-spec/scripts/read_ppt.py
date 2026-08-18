@@ -11,7 +11,9 @@ Arguments:
     --slide N            Read only slide number N (1-indexed, optional)
 
 Output:
-    Markdown text with slide structure (default) or JSON structure
+    Markdown text with slide structure (default) or JSON structure.
+    Text inside group shapes is recursed into (ClinGen PVS1 decision trees are
+    built from grouped textboxes, which would otherwise be dropped silently).
 
 Dependencies:
     python-pptx (auto-installed if missing)
@@ -32,6 +34,48 @@ def install_dependencies():
             [sys.executable, "-m", "pip", "install", "python-pptx", "-q"],
             stderr=subprocess.DEVNULL
         )
+
+def collect_shapes(shapes, slide_data, mso_shape_type):
+    """
+    Walk a shape tree, recursing into group shapes.
+
+    python-pptx does not expose the text of shapes nested inside a group
+    through the group's own ``.text``; without recursion every textbox inside
+    a group is silently dropped. ClinGen PVS1 decision trees are built almost
+    entirely from grouped textboxes, so the whole flowchart would vanish.
+    """
+    for shape in shapes:
+        # Recurse into groups (which may themselves contain groups)
+        if shape.shape_type == mso_shape_type.GROUP:
+            collect_shapes(shape.shapes, slide_data, mso_shape_type)
+            continue
+
+        # Extract title (only the first title placeholder wins)
+        if shape.is_placeholder:
+            try:
+                ph_type = shape.placeholder_format.type
+                if ph_type is not None and ph_type.name in ['TITLE', 'CENTER_TITLE']:
+                    if hasattr(shape, 'text') and not slide_data['title']:
+                        slide_data['title'] = shape.text.strip()
+                        continue
+            except Exception:
+                pass
+
+        # Extract text content
+        if hasattr(shape, 'text') and shape.text.strip():
+            text = shape.text.strip()
+            if text != slide_data['title']:  # Avoid duplicating title
+                slide_data['content'].append(text)
+
+        # Extract tables
+        if shape.has_table:
+            table = shape.table
+            table_data = []
+            for row in table.rows:
+                row_data = [cell.text.strip() for cell in row.cells]
+                table_data.append(row_data)
+            slide_data['tables'].append(table_data)
+
 
 def read_pptx_file(file_path, slide_number=None):
     """
@@ -70,32 +114,7 @@ def read_pptx_file(file_path, slide_number=None):
             'notes': ''
         }
 
-        for shape in slide.shapes:
-            # Extract title
-            if shape.is_placeholder:
-                try:
-                    ph_type = shape.placeholder_format.type
-                    if ph_type is not None and ph_type.name in ['TITLE', 'CENTER_TITLE']:
-                        if hasattr(shape, 'text'):
-                            slide_data['title'] = shape.text.strip()
-                            continue
-                except Exception:
-                    pass
-
-            # Extract text content
-            if hasattr(shape, 'text') and shape.text.strip():
-                text = shape.text.strip()
-                if text != slide_data['title']:  # Avoid duplicating title
-                    slide_data['content'].append(text)
-
-            # Extract tables
-            if shape.has_table:
-                table = shape.table
-                table_data = []
-                for row in table.rows:
-                    row_data = [cell.text.strip() for cell in row.cells]
-                    table_data.append(row_data)
-                slide_data['tables'].append(table_data)
+        collect_shapes(slide.shapes, slide_data, MSO_SHAPE_TYPE)
 
         # Extract speaker notes
         if slide.has_notes_slide:

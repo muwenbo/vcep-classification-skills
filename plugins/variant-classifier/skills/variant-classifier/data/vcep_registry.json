@@ -863,7 +863,7 @@
       "status": "Released",
       "version": "1.3.0",
       "specification_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN094",
-      "guideline_file": "LZTR1_Variant_Interpretation_Guidelines_v2.0.0.md"
+      "guideline_file": "LZTR1_Variant_Interpretation_Guidelines_v1.3.0.md"
     },
     {
       "spec_id": "GN045",
